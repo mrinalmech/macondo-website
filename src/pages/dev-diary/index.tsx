@@ -1,5 +1,10 @@
 import React from "react"
+import Layout from "../../components/Layout"
+import Head from "../../components/Head"
 
-export default function Home() {
-  return <div>Dev diary</div>
+export default function DevDiary() {
+  return <Layout>
+    <Head title="Dev Diary" />
+    Dev Diary
+  </Layout>
 }

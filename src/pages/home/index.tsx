@@ -1,5 +1,10 @@
 import React from "react"
+import Layout from "../../components/Layout"
+import Head from "../../components/Head"
 
 export default function Home() {
-  return <div>Hello worlfdfdfd!</div>
+  return <Layout>
+    <Head title="Home" />
+    Home
+  </Layout>
 }
