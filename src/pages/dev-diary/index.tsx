@@ -4,7 +4,7 @@ import Head from "../../components/Head"
 
 export default function DevDiary() {
   return <Layout>
-    <Head title="Dev Diary" />
+    <Head title="Macondo Dev Diary" />
     Dev Diary
   </Layout>
 }

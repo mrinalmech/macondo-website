@@ -1,3 +1,8 @@
+const autoprefixer = require('autoprefixer')
+const postCssDiscardDuplicates = require('postcss-discard-duplicates')
+const postCssFlexbugsFixes = require('postcss-flexbugs-fixes')
+const postCssFocus = require('postcss-focus')
+
 module.exports = {
   siteMetadata: {
     title: 'Macondo Games',
@@ -21,6 +26,19 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
-    'gatsby-plugin-svgr'
+    {
+      resolve: 'gatsby-plugin-sass',
+      options: {
+        cssLoaderOptions: {
+          camelCase: false,
+        },
+        postCssPlugins: [
+          autoprefixer(),
+          postCssDiscardDuplicates(),
+          postCssFlexbugsFixes(),
+          postCssFocus(),
+        ],
+      },
+    }
   ]
 }

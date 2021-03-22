@@ -4,7 +4,7 @@ import Head from "../../components/Head"
 
 export default function Home() {
   return <Layout>
-    <Head title="Home" />
+    <Head title="Macondo Games" />
     Home
   </Layout>
 }

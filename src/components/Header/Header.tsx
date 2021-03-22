@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import HeaderLogo from './images/header-logo.png'
-
+import styles from './Header.module.scss'
 
 const ListLink = props => (
   <li style={{ display: `inline-block`, marginRight: `1rem` }}>

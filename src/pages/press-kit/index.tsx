@@ -4,7 +4,7 @@ import Head from "../../components/Head"
 
 export default function PressKit() {
   return <Layout>
-    <Head title="Press Kit" />
+    <Head title="Macondo Press Kit" />
     Press Kit
   </Layout>
 }
