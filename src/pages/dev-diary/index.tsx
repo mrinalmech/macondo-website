@@ -3,8 +3,10 @@ import Layout from "../../components/Layout"
 import Head from "../../components/Head"
 
 export default function DevDiary() {
-  return <Layout>
-    <Head title="Macondo Dev Diary" />
-    Dev Diary
-  </Layout>
+  return (
+    <Layout>
+      <Head title="Macondo Dev Diary" />
+      Dev Diary
+    </Layout>
+  )
 }

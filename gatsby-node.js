@@ -10,7 +10,7 @@ exports.onCreatePage = async ({ actions, page }) => {
     const oldPage = { ...page }
 
     if (/home/.test(page.path)) {
-      page.path = '/'
+      page.path = "/"
       deleteAndCreatePages(oldPage, page)
     }
 

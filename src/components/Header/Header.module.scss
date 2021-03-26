@@ -1,0 +1,17 @@
+@import '../../styles/_breakpoints.scss';
+@import '../../styles/_colors.scss';
+
+.navLink {
+  color: $white !important;
+  padding: {
+    right: 1rem !important;
+    left: 1rem !important;
+  }
+  @include respond-below(sm) {
+    padding-left: 0 !important;
+  }
+
+  &:hover {
+    color: $dark-blue !important;
+  }
+}

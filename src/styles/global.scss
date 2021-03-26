@@ -1,7 +1,12 @@
 @import "~bootstrap/scss/bootstrap";
+@import "./_typography.scss";
 
 body,
 html {
   padding: 0;
   margin: 0;
+}
+
+body {
+  font-family: "Retro Computer", sans-serif;
 }
