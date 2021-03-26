@@ -1,25 +1,31 @@
 import React from "react"
 import { Link } from "gatsby"
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import HeaderLogo from './images/header-logo.png'
-import styles from './Header.module.scss'
 
-const ListLink = props => (
-  <li style={{ display: `inline-block`, marginRight: `1rem` }}>
-    <Link to={props.to}>{props.children}</Link>
-  </li>
-)
+interface LinkProps {
+  to: string
+  children: React.Node | React.Node[]
+}
+
+const NavLink = (props: LinkProps) => <Link to={props.to} className="nav-link">{props.children}</Link>
 
 export default function Header() {
-  return (
-    <header style={{ marginBottom: `1.5rem` }}>
-      <Link to="/" style={{ textShadow: `none`, backgroundImage: `none` }}>
-        <img src={HeaderLogo} alt=""/>
+
+  return <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar.Brand>
+      <Link to="/">
+        <img src={HeaderLogo} alt="" />
       </Link>
-      <ul style={{ listStyle: `none`, float: `right` }}>
-        <ListLink to="/">Home</ListLink>
-        <ListLink to="/dev-diary">Dev Diary</ListLink>
-        <ListLink to="/press-kit">Press Kit</ListLink>
-      </ul>
-    </header>
-  )
+    </Navbar.Brand>
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="ml-auto">
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/dev-diary">Dev Diary</NavLink>
+        <NavLink to="/press-kit">Press Kit</NavLink>
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar>
 }
