@@ -3,9 +3,13 @@ import { Link } from "gatsby"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import clsx from "clsx"
-import { navLink } from "./Header.module.scss"
+import { navBar, navLink } from "./Header.module.scss"
 
-import HeaderLogo from "./images/header-logo.png"
+import HeaderLogo1x from "./images/header-logo@1x.png"
+import HeaderLogo2x from "./images/header-logo@2x.png"
+import HeaderLogo3x from "./images/header-logo@3x.png"
+import HeaderLogo4x from "./images/header-logo@4x.png"
+
 
 interface LinkProps {
   to: string
@@ -20,10 +24,19 @@ const NavLink = (props: LinkProps) => (
 
 export default function Header() {
   return (
-    <Navbar bg="dark" variant="dark" expand="md">
+    <Navbar bg="dark" variant="dark" expand="md" className={navBar}>
       <Navbar.Brand>
         <Link to="/">
-          <img src={HeaderLogo} alt="" />
+          <img
+            src={HeaderLogo1x}
+            srcSet={
+              `${HeaderLogo4x} 4x,
+              ${HeaderLogo3x} 3x,
+              ${HeaderLogo2x} 2x,
+              ${HeaderLogo1x} 1x`
+            }
+            alt="Company Logo"
+          />
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

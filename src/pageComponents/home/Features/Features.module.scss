@@ -1,0 +1,10 @@
+@import 'src/styles/_colors.scss';
+
+.root{
+  padding: 10rem 0;
+  background-image: linear-gradient($bg-blue, $bg-blue-dark);
+}
+
+.featureRow{
+  margin-bottom: 10rem;
+}
