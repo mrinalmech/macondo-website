@@ -9,7 +9,7 @@ import HeaderLogo from "./images/header-logo.png"
 
 interface LinkProps {
   to: string
-  children: React.Node | React.Node[]
+  children: React.Node
 }
 
 const NavLink = (props: LinkProps) => (
