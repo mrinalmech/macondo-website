@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <Layout>
       <Head title="Macondo Games" />
-      Home
+      Home Deploy Test
     </Layout>
   )
 }
