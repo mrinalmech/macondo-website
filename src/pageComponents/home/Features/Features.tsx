@@ -21,7 +21,7 @@ export default function Features() {
   return <div className={root}>
     <Container>
       <Row className={featureRow}>
-        <Col md={5}>
+        <Col md={5} className="d-flex flex-column justify-content-center">
           <img
             src={Players1x}
             srcSet={
@@ -57,7 +57,7 @@ export default function Features() {
             A variety of bosses and enemies with replayable missions.
           </p>
         </Col>
-        <Col md={{span:6,offset:1}}>
+        <Col md={{span:6,offset:1}} className="d-flex flex-column justify-content-center">
           <img
             src={Enemies1x}
             srcSet={
@@ -72,7 +72,7 @@ export default function Features() {
         </Col>
       </Row>
       <Row className={featureRow}>
-        <Col md={5}>
+        <Col md={5} className="d-flex flex-column justify-content-center">
           <img
             src={Upgrades1x}
             srcSet={

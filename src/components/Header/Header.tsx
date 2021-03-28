@@ -42,8 +42,8 @@ export default function Header() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          <NavLink to="/dev-diary">Dev Diary</NavLink>
-          <NavLink to="/press-kit">Press Kit</NavLink>
+          {/*<NavLink to="/dev-diary">Dev Diary</NavLink>
+          <NavLink to="/press-kit">Press Kit</NavLink>*/}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

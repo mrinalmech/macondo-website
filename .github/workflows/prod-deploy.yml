@@ -1,8 +1,8 @@
-name: Dev deploy
+name: Prod deploy
 on:
   push:
     branches:
-      - develop
+      - main
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -32,4 +32,4 @@ jobs:
       - name: Deploy
         uses: jonelantha/gatsby-s3-action@v1
         with:
-          dest-s3-bucket: ${{ secrets.AWS_S3_DEV_BUCKET }}
+          dest-s3-bucket: ${{ secrets.AWS_S3_PROD_BUCKET }}
