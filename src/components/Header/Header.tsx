@@ -1,15 +1,14 @@
 import React from "react"
-import { Link } from "gatsby"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import clsx from "clsx"
 import { navBar, navLink } from "./Header.module.scss"
+import Link from "../Link"
 
 import HeaderLogo1x from "./images/header-logo@1x.png"
 import HeaderLogo2x from "./images/header-logo@2x.png"
 import HeaderLogo3x from "./images/header-logo@3x.png"
 import HeaderLogo4x from "./images/header-logo@4x.png"
-
 
 interface LinkProps {
   to: string
@@ -44,6 +43,7 @@ export default function Header() {
         <Nav className="ml-auto">
           {/*<NavLink to="/dev-diary">Dev Diary</NavLink>
           <NavLink to="/press-kit">Press Kit</NavLink>*/}
+          <NavLink to="mailto:info@macondogames.com">Contact</NavLink>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
