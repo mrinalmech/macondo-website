@@ -1,10 +1,26 @@
 @import 'src/styles/_colors.scss';
+@import 'src/styles/_breakpoints.scss';
 
-.root{
+.root {
   padding: 10rem 0;
   background-image: linear-gradient($bg-blue, $bg-blue-dark);
+  @include respond-below(sm) {
+    padding: 5rem 1rem;
+    img {
+      margin-top: 4rem;
+    }
+  }
+  @include respond-below(xs) {
+    padding: {
+      top: 3rem;
+      bottom: 3rem;
+    }
+  }
 }
 
-.featureRow{
+.featureRow {
   margin-bottom: 10rem;
+  @include respond-below(sm) {
+    margin-bottom: 6rem;
+  }
 }

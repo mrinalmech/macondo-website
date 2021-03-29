@@ -2,6 +2,8 @@ import React from "react"
 import Container from "react-bootstrap/Container"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
+import clsx from "clsx"
+
 import { root, featureRow } from "./Features.module.scss"
 
 import Players1x from "./images/players@1x.png"
@@ -20,8 +22,11 @@ import Upgrades4x from "./images/upgrades@4x.png"
 export default function Features() {
   return <div className={root}>
     <Container>
-      <Row className={featureRow}>
-        <Col md={5} className="d-flex flex-column justify-content-center">
+      <Row className={clsx(featureRow, "d-flex")}>
+        <Col
+          md={5}
+          className="d-flex flex-column justify-content-center order-2 order-md-1"
+        >
           <img
             src={Players1x}
             srcSet={
@@ -34,7 +39,10 @@ export default function Features() {
             className="mw-100"
           />
         </Col>
-        <Col md={{span:6, offset: 1}} className="d-flex flex-column justify-content-center">
+        <Col
+          md={{ span: 6, offset: 1 }}
+          className="d-flex flex-column justify-content-center order-1 order-md-2"
+        >
           <h2 className="light-blue text-center mb-4">THE GOOD</h2>
           <p className="light-blue text-center">
             Sometimes, shooting and blasting your way through
@@ -46,8 +54,11 @@ export default function Features() {
           </p>
         </Col>
       </Row>
-      <Row className={featureRow}>
-        <Col md={5} className="d-flex flex-column justify-content-center">
+      <Row className={clsx(featureRow, "d-flex")}>
+        <Col
+          md={5}
+          className="d-flex flex-column justify-content-center"
+        >
           <h2 className="light-blue text-center mb-4">THE BAD</h2>
           <p className="light-blue text-center">
             The world out there is crawling with evil and you've signed up to take care of it.
@@ -57,7 +68,10 @@ export default function Features() {
             A variety of bosses and enemies with replayable missions.
           </p>
         </Col>
-        <Col md={{span:6,offset:1}} className="d-flex flex-column justify-content-center">
+        <Col
+          md={{ span: 6, offset: 1 }}
+          className="d-flex flex-column justify-content-center"
+        >
           <img
             src={Enemies1x}
             srcSet={
@@ -71,8 +85,11 @@ export default function Features() {
           />
         </Col>
       </Row>
-      <Row className={featureRow}>
-        <Col md={5} className="d-flex flex-column justify-content-center">
+      <Row className={clsx(featureRow, "d-flex")}>
+        <Col
+          md={5}
+          className="d-flex flex-column justify-content-center order-2 order-md-1"
+        >
           <img
             src={Upgrades1x}
             srcSet={
@@ -85,7 +102,10 @@ export default function Features() {
             className="mw-100"
           />
         </Col>
-        <Col md={{span:6, offset: 1}} className="d-flex flex-column justify-content-center">
+        <Col
+          md={{ span: 6, offset: 1 }}
+          className="d-flex flex-column justify-content-center order-1 order-md-2"
+        >
           <h2 className="light-blue text-center mb-4">...AND, THE UPGRADES</h2>
           <p className="light-blue text-center">
             Shooting you way through evil is not only fun, it's incredibly rewarding. With each kill, earn points and get some sweet upgrades.

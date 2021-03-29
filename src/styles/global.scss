@@ -1,6 +1,9 @@
+$enable-responsive-font-sizes: true;
 @import "~bootstrap/scss/bootstrap";
+
 @import "./_typography.scss";
 @import "./_colors.scss";
+
 
 body,
 html {
