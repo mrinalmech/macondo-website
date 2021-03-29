@@ -2,7 +2,18 @@ import React from "react"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import clsx from "clsx"
-import { navBar, navLink } from "./Header.module.scss"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faFacebookF,
+  faTwitter,
+  faInstagram,
+  faYoutube,
+  faDiscord,
+  faTwitch
+} from '@fortawesome/free-brands-svg-icons'
+
+
+import { navBar, navLink, socialLink } from "./Header.module.scss"
 import Link from "../Link"
 
 import HeaderLogo1x from "./images/header-logo@1x.png"
@@ -16,9 +27,15 @@ interface LinkProps {
 }
 
 const NavLink = (props: LinkProps) => (
-  <Link to={props.to} className={clsx("nav-link", navLink)}>
+  <Link to={props.to} className={clsx("nav-link pl-0 pl-md-3 pr-3", navLink)}>
     {props.children}
   </Link>
+)
+
+const SocialLink = (props: LinkProps) => (
+  <a href={props.to} className={clsx(socialLink,"mr-3")} target="_blank">
+    {props.children}
+  </a>
 )
 
 export default function Header() {
@@ -44,6 +61,26 @@ export default function Header() {
           {/*<NavLink to="/dev-diary">Dev Diary</NavLink>
           <NavLink to="/press-kit">Press Kit</NavLink>*/}
           <NavLink to="mailto:info@macondogames.com">Contact</NavLink>
+          <div className="d-flex align-items-center pl-0 pl-md-3 pr-3">
+            <SocialLink to="https://twitter.com/macondostudios">
+              <FontAwesomeIcon icon={faTwitter} size="1x" />
+            </SocialLink>
+            <SocialLink to="https://www.facebook.com/macondostudios">
+              <FontAwesomeIcon icon={faFacebookF} size="1x" />
+            </SocialLink>
+            <SocialLink to="https://www.instagram.com/globalsteelgame">
+              <FontAwesomeIcon icon={faInstagram} size="1x" />
+            </SocialLink>
+            <SocialLink to="https://www.youtube.com/channel/UCfYKziK0Ll8UZ9AiMTZT9DA">
+              <FontAwesomeIcon icon={faYoutube} size="1x" />
+            </SocialLink>
+            <SocialLink to="https://discord.gg/qVBvuy7Ny3">
+              <FontAwesomeIcon icon={faDiscord} size="1x" />
+            </SocialLink>
+            <SocialLink to="https://www.twitch.tv/macondogames">
+              <FontAwesomeIcon icon={faTwitch} size="1x" />
+            </SocialLink>
+          </div>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
