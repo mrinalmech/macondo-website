@@ -32,7 +32,7 @@ const NavLink = (props: LinkProps) => (
 )
 
 const SocialLink = (props: LinkProps) => (
-  <a href={props.to} className={clsx(socialLink,"mr-4 mr-md-3")} target="_blank">
+  <a href={props.to} className={clsx(socialLink,"mr-4 mr-md-3")} target="_blank" rel="noreferrer">
     {props.children}
   </a>
 )
