@@ -12,7 +12,6 @@ import {
   faTwitch
 } from '@fortawesome/free-brands-svg-icons'
 
-
 import { navBar, navLink, socialLink } from "./Header.module.scss"
 import Link from "../Link"
 
@@ -33,7 +32,7 @@ const NavLink = (props: LinkProps) => (
 )
 
 const SocialLink = (props: LinkProps) => (
-  <a href={props.to} className={clsx(socialLink,"mr-3")} target="_blank">
+  <a href={props.to} className={clsx(socialLink,"mr-4 mr-md-3")} target="_blank">
     {props.children}
   </a>
 )
@@ -61,7 +60,7 @@ export default function Header() {
           {/*<NavLink to="/dev-diary">Dev Diary</NavLink>
           <NavLink to="/press-kit">Press Kit</NavLink>*/}
           <NavLink to="mailto:info@macondogames.com">Contact</NavLink>
-          <div className="d-flex align-items-center pl-0 pl-md-3 pr-3">
+          <div className="d-flex align-items-center pl-0 pl-md-3 pr-3 pb-2 pb-md-0 pt-2 p-md-2">
             <SocialLink to="https://twitter.com/macondostudios">
               <FontAwesomeIcon icon={faTwitter} size="1x" />
             </SocialLink>

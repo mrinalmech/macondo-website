@@ -1,4 +1,5 @@
 @import 'src/styles/_colors.scss';
+@import 'src/styles/_breakpoints.scss';
 
 .navBar {
   background: $black !important;
@@ -17,5 +18,10 @@
 
   &:hover {
     color: $dark-blue !important;
+  }
+  @include respond-below(sm) {
+    > svg {
+      font-size: 1.2em;
+    }
   }
 }
