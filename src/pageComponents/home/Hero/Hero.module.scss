@@ -1,0 +1,58 @@
+@import 'src/styles/constants.scss';
+@import 'src/styles/colors.scss';
+@import 'src/styles/breakpoints.scss';
+
+.root {
+  background-image: linear-gradient($black, $purple);
+  height: calc(100vh - #{$navbarHeight});
+
+  @include respond-below(md) {
+    h4{
+      font-size: 1rem;
+    }
+  }
+
+  @include respond-below(sm) {
+    h4{
+      font-size: 0.9rem;
+    }
+  }
+
+  @include respond-below(xs) {
+    h4{
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.desc{
+  max-width: 600px;
+}
+
+.monitor{
+  bottom: 25px;
+  z-index:4;
+  @include respond-below(md) {
+    width: 371%;
+    bottom: -40px;
+  }
+
+  @include respond-below(sm) {
+    width: 480%;
+  }
+
+  @include respond-below(xs) {
+    bottom: -18px;
+  }
+}
+
+.wallShade{
+  top:0;
+  z-index:1
+}
+
+.screenshot{
+  z-index: 3;
+  width: 620px;
+  bottom:250px;
+}

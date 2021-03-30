@@ -23,7 +23,7 @@ const SocialLink = (props: LinkProps) => (
     href={props.to}
     className={clsx(
       socialLink,
-      "mr-2 ml-2 ml-md-3 mr-md-3 d-inline-block d-flex align-items-center justify-content-center"
+      "mr-1 ml-1 ml-sm-2 mr-sm-2 ml-md-3 mr-md-3 d-inline-block d-flex align-items-center justify-content-center"
     )}
     target="_blank"
     rel="noreferrer"
@@ -59,6 +59,6 @@ export default function Footer() {
         <FontAwesomeIcon icon={faTwitch} size="2x" />
       </SocialLink>
     </div>
-    <p className="open-sans white m-0"> Copyright © {currentYear} | Macondo Games Pvt. Ltd. </p>
+    <p className="open-sans white m-0 text-center"> Copyright © {currentYear} | Macondo Games Pvt. Ltd. </p>
   </Container>
 }
