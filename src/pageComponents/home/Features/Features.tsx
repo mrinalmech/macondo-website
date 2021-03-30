@@ -108,7 +108,7 @@ export default function Features() {
         >
           <h2 className="light-blue text-center mb-4">...AND, THE UPGRADES</h2>
           <p className="light-blue text-center">
-            Shooting you way through evil is not only fun, it's incredibly rewarding. With each kill, earn points and get some sweet upgrades.
+            Fighting your way through evil is not only fun, it's incredibly rewarding. With each kill, earn points and buy some sweet upgrades.
           </p>
           <p className="light-blue text-center">
             Upgrade your arsenal with a variety of gear which switches up gameplay.
