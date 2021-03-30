@@ -23,4 +23,8 @@
   @include respond-below(sm) {
     margin-bottom: 6rem;
   }
+
+  &:last-of-type{
+    margin-bottom:0;
+  }
 }

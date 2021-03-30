@@ -1,5 +1,4 @@
 @import 'src/styles/colors.scss';
-@import 'src/styles/breakpoints.scss';
 
 .navBar {
   background: $black !important;
@@ -9,19 +8,31 @@
   color: $white !important;
 
   &:hover {
+    color: rgba($dark-blue,0.9) !important;
+  }
+
+  &:active {
     color: $dark-blue !important;
   }
 }
 
 .socialLink {
-  color: $white !important;
+  color: $white;
 
   &:hover {
-    color: $dark-blue !important;
+    color: rgba($dark-blue,0.9);
   }
-  @include respond-below(sm) {
-    > svg {
-      font-size: 1.2em;
-    }
+
+  &:active{
+    color: $dark-blue;
+  }
+
+
+  &:last-of-type{
+    margin-right: 0 !important;
+  }
+
+  & > svg {
+    font-size: 1.3rem;
   }
 }

@@ -1,4 +1,10 @@
+@import "~@fontsource/open-sans/300.css";
+
 @font-face {
   font-family: "Retro Computer";
   src: url("../fonts/retro_computer/retro_computer.ttf");
+}
+
+.open-sans{
+  font-family: 'Open Sans', sans-serif;
 }

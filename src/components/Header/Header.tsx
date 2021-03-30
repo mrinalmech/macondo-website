@@ -26,7 +26,7 @@ interface LinkProps {
 }
 
 const NavLink = (props: LinkProps) => (
-  <Link to={props.to} className={clsx("nav-link pl-0 pl-md-3 pr-3", navLink)}>
+  <Link to={props.to} className={clsx("nav-link pr-3 pl-3", navLink)}>
     {props.children}
   </Link>
 )
@@ -56,11 +56,11 @@ export default function Header() {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
+        <Nav className="ml-auto align-items-end align-items-md-center">
           {/*<NavLink to="/dev-diary">Dev Diary</NavLink>
           <NavLink to="/press-kit">Press Kit</NavLink>*/}
           <NavLink to="mailto:info@macondogames.com">Contact</NavLink>
-          <div className="d-flex align-items-center pl-0 pl-md-3 pr-3 pb-2 pb-md-0 pt-2 p-md-2">
+          <div className="d-flex align-items-center pr-3 pl-3 pb-2 pb-md-0 pt-2 pt-md-0">
             <SocialLink to="https://twitter.com/macondostudios">
               <FontAwesomeIcon icon={faTwitter} size="1x" />
             </SocialLink>
