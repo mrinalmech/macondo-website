@@ -31,7 +31,7 @@
 
 .monitor{
   bottom: 25px;
-  z-index:4;
+  z-index:5;
   @include respond-below(md) {
     width: 371%;
     bottom: -40px;
@@ -52,7 +52,28 @@
 }
 
 .screenshot{
-  z-index: 3;
+  z-index: 4;
   width: 620px;
   bottom:250px;
+}
+
+.baseL1,.baseL2{
+  top:0;
+}
+
+.baseL1{
+  z-index: 3;
+}
+
+.baseL2{
+  z-index:2;
+}
+
+.left{
+  left:0;
+}
+
+.right{
+  right:0;
+    transform: scaleX(-1);
 }

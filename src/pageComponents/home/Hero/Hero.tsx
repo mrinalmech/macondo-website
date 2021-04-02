@@ -1,7 +1,17 @@
 import React from "react"
 import clsx from "clsx"
 
-import { root, desc, monitor, wallShade, screenshot } from "./Hero.module.scss"
+import {
+  root,
+  desc,
+  monitor,
+  wallShade,
+  screenshot,
+  baseL1,
+  baseL2,
+  left,
+  right
+} from "./Hero.module.scss"
 
 import Monitor1x from "./images/monitor@1x.png"
 import Monitor2x from "./images/monitor@2x.png"
@@ -11,6 +21,14 @@ import WallShade1x from "./images/wallShade@1x.png"
 import WallShade2x from "./images/wallShade@2x.png"
 import WallShade3x from "./images/wallShade@3x.png"
 import WallShade4x from "./images/wallShade@4x.png"
+import WebsiteBaseL1_1x from "./images/websiteBaseL1@1x.png"
+import WebsiteBaseL1_2x from "./images/websiteBaseL1@2x.png"
+import WebsiteBaseL1_3x from "./images/websiteBaseL1@3x.png"
+import WebsiteBaseL1_4x from "./images/websiteBaseL1@4x.png"
+import WebsiteBaseL2_1x from "./images/websiteBaseL2@1x.png"
+import WebsiteBaseL2_2x from "./images/websiteBaseL2@2x.png"
+import WebsiteBaseL2_3x from "./images/websiteBaseL2@3x.png"
+import WebsiteBaseL2_4x from "./images/websiteBaseL2@4x.png"
 
 import ScreenshotOne from "./images/screenshot-1.jpg"
 
@@ -39,6 +57,50 @@ export default function Hero() {
       }
       alt=""
       className={clsx("position-absolute", wallShade)}
+    />
+    <img
+      src={WebsiteBaseL1_1x}
+      srcSet={
+        `${WebsiteBaseL1_4x} 4x,
+        ${WebsiteBaseL1_3x} 3x,
+        ${WebsiteBaseL1_2x} 2x,
+        ${WebsiteBaseL1_1x} 1x`
+      }
+      alt=""
+      className={clsx("position-absolute",baseL1, left)}
+    />
+    <img
+      src={WebsiteBaseL2_1x}
+      srcSet={
+        `${WebsiteBaseL2_4x} 4x,
+        ${WebsiteBaseL2_3x} 3x,
+        ${WebsiteBaseL2_2x} 2x,
+        ${WebsiteBaseL2_1x} 1x`
+      }
+      alt=""
+      className={clsx("position-absolute", baseL2, left)}
+    />
+    <img
+      src={WebsiteBaseL1_1x}
+      srcSet={
+        `${WebsiteBaseL1_4x} 4x,
+        ${WebsiteBaseL1_3x} 3x,
+        ${WebsiteBaseL1_2x} 2x,
+        ${WebsiteBaseL1_1x} 1x`
+      }
+      alt=""
+      className={clsx("position-absolute",baseL1, right)}
+    />
+    <img
+      src={WebsiteBaseL2_1x}
+      srcSet={
+        `${WebsiteBaseL2_4x} 4x,
+        ${WebsiteBaseL2_3x} 3x,
+        ${WebsiteBaseL2_2x} 2x,
+        ${WebsiteBaseL2_1x} 1x`
+      }
+      alt=""
+      className={clsx("position-absolute", baseL2, right)}
     />
     <div className="d-flex">
       <div className="d-flex flex-lg-column text-center text-lg-right mr-0 mr-lg-5 ">

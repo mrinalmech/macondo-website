@@ -2,7 +2,7 @@
 @import 'src/styles/breakpoints.scss';
 
 .root {
-  padding: 10rem 0;
+  padding: 5rem 0;
   background-image: linear-gradient($bg-blue, $bg-blue-dark);
   @include respond-below(sm) {
     padding: 5rem 1rem;
@@ -19,7 +19,7 @@
 }
 
 .featureRow {
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
   @include respond-below(sm) {
     margin-bottom: 6rem;
   }
