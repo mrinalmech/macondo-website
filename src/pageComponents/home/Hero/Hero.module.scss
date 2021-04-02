@@ -5,75 +5,98 @@
 .root {
   background-image: linear-gradient($black, $purple);
   height: calc(100vh - #{$navbarHeight});
-
   @include respond-below(md) {
-    h4{
+    h4 {
       font-size: 1rem;
     }
   }
-
   @include respond-below(sm) {
-    h4{
+    h4 {
       font-size: 0.9rem;
     }
   }
-
   @include respond-below(xs) {
-    h4{
+    h4 {
       font-size: 0.8rem;
     }
   }
 }
 
-.desc{
+.desc {
   max-width: 600px;
 }
 
-.monitor{
+
+
+.logo {
+  z-index: 4;
+  top: 30px;
+}
+
+.wallShade {
+  top: 0;
+  z-index: 1;
+}
+
+.monitor {
   bottom: 25px;
-  z-index:5;
+  z-index: 6;
   @include respond-below(md) {
     width: 371%;
     bottom: -40px;
   }
-
   @include respond-below(sm) {
     width: 480%;
   }
-
   @include respond-below(xs) {
     bottom: -18px;
   }
 }
 
-.wallShade{
-  top:0;
-  z-index:1
-}
-
-.screenshot{
-  z-index: 4;
+.carousel {
+  z-index: 5;
+  bottom: 280px;
   width: 620px;
-  bottom:250px;
+  height: 320px;
+  overflow:hidden;
+
+  :global(.carousel-item) {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  img {
+    width:100%;
+    object-fit: cover;
+  }
+
+  @include respond-below(md) {
+    height: 30vw;
+    width: 63%;
+    bottom: 21vw;
+  }
 }
 
-.baseL1,.baseL2{
-  top:0;
+.baseL1,
+.baseL2 {
+  top: 0;
+  max-width: 50%;
 }
 
-.baseL1{
+.baseL1 {
   z-index: 3;
 }
 
-.baseL2{
-  z-index:2;
+.baseL2 {
+  z-index: 2;
 }
 
-.left{
-  left:0;
+.left {
+  left: 0;
 }
 
-.right{
-  right:0;
-    transform: scaleX(-1);
+.right {
+  right: 0;
+  transform: scaleX(-1);
 }

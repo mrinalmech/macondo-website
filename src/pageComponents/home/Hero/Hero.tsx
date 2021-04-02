@@ -1,12 +1,14 @@
 import React from "react"
 import clsx from "clsx"
+import Carousel from "react-bootstrap/Carousel"
 
 import {
   root,
   desc,
   monitor,
   wallShade,
-  screenshot,
+  carousel,
+  logo,
   baseL1,
   baseL2,
   left,
@@ -29,12 +31,25 @@ import WebsiteBaseL2_1x from "./images/websiteBaseL2@1x.png"
 import WebsiteBaseL2_2x from "./images/websiteBaseL2@2x.png"
 import WebsiteBaseL2_3x from "./images/websiteBaseL2@3x.png"
 import WebsiteBaseL2_4x from "./images/websiteBaseL2@4x.png"
+import Logo1x from "./images/logo@1x.png"
+import Logo2x from "./images/logo@2x.png"
+import Logo3x from "./images/logo@3x.png"
+import Logo4x from "./images/logo@4x.png"
 
 import ScreenshotOne from "./images/screenshot-1.jpg"
+import ScreenshotTwo from "./images/screenshot-2.jpg"
+import ScreenshotThree from "./images/screenshot-3.png"
+import ScreenshotFour from "./images/screenshot-4.png"
 
 export default function Hero() {
 
-  return <div className={clsx(root, "d-flex align-items-end justify-content-center pb-1 pb-md-2 pb-lg-3 position-relative overflow-hidden")}>
+  return <div className={clsx(root, `d-flex
+    align-items-end
+    justify-content-center
+    pb-1 pb-md-2 pb-lg-3
+    position-relative
+    overflow-hidden`
+  )}>
     <img
       src={Monitor1x}
       srcSet={
@@ -46,7 +61,6 @@ export default function Hero() {
       alt=""
       className={clsx("position-absolute", monitor)}
     />
-    <img src={ScreenshotOne} className={clsx("position-absolute", screenshot)}/>
     <img
       src={WallShade1x}
       srcSet={
@@ -59,6 +73,17 @@ export default function Hero() {
       className={clsx("position-absolute", wallShade)}
     />
     <img
+      src={Logo1x}
+      srcSet={
+        `${Logo4x} 4x,
+        ${Logo3x} 3x,
+        ${Logo2x} 2x,
+        ${Logo1x} 1x`
+      }
+      alt=""
+      className={clsx("position-absolute", logo)}
+    />
+    <img
       src={WebsiteBaseL1_1x}
       srcSet={
         `${WebsiteBaseL1_4x} 4x,
@@ -67,7 +92,7 @@ export default function Hero() {
         ${WebsiteBaseL1_1x} 1x`
       }
       alt=""
-      className={clsx("position-absolute",baseL1, left)}
+      className={clsx("position-absolute", baseL1, left)}
     />
     <img
       src={WebsiteBaseL2_1x}
@@ -89,7 +114,7 @@ export default function Hero() {
         ${WebsiteBaseL1_1x} 1x`
       }
       alt=""
-      className={clsx("position-absolute",baseL1, right)}
+      className={clsx("position-absolute", baseL1, right)}
     />
     <img
       src={WebsiteBaseL2_1x}
@@ -102,6 +127,26 @@ export default function Hero() {
       alt=""
       className={clsx("position-absolute", baseL2, right)}
     />
+    <Carousel
+    className={clsx(carousel,"position-absolute")}
+    controls={false}
+    indicators={false}
+    fade
+    >
+      <Carousel.Item>
+        <img src={ScreenshotOne}/>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img src={ScreenshotTwo}/>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img src={ScreenshotThree}/>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img src={ScreenshotFour}/>
+      </Carousel.Item>
+    </Carousel>
+
     <div className="d-flex">
       <div className="d-flex flex-lg-column text-center text-lg-right mr-0 mr-lg-5 ">
         <h4 className="white mr-2 mr-lg-0">Suit up.</h4>
