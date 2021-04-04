@@ -2,31 +2,63 @@
 @import 'src/styles/colors.scss';
 @import 'src/styles/breakpoints.scss';
 
+//note: A lot of custom breakpoints have to be used because of all the elements
 .root {
   background-image: linear-gradient($black, $purple);
   height: calc(100vh - #{$navbarHeight});
+
   @include respond-below(md) {
+    h4 {
+      font-size: 1.5rem;
+    }
+  }
+
+  @include respond-between(850px, 870px) {
+    padding-bottom: 1.3rem!important;
+  }
+
+  @include respond-between(sm, 850px) {
+    padding-bottom: 1.15rem!important;
+  }
+
+  @include respond-between(xs, 650px) {
+    padding-bottom: 1.05rem!important;
+  }
+
+  @include respond-below(xs) {
+    h4 {
+      font-size: 1.2rem;
+    }
+  }
+
+  @include respond-below(500px) {
+    padding-bottom: 1.2rem!important;
+  }
+
+  @include respond-below(460px) {
     h4 {
       font-size: 1rem;
     }
   }
-  @include respond-below(sm) {
-    h4 {
-      font-size: 0.9rem;
-    }
+
+  @include respond-below(440px) {
+    padding-bottom: 0.95rem!important;
   }
-  @include respond-below(xs) {
+
+  @include respond-below(420px) {
     h4 {
       font-size: 0.8rem;
     }
+  }
+
+  @include respond-below(400px) {
+    padding-bottom: 0.75rem!important;
   }
 }
 
 .desc {
   max-width: 600px;
 }
-
-
 
 .logo {
   z-index: 4;
@@ -36,6 +68,29 @@
 .wallShade {
   top: 0;
   z-index: 1;
+}
+
+.baseL1,
+.baseL2 {
+  top: 0;
+  max-width: 50%;
+}
+
+.baseL1 {
+  z-index: 3;
+}
+
+.baseL2 {
+  z-index: 2;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+  transform: scaleX(-1);
 }
 
 .monitor {
@@ -78,25 +133,6 @@
   }
 }
 
-.baseL1,
-.baseL2 {
-  top: 0;
-  max-width: 50%;
-}
-
-.baseL1 {
-  z-index: 3;
-}
-
-.baseL2 {
-  z-index: 2;
-}
-
-.left {
-  left: 0;
-}
-
-.right {
-  right: 0;
-  transform: scaleX(-1);
+.textContent{
+  z-index: 7;
 }

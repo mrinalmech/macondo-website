@@ -12,7 +12,8 @@ import {
   baseL1,
   baseL2,
   left,
-  right
+  right,
+  textContent
 } from "./Hero.module.scss"
 
 import Monitor1x from "./images/monitor@1x.png"
@@ -46,22 +47,22 @@ export default function Hero() {
   return <div className={clsx(root, `d-flex
     align-items-end
     justify-content-center
-    pb-1 pb-md-2 pb-lg-3
+    pb-4
     position-relative
     overflow-hidden`
   )}>
     <img
-      src={Monitor1x}
+      src={Logo1x}
       srcSet={
-        `${Monitor4x} 4x,
-        ${Monitor3x} 3x,
-        ${Monitor2x} 2x,
-        ${Monitor1x} 1x`
+        `${Logo4x} 4x,
+      ${Logo3x} 3x,
+      ${Logo2x} 2x,
+      ${Logo1x} 1x`
       }
       alt=""
-      className={clsx("position-absolute", monitor)}
+      className={clsx("position-absolute", logo)}
     />
-    <img
+    {/*<img
       src={WallShade1x}
       srcSet={
         `${WallShade4x} 4x,
@@ -71,17 +72,6 @@ export default function Hero() {
       }
       alt=""
       className={clsx("position-absolute", wallShade)}
-    />
-    <img
-      src={Logo1x}
-      srcSet={
-        `${Logo4x} 4x,
-        ${Logo3x} 3x,
-        ${Logo2x} 2x,
-        ${Logo1x} 1x`
-      }
-      alt=""
-      className={clsx("position-absolute", logo)}
     />
     <img
       src={WebsiteBaseL1_1x}
@@ -126,32 +116,43 @@ export default function Hero() {
       }
       alt=""
       className={clsx("position-absolute", baseL2, right)}
+    />*/}
+    <img
+      src={Monitor1x}
+      srcSet={
+        `${Monitor4x} 4x,
+        ${Monitor3x} 3x,
+        ${Monitor2x} 2x,
+        ${Monitor1x} 1x`
+      }
+      alt=""
+      className={clsx("position-absolute", monitor)}
     />
     <Carousel
-    className={clsx(carousel,"position-absolute")}
-    controls={false}
-    indicators={false}
-    fade
+      className={clsx(carousel, "position-absolute")}
+      controls={false}
+      indicators={false}
+      fade
     >
       <Carousel.Item>
-        <img src={ScreenshotOne}/>
+        <img src={ScreenshotOne} />
       </Carousel.Item>
       <Carousel.Item>
-        <img src={ScreenshotTwo}/>
+        <img src={ScreenshotTwo} />
       </Carousel.Item>
       <Carousel.Item>
-        <img src={ScreenshotThree}/>
+        <img src={ScreenshotThree} />
       </Carousel.Item>
       <Carousel.Item>
-        <img src={ScreenshotFour}/>
+        <img src={ScreenshotFour} />
       </Carousel.Item>
     </Carousel>
 
-    <div className="d-flex">
+    <div className={clsx("d-flex", textContent)}>
       <div className="d-flex flex-lg-column text-center text-lg-right mr-0 mr-lg-5 ">
-        <h4 className="white mr-2 mr-lg-0">Suit up.</h4>
-        <h4 className="white mr-2 mr-lg-0">Shoot 'em' up.</h4>
-        <h4 className="white">Level up.</h4>
+        <h4 className="white mr-2 mr-lg-0 mb-0 mb-lg-2">Suit up.</h4>
+        <h4 className="white mr-2 mr-lg-0 mb-0 mb-lg-2">Shoot 'em' up.</h4>
+        <h4 className="white mb-0">Level up.</h4>
       </div>
       <div className={clsx(desc, "text-center d-none d-lg-block")}>
         <small className="white">
