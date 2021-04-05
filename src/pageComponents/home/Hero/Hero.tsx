@@ -62,7 +62,7 @@ export default function Hero() {
       alt=""
       className={clsx("position-absolute", logo)}
     />
-    {/*<img
+    <img
       src={WallShade1x}
       srcSet={
         `${WallShade4x} 4x,
@@ -116,7 +116,7 @@ export default function Hero() {
       }
       alt=""
       className={clsx("position-absolute", baseL2, right)}
-    />*/}
+    />
     <img
       src={Monitor1x}
       srcSet={

@@ -1,56 +1,45 @@
 @import 'src/styles/constants.scss';
 @import 'src/styles/colors.scss';
-@import 'src/styles/breakpoints.scss';
+@import 'src/styles/breakpoints.scss'; //note: A lot of custom breakpoints have to be used because of all the elements
 
-//note: A lot of custom breakpoints have to be used because of all the elements
 .root {
   background-image: linear-gradient($black, $purple);
   height: calc(100vh - #{$navbarHeight});
-
   @include respond-below(md) {
     h4 {
       font-size: 1.5rem;
     }
   }
-
   @include respond-between(850px, 870px) {
     padding-bottom: 1.3rem!important;
   }
-
   @include respond-between(sm, 850px) {
     padding-bottom: 1.15rem!important;
   }
-
   @include respond-between(xs, 650px) {
     padding-bottom: 1.05rem!important;
   }
-
   @include respond-below(xs) {
     h4 {
       font-size: 1.2rem;
     }
   }
-
   @include respond-below(500px) {
     padding-bottom: 1.2rem!important;
   }
-
   @include respond-below(460px) {
     h4 {
       font-size: 1rem;
     }
   }
-
   @include respond-below(440px) {
     padding-bottom: 0.95rem!important;
   }
-
   @include respond-below(420px) {
     h4 {
       font-size: 0.8rem;
     }
   }
-
   @include respond-below(400px) {
     padding-bottom: 0.75rem!important;
   }
@@ -110,10 +99,10 @@
 
 .carousel {
   z-index: 5;
-  bottom: 280px;
-  width: 620px;
-  height: 320px;
-  overflow:hidden;
+  bottom: 283px;
+  width: 615px;
+  height: 278px;
+  overflow: hidden;
 
   :global(.carousel-item) {
     bottom: 0;
@@ -121,11 +110,16 @@
     width: 100%;
   }
 
+  > div > div,
+  > div,
   img {
-    width:100%;
-    object-fit: cover;
+    height: 100%;
   }
 
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
   @include respond-below(md) {
     height: 30vw;
     width: 63%;
@@ -133,6 +127,6 @@
   }
 }
 
-.textContent{
+.textContent {
   z-index: 7;
 }
