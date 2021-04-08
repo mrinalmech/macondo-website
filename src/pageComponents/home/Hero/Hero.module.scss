@@ -1,105 +1,103 @@
 @import 'src/styles/constants.scss';
 @import 'src/styles/colors.scss';
-@import 'src/styles/breakpoints.scss'; //note: A lot of custom breakpoints have to be used because of all the elements
+@import 'src/styles/breakpoints.scss';
+
+$monitor-img-width: 3406px;
+//note: A lot of custom breakpoints have to be used because of all the elements
 
 .root {
   background-image: linear-gradient($black, $purple);
-  height: calc(100vh - #{$navbarHeight});
+  height: 100vh;
+
+  .monitor{
+    bottom: 20px;
+    z-index: 6;
+    max-width: $monitor-img-width;
+  }
+
   @include respond-below(md) {
     h4 {
       font-size: 1.5rem;
     }
+    .monitor{
+      bottom: 70px;
+    }
   }
-  @include respond-between(850px, 870px) {
-    padding-bottom: 1.3rem!important;
+  @include respond-below(sm) {
+    height: calc(100vh - #{$navbarHeight});
+    .monitor{
+      width: 480%;
+    }
   }
-  @include respond-between(sm, 850px) {
-    padding-bottom: 1.15rem!important;
-  }
-  @include respond-between(xs, 650px) {
-    padding-bottom: 1.05rem!important;
+  @include respond-below(650px) {
+    .monitor{
+      bottom: 100px;
+    }
   }
   @include respond-below(xs) {
     h4 {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+    }
+    .monitor{
+      bottom: 120px;
     }
   }
-  @include respond-below(500px) {
-    padding-bottom: 1.2rem!important;
+  @include respond-below(520px) {
+    padding-bottom: 4rem!important;
+    h4 {
+      font-size: 1.1rem;
+    }
+    .monitor{
+      bottom: 220px;
+    }
   }
-  @include respond-below(460px) {
+  @include respond-below(450px) {
+    padding-bottom: 5rem!important;
+    .monitor{
+      bottom: 260px;
+    }
+  }
+  @include respond-below(420px) {
+    padding-bottom: 7rem!important;
     h4 {
       font-size: 1rem;
     }
   }
-  @include respond-below(440px) {
-    padding-bottom: 0.95rem!important;
-  }
-  @include respond-below(420px) {
+  @include respond-below(400px) {
     h4 {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
+    }
+    small{
+      font-size: 75%;
+    }
+    .monitor{
+      bottom: 300px;
     }
   }
-  @include respond-below(400px) {
-    padding-bottom: 0.75rem!important;
+  @include respond-below(370px) {
+    h4 {
+      font-size: 0.85rem;
+    }
+    .monitor{
+      bottom: 340px;
+    }
   }
-}
-
-.desc {
-  max-width: 600px;
 }
 
 .logo {
   z-index: 4;
-  top: 30px;
-}
+  top: 90px;
 
-.wallShade {
-  top: 0;
-  z-index: 1;
-}
-
-.baseL1,
-.baseL2 {
-  top: 0;
-  max-width: 50%;
-}
-
-.baseL1 {
-  z-index: 3;
-}
-
-.baseL2 {
-  z-index: 2;
-}
-
-.left {
-  left: 0;
-}
-
-.right {
-  right: 0;
-  transform: scaleX(-1);
-}
-
-.monitor {
-  bottom: 25px;
-  z-index: 6;
   @include respond-below(md) {
-    width: 371%;
-    bottom: -40px;
-  }
-  @include respond-below(sm) {
-    width: 480%;
-  }
-  @include respond-below(xs) {
-    bottom: -18px;
+    width: 340px;
+    top: 105px;
+    display:none;
   }
 }
 
 .carousel {
   z-index: 5;
-  bottom: 283px;
+  bottom: 278px;
   width: 615px;
   height: 278px;
   overflow: hidden;
@@ -121,10 +119,45 @@
     object-fit: cover;
   }
   @include respond-below(md) {
-    height: 30vw;
-    width: 63%;
-    bottom: 21vw;
+    bottom: 328px;
   }
+
+  @include respond-below(sm) {
+    display: none;
+  }
+}
+
+.wallShade {
+  top: 0;
+  z-index: 1;
+  max-width: 100%;
+}
+
+.baseL1,
+.baseL2 {
+  top: 0;
+  max-width: 65%;
+}
+
+.baseL1 {
+  z-index: 3;
+}
+
+.baseL2 {
+  z-index: 2;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.desc {
+  max-width: 600px;
 }
 
 .textContent {

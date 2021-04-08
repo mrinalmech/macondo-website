@@ -147,20 +147,19 @@ export default function Hero() {
         <img src={ScreenshotFour} />
       </Carousel.Item>
     </Carousel>
-
-    <div className={clsx("d-flex", textContent)}>
-      <div className="d-flex flex-lg-column text-center text-lg-right mr-0 mr-lg-5 ">
+    <div className={clsx("d-flex pl-2 pr-2 pl-sm-0 pr-sm-0 flex-column flex-lg-row", textContent)}>
+      <div className="d-flex flex-lg-column justify-content-center text-center text-lg-right mb-2 mb-lg-0 mr-0 mr-lg-3 ">
         <h4 className="white mr-2 mr-lg-0 mb-0 mb-lg-2">Suit up.</h4>
-        <h4 className="white mr-2 mr-lg-0 mb-0 mb-lg-2">Shoot 'em' up.</h4>
+        <h4 className="white mr-2 mr-lg-0 mb-0 mb-lg-2">Shoot 'em up.</h4>
         <h4 className="white mb-0">Level up.</h4>
       </div>
-      <div className={clsx(desc, "text-center d-none d-lg-block")}>
+      <div className={clsx(desc, "text-center")}>
         <small className="white">
           1986. Armor suits, shiny guns and a badass attitude are up for grabs. And guess what? There are bad guys to take care of.
-          </small>
+        </small>
         <br />
         <small className="white">
-          Global Steel follows the adventures of an organization which travels around the world, dispensing justice. In style.
+          Global Steel is a 2d run and gun video game inspired by Saturday morning cartoons of the 80s.
         </small>
       </div>
     </div>

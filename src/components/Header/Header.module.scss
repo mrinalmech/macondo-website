@@ -1,7 +1,15 @@
 @import 'src/styles/colors.scss';
+@import 'src/styles/breakpoints.scss';
 
 .navBar {
-  background: $black !important;
+  background: transparent!important;
+  position:fixed;
+  z-index: 9999;
+  width: 100%;
+  @include respond-below(sm) {
+    background: $black !important;
+    position:relative;
+  }
 }
 
 .navLink {
@@ -23,12 +31,11 @@
     color: rgba($dark-blue,0.9);
   }
 
-  &:active{
+  &:active {
     color: $dark-blue;
   }
 
-
-  &:last-of-type{
+  &:last-of-type {
     margin-right: 0 !important;
   }
 

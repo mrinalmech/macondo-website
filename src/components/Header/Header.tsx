@@ -39,7 +39,7 @@ const SocialLink = (props: LinkProps) => (
 
 export default function Header() {
   return (
-    <Navbar bg="dark" variant="dark" expand="md" className={navBar}>
+    <Navbar bg="dark" variant="dark" expand="md" className={clsx(navBar)}>
       <Navbar.Brand>
         <Link to="/">
           <img
