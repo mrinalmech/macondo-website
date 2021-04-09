@@ -128,7 +128,8 @@ export default function Hero() {
       alt=""
       className={clsx("position-absolute", monitor)}
     />
-    <Carousel
+    {/*<i className="position-absolute"/>*/}
+    {/*<Carousel
       className={clsx(carousel, "position-absolute")}
       controls={false}
       indicators={false}
@@ -137,7 +138,7 @@ export default function Hero() {
       <Carousel.Item>
         <img src={ScreenshotOne} />
       </Carousel.Item>
-      {/*<Carousel.Item>
+      <Carousel.Item>
         <img src={ScreenshotTwo} />
       </Carousel.Item>
       <Carousel.Item>
@@ -145,13 +146,13 @@ export default function Hero() {
       </Carousel.Item>
       <Carousel.Item>
         <img src={ScreenshotFour} />
-      </Carousel.Item>*/}
-    </Carousel>
+      </Carousel.Item>
+    </Carousel>*/}
     <div className={clsx("d-flex pl-2 pr-2 pl-sm-0 pr-sm-0 flex-column flex-lg-row", textContent)}>
-      <div className="d-flex flex-lg-column justify-content-center text-center text-lg-right mb-2 mb-lg-0 mr-0 mr-lg-3 ">
-        <h4 className="white mr-2 mr-lg-0 mb-0 mb-lg-2">Suit up.</h4>
-        <h4 className="white mr-2 mr-lg-0 mb-0 mb-lg-2">Shoot 'em up.</h4>
-        <h4 className="white mb-0">Level up.</h4>
+      <div className="d-flex flex-column flex-md-row flex-lg-column justify-content-center text-center text-lg-right mb-2 mb-lg-0 mr-0 mr-lg-3 ">
+        <h4 className="white mr-2 mr-lg-0 mb-2 mb-md-0 mb-lg-2">Suit up.</h4>
+        <h4 className="white mr-2 mr-lg-0 mb-2 mb-md-0 mb-lg-2">Shoot 'em up.</h4>
+        <h4 className="white mb-2 mb-md-0">Level up.</h4>
       </div>
       <div className={clsx(desc, "text-center")}>
         <small className="white">
