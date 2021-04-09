@@ -4,13 +4,14 @@
 $monitor-img-width: 3406px; //note: A lot of custom breakpoints have to be used because of all the elements
 
 .root {
-  background-image: linear-gradient($black, $purple);
+  //background-image: linear-gradient($black, $purple);
   height: 100vh;
 
   .monitor {
     bottom: 20px;
     z-index: 6;
     max-width: $monitor-img-width;
+    pointer-events: none;
   }
 
   .logo {
@@ -22,7 +23,7 @@ $monitor-img-width: 3406px; //note: A lot of custom breakpoints have to be used 
   .carousel {
     z-index: 5;
     bottom: 278px;
-    width: 615px;
+    width: 616px;
     height: 278px;
     overflow: hidden;
 
@@ -106,7 +107,7 @@ $monitor-img-width: 3406px; //note: A lot of custom breakpoints have to be used 
 
     .carousel {
       height: 260px;
-      width: 552px;
+      width: 556px;
       bottom: 324px;
     }
   }
@@ -118,7 +119,7 @@ $monitor-img-width: 3406px; //note: A lot of custom breakpoints have to be used 
     .carousel {
       height: 254px;
       width: 534px;
-      bottom: 312px;
+      bottom: 310px;
     }
   }
   @include respond-below(605px) {
@@ -127,7 +128,9 @@ $monitor-img-width: 3406px; //note: A lot of custom breakpoints have to be used 
     }
 
     .carousel {
-      opacity: 0.75;
+      height: 242px;
+      width: 508px;
+      bottom: 302px;
     }
   }
   @include respond-below(xs) {
@@ -142,11 +145,28 @@ $monitor-img-width: 3406px; //note: A lot of custom breakpoints have to be used 
     .logo {
       top: 65px;
     }
-    .carousel{
-      display:none;
+
+    .carousel {
+      width: 484px;
+      bottom: 318px;
+      height: 228px;
     }
   }
-  @include respond-below(520px) {
+  @include respond-below(560px) {
+    .carousel {
+      width: 472px;
+      bottom: 304px;
+      height: 226px;
+    }
+  }
+  @include respond-below(540px) {
+    .carousel {
+      bottom: 302px;
+      width: 452px;
+      height: 212px;
+    }
+  }
+  @include respond-below(525px) {
     padding-bottom: 4rem!important;
 
     h4 {
@@ -154,21 +174,51 @@ $monitor-img-width: 3406px; //note: A lot of custom breakpoints have to be used 
     }
 
     .monitor {
-      bottom: 220px;
+      bottom: 200px;
+    }
+
+    .carousel {
+      bottom: 374px;
+      width: 440px;
+      height: 206px;
     }
   }
-  @include respond-below(450px) {
+  @include respond-below(500px) {
+    .carousel {
+      bottom: 356px;
+    }
+  }
+
+  @include respond-below(475px) {
     padding-bottom: 5rem!important;
 
     .monitor {
       bottom: 260px;
     }
+
+    .carousel {
+      opacity: 0.75;
+      bottom: 416px;
+    }
   }
+
+  @include respond-below(445px) {
+
+
+    .carousel {
+      display: none;
+    }
+  }
+
   @include respond-below(420px) {
     padding-bottom: 7rem!important;
 
     h4 {
       font-size: 1rem;
+    }
+
+    .carousel{
+      display: none;
     }
   }
   @include respond-below(400px) {

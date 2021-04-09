@@ -51,7 +51,7 @@ export default function Hero() {
     position-relative
     overflow-hidden`
   )}>
-    <img
+    {/*<img
       src={Logo1x}
       srcSet={
         `${Logo4x} 4x,
@@ -116,7 +116,7 @@ export default function Hero() {
       }
       alt=""
       className={clsx("position-absolute", baseL2, right)}
-    />
+    />*/}
     <img
       src={Monitor1x}
       srcSet={
@@ -137,7 +137,7 @@ export default function Hero() {
       <Carousel.Item>
         <img src={ScreenshotOne} />
       </Carousel.Item>
-      <Carousel.Item>
+      {/*<Carousel.Item>
         <img src={ScreenshotTwo} />
       </Carousel.Item>
       <Carousel.Item>
@@ -145,7 +145,7 @@ export default function Hero() {
       </Carousel.Item>
       <Carousel.Item>
         <img src={ScreenshotFour} />
-      </Carousel.Item>
+      </Carousel.Item>*/}
     </Carousel>
     <div className={clsx("d-flex pl-2 pr-2 pl-sm-0 pr-sm-0 flex-column flex-lg-row", textContent)}>
       <div className="d-flex flex-lg-column justify-content-center text-center text-lg-right mb-2 mb-lg-0 mr-0 mr-lg-3 ">
