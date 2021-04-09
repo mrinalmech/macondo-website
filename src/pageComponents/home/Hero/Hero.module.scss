@@ -15,6 +15,12 @@ $monitor-img-width: 3406px;
     max-width: $monitor-img-width;
   }
 
+  .logo{
+    z-index: 4;
+    top: 105px;
+    max-width:100%;
+  }
+
   @include respond-below(md) {
     h4 {
       font-size: 1.5rem;
@@ -22,16 +28,36 @@ $monitor-img-width: 3406px;
     .monitor{
       bottom: 70px;
     }
+    .logo{
+      width: 340px;
+      top: 110px;
+    }
   }
   @include respond-below(sm) {
     height: calc(100vh - #{$navbarHeight});
     .monitor{
       width: 480%;
     }
+    .logo{
+      top: 45px;
+    }
+  }
+  @include respond-below(700px) {
+    .logo{
+      top: 75px;
+    }
   }
   @include respond-below(650px) {
     .monitor{
       bottom: 100px;
+    }
+    .logo{
+      top: 95px;
+    }
+  }
+  @include respond-below(600px) {
+    .logo{
+      top: 115px;
     }
   }
   @include respond-below(xs) {
@@ -40,6 +66,9 @@ $monitor-img-width: 3406px;
     }
     .monitor{
       bottom: 120px;
+    }
+    .logo{
+      top: 65px;
     }
   }
   @include respond-below(520px) {
@@ -82,16 +111,10 @@ $monitor-img-width: 3406px;
       bottom: 340px;
     }
   }
-}
-
-.logo {
-  z-index: 4;
-  top: 90px;
-
-  @include respond-below(md) {
-    width: 340px;
-    top: 105px;
-    display:none;
+  @include respond-below(340px) {
+    .monitor{
+      bottom: 380px;
+    }
   }
 }
 

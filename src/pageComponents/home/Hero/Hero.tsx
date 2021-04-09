@@ -60,7 +60,7 @@ export default function Hero() {
       ${Logo1x} 1x`
       }
       alt=""
-      className={clsx("position-absolute", logo)}
+      className={clsx("position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ", logo)}
     />
     <img
       src={WallShade1x}
