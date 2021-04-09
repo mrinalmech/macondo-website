@@ -1,93 +1,172 @@
 @import 'src/styles/constants.scss';
 @import 'src/styles/colors.scss';
 @import 'src/styles/breakpoints.scss';
-
-$monitor-img-width: 3406px;
-//note: A lot of custom breakpoints have to be used because of all the elements
+$monitor-img-width: 3406px; //note: A lot of custom breakpoints have to be used because of all the elements
 
 .root {
   background-image: linear-gradient($black, $purple);
   height: 100vh;
 
-  .monitor{
+  .monitor {
     bottom: 20px;
     z-index: 6;
     max-width: $monitor-img-width;
   }
 
-  .logo{
+  .logo {
     z-index: 4;
     top: 105px;
-    max-width:100%;
+    max-width: 100%;
   }
 
+  .carousel {
+    z-index: 5;
+    bottom: 278px;
+    width: 615px;
+    height: 278px;
+    overflow: hidden;
+
+    :global(.carousel-item) {
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    > div > div,
+    > div,
+    img {
+      height: 100%;
+    }
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
   @include respond-below(md) {
     h4 {
       font-size: 1.5rem;
     }
-    .monitor{
+
+    .monitor {
       bottom: 70px;
     }
-    .logo{
+
+    .logo {
       width: 340px;
       top: 110px;
+    }
+
+    .carousel {
+      bottom: 328px;
     }
   }
   @include respond-below(sm) {
     height: calc(100vh - #{$navbarHeight});
-    .monitor{
+
+    .monitor {
       width: 480%;
     }
-    .logo{
+
+    .logo {
       top: 45px;
+    }
+
+    .carousel {
+      bottom: 318px;
+      height: 288px;
     }
   }
   @include respond-below(700px) {
-    .logo{
+    .logo {
       top: 75px;
     }
+
+    .carousel {
+      width: 590px;
+      height: 283px;
+      bottom: 312px;
+    }
   }
-  @include respond-below(650px) {
-    .monitor{
+  @include respond-below(685px) {
+    .carousel {
+      height: 274px;
+      width: 578px;
+      bottom: 302px;
+    }
+  }
+  @include respond-below(660px) {
+    .monitor {
       bottom: 100px;
     }
-    .logo{
+
+    .logo {
       top: 95px;
     }
+
+    .carousel {
+      height: 260px;
+      width: 552px;
+      bottom: 324px;
+    }
   }
-  @include respond-below(600px) {
-    .logo{
+  @include respond-below(635px) {
+    .logo {
       top: 115px;
+    }
+
+    .carousel {
+      height: 254px;
+      width: 534px;
+      bottom: 312px;
+    }
+  }
+  @include respond-below(605px) {
+    .logo {
+      top: 115px;
+    }
+
+    .carousel {
+      opacity: 0.75;
     }
   }
   @include respond-below(xs) {
     h4 {
       font-size: 1.3rem;
     }
-    .monitor{
+
+    .monitor {
       bottom: 120px;
     }
-    .logo{
+
+    .logo {
       top: 65px;
+    }
+    .carousel{
+      display:none;
     }
   }
   @include respond-below(520px) {
     padding-bottom: 4rem!important;
+
     h4 {
       font-size: 1.1rem;
     }
-    .monitor{
+
+    .monitor {
       bottom: 220px;
     }
   }
   @include respond-below(450px) {
     padding-bottom: 5rem!important;
-    .monitor{
+
+    .monitor {
       bottom: 260px;
     }
   }
   @include respond-below(420px) {
     padding-bottom: 7rem!important;
+
     h4 {
       font-size: 1rem;
     }
@@ -96,10 +175,12 @@ $monitor-img-width: 3406px;
     h4 {
       font-size: 0.9rem;
     }
-    small{
+
+    small {
       font-size: 75%;
     }
-    .monitor{
+
+    .monitor {
       bottom: 300px;
     }
   }
@@ -107,46 +188,15 @@ $monitor-img-width: 3406px;
     h4 {
       font-size: 0.85rem;
     }
-    .monitor{
+
+    .monitor {
       bottom: 340px;
     }
   }
   @include respond-below(340px) {
-    .monitor{
+    .monitor {
       bottom: 380px;
     }
-  }
-}
-
-.carousel {
-  z-index: 5;
-  bottom: 278px;
-  width: 615px;
-  height: 278px;
-  overflow: hidden;
-
-  :global(.carousel-item) {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-  }
-
-  > div > div,
-  > div,
-  img {
-    height: 100%;
-  }
-
-  img {
-    width: 100%;
-    object-fit: cover;
-  }
-  @include respond-below(md) {
-    bottom: 328px;
-  }
-
-  @include respond-below(sm) {
-    display: none;
   }
 }
 
