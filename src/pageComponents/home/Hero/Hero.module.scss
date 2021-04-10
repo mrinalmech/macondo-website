@@ -10,6 +10,11 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width;
   background-image: linear-gradient($black, $purple);
   height: 100vh;
 
+  p{
+    font-size:0.8rem;
+    line-height:1.8;
+  }
+
   .monitor {
     bottom: 20px;
     z-index: 6;
@@ -67,11 +72,6 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width;
   }
   @include respond-below(sm) {
     height: calc(100vh - #{$navbarHeight});
-
-    h4 {
-      font-size: 1.3rem;
-    }
-
     .monitor {
       width: 480vw;
       bottom: 240px;
@@ -82,12 +82,16 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width;
       bottom: 240px;
     }
 
-    small{
-      font-size:75%;
-    }
-
     .logo {
       top: 45px;
+    }
+
+    h4 {
+      font-size: 1.3rem;
+    }
+
+    p{
+      line-height: 1.3rem;
     }
   }
   @include respond-below(xs) {
@@ -97,6 +101,10 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width;
 
     .logo {
       top: 65px;
+    }
+
+    h4 {
+      font-size: 1.2rem;
     }
   }
 }

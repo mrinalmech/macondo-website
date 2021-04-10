@@ -22,8 +22,8 @@
   }
 
   @include respond-below(sm) {
-    height: 40px;
-    width:40px;
+    height: 38px;
+    width:38px;
 
     >svg{
       font-size: 1.3rem;

@@ -1,10 +1,18 @@
-@import "~@fontsource/open-sans/300.css";
 
 @font-face {
   font-family: "Retro Computer";
   src: url("../fonts/retro_computer/retro_computer.ttf");
 }
 
-.open-sans{
-  font-family: 'Open Sans', sans-serif;
+@font-face {
+  font-family: "Gotham";
+  src: url("../fonts/gotham/GothamBook.ttf");
+}
+
+h1,h2,h3,h4,h5,h6, a {
+  font-family: "Retro Computer", sans-serif;
+}
+
+p{
+  font-family: "Gotham", sans-serif;
 }

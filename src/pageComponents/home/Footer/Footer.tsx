@@ -59,6 +59,6 @@ export default function Footer() {
         <FontAwesomeIcon icon={faTwitch} size="2x" />
       </SocialLink>
     </div>
-    <p className="open-sans white m-0 text-center"> Copyright © {currentYear} | Macondo Games Pvt. Ltd. </p>
+    <p className="white m-0 text-center"> Copyright © {currentYear} | Macondo Games Pvt. Ltd. </p>
   </Container>
 }
