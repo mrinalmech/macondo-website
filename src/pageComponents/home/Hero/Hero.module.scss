@@ -47,6 +47,11 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
     max-width: 100%;
   }
 
+  .wallShade {
+    top: 0;
+    z-index: 1;
+  }
+
   i {
     height: 5px;
     width: 5px;
@@ -67,8 +72,8 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
       width: 100%;
     }
 
-    > div,
     > div > div,
+    > div,
     img {
       height: 100%;
     }
@@ -78,28 +83,24 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
       object-fit: cover;
     }
   }
-
   @media screen and (max-height: 900px) {
-    .logo{
-      top:105px;
+    .logo {
+      top: 105px;
       width: 340px;
     }
   }
-
   @media screen and (max-height: 860px) {
-    .logo{
+    .logo {
       width: 275px;
     }
   }
-
   @media screen and (max-height: 830px) {
-    .logo{
+    .logo {
       top: 70px;
     }
   }
-
   @media screen and (max-height: 800px) {
-    .logo{
+    .logo {
       top: 60px;
       width: 240px;
     }
@@ -118,13 +119,11 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
       right: -50px;
     }
   }
-
   @media screen and (max-height: 770px) {
-    .logo{
+    .logo {
       top: 45px;
     }
   }
-
   @include respond-below(md) {
     .monitor {
       bottom: 70px;
@@ -134,19 +133,18 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
       width: 340px;
       top: 110px;
     }
-
     @media screen and (max-height: 920px) {
-      .logo{
+      .logo {
         width: 300px;
         top: 100px;
       }
     }
-
     @media screen and (max-height: 890px) {
-      .logo{
+      .logo {
         width: 275px;
         top: 70px;
       }
+
       .baseL1,
       .baseL2 {
         max-width: 50%;
@@ -161,13 +159,11 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
         right: -80px;
       }
     }
-
     @media screen and (max-height: 860px) {
-      .logo{
+      .logo {
         width: 260px;
         top: 55px;
       }
-
     }
   }
   @include respond-below(sm) {
@@ -197,22 +193,48 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
       right: -50px;
     }
 
-    i {
-      bottom: 240px;
-    }
-
     h4 {
       font-size: 1.3rem;
+    }
+
+    @media screen and (max-height: 940px) {
+      .logo {
+        width:270px;
+        top:65px;
+      }
+    }
+
+    @media screen and (max-height: 910px) {
+      .logo {
+        width: 250px;
+        top: 30px;
+      }
+
+      .left {
+        left: -80px;
+      }
+
+      .right {
+        right: -80px;
+      }
+    }
+
+    @media screen and (max-height: 870px) {
+      .logo {
+        width: 220px;
+        top: 15px;
+      }
     }
 
   }
   @include respond-below(xs) {
     .monitor {
-      bottom: 260px;
+      bottom: 200px;
     }
 
     .logo {
       width: 300px;
+      top: 115px;
     }
 
     .baseL1,
@@ -228,39 +250,121 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
       right: -90px;
     }
 
-    .logo {
-      top: 85px;
-    }
 
     h4 {
       font-size: 1.2rem;
     }
-  }
 
-  @include respond-below(480px){
-    max-height: 840px;
-    padding-bottom: 1rem!important;
-  }
+    @media screen and (max-height: 920px) {
+      .logo {
+        width: 270px;
+        top: 90px;
+      }
 
-  @include respond-below(420px){
-    max-height: 750px;
-    .logo{
-      width: 280px;
+      .baseL1,
+      .baseL2 {
+        max-height: 60%;
+      }
+
+      .left {
+        left: -105px;
+      }
+
+      .right {
+        right: -105px;
+      }
+    }
+
+    @media screen and (max-height:880px){
+      .logo{
+        width: 250px;
+        top: 70px;
+      }
+    }
+
+    @media screen and (max-height:850px){
+      .logo{
+        width: 230px;
+        top: 50px;
+      }
+
+      .left {
+        left: -135px;
+      }
+
+      .right {
+        right: -135px;
+      }
+    }
+
+    @media screen and (max-height:820px){
+      .logo{
+        width: 210px;
+        top: 20px;
+      }
+
+      .left {
+        left: -150px;
+      }
+
+      .right {
+        right: -150px;
+      }
+    }
+
+    @media screen and (max-height:780px){
+      .logo{
+        width: 200px;
+        top: 5px;
+      }
+    }
+
+  }
+  @include respond-below(540px) {
+    .monitor {
+      bottom: 220px;
+    }
+
+  }
+  @include respond-below(480px) {
+    max-height: 820px;
+
+    .monitor {
+      bottom: 260px;
+    }
+
+  }
+  @include respond-below(420px) {
+    max-height: 770px;
+
+    .monitor {
+      bottom: 270px;
+    }
+
+    .logo {
+      width: 260px;
+    }
+
+    .wallShade {
+      max-height: 60%;
     }
   }
-
-  @include respond-below(360px){
-    .logo{
-      width: 275px;
+  @include respond-below(360px) {
+    .logo {
+      width: 240px;
       top: 75px;
     }
     max-height: 700px;
   }
-}
+  @include respond-below(320px) {
+    .logo {
+      width: 220px;
+    }
 
-.wallShade {
-  top: 0;
-  z-index: 1;
+    .monitor {
+      bottom: 300px;
+    }
+  }
 }
 
 .desc {
