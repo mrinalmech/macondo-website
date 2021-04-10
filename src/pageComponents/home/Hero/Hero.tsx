@@ -48,10 +48,12 @@ export default function Hero() {
     align-items-end
     justify-content-center
     pb-4
+    pb-sm-2
+    pb-md-4
     position-relative
     overflow-hidden`
   )}>
-    {/*<img
+    <img
       src={Logo1x}
       srcSet={
         `${Logo4x} 4x,
@@ -116,7 +118,7 @@ export default function Hero() {
       }
       alt=""
       className={clsx("position-absolute", baseL2, right)}
-    />*/}
+    />
     <img
       src={Monitor1x}
       srcSet={
@@ -152,7 +154,7 @@ export default function Hero() {
       <div className="d-flex flex-column flex-md-row flex-lg-column justify-content-center text-center text-lg-right mb-2 mb-lg-0 mr-0 mr-lg-3 ">
         <h4 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2">Suit up.</h4>
         <h4 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2">Shoot 'em up.</h4>
-        <h4 className="white mb-2 mb-md-0">Level up.</h4>
+        <h4 className="white mb-0">Level up.</h4>
       </div>
       <div className={clsx(desc, "text-center d-flex flex-column justify-content-center")}>
         <p className="white m-0">

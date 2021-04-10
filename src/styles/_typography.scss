@@ -1,18 +1,26 @@
-
+@import 'src/styles/breakpoints.scss';
 @font-face {
   font-family: "Retro Computer";
   src: url("../fonts/retro_computer/retro_computer.ttf");
 }
-
 @font-face {
   font-family: "Gotham";
   src: url("../fonts/gotham/GothamBook.ttf");
 }
 
-h1,h2,h3,h4,h5,h6, a {
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Retro Computer", sans-serif;
 }
 
-p{
+p {
   font-family: "Gotham", sans-serif;
+  @include respond-below(sm) {
+    line-height: 1.3rem;
+  }
 }

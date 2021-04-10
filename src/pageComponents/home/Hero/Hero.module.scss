@@ -3,16 +3,34 @@
 @import 'src/styles/breakpoints.scss';
 $monitor-img-width: 3406px;
 $monitor-img-height: 597px;
-$monitor-img-ratio: $monitor-img-height/$monitor-img-width;
-//note: A lot of custom breakpoints have to be used because of all the elements
+$monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of custom breakpoints have to be used because of all the elements
 
 .root {
   background-image: linear-gradient($black, $purple);
   height: 100vh;
+  max-height: 950px;
 
-  p{
-    font-size:0.8rem;
-    line-height:1.8;
+  .baseL1,
+  .baseL2 {
+    top: 0;
+    max-width: 50%;
+  }
+
+  .baseL1 {
+    z-index: 3;
+  }
+
+  .baseL2 {
+    z-index: 2;
+  }
+
+  .left {
+    left: 0;
+  }
+
+  .right {
+    right: 0;
+    transform: scaleX(-1);
   }
 
   .monitor {
@@ -29,10 +47,10 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width;
     max-width: 100%;
   }
 
-  i{
-    height:5px;
-    width:5px;
-    z-index:25;
+  i {
+    height: 5px;
+    width: 5px;
+    z-index: 25;
     background-color: green;
   }
 
@@ -49,8 +67,8 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width;
       width: 100%;
     }
 
-    > div > div,
     > div,
+    > div > div,
     img {
       height: 100%;
     }
@@ -60,6 +78,53 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width;
       object-fit: cover;
     }
   }
+
+  @media screen and (max-height: 900px) {
+    .logo{
+      top:105px;
+      width: 340px;
+    }
+  }
+
+  @media screen and (max-height: 860px) {
+    .logo{
+      width: 275px;
+    }
+  }
+
+  @media screen and (max-height: 830px) {
+    .logo{
+      top: 70px;
+    }
+  }
+
+  @media screen and (max-height: 800px) {
+    .logo{
+      top: 60px;
+      width: 240px;
+    }
+
+    .baseL1,
+    .baseL2 {
+      max-width: 50%;
+      max-height: 75%;
+    }
+
+    .left {
+      left: -50px;
+    }
+
+    .right {
+      right: -50px;
+    }
+  }
+
+  @media screen and (max-height: 770px) {
+    .logo{
+      top: 45px;
+    }
+  }
+
   @include respond-below(md) {
     .monitor {
       bottom: 70px;
@@ -69,73 +134,133 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width;
       width: 340px;
       top: 110px;
     }
+
+    @media screen and (max-height: 920px) {
+      .logo{
+        width: 300px;
+        top: 100px;
+      }
+    }
+
+    @media screen and (max-height: 890px) {
+      .logo{
+        width: 275px;
+        top: 70px;
+      }
+      .baseL1,
+      .baseL2 {
+        max-width: 50%;
+        max-height: 75%;
+      }
+
+      .left {
+        left: -80px;
+      }
+
+      .right {
+        right: -80px;
+      }
+    }
+
+    @media screen and (max-height: 860px) {
+      .logo{
+        width: 260px;
+        top: 55px;
+      }
+
+    }
   }
   @include respond-below(sm) {
     height: calc(100vh - #{$navbarHeight});
+
     .monitor {
       width: 480vw;
-      bottom: 240px;
+      bottom: 190px;
       transform: translateY(19%);
     }
 
-    i{
-      bottom: 240px;
+    .logo {
+      top: 60px;
+      width: 320px;
     }
 
-    .logo {
-      top: 45px;
+    .baseL1,
+    .baseL2 {
+      max-width: 45%;
+    }
+
+    .left {
+      left: -50px;
+    }
+
+    .right {
+      right: -50px;
+    }
+
+    i {
+      bottom: 240px;
     }
 
     h4 {
       font-size: 1.3rem;
     }
 
-    p{
-      line-height: 1.3rem;
-    }
   }
   @include respond-below(xs) {
     .monitor {
-      bottom: 320px;
+      bottom: 260px;
     }
 
     .logo {
-      top: 65px;
+      width: 300px;
+    }
+
+    .baseL1,
+    .baseL2 {
+      max-width: 60%;
+    }
+
+    .left {
+      left: -90px;
+    }
+
+    .right {
+      right: -90px;
+    }
+
+    .logo {
+      top: 85px;
     }
 
     h4 {
       font-size: 1.2rem;
     }
   }
+
+  @include respond-below(480px){
+    max-height: 840px;
+    padding-bottom: 1rem!important;
+  }
+
+  @include respond-below(420px){
+    max-height: 750px;
+    .logo{
+      width: 280px;
+    }
+  }
+
+  @include respond-below(360px){
+    .logo{
+      width: 275px;
+      top: 75px;
+    }
+    max-height: 700px;
+  }
 }
 
 .wallShade {
   top: 0;
   z-index: 1;
-  max-width: 100%;
-}
-
-.baseL1,
-.baseL2 {
-  top: 0;
-  max-width: 65%;
-}
-
-.baseL1 {
-  z-index: 3;
-}
-
-.baseL2 {
-  z-index: 2;
-}
-
-.left {
-  left: 0;
-}
-
-.right {
-  right: 0;
-  transform: scaleX(-1);
 }
 
 .desc {
