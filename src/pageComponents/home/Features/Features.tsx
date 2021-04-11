@@ -19,7 +19,11 @@ import Upgrades2x from "./images/upgrades@2x.png"
 import Upgrades3x from "./images/upgrades@3x.png"
 import Upgrades4x from "./images/upgrades@4x.png"
 
-export default function Features() {
+interface Props {
+  imageLoaded: () => any
+}
+
+export default function Features({ imageLoaded }:Props) {
   return <div className={root}>
     <Container>
       <Row className={clsx(featureRow, "d-flex")}>
@@ -37,6 +41,7 @@ export default function Features() {
             }
             alt=""
             className="mw-100"
+            onLoad={imageLoaded}
           />
         </Col>
         <Col
@@ -82,6 +87,7 @@ export default function Features() {
             }
             alt=""
             className="mw-100"
+            onLoad={imageLoaded}
           />
         </Col>
       </Row>
@@ -100,6 +106,7 @@ export default function Features() {
             }
             alt=""
             className="mw-100"
+            onLoad={imageLoaded}
           />
         </Col>
         <Col

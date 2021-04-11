@@ -34,7 +34,6 @@ export default function Home() {
 
   const imageLoaded = () => {
     counter.current += 1;
-    console.log(counter.current)
     if (counter.current >= urls.length) {
       setLoading(false);
     }
@@ -43,7 +42,7 @@ export default function Home() {
   const timeout = useTimeout(() => setLoading(false), 2000);
 
   useEffect(() => {
-    //timeout.start();
+    timeout.start();
   }, []);
 
   return (
@@ -52,7 +51,7 @@ export default function Home() {
       <Layout>
         <Head title="Macondo Games" />
         <Hero imageLoaded={imageLoaded}/>
-        <Features />
+        <Features imageLoaded={imageLoaded}/>
         <Footer />
       </Layout>
     </>
