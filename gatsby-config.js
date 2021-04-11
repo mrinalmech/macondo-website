@@ -6,12 +6,11 @@ const postCssFocus = require("postcss-focus")
 module.exports = {
   siteMetadata: {
     title: "Macondo Games",
-    description: "Purveyor of the finest gaming wares",
+    description: "Purveyor of the finest gaming wares. Macondo Games is a studio located in Mumbai, India working on their first title, a 2d run and gun shooter Global Steel.",
     author: "Mrinal Mech",
     siteUrl: "https://www.macondogames.com",
   },
-  plugins: [
-    {
+  plugins: [{
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Macondo Games`,
@@ -25,7 +24,14 @@ module.exports = {
         icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        workboxConfig: {
+          globPatterns: ['*.html']
+        }
+      }
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: "gatsby-plugin-sass",
