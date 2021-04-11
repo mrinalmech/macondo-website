@@ -23,7 +23,7 @@ interface Props {
   imageLoaded: () => any
 }
 
-export default function Features({ imageLoaded }:Props) {
+export default function Features({ imageLoaded }: Props) {
   return <div className={root}>
     <Container>
       <Row className={clsx(featureRow, "d-flex")}>
@@ -32,6 +32,7 @@ export default function Features({ imageLoaded }:Props) {
           className="d-flex flex-column justify-content-center order-2 order-md-1"
         >
           <img
+            onLoad={imageLoaded}
             src={Players1x}
             srcSet={
               `${Players4x} 4x,
@@ -41,7 +42,6 @@ export default function Features({ imageLoaded }:Props) {
             }
             alt=""
             className="mw-100"
-            onLoad={imageLoaded}
           />
         </Col>
         <Col
@@ -78,6 +78,7 @@ export default function Features({ imageLoaded }:Props) {
           className="d-flex flex-column justify-content-center"
         >
           <img
+            onLoad={imageLoaded}
             src={Enemies1x}
             srcSet={
               `${Enemies4x} 4x,
@@ -87,7 +88,6 @@ export default function Features({ imageLoaded }:Props) {
             }
             alt=""
             className="mw-100"
-            onLoad={imageLoaded}
           />
         </Col>
       </Row>
@@ -97,6 +97,7 @@ export default function Features({ imageLoaded }:Props) {
           className="d-flex flex-column justify-content-center order-2 order-md-1"
         >
           <img
+            onLoad={imageLoaded}
             src={Upgrades1x}
             srcSet={
               `${Upgrades4x} 4x,
@@ -106,7 +107,6 @@ export default function Features({ imageLoaded }:Props) {
             }
             alt=""
             className="mw-100"
-            onLoad={imageLoaded}
           />
         </Col>
         <Col

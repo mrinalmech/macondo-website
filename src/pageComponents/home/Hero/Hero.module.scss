@@ -34,10 +34,11 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
   }
 
   .monitor {
-    bottom: 20px;
+    bottom: 133px;
     z-index: 6;
     max-width: $monitor-img-width;
-    //pointer-events: none;
+    transform: translateY(19%);
+    pointer-events: none;
   }
 
   .extension {
@@ -66,13 +67,6 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
     z-index: 1;
   }
 
-  i {
-    height: 5px;
-    width: 5px;
-    z-index: 25;
-    background-color: green;
-  }
-
   .carousel {
     z-index: 5;
     bottom: 278px;
@@ -86,8 +80,8 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
       width: 100%;
     }
 
-    > div,
     > div > div,
+    > div,
     img {
       height: 100%;
     }
@@ -140,13 +134,14 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
   }
   @include respond-below(md) {
     .monitor {
-      bottom: 70px;
+      bottom: 185px;
     }
 
     .logo {
       width: 340px;
       top: 110px;
     }
+
     @media screen and (max-height: 920px) {
       .logo {
         width: 300px;
@@ -186,7 +181,6 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
     .monitor {
       width: 480vw;
       bottom: 190px;
-      transform: translateY(19%);
     }
 
     .logo {

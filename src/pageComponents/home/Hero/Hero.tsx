@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
+import { useTimeout } from 'react-use-timeout';
 import clsx from "clsx"
 import { useSpring, animated } from 'react-spring'
 import Carousel from "react-bootstrap/Carousel"
@@ -52,7 +53,7 @@ interface Props {
   loading: boolean
 }
 
-const DURATION = 400
+const DURATION = 200
 
 export default function Hero({ imageLoaded, loading }: Props) {
 
@@ -61,6 +62,48 @@ export default function Hero({ imageLoaded, loading }: Props) {
     setBgImageLoading(false)
     imageLoaded()
   }
+
+  const monitorEl = useRef(null);
+
+  const [dimensions, setDimensions] = useState({
+    height: 0,
+    width: 0,
+    bottom: 0
+  })
+
+  const calculateDimensions = () => {
+    if (monitorEl) {
+
+      const style = getComputedStyle(monitorEl.current)
+      const bottom = style ?.bottom ?.slice(0, -2) || "0"
+
+      setDimensions({
+        height: monitorEl.current.clientHeight * 0.47,
+        width: monitorEl.current.clientWidth * 0.182,
+        bottom: parseInt(bottom) + monitorEl.current.clientHeight * 0.24
+      })
+    }
+  }
+
+  const timeout = useTimeout(() => {
+    calculateDimensions()
+  }, 2 * DURATION || 500);
+
+  useEffect(() => {
+    timeout.start();
+  }, []);
+
+  useEffect(() => {
+    // Add event listener
+    window.addEventListener("resize", calculateDimensions);
+
+    // Call handler right away so state gets updated with initial window size
+    calculateDimensions();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", calculateDimensions);
+  }, []); // Empty array ensures that effect is only run on mount
+
 
   return <>
     <div className={clsx(root, `d-flex
@@ -74,12 +117,13 @@ export default function Hero({ imageLoaded, loading }: Props) {
     )}>
       {
         bgImageLoading && <img
+          onLoad={bgImageLoaded}
           src={Repeat1x}
           className={clsx("position-absolute", bgImg)}
-          onLoad={bgImageLoaded}
         />
       }
       <animated.img
+        onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
@@ -95,9 +139,9 @@ export default function Hero({ imageLoaded, loading }: Props) {
         }
         alt=""
         className={clsx("position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ", logo)}
-        onLoad={imageLoaded}
       />
       <animated.img
+        onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
@@ -112,9 +156,9 @@ export default function Hero({ imageLoaded, loading }: Props) {
         }
         alt=""
         className={clsx("position-absolute", wallShade)}
-        onLoad={imageLoaded}
       />
       <animated.img
+        onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
@@ -130,9 +174,9 @@ export default function Hero({ imageLoaded, loading }: Props) {
         }
         alt=""
         className={clsx("position-absolute", baseL1, left)}
-        onLoad={imageLoaded}
       />
       <animated.img
+        onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
@@ -148,9 +192,9 @@ export default function Hero({ imageLoaded, loading }: Props) {
         }
         alt=""
         className={clsx("position-absolute", baseL2, left)}
-        onLoad={imageLoaded}
       />
       <animated.img
+        onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
@@ -166,9 +210,9 @@ export default function Hero({ imageLoaded, loading }: Props) {
         }
         alt=""
         className={clsx("position-absolute", baseL1, right)}
-        onLoad={imageLoaded}
       />
       <animated.img
+        onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
@@ -184,15 +228,16 @@ export default function Hero({ imageLoaded, loading }: Props) {
         }
         alt=""
         className={clsx("position-absolute", baseL2, right)}
-        onLoad={imageLoaded}
       />
       <animated.img
+        onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
           delay: DURATION * 3,
           config: { duration: DURATION }
         })}
+        ref={monitorEl}
         src={Monitor1x}
         srcSet={
           `${Monitor4x} 4x,
@@ -202,28 +247,67 @@ export default function Hero({ imageLoaded, loading }: Props) {
         }
         alt=""
         className={clsx("position-absolute", monitor)}
-        onLoad={imageLoaded}
       />
-      {/*<i className="position-absolute"/>*/}
-      {/*<Carousel
-      className={clsx(carousel, "position-absolute")}
-      controls={false}
-      indicators={false}
-      fade
-    >
-      <Carousel.Item>
-        <img src={ScreenshotOne} />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img src={ScreenshotTwo} />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img src={ScreenshotThree} />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img src={ScreenshotFour} />
-      </Carousel.Item>
-    </Carousel>*/}
+      <Carousel
+        className={clsx(carousel, "position-absolute")}
+        controls={false}
+        indicators={false}
+        fade
+        style={{
+          height: dimensions.height,
+          width: dimensions.width,
+          bottom: dimensions.bottom
+        }}
+      >
+        <Carousel.Item>
+          <animated.img
+            onLoad={imageLoaded}
+            src={ScreenshotOne}
+            style={useSpring({
+              opacity: loading ? 0 : 1,
+              from: { opacity: 0 },
+              delay: DURATION * 3,
+              config: { duration: DURATION }
+            })}
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <animated.img
+            onLoad={imageLoaded}
+            src={ScreenshotTwo}
+            style={useSpring({
+              opacity: loading ? 0 : 1,
+              from: { opacity: 0 },
+              delay: DURATION * 3,
+              config: { duration: DURATION }
+            })}
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <animated.img
+            onLoad={imageLoaded}
+            src={ScreenshotThree}
+            style={useSpring({
+              opacity: loading ? 0 : 1,
+              from: { opacity: 0 },
+              delay: DURATION * 3,
+              config: { duration: DURATION }
+            })}
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <animated.img
+            onLoad={imageLoaded}
+            src={ScreenshotFour}
+            style={useSpring({
+              opacity: loading ? 0 : 1,
+              from: { opacity: 0 },
+              delay: DURATION * 3,
+              config: { duration: DURATION }
+            })}
+          />
+        </Carousel.Item>
+      </Carousel>
       <animated.div
         className={clsx("position-absolute", extension, left)}
         style={useSpring({

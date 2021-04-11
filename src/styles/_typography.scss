@@ -4,7 +4,10 @@
   src: url("../fonts/retro_computer/retro_computer.ttf");
 }
 @font-face {
-  font-family: "Gotham";
+  font:{
+    family: "Gotham";
+    display: swap;
+  }
   src: url("../fonts/gotham/GothamBook.ttf");
 }
 
