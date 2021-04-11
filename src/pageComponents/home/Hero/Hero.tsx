@@ -55,7 +55,7 @@ interface Props {
   loading: boolean
 }
 
-const DURATION = 0
+const DURATION = 300
 
 export default function Hero({ imageLoaded, loading }: Props) {
 

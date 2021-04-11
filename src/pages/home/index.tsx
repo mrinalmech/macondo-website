@@ -28,7 +28,7 @@ const urls = [
 
 export default function Home() {
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const counter = useRef(0);
 
   const imageLoaded = () => {
