@@ -6,6 +6,7 @@ import {
   root,
   desc,
   monitor,
+  extension,
   wallShade,
   carousel,
   logo,
@@ -150,6 +151,8 @@ export default function Hero() {
         <img src={ScreenshotFour} />
       </Carousel.Item>
     </Carousel>*/}
+    <div className={clsx("position-absolute", extension, left)}/>
+    <div className={clsx("position-absolute", extension, right)}/>
     <div className={clsx("d-flex pl-3 pr-3 flex-column flex-lg-row", textContent)}>
       <div className="d-flex flex-column flex-md-row flex-lg-column justify-content-center text-center text-lg-right mb-2 mb-lg-0 mr-0 mr-lg-3 ">
         <h4 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2">Suit up.</h4>

@@ -37,8 +37,23 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
     bottom: 20px;
     z-index: 6;
     max-width: $monitor-img-width;
-    //background-color:pink;
     //pointer-events: none;
+  }
+
+  .extension {
+    width: calc(((100% - 3406px)/2) + 3px);
+    bottom: 85px;
+    height: 445px;
+    background: {
+      image: url("./images/repeat@1x.png");
+      repeat: repeat-x;
+      position-x: right;
+    }
+    z-index: 6;
+
+    @include respond-below($monitor-img-width) {
+      display: none;
+    }
   }
 
   .logo {
@@ -72,8 +87,8 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
       width: 100%;
     }
 
-    > div,
     > div > div,
+    > div,
     img {
       height: 100%;
     }
@@ -302,7 +317,7 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
         right: -150px;
       }
     }
-    @media screen and (max-height:780px){
+    @media screen and (max-height:780px) {
       .logo {
         width: 200px;
         top: 5px;
@@ -342,11 +357,10 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
         width: 230px;
       }
     }
-
     @media screen and (max-height: 740px) {
       .logo {
         width: 210px;
-        top:25px;
+        top: 25px;
       }
     }
     @media screen and (max-height:710px) {
@@ -355,9 +369,8 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
         top: 0;
       }
     }
-
     @media screen and (max-height: 650px) {
-      .logo{
+      .logo {
         width: 140px;
       }
     }
@@ -370,30 +383,31 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
       top: 75px;
     }
     @media screen and (max-height: 760px) {
-      .logo{
+      .logo {
         width: 210px;
-        top:50px;
+        top: 50px;
       }
     }
     @media screen and (max-height: 720px) {
-      .logo{
-        top:30px;
+      .logo {
+        top: 30px;
       }
     }
     @media screen and (max-height: 690px) {
-      .logo{
+      .logo {
         width: 160px;
         top: 0;
       }
     }
     @media screen and (max-height: 640px) {
-      .logo{
-        display:none;
+      .logo {
+        display: none;
       }
     }
   }
   @include respond-below(320px) {
     padding-bottom: 1rem!important;
+
     .monitor {
       bottom: 300px;
     }
@@ -401,19 +415,18 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
     .logo {
       width: 220px;
     }
-
     @media screen and (max-height: 740px) {
-      .logo{
+      .logo {
         width: 210px;
       }
     }
     @media screen and (max-height: 710px) {
-      .logo{
-        top:30px;
+      .logo {
+        top: 30px;
       }
     }
     @media screen and (max-height: 690px) {
-      .logo{
+      .logo {
         width: 160px;
         top: 0;
       }
