@@ -4,6 +4,8 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import clsx from "clsx"
 
+import LoadedImg from "../../../components/LoadedImg"
+
 import { root, featureRow } from "./Features.module.scss"
 
 import Players1x from "./images/players@1x.png"
@@ -31,7 +33,7 @@ export default function Features({ imageLoaded }: Props) {
           md={5}
           className="d-flex flex-column justify-content-center order-2 order-md-1"
         >
-          <img
+          <LoadedImg
             onLoad={imageLoaded}
             src={Players1x}
             srcSet={
@@ -77,7 +79,7 @@ export default function Features({ imageLoaded }: Props) {
           md={{ span: 6, offset: 1 }}
           className="d-flex flex-column justify-content-center"
         >
-          <img
+          <LoadedImg
             onLoad={imageLoaded}
             src={Enemies1x}
             srcSet={
@@ -96,7 +98,7 @@ export default function Features({ imageLoaded }: Props) {
           md={5}
           className="d-flex flex-column justify-content-center order-2 order-md-1"
         >
-          <img
+          <LoadedImg
             onLoad={imageLoaded}
             src={Upgrades1x}
             srcSet={

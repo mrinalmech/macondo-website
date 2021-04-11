@@ -4,6 +4,8 @@ import clsx from "clsx"
 import { useSpring, animated } from 'react-spring'
 import Carousel from "react-bootstrap/Carousel"
 
+import LoadedImg from "../../../components/LoadedImg"
+
 import {
   root,
   desc,
@@ -73,7 +75,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
 
   const calculateDimensions = () => {
     if (monitorEl) {
-
       const style = getComputedStyle(monitorEl.current)
       const bottom = style ?.bottom ?.slice(0, -2) || "0"
 
@@ -116,13 +117,14 @@ export default function Hero({ imageLoaded, loading }: Props) {
     overflow-hidden`
     )}>
       {
-        bgImageLoading && <img
+        bgImageLoading && <LoadedImg
           onLoad={bgImageLoaded}
           src={Repeat1x}
           className={clsx("position-absolute", bgImg)}
         />
       }
-      <animated.img
+      <LoadedImg
+        anim
         onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
@@ -140,7 +142,8 @@ export default function Hero({ imageLoaded, loading }: Props) {
         alt=""
         className={clsx("position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ", logo)}
       />
-      <animated.img
+      <LoadedImg
+        anim
         onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
@@ -157,7 +160,8 @@ export default function Hero({ imageLoaded, loading }: Props) {
         alt=""
         className={clsx("position-absolute", wallShade)}
       />
-      <animated.img
+      <LoadedImg
+        anim
         onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
@@ -175,7 +179,8 @@ export default function Hero({ imageLoaded, loading }: Props) {
         alt=""
         className={clsx("position-absolute", baseL1, left)}
       />
-      <animated.img
+      <LoadedImg
+        anim
         onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
@@ -193,7 +198,8 @@ export default function Hero({ imageLoaded, loading }: Props) {
         alt=""
         className={clsx("position-absolute", baseL2, left)}
       />
-      <animated.img
+      <LoadedImg
+        anim
         onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
@@ -211,7 +217,8 @@ export default function Hero({ imageLoaded, loading }: Props) {
         alt=""
         className={clsx("position-absolute", baseL1, right)}
       />
-      <animated.img
+      <LoadedImg
+        anim
         onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
@@ -229,7 +236,8 @@ export default function Hero({ imageLoaded, loading }: Props) {
         alt=""
         className={clsx("position-absolute", baseL2, right)}
       />
-      <animated.img
+      <LoadedImg
+        anim
         onLoad={imageLoaded}
         style={useSpring({
           opacity: loading ? 0 : 1,
@@ -237,7 +245,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
           delay: DURATION * 3,
           config: { duration: DURATION }
         })}
-        ref={monitorEl}
+        refElem={monitorEl}
         src={Monitor1x}
         srcSet={
           `${Monitor4x} 4x,
@@ -260,7 +268,8 @@ export default function Hero({ imageLoaded, loading }: Props) {
         }}
       >
         <Carousel.Item>
-          <animated.img
+          <LoadedImg
+            anim
             onLoad={imageLoaded}
             src={ScreenshotOne}
             style={useSpring({
@@ -272,7 +281,8 @@ export default function Hero({ imageLoaded, loading }: Props) {
           />
         </Carousel.Item>
         <Carousel.Item>
-          <animated.img
+          <LoadedImg
+            anim
             onLoad={imageLoaded}
             src={ScreenshotTwo}
             style={useSpring({
@@ -284,7 +294,8 @@ export default function Hero({ imageLoaded, loading }: Props) {
           />
         </Carousel.Item>
         <Carousel.Item>
-          <animated.img
+          <LoadedImg
+            anim
             onLoad={imageLoaded}
             src={ScreenshotThree}
             style={useSpring({
@@ -296,7 +307,8 @@ export default function Hero({ imageLoaded, loading }: Props) {
           />
         </Carousel.Item>
         <Carousel.Item>
-          <animated.img
+          <LoadedImg
+            anim
             onLoad={imageLoaded}
             src={ScreenshotFour}
             style={useSpring({

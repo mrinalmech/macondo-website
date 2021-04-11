@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react"
-import { useTimeout } from 'react-use-timeout';
 
 import Layout from "../../components/Layout"
 import Head from "../../components/Head"
@@ -34,17 +33,10 @@ export default function Home() {
 
   const imageLoaded = () => {
     counter.current += 1;
-    console.log(counter.current)
     if (counter.current >= urls.length) {
       setLoading(false);
     }
   }
-
-  const timeout = useTimeout(() => setLoading(false), 2000);
-
-  useEffect(() => {
-    //timeout.start();
-  }, []);
 
   return (
     <>
