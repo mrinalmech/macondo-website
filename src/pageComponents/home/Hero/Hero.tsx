@@ -357,7 +357,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
             1986. Armor suits, shiny guns and a badass attitude are up for grabs. And guess what? There are bad guys to take care of.
         </p>
           <p className="white m-0">
-            Global Steel is a 2d run and gun video game inspired by Saturday morning cartoons of the 80s.
+            Global Steel is a 2d run-and-gun video game inspired by Saturday-morning cartoons from the 80s.
         </p>
         </div>
       </animated.div>

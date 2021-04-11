@@ -52,12 +52,12 @@ export default function Features({ imageLoaded }: Props) {
         >
           <h2 className="light-blue text-center mb-4">THE GOOD</h2>
           <p className="light-blue text-center">
-            Sometimes, shooting and blasting your way through
-            hordes of enemies as you relentlessly run around in an
+            Shooting and blasting your way through
+            hordes of enemies in an
             armored suit ...can be quite fun.
           </p>
           <p className="light-blue text-center">
-            Control three different characters in an 80s Saturday Morning Cartoon inspired world.
+            Control three different characters in a world inspired by the cartoons of the 80s.
           </p>
         </Col>
       </Row>
@@ -69,10 +69,9 @@ export default function Features({ imageLoaded }: Props) {
           <h2 className="light-blue text-center mb-4">THE BAD</h2>
           <p className="light-blue text-center">
             The world out there is crawling with evil and you've signed up to take care of it.
-            Travel across exotic locations and fight an assortment of bad guys.
           </p>
           <p className="light-blue text-center">
-            A variety of bosses and enemies with replayable missions.
+            Travel through an assortment of locations fighting a variety of bosses and enemies.
           </p>
         </Col>
         <Col
@@ -117,10 +116,10 @@ export default function Features({ imageLoaded }: Props) {
         >
           <h2 className="light-blue text-center mb-4">...AND, THE UPGRADES</h2>
           <p className="light-blue text-center">
-            Fighting your way through evil is not only fun, it's incredibly rewarding. With each kill, earn points and buy some sweet upgrades.
+            Fighting your way through evil is not only fun, but also incredibly rewarding.
           </p>
           <p className="light-blue text-center">
-            Upgrade your arsenal with a variety of gear which switches up gameplay.
+            With each kill, earn points and customize your equipment to switch up gameplay.
           </p>
         </Col>
       </Row>

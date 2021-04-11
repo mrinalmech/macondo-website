@@ -1,40 +1,49 @@
-import React,{useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx"
+import useInterval from '@use-it/interval';
 
-import { root, spinner, inner } from "./Loader.module.scss"
+import { root } from "./Loader.module.scss"
 
-interface Props{
+interface Props {
   loading: boolean
 }
-export default function Loader({loading}:Props) {
+export default function Loader({ loading }: Props) {
 
-  useEffect(()=>{
+  useEffect(() => {
     document.body.style.overflow = 'hidden';
-  },[])
+  }, [])
 
-  useEffect(()=>{
-    if(!loading){
+  useEffect(() => {
+    if (!loading) {
       document.body.style.overflow = 'auto';
     }
-  },[loading])
+  }, [loading])
 
 
-  if(!loading){
+  const [dots, setDots] = useState(".")
+
+  const updateDots = () => {
+    if (dots.length <= 2) {
+      setDots(dots + ".")
+    } else {
+      setDots(".")
+    }
+  }
+
+  useInterval(() => {
+    if(loading){
+      updateDots()
+    }
+  }, 500);
+
+  if (!loading) {
     return null
   }
 
-  return <div className={clsx(root,"d-flex align-items-center justify-content-center")}>
-    <div className={spinner}>
-      <div className={inner}>
-        <div>
-          <div/>
-          <div/>
-          <div/>
-          <div/>
-          <div/>
-          <div/>
-        </div>
-      </div>
-    </div>
+  return <div className={clsx(root, "d-flex align-items-center justify-content-center")}>
+    <h2 className="m-0">
+      Loading{dots}
+    </h2>
+
   </div>
 }
