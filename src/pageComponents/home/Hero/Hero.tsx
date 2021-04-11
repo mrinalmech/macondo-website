@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
-import { useTimeout } from 'react-use-timeout';
+import useInterval from '@use-it/interval';
 import clsx from "clsx"
 import { useSpring, animated } from 'react-spring'
 import Carousel from "react-bootstrap/Carousel"
@@ -55,7 +55,7 @@ interface Props {
   loading: boolean
 }
 
-const DURATION = 200
+const DURATION = 0
 
 export default function Hero({ imageLoaded, loading }: Props) {
 
@@ -86,13 +86,11 @@ export default function Hero({ imageLoaded, loading }: Props) {
     }
   }
 
-  const timeout = useTimeout(() => {
-    calculateDimensions()
-  }, 2 * DURATION || 500);
-
-  useEffect(() => {
-    timeout.start();
-  }, []);
+  useInterval(() => {
+    if(!dimensions.height){
+      calculateDimensions()
+    }
+  }, 500);
 
   useEffect(() => {
     // Add event listener

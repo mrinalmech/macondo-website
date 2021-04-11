@@ -207,13 +207,13 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
     @media screen and (max-height: 940px) {
       .logo {
         width: 270px;
-        top: 65px;
+        top: 105px;
       }
     }
-    @media screen and (max-height: 910px) {
+    @media screen and (max-height: 880px) {
       .logo {
         width: 250px;
-        top: 30px;
+        top: 75px;
       }
 
       .left {
@@ -224,10 +224,21 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
         right: -80px;
       }
     }
-    @media screen and (max-height: 870px) {
+    @media screen and (max-height: 840px) {
       .logo {
         width: 220px;
-        top: 15px;
+        top: 60px;
+      }
+    }
+    @media screen and (max-height: 810px) {
+      .logo {
+        width: 200px;
+        top: 35px;
+      }
+    }
+    @media screen and (max-height: 780px) {
+      .logo {
+        top:10px;
       }
     }
   }
@@ -257,7 +268,7 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
     h4 {
       font-size: 1.2rem;
     }
-    @media screen and (max-height: 920px) {
+    @media screen and (max-height: 890px) {
       .logo {
         width: 270px;
         top: 90px;
@@ -276,16 +287,16 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
         right: -105px;
       }
     }
-    @media screen and (max-height:880px) {
+    @media screen and (max-height:860px) {
       .logo {
         width: 250px;
-        top: 70px;
+        top: 85px;
       }
     }
-    @media screen and (max-height:850px) {
+    @media screen and (max-height:830px) {
       .logo {
         width: 230px;
-        top: 50px;
+        top: 60px;
       }
 
       .left {
@@ -296,7 +307,7 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
         right: -135px;
       }
     }
-    @media screen and (max-height:820px) {
+    @media screen and (max-height:800px) {
       .logo {
         width: 210px;
         top: 20px;
@@ -310,7 +321,7 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
         right: -150px;
       }
     }
-    @media screen and (max-height:780px) {
+    @media screen and (max-height:750px) {
       .logo {
         width: 200px;
         top: 5px;
@@ -328,6 +339,30 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
     .monitor {
       bottom: 260px;
     }
+
+    .logo{
+      top: 85px;
+      width: 300px;
+    }
+
+    @media screen and (max-height:850px) {
+      .logo {
+        width: 230px;
+        top: 80px;
+      }
+    }
+    @media screen and (max-height:820px) {
+      .logo {
+        width: 210px;
+        top: 50px;
+      }
+    }
+    @media screen and (max-height:775px) {
+      .logo {
+        width: 200px;
+        top: 15px;
+      }
+    }
   }
   @include respond-below(420px) {
     max-height: 770px;
@@ -344,27 +379,28 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
     .wallShade {
       max-height: 60%;
     }
-    @media screen and (max-height: 800px) {
+    @media screen and (max-height: 810px) {
       .logo {
         top: 55px;
         width: 230px;
       }
     }
-    @media screen and (max-height: 740px) {
+    @media screen and (max-height: 770px) {
       .logo {
         width: 210px;
         top: 25px;
       }
     }
-    @media screen and (max-height:710px) {
+    @media screen and (max-height:730px) {
       .logo {
         width: 160px;
-        top: 0;
+        top: 20px;
       }
     }
-    @media screen and (max-height: 650px) {
+    @media screen and (max-height: 700px) {
       .logo {
         width: 140px;
+        top: 0;
       }
     }
   }
@@ -387,6 +423,12 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
       }
     }
     @media screen and (max-height: 690px) {
+      .logo {
+        width: 180px;
+        top: 10px;
+      }
+    }
+    @media screen and (max-height: 660px) {
       .logo {
         width: 160px;
         top: 0;
@@ -419,6 +461,12 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
       }
     }
     @media screen and (max-height: 690px) {
+      .logo {
+        width: 180px;
+        top: 20px;
+      }
+    }
+    @media screen and (max-height: 670px) {
       .logo {
         width: 160px;
         top: 0;
