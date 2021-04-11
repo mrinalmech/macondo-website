@@ -34,15 +34,16 @@ export default function Home() {
 
   const imageLoaded = () => {
     counter.current += 1;
+    console.log(counter.current)
     if (counter.current >= urls.length) {
       setLoading(false);
     }
   }
 
-  const timeout = useTimeout(() => setLoading(false), 3000);
+  const timeout = useTimeout(() => setLoading(false), 2000);
 
   useEffect(() => {
-    timeout.start();
+    //timeout.start();
   }, []);
 
   return (
