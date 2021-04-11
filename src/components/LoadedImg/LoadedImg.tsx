@@ -5,10 +5,11 @@ interface Props {
   anim?: boolean
   onLoad: () => any
   refElem?: React.MutableRefObject<any>
+  src: string
   [prop: string]: any
 }
 
-export default function LoadedImg({ anim, onLoad, refElem, ...other }: Props) {
+export default function LoadedImg({ anim, onLoad, refElem,src, ...other }: Props) {
 
   const imgEl = useRef(null)
 
@@ -26,12 +27,16 @@ export default function LoadedImg({ anim, onLoad, refElem, ...other }: Props) {
       setLoaded(true)
       handleLoad()
     }
+    setLaterSrc(src)
   }, [])
+
+  const [laterSrc, setLaterSrc] = useState(null)
 
   if (anim) {
     return <animated.img
       onLoad={handleLoad}
       ref={refElem || imgEl}
+      src={laterSrc}
       {...other}
     />
   }
@@ -39,6 +44,7 @@ export default function LoadedImg({ anim, onLoad, refElem, ...other }: Props) {
   return <img
     onLoad={handleLoad}
     ref={refElem || imgEl}
+    src={laterSrc}
     {...other}
   />
 }
