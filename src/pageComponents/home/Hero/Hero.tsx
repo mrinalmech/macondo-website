@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import clsx from "clsx"
 import Carousel from "react-bootstrap/Carousel"
 
@@ -14,7 +14,8 @@ import {
   baseL2,
   left,
   right,
-  textContent
+  textContent,
+  bgImg
 } from "./Hero.module.scss"
 
 import Monitor1x from "./images/monitor@1x.png"
@@ -45,11 +46,18 @@ import ScreenshotTwo from "./images/screenshot-2.jpg"
 import ScreenshotThree from "./images/screenshot-3.png"
 import ScreenshotFour from "./images/screenshot-4.png"
 
-interface Props{
+interface Props {
   imageLoaded: () => any
 }
 
-export default function Hero({imageLoaded}) {
+export default function Hero({ imageLoaded }:Props) {
+
+  const [bgImageLoading, setBgImageLoading] = useState(true)
+  const bgImageLoaded = () => {
+    setBgImageLoading(false)
+    imageLoaded()
+  }
+
   return <>
     <div className={clsx(root, `d-flex
     align-items-end
@@ -60,6 +68,13 @@ export default function Hero({imageLoaded}) {
     position-relative
     overflow-hidden`
     )}>
+      {
+        bgImageLoading && <img
+          src={Repeat1x}
+          className={clsx("position-absolute", bgImg)}
+          onLoad={bgImageLoaded}
+        />
+      }
       <img
         src={Logo1x}
         srcSet={

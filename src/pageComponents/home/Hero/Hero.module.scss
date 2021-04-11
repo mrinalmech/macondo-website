@@ -50,7 +50,6 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
       position-x: right;
     }
     z-index: 6;
-
     @include respond-below($monitor-img-width) {
       display: none;
     }
@@ -87,8 +86,8 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
       width: 100%;
     }
 
-    > div > div,
     > div,
+    > div > div,
     img {
       height: 100%;
     }
@@ -440,4 +439,11 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
 
 .textContent {
   z-index: 7;
+}
+
+.bgImg {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  z-index: -2;
 }
