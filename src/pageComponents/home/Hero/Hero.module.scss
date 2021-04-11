@@ -434,6 +434,13 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
   }
 }
 
+.bgImg{
+    opacity:0;
+    height:0;
+    width:0;
+    z-index: -2;
+}
+
 .desc {
   max-width: 600px;
 }

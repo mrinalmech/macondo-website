@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useState, useRef } from "react"
 import clsx from "clsx"
 import Carousel from "react-bootstrap/Carousel"
+
+import Loader from "../../../components/Loader"
 
 import {
   root,
@@ -14,7 +16,8 @@ import {
   baseL2,
   left,
   right,
-  textContent
+  textContent,
+  bgImg
 } from "./Hero.module.scss"
 
 import Monitor1x from "./images/monitor@1x.png"
@@ -38,14 +41,50 @@ import Logo2x from "./images/logo@2x.png"
 import Logo3x from "./images/logo@3x.png"
 import Logo4x from "./images/logo@4x.png"
 
+import Repeat1x from "./images/repeat@1x.png"
+
 import ScreenshotOne from "./images/screenshot-1.jpg"
 import ScreenshotTwo from "./images/screenshot-2.jpg"
 import ScreenshotThree from "./images/screenshot-3.png"
 import ScreenshotFour from "./images/screenshot-4.png"
 
+
+const urls = [
+  Monitor1x,
+  WallShade1x,
+  WebsiteBaseL1_1x,
+  WebsiteBaseL2_1x,
+  Logo1x,
+  Repeat1x
+  /*  ScreenshotOne,
+    ScreenshotTwo,
+    ScreenshotThree,
+    ScreenshotFour*/
+]
+
+
 export default function Hero() {
 
-  return <div className={clsx(root, `d-flex
+  const [loading, setLoading] = useState(true);
+  const counter = useRef(0);
+
+  const imageLoaded = () => {
+    counter.current += 1;
+      //Extra two cause the pillars at the back are repeated
+    if (counter.current >= urls.length + 2) {
+      setLoading(false);
+    }
+  }
+
+  const [bgImageLoading, setBgImageLoading] = useState(true)
+  const bgImageLoaded = () => {
+    setBgImageLoading(false)
+    imageLoaded()
+  }
+
+  return <>
+    <Loader loading={loading}/>
+    <div className={clsx(root, `d-flex
     align-items-end
     justify-content-center
     pb-4
@@ -53,86 +92,94 @@ export default function Hero() {
     pb-md-4
     position-relative
     overflow-hidden`
-  )}>
-    <img
-      src={Logo1x}
-      srcSet={
-        `${Logo4x} 4x,
+    )}>
+      {bgImageLoading && <img src={Repeat1x} className={clsx("position-absolute", bgImg)} onLoad={bgImageLoaded} />}
+      <img
+        src={Logo1x}
+        srcSet={
+          `${Logo4x} 4x,
       ${Logo3x} 3x,
       ${Logo2x} 2x,
       ${Logo1x} 1x`
-      }
-      alt=""
-      className={clsx("position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ", logo)}
-    />
-    <img
-      src={WallShade1x}
-      srcSet={
-        `${WallShade4x} 4x,
+        }
+        alt=""
+        className={clsx("position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ", logo)}
+        onLoad={imageLoaded}
+      />
+      <img
+        src={WallShade1x}
+        srcSet={
+          `${WallShade4x} 4x,
         ${WallShade3x} 3x,
         ${WallShade2x} 2x,
         ${WallShade1x} 1x`
-      }
-      alt=""
-      className={clsx("position-absolute", wallShade)}
-    />
-    <img
-      src={WebsiteBaseL1_1x}
-      srcSet={
-        `${WebsiteBaseL1_4x} 4x,
+        }
+        alt=""
+        className={clsx("position-absolute", wallShade)}
+        onLoad={imageLoaded}
+      />
+      <img
+        src={WebsiteBaseL1_1x}
+        srcSet={
+          `${WebsiteBaseL1_4x} 4x,
         ${WebsiteBaseL1_3x} 3x,
         ${WebsiteBaseL1_2x} 2x,
         ${WebsiteBaseL1_1x} 1x`
-      }
-      alt=""
-      className={clsx("position-absolute", baseL1, left)}
-    />
-    <img
-      src={WebsiteBaseL2_1x}
-      srcSet={
-        `${WebsiteBaseL2_4x} 4x,
+        }
+        alt=""
+        className={clsx("position-absolute", baseL1, left)}
+        onLoad={imageLoaded}
+      />
+      <img
+        src={WebsiteBaseL2_1x}
+        srcSet={
+          `${WebsiteBaseL2_4x} 4x,
         ${WebsiteBaseL2_3x} 3x,
         ${WebsiteBaseL2_2x} 2x,
         ${WebsiteBaseL2_1x} 1x`
-      }
-      alt=""
-      className={clsx("position-absolute", baseL2, left)}
-    />
-    <img
-      src={WebsiteBaseL1_1x}
-      srcSet={
-        `${WebsiteBaseL1_4x} 4x,
+        }
+        alt=""
+        className={clsx("position-absolute", baseL2, left)}
+        onLoad={imageLoaded}
+      />
+      <img
+        src={WebsiteBaseL1_1x}
+        srcSet={
+          `${WebsiteBaseL1_4x} 4x,
         ${WebsiteBaseL1_3x} 3x,
         ${WebsiteBaseL1_2x} 2x,
         ${WebsiteBaseL1_1x} 1x`
-      }
-      alt=""
-      className={clsx("position-absolute", baseL1, right)}
-    />
-    <img
-      src={WebsiteBaseL2_1x}
-      srcSet={
-        `${WebsiteBaseL2_4x} 4x,
+        }
+        alt=""
+        className={clsx("position-absolute", baseL1, right)}
+        onLoad={imageLoaded}
+      />
+      <img
+        src={WebsiteBaseL2_1x}
+        srcSet={
+          `${WebsiteBaseL2_4x} 4x,
         ${WebsiteBaseL2_3x} 3x,
         ${WebsiteBaseL2_2x} 2x,
         ${WebsiteBaseL2_1x} 1x`
-      }
-      alt=""
-      className={clsx("position-absolute", baseL2, right)}
-    />
-    <img
-      src={Monitor1x}
-      srcSet={
-        `${Monitor4x} 4x,
+        }
+        alt=""
+        className={clsx("position-absolute", baseL2, right)}
+        onLoad={imageLoaded}
+      />
+      <img
+        src={Monitor1x}
+        srcSet={
+          `${Monitor4x} 4x,
         ${Monitor3x} 3x,
         ${Monitor2x} 2x,
         ${Monitor1x} 1x`
-      }
-      alt=""
-      className={clsx("position-absolute", monitor)}
-    />
-    {/*<i className="position-absolute"/>*/}
-    {/*<Carousel
+        }
+        alt=""
+        className={clsx("position-absolute", monitor)}
+        onLoad={imageLoaded}
+      />
+      {/*<i className="position-absolute"/>*/}
+      {/*<Carousel
       className={clsx(carousel, "position-absolute")}
       controls={false}
       indicators={false}
@@ -151,23 +198,23 @@ export default function Hero() {
         <img src={ScreenshotFour} />
       </Carousel.Item>
     </Carousel>*/}
-    <div className={clsx("position-absolute", extension, left)}/>
-    <div className={clsx("position-absolute", extension, right)}/>
-    <div className={clsx("d-flex pl-3 pr-3 flex-column flex-lg-row", textContent)}>
-      <div className="d-flex flex-column flex-md-row flex-lg-column justify-content-center text-center text-lg-right mb-2 mb-lg-0 mr-0 mr-lg-3 ">
-        <h4 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2">Suit up.</h4>
-        <h4 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2">Shoot 'em up.</h4>
-        <h4 className="white mb-0">Level up.</h4>
-      </div>
-      <div className={clsx(desc, "text-center d-flex flex-column justify-content-center")}>
-        <p className="white m-0">
-          1986. Armor suits, shiny guns and a badass attitude are up for grabs. And guess what? There are bad guys to take care of.
+      <div className={clsx("position-absolute", extension, left)} />
+      <div className={clsx("position-absolute", extension, right)} />
+      <div className={clsx("d-flex pl-3 pr-3 flex-column flex-lg-row", textContent)}>
+        <div className="d-flex flex-column flex-md-row flex-lg-column justify-content-center text-center text-lg-right mb-2 mb-lg-0 mr-0 mr-lg-3 ">
+          <h4 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2">Suit up.</h4>
+          <h4 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2">Shoot 'em up.</h4>
+          <h4 className="white mb-0">Level up.</h4>
+        </div>
+        <div className={clsx(desc, "text-center d-flex flex-column justify-content-center")}>
+          <p className="white m-0">
+            1986. Armor suits, shiny guns and a badass attitude are up for grabs. And guess what? There are bad guys to take care of.
         </p>
-        <p className="white m-0">
-          Global Steel is a 2d run and gun video game inspired by Saturday morning cartoons of the 80s.
+          <p className="white m-0">
+            Global Steel is a 2d run and gun video game inspired by Saturday morning cartoons of the 80s.
         </p>
+        </div>
       </div>
     </div>
-  </div>
-
+  </>
 }
