@@ -1,9 +1,6 @@
-import React, { useState, useEffect, useRef } from "react"
+import React from "react"
 import clsx from "clsx"
-import { useTimeout } from 'react-use-timeout';
 import Carousel from "react-bootstrap/Carousel"
-
-import Loader from "../../../components/Loader"
 
 import {
   root,
@@ -17,8 +14,7 @@ import {
   baseL2,
   left,
   right,
-  textContent,
-  bgImg
+  textContent
 } from "./Hero.module.scss"
 
 import Monitor1x from "./images/monitor@1x.png"
@@ -49,50 +45,12 @@ import ScreenshotTwo from "./images/screenshot-2.jpg"
 import ScreenshotThree from "./images/screenshot-3.png"
 import ScreenshotFour from "./images/screenshot-4.png"
 
+interface Props{
+  imageLoaded: () => any
+}
 
-const urls = [
-  Monitor1x,
-  WallShade1x,
-  WebsiteBaseL1_1x,
-  WebsiteBaseL2_1x,
-  Logo1x,
-  Repeat1x
-  /*  ScreenshotOne,
-    ScreenshotTwo,
-    ScreenshotThree,
-    ScreenshotFour*/
-]
-
-
-export default function Hero() {
-
-  const [loading, setLoading] = useState(true);
-  const counter = useRef(0);
-
-  const imageLoaded = (val?) => {
-    counter.current += 1;
-    console.log(val)
-    console.log(counter.current)
-    //Extra two cause the pillars at the back are repeated
-    if (counter.current >= urls.length + 2) {
-      //setLoading(false);
-    }
-  }
-
-  const [bgImageLoading, setBgImageLoading] = useState(true)
-  const bgImageLoaded = () => {
-    setBgImageLoading(false)
-    imageLoaded("repeat")
-  }
-
-  const timeout = useTimeout(()=>setLoading(false), 3000);
-
-  useEffect(() => {
-    //timeout.start();
-  }, []);
-
+export default function Hero({imageLoaded}) {
   return <>
-    <Loader loading={loading} />
     <div className={clsx(root, `d-flex
     align-items-end
     justify-content-center
@@ -102,7 +60,6 @@ export default function Hero() {
     position-relative
     overflow-hidden`
     )}>
-      {bgImageLoading && <img src={Repeat1x} className={clsx("position-absolute", bgImg)} onLoad={bgImageLoaded} />}
       <img
         src={Logo1x}
         srcSet={
@@ -113,7 +70,7 @@ export default function Hero() {
         }
         alt=""
         className={clsx("position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ", logo)}
-        onLoad={() => imageLoaded("logo")}
+        onLoad={imageLoaded}
       />
       <img
         src={WallShade1x}
@@ -125,7 +82,7 @@ export default function Hero() {
         }
         alt=""
         className={clsx("position-absolute", wallShade)}
-        onLoad={() => imageLoaded("wallShade")}
+        onLoad={imageLoaded}
       />
       <img
         src={WebsiteBaseL1_1x}
@@ -137,7 +94,7 @@ export default function Hero() {
         }
         alt=""
         className={clsx("position-absolute", baseL1, left)}
-        onLoad={() => imageLoaded("baseL1Left")}
+        onLoad={imageLoaded}
       />
       <img
         src={WebsiteBaseL2_1x}
@@ -149,7 +106,7 @@ export default function Hero() {
         }
         alt=""
         className={clsx("position-absolute", baseL2, left)}
-        onLoad={() => imageLoaded("baseL2Left")}
+        onLoad={imageLoaded}
       />
       <img
         src={WebsiteBaseL1_1x}
@@ -161,7 +118,7 @@ export default function Hero() {
         }
         alt=""
         className={clsx("position-absolute", baseL1, right)}
-        onLoad={() => imageLoaded("baseL1Right")}
+        onLoad={imageLoaded}
       />
       <img
         src={WebsiteBaseL2_1x}
@@ -173,7 +130,7 @@ export default function Hero() {
         }
         alt=""
         className={clsx("position-absolute", baseL2, right)}
-        onLoad={() => imageLoaded("baseL2Right")}
+        onLoad={imageLoaded}
       />
       <img
         src={Monitor1x}
@@ -185,7 +142,7 @@ export default function Hero() {
         }
         alt=""
         className={clsx("position-absolute", monitor)}
-        onLoad={() => imageLoaded("monitor")}
+        onLoad={imageLoaded}
       />
       {/*<i className="position-absolute"/>*/}
       {/*<Carousel
