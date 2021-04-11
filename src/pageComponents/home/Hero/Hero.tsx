@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import clsx from "clsx"
+import { useSpring, animated } from 'react-spring'
 import Carousel from "react-bootstrap/Carousel"
 
 import {
@@ -48,9 +49,12 @@ import ScreenshotFour from "./images/screenshot-4.png"
 
 interface Props {
   imageLoaded: () => any
+  loading: boolean
 }
 
-export default function Hero({ imageLoaded }:Props) {
+const DURATION = 400
+
+export default function Hero({ imageLoaded, loading }: Props) {
 
   const [bgImageLoading, setBgImageLoading] = useState(true)
   const bgImageLoaded = () => {
@@ -75,7 +79,13 @@ export default function Hero({ imageLoaded }:Props) {
           onLoad={bgImageLoaded}
         />
       }
-      <img
+      <animated.img
+        style={useSpring({
+          opacity: loading ? 0 : 1,
+          from: { opacity: 0 },
+          delay: DURATION * 4,
+          config: { duration: DURATION }
+        })}
         src={Logo1x}
         srcSet={
           `${Logo4x} 4x,
@@ -87,7 +97,12 @@ export default function Hero({ imageLoaded }:Props) {
         className={clsx("position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ", logo)}
         onLoad={imageLoaded}
       />
-      <img
+      <animated.img
+        style={useSpring({
+          opacity: loading ? 0 : 1,
+          from: { opacity: 0 },
+          config: { duration: DURATION }
+        })}
         src={WallShade1x}
         srcSet={
           `${WallShade4x} 4x,
@@ -99,7 +114,13 @@ export default function Hero({ imageLoaded }:Props) {
         className={clsx("position-absolute", wallShade)}
         onLoad={imageLoaded}
       />
-      <img
+      <animated.img
+        style={useSpring({
+          opacity: loading ? 0 : 1,
+          from: { opacity: 0 },
+          delay: DURATION * 2,
+          config: { duration: DURATION }
+        })}
         src={WebsiteBaseL1_1x}
         srcSet={
           `${WebsiteBaseL1_4x} 4x,
@@ -111,7 +132,13 @@ export default function Hero({ imageLoaded }:Props) {
         className={clsx("position-absolute", baseL1, left)}
         onLoad={imageLoaded}
       />
-      <img
+      <animated.img
+        style={useSpring({
+          opacity: loading ? 0 : 1,
+          from: { opacity: 0 },
+          delay: DURATION,
+          config: { duration: DURATION }
+        })}
         src={WebsiteBaseL2_1x}
         srcSet={
           `${WebsiteBaseL2_4x} 4x,
@@ -123,7 +150,13 @@ export default function Hero({ imageLoaded }:Props) {
         className={clsx("position-absolute", baseL2, left)}
         onLoad={imageLoaded}
       />
-      <img
+      <animated.img
+        style={useSpring({
+          opacity: loading ? 0 : 1,
+          from: { opacity: 0 },
+          delay: DURATION * 2,
+          config: { duration: DURATION }
+        })}
         src={WebsiteBaseL1_1x}
         srcSet={
           `${WebsiteBaseL1_4x} 4x,
@@ -135,7 +168,13 @@ export default function Hero({ imageLoaded }:Props) {
         className={clsx("position-absolute", baseL1, right)}
         onLoad={imageLoaded}
       />
-      <img
+      <animated.img
+        style={useSpring({
+          opacity: loading ? 0 : 1,
+          from: { opacity: 0 },
+          delay: DURATION,
+          config: { duration: DURATION }
+        })}
         src={WebsiteBaseL2_1x}
         srcSet={
           `${WebsiteBaseL2_4x} 4x,
@@ -147,7 +186,13 @@ export default function Hero({ imageLoaded }:Props) {
         className={clsx("position-absolute", baseL2, right)}
         onLoad={imageLoaded}
       />
-      <img
+      <animated.img
+        style={useSpring({
+          opacity: loading ? 0 : 1,
+          from: { opacity: 0 },
+          delay: DURATION * 3,
+          config: { duration: DURATION }
+        })}
         src={Monitor1x}
         srcSet={
           `${Monitor4x} 4x,
@@ -179,9 +224,33 @@ export default function Hero({ imageLoaded }:Props) {
         <img src={ScreenshotFour} />
       </Carousel.Item>
     </Carousel>*/}
-      <div className={clsx("position-absolute", extension, left)} />
-      <div className={clsx("position-absolute", extension, right)} />
-      <div className={clsx("d-flex pl-3 pr-3 flex-column flex-lg-row", textContent)}>
+      <animated.div
+        className={clsx("position-absolute", extension, left)}
+        style={useSpring({
+          opacity: loading ? 0 : 1,
+          from: { opacity: 0 },
+          delay: DURATION * 3,
+          config: { duration: DURATION }
+        })}
+      />
+      <animated.div
+        className={clsx("position-absolute", extension, right)}
+        style={useSpring({
+          opacity: loading ? 0 : 1,
+          from: { opacity: 0 },
+          delay: DURATION * 3,
+          config: { duration: DURATION }
+        })}
+      />
+      <animated.div
+        className={clsx("d-flex pl-3 pr-3 flex-column flex-lg-row", textContent)}
+        style={useSpring({
+          opacity: loading ? 0 : 1,
+          from: { opacity: 0 },
+          delay: DURATION * 5,
+          config: { duration: DURATION }
+        })}
+      >
         <div className="d-flex flex-column flex-md-row flex-lg-column justify-content-center text-center text-lg-right mb-2 mb-lg-0 mr-0 mr-lg-3 ">
           <h4 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2">Suit up.</h4>
           <h4 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2">Shoot 'em up.</h4>
@@ -195,7 +264,7 @@ export default function Hero({ imageLoaded }:Props) {
             Global Steel is a 2d run and gun video game inspired by Saturday morning cartoons of the 80s.
         </p>
         </div>
-      </div>
+      </animated.div>
     </div>
   </>
 }

@@ -50,7 +50,7 @@ export default function Home() {
       <Loader loading={loading} />
       <Layout>
         <Head title="Macondo Games" />
-        <Hero imageLoaded={imageLoaded}/>
+        <Hero imageLoaded={imageLoaded} loading={loading}/>
         <Features imageLoaded={imageLoaded}/>
         <Footer />
       </Layout>
