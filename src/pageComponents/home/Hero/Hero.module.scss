@@ -8,6 +8,7 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
 .root {
   background-image: linear-gradient($black, $purple);
   height: 100vh;
+  min-height: 769px;
   max-height: 950px;
 
   .baseL1,
@@ -133,6 +134,7 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
     }
   }
   @include respond-below(md) {
+    min-height: 859px;
     .monitor {
       bottom: 185px;
     }
@@ -151,7 +153,7 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
     @media screen and (max-height: 890px) {
       .logo {
         width: 275px;
-        top: 70px;
+        top: 85px;
       }
 
       .baseL1,
@@ -171,12 +173,13 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
     @media screen and (max-height: 860px) {
       .logo {
         width: 260px;
-        top: 55px;
+        top: 65px;
       }
     }
   }
   @include respond-below(sm) {
     height: calc(100vh - #{$navbarHeight});
+    min-height: 750px;
 
     .monitor {
       width: 480vw;
@@ -207,13 +210,13 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
     @media screen and (max-height: 940px) {
       .logo {
         width: 270px;
-        top: 105px;
+        top: 70px;
       }
     }
-    @media screen and (max-height: 880px) {
+    @media screen and (max-height: 915px) {
       .logo {
         width: 250px;
-        top: 75px;
+        top: 45px;
       }
 
       .left {
@@ -224,21 +227,22 @@ $monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of cus
         right: -80px;
       }
     }
-    @media screen and (max-height: 840px) {
+    @media screen and (max-height: 885px) {
       .logo {
         width: 220px;
-        top: 60px;
-      }
-    }
-    @media screen and (max-height: 810px) {
-      .logo {
-        width: 200px;
         top: 35px;
       }
     }
-    @media screen and (max-height: 780px) {
+    @media screen and (max-height: 845px) {
       .logo {
-        top:10px;
+        width: 210px;
+        top: 15px;
+      }
+    }
+    @media screen and (max-height: 825px) {
+      .logo {
+        width: 200px;
+        top:5px;
       }
     }
   }
