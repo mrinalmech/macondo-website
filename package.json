@@ -9,6 +9,7 @@
   "license": "0BSD",
   "scripts": {
     "presskit-build": "presskit build ./src/press -o ./public/press -L",
+    "presskit-watch": "presskit build ./src/press -o ./public/press -L --watch",
     "build": "gatsby build && npm run presskit-build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",

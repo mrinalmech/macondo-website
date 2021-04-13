@@ -1,93 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<company>
-  <title>Macondo Games</title>
-  <based-in>Mumbai, India</based-in>
-  <founding-date>August 18, 2015</founding-date>
+<product>
+  <title>Global Steel</title>
   <website>https://www.macondogames.com</website>
-  <press-contact>
-    press@macondogames.com
-  </press-contact>
 
-  <!-- Google analytics ID: -->
-  <analytics></analytics>
+  <!-- Link to request press copy: -->
+  <press-copy-request></press-copy-request>
 
-  <phone>
-    -
-  </phone>
-  <address>
-    <line>
-      Hill Road, Bandra West
-    </line>
-    <line>
-      Mumbai
-    </line>
-    <line>
-      India
-    </line>
-  </address>
+  <release-dates>
+    <release-date>TBD</release-date>
+  </release-dates>
 
-  <socials>
-    <social>
-      <name>
-        Twitter (@macondostudios)
-      </name>
-      <link>
-        https://twitter.com/macondostudios
-      </link>
-    </social>
-    <social>
-      <name>
-        Facebook (@macondostudios)
-      </name>
-      <link>
-        https://www.facebook.com/macondostudios
-      </link>
-    </social>
-    <social>
-      <name>
-        Instagram (@macondogames)
-      </name>
-      <link>
-        https://www.instagram.com/macondogames
-      </link>
-    </social>
-    <social>
-      <name>
-        Twitch (@macondogames)
-      </name>
-      <link>
-        https://www.twitch.tv/macondogames
-      </link>
-    </social>
-    <social>
-      <name>
-        Youtube
-      </name>
-      <link>
-        https://www.youtube.com/channel/UCfYKziK0Ll8UZ9AiMTZT9DA
-      </link>
-    </social>
-    <social>
-      <name>
-        Discord
-      </name>
-      <link>
-        https://discord.gg/qVBvuy7Ny3
-      </link>
-    </social>
-  </socials>
+  <platforms>
+    <platform>
+      <name>Steam (PC)</name>
+    </platform>
+  </platforms>
+
+  <prices>
+    <price>
+      <currency></currency>
+      <value>TBD</value>
+    </price>
+  </prices>
 
   <description>
-    We are a small indie studio located in Mumbai, India working on our first title Global Steel, a run-and-gun shooter inspired by Saturday morning cartoons from the 80s.
+    Global Steel is a 2d run-and-gun video game inspired by Saturday-morning cartoons from the 80s.
   </description>
 
   <!-- Choose between a single block: -->
-  <history>Macondo Games was founded by Mrinal Mech in 2015 in Mumbai, India.</history>
+  <history>
+    Global Steel derives its genesis from our love of 80s cartoons like Centurions, M.A.S.K etc. as well as classic run-and-gun shooters like Contra.
+  </history>
 
   <!-- Or multiple blocks: -->
   <!-- <histories> <history> <header></header> <text></text> </history> </histories> -->
 
+  <features>
+    <feature>Control three different characters with distinct playstyles</feature>
+    <feature>Visual style reminiscent of 80s cartoons with classical animation</feature>
+    <feature>Travel through an assortment of locations fighting a variety of bosses and enemies</feature>
+    <feature>Customize your equipment to switch up gameplay</feature>
+  </features>
+
   <trailers></trailers>
+
+  <!-- You can set your widgets here (optional): -->
+  <widgets></widgets>
 
   <awards></awards>
 
@@ -189,4 +147,4 @@
       </link>
     </contact>
   </contacts>
-</company>
+</product>
