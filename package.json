@@ -8,7 +8,8 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build",
+    "presskit-build": "presskit build ./src/press -o ./public/press -L",
+    "build": "gatsby build && npm run presskit-build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",

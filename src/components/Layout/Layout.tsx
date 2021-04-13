@@ -3,12 +3,13 @@ import Header from "../Header"
 
 type Props = {
   children?: React.ReactNode
+  fixedHeader?: boolean
 }
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children,fixedHeader }: Props) {
   return (
     <>
-      <Header />
+      <Header fixed={fixedHeader}/>
       {children}
     </>
   )

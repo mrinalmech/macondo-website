@@ -12,7 +12,7 @@ import {
   faTwitch
 } from '@fortawesome/free-brands-svg-icons'
 
-import { navBar, navLink, socialLink } from "./Header.module.scss"
+import { navBar, navBarFixed, navLink, socialLink } from "./Header.module.scss"
 import Link from "../Link"
 
 import HeaderLogo1x from "./images/header-logo@1x.png"
@@ -25,21 +25,36 @@ interface LinkProps {
   children: React.Node
 }
 
-const NavLink = (props: LinkProps) => (
-  <Link to={props.to} className={clsx("nav-link pr-3 pl-3", navLink)}>
+interface NavLinkProps extends LinkProps {
+  external: boolean
+}
+
+const NavLink = (props: NavLinkProps) => {
+
+  if(props.external){
+    return <a href={props.to} className={clsx("nav-link pr-3 pl-3", navLink)}>
+      {props.children}
+    </a>
+  }
+
+  return <Link to={props.to} className={clsx("nav-link pr-3 pl-3", navLink)}>
     {props.children}
   </Link>
-)
+}
 
 const SocialLink = (props: LinkProps) => (
-  <a href={props.to} className={clsx(socialLink,"mr-4 mr-md-3")} target="_blank" rel="noreferrer">
+  <a href={props.to} className={clsx(socialLink, "mr-4 mr-md-3")} target="_blank" rel="noreferrer">
     {props.children}
   </a>
 )
 
-export default function Header() {
+interface Props {
+  fixed?: boolean
+}
+
+export default function Header({ fixed }: Props) {
   return (
-    <Navbar bg="dark" variant="dark" expand="md" className={clsx(navBar)}>
+    <Navbar bg="dark" variant="dark" expand="md" className={clsx(navBar, { [navBarFixed]: fixed })}>
       <Navbar.Brand>
         <Link to="/">
           <img
@@ -57,8 +72,8 @@ export default function Header() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto align-items-end align-items-md-center">
-          {/*<NavLink to="/dev-diary">Dev Diary</NavLink>
-          <NavLink to="/press-kit">Press Kit</NavLink>*/}
+          {/*<NavLink to="/dev-diary">Dev Diary</NavLink>*/}
+          <NavLink to="/press" external>Press</NavLink>
           <NavLink to="mailto:info@macondogames.com">Contact</NavLink>
           <div className="d-flex align-items-center pr-3 pl-3 pb-2 pb-md-0 pt-2 pt-md-0">
             <SocialLink to="https://twitter.com/macondostudios">
