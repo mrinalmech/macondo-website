@@ -25,21 +25,27 @@
 
   <description>
     Global Steel is a 2d run-and-gun video game inspired by Saturday-morning cartoons from the 80s.
+    It follows the adventures of an organization that lives up to the credo of dispensing justice around the globe, with guns.
+    Controlling three playable characters, it’s your job to shoot n’ blast through hordes of enemies as you save the world.
+    Customize your armor-suits and weapons as you progress through an assortment of diverse levels.
   </description>
 
   <!-- Choose between a single block: -->
   <history>
     Global Steel derives its genesis from our love of 80s cartoons like Centurions, M.A.S.K etc. as well as classic run-and-gun shooters like Contra.
+    We wanted to create a playable cartoon, where each level corresponds to an episode of a hypothetical Saturday morning cartoon of the 80s.
+    So we embarked on building a game which does so, where cartoon and game merge into one.
   </history>
 
   <!-- Or multiple blocks: -->
   <!-- <histories> <history> <header></header> <text></text> </history> </histories> -->
 
   <features>
-    <feature>Control three different characters with distinct playstyles</feature>
-    <feature>Visual style reminiscent of 80s cartoons with classical animation</feature>
+    <feature>Control three different characters: Stormhammer, Nighblade and Valkyrie with distinct playstyles</feature>
+    <feature>Visual style reminiscent of 80s cartoons with classical hand-drawn animation</feature>
     <feature>Travel through an assortment of locations fighting a variety of bosses and enemies</feature>
-    <feature>Customize your equipment to switch up gameplay</feature>
+    <feature>Customize your equipment with earned points to switch up gameplay</feature>
+    <feature>Adherence to 80s cartoon tropes - end level screens that look like credit sequences, synthwave soudntrack with a "theme" song etc</feature>
   </features>
 
   <trailers></trailers>
