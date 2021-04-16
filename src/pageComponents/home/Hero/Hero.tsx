@@ -45,6 +45,7 @@ import Logo4x from "./images/logo@4x.png"
 
 import Repeat1x from "./images/repeat@1x.png"
 
+import ScreenshotZero from "./images/screenshot-0.png"
 import ScreenshotOne from "./images/screenshot-1.jpg"
 import ScreenshotTwo from "./images/screenshot-2.jpg"
 import ScreenshotThree from "./images/screenshot-3.png"
@@ -87,7 +88,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
   }
 
   useInterval(() => {
-    if(!dimensions.height){
+    if (!dimensions.height) {
       calculateDimensions()
     }
   }, 500);
@@ -265,6 +266,19 @@ export default function Hero({ imageLoaded, loading }: Props) {
           bottom: dimensions.bottom
         }}
       >
+        <Carousel.Item>
+          <LoadedImg
+            anim
+            onLoad={imageLoaded}
+            src={ScreenshotZero}
+            style={useSpring({
+              opacity: loading ? 0 : 1,
+              from: { opacity: 0 },
+              delay: DURATION * 3,
+              config: { duration: DURATION }
+            })}
+          />
+        </Carousel.Item>
         <Carousel.Item>
           <LoadedImg
             anim

@@ -20,6 +20,7 @@ const urls = [
   "players",
   "enemies",
   "upgrades",
+  "ss0",
   "ss1",
   "ss2",
   "ss3",
