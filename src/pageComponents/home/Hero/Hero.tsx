@@ -270,7 +270,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
           <LoadedImg
             anim
             onLoad={imageLoaded}
-            src={ScreenshotZero}
+            src={ScreenshotTwo}
             style={useSpring({
               opacity: loading ? 0 : 1,
               from: { opacity: 0 },
@@ -296,7 +296,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
           <LoadedImg
             anim
             onLoad={imageLoaded}
-            src={ScreenshotTwo}
+            src={ScreenshotZero}
             style={useSpring({
               opacity: loading ? 0 : 1,
               from: { opacity: 0 },

@@ -45,7 +45,7 @@
     <feature>Visual style reminiscent of 80s cartoons with classical hand-drawn animation</feature>
     <feature>Travel through an assortment of locations fighting a variety of bosses and enemies</feature>
     <feature>Customize your equipment with earned points to switch up gameplay</feature>
-    <feature>Adherence to 80s cartoon tropes - end level screens that look like credit sequences, synthwave soudntrack with a "theme" song etc</feature>
+    <feature>Adherence to 80s cartoon tropes - end level screens that look like credit sequences, synthwave soundtrack with a "theme" song etc</feature>
   </features>
 
   <trailers></trailers>
@@ -102,6 +102,14 @@
     </credit>
     <credit>
       <person>
+        Aayush Ray Chaudhuri
+      </person>
+      <role>
+        Animation
+      </role>
+    </credit>
+    <credit>
+      <person>
         Sailesh Gopalan
       </person>
       <role>
@@ -114,6 +122,14 @@
       </person>
       <role>
         Animation, former
+      </role>
+    </credit>
+    <credit>
+      <person>
+        Alejandro Remior
+      </person>
+      <role>
+        Programming, former
       </role>
     </credit>
     <credit>
