@@ -128,7 +128,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
-          delay: DURATION * 4,
+          delay: DURATION,
           config: { duration: DURATION }
         })}
         src={Logo1x}
@@ -165,7 +165,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
-          delay: DURATION * 2,
           config: { duration: DURATION }
         })}
         src={WebsiteBaseL1_1x}
@@ -184,7 +183,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
-          delay: DURATION,
           config: { duration: DURATION }
         })}
         src={WebsiteBaseL2_1x}
@@ -203,7 +201,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
-          delay: DURATION * 2,
           config: { duration: DURATION }
         })}
         src={WebsiteBaseL1_1x}
@@ -222,7 +219,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
-          delay: DURATION,
           config: { duration: DURATION }
         })}
         src={WebsiteBaseL2_1x}
@@ -241,7 +237,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
-          delay: DURATION * 3,
           config: { duration: DURATION }
         })}
         refElem={monitorEl}
@@ -274,7 +269,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
             style={useSpring({
               opacity: loading ? 0 : 1,
               from: { opacity: 0 },
-              delay: DURATION * 3,
+              delay: DURATION,
               config: { duration: DURATION }
             })}
           />
@@ -287,7 +282,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
             style={useSpring({
               opacity: loading ? 0 : 1,
               from: { opacity: 0 },
-              delay: DURATION * 3,
+              delay: DURATION,
               config: { duration: DURATION }
             })}
           />
@@ -300,7 +295,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
             style={useSpring({
               opacity: loading ? 0 : 1,
               from: { opacity: 0 },
-              delay: DURATION * 3,
+              delay: DURATION,
               config: { duration: DURATION }
             })}
           />
@@ -313,7 +308,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
             style={useSpring({
               opacity: loading ? 0 : 1,
               from: { opacity: 0 },
-              delay: DURATION * 3,
+              delay: DURATION,
               config: { duration: DURATION }
             })}
           />
@@ -326,7 +321,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
             style={useSpring({
               opacity: loading ? 0 : 1,
               from: { opacity: 0 },
-              delay: DURATION * 3,
+              delay: DURATION,
               config: { duration: DURATION }
             })}
           />
@@ -337,7 +332,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
-          delay: DURATION * 3,
           config: { duration: DURATION }
         })}
       />
@@ -346,7 +340,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
-          delay: DURATION * 3,
           config: { duration: DURATION }
         })}
       />
@@ -355,7 +348,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
         style={useSpring({
           opacity: loading ? 0 : 1,
           from: { opacity: 0 },
-          delay: DURATION * 5,
+          delay: DURATION * 2,
           config: { duration: DURATION }
         })}
       >
