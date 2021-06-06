@@ -24,9 +24,54 @@ module.exports = {
         icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-source-wordpress`,
+      options: {
+        url: "http://devdiary.local/graphql",
+        verbose: true,
+        develop: {
+          hardCacheMediaFiles: true,
+        },
+        debug: {
+          graphql: {
+            writeQueriesToDisk: true,
+          },
+        },
+        html: {
+          fallbackImageMaxWidth: 800,
+        },
+        // fields can be excluded globally.
+        // this example is for wp-graphql-gutenberg.
+        // since we can get block data on the `block` field
+        // we don't need these fields
+        excludeFieldNames: [`blocksJSON`, `saveContent`],
+        type: {
+          Post: {
+            limit:
+              process.env.NODE_ENV === `development`
+                ? // Lets just pull 50 posts in development to make it easy on ourselves.
+                  35
+                : // And then we can pull all posts in production
+                  null,
+          },
+          // this shows how to exclude entire types from the schema
+          // this example is for wp-graphql-gutenberg
+          CoreParagraphBlockAttributesV2: {
+            exclude: true,
+          },
+        },
+      },
+    },
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    /*{
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/assets/images`,
+      },
+    },*/
     /*{
       resolve: `gatsby-plugin-offline`,
       options: {
