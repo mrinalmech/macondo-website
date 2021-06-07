@@ -6,7 +6,6 @@ import Loader from "../../components/Loader"
 
 import Hero from "../../pageComponents/home/Hero"
 import Features from "../../pageComponents/home/Features"
-import Footer from "../../pageComponents/home/Footer"
 
 const urls = [
   "monitor",
@@ -46,7 +45,6 @@ export default function Home() {
         <Head title="Macondo Games" />
         <Hero imageLoaded={imageLoaded} loading={loading}/>
         <Features imageLoaded={imageLoaded}/>
-        <Footer />
       </Layout>
     </>
   )

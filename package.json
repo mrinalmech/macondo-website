@@ -37,6 +37,8 @@
     "gatsby-source-filesystem": "^3.6.0",
     "gatsby-source-wordpress": "^5.6.0",
     "gatsby-transformer-sharp": "^3.6.0",
+    "glob": "^7.1.7",
+    "path": "^0.12.7",
     "postcss-discard-duplicates": "^4.0.2",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-focus": "^5.0.1",
