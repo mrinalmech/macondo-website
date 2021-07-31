@@ -72,8 +72,8 @@ export default function Header({ fixed }: Props) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto align-items-end align-items-md-center">
-          <NavLink to="/press" external>Press</NavLink>
-          <NavLink to="/dev-diary">Dev Diary</NavLink>
+          <NavLink to="/press/" external>Press</NavLink>
+          {/*<NavLink to="/dev-diary">Dev Diary</NavLink>*/}
           <NavLink to="mailto:info@macondogames.com" external>Contact</NavLink>
           <div className="d-flex align-items-center pr-3 pl-3 pb-2 pb-md-0 pt-2 pt-md-0">
             <SocialLink to="https://twitter.com/macondostudios">
