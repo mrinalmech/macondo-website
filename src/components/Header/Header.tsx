@@ -9,7 +9,8 @@ import {
   faInstagram,
   faYoutube,
   faDiscord,
-  faTwitch
+  faTwitch,
+  faSteam
 } from '@fortawesome/free-brands-svg-icons'
 
 import { navBar, navBarFixed, navLink, socialLink } from "./Header.module.scss"
@@ -31,7 +32,7 @@ interface NavLinkProps extends LinkProps {
 
 const NavLink = (props: NavLinkProps) => {
 
-  if(props.external){
+  if (props.external) {
     return <a href={props.to} className={clsx("nav-link pr-3 pl-3", navLink)}>
       {props.children}
     </a>
@@ -76,6 +77,9 @@ export default function Header({ fixed }: Props) {
           {/*<NavLink to="/dev-diary">Dev Diary</NavLink>*/}
           <NavLink to="mailto:info@macondogames.com" external>Contact</NavLink>
           <div className="d-flex align-items-center pr-3 pl-3 pb-2 pb-md-0 pt-2 pt-md-0">
+            <SocialLink to="https://store.steampowered.com/app/1073970/Global_Steel/">
+              <FontAwesomeIcon icon={faSteam} size="1x" />
+            </SocialLink>
             <SocialLink to="https://twitter.com/macondostudios">
               <FontAwesomeIcon icon={faTwitter} size="1x" />
             </SocialLink>
