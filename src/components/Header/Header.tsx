@@ -26,18 +26,7 @@ interface LinkProps {
   children: React.Node
 }
 
-interface NavLinkProps extends LinkProps {
-  external?: boolean
-}
-
-const NavLink = (props: NavLinkProps) => {
-
-  if (props.external) {
-    return <a href={props.to} className={clsx("nav-link pr-3 pl-3", navLink)} target="_blank">
-      {props.children}
-    </a>
-  }
-
+const NavLink = (props: LinkProps) => {
   return <Link to={props.to} className={clsx("nav-link pr-3 pl-3", navLink)}>
     {props.children}
   </Link>
@@ -73,8 +62,8 @@ export default function Header({ fixed }: Props) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto align-items-end align-items-md-center">
-          <NavLink external to="https://blog.macondogames.com/">Blog</NavLink>
-          <NavLink to="/press/" external>Press</NavLink>
+          <NavLink to="https://blog.macondogames.com/">Blog</NavLink>
+          <NavLink to="/press/">Press</NavLink>
           <NavLink to="mailto:info@macondogames.com">Contact</NavLink>
           <div className="d-flex align-items-center pr-3 pl-3 pb-2 pb-md-0 pt-2 pt-md-0">
             <SocialLink to="https://store.steampowered.com/app/1073970/Global_Steel/">
