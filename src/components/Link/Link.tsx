@@ -10,14 +10,15 @@ interface Props {
   activeClassName?: string
   partiallyActive?: boolean
   className?: string
+  external?: boolean
   [prop: string]: any
 }
 
-const Link = ({ children, to, activeClassName, partiallyActive, ...other }:Props) => {
+const Link = ({ children, to, activeClassName, partiallyActive, external, ...other }:Props) => {
   // Tailor the following test to your environment.
   // This example assumes that any internal link (intended for Gatsby)
   // will start with exactly one slash, and that anything else is external.
-  const internal = /^\/(?!\/)/.test(to)
+  const internal = /^\/(?!\/)/.test(to) && !external
   // Use Gatsby Link for internal links, and <a> for others
   if (internal) {
     return (
