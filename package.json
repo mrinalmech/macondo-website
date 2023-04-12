@@ -10,7 +10,7 @@
   "scripts": {
     "presskit-build": "presskit build ./src/press -o ./public/press -L",
     "presskit-watch": "presskit build ./src/press -o ./public/press -L --watch",
-    "build": "gatsby build",
+    "build": "gatsby build && npm run presskit-build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
@@ -47,9 +47,11 @@
     "react-helmet": "^6.1.0",
     "react-spring": "^9.1.0",
     "react-use-timeout": "^1.0.0",
-    "sass": "^1.32.8"
+    "sass": "^1.32.8",
+    "sharp": "^0.32.0"
   },
   "devDependencies": {
+    "presskit": "^0.13.0",
     "prettier": "2.2.1"
   },
   "repository": {
