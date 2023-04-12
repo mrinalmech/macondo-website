@@ -21,7 +21,6 @@ jobs:
           restore-keys: ${{ runner.os }}-node-
       - name: Build
         run: |
-          npm i -g presskit
           npm ci
           npm run build
       - name: Configure AWS Credentials
