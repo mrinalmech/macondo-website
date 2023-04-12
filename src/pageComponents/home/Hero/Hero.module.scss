@@ -3,7 +3,7 @@
 @import 'src/styles/breakpoints.scss';
 $monitor-img-width: 3406px;
 $monitor-img-height: 597px;
-$monitor-img-ratio: $monitor-img-height/$monitor-img-width; //note: A lot of custom breakpoints have to be used because of all the elements
+$monitor-img-ratio: calc($monitor-img-height/$monitor-img-width); //note: A lot of custom breakpoints have to be used because of all the elements
 
 .root {
   background-image: linear-gradient($black, $purple);
