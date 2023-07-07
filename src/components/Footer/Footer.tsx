@@ -38,7 +38,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return <Container fluid className={clsx(root, "d-flex pt-4 pb-4 flex-column align-items-center justify-content-center")}>
-    <h5 className="dark-blue m-0">Keep up with us!</h5>
+    <h3 className="dark-blue m-0">Keep up with us!</h3>
     <div className="mt-4 mb-5 d-flex">
       <SocialLink to="https://twitter.com/macondostudios">
         <FontAwesomeIcon icon={faTwitter} size="2x" />
