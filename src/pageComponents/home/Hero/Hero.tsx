@@ -329,7 +329,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               delay: DURATION,
               config: { duration: DURATION }
             })}
-            alt="Blue figure standing on a paltform with light beams emanating from the edge"
+            alt="Blue figure standing on a platform with light beams emanating from the edge"
           />
         </Carousel.Item>
       </Carousel>
