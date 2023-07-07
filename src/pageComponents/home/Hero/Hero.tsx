@@ -119,6 +119,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
         bgImageLoading && <LoadedImg
           onLoad={bgImageLoaded}
           src={Repeat1x}
+          alt=""
           className={clsx("position-absolute", bgImg)}
         />
       }
@@ -272,6 +273,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               delay: DURATION,
               config: { duration: DURATION }
             })}
+            alt="Red figure standing in front of ruined castle"
           />
         </Carousel.Item>
         <Carousel.Item>
@@ -285,6 +287,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               delay: DURATION,
               config: { duration: DURATION }
             })}
+            alt="Green figure standing in front of forest"
           />
         </Carousel.Item>
         <Carousel.Item>
@@ -298,6 +301,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               delay: DURATION,
               config: { duration: DURATION }
             })}
+            alt="Tree figures in front of a monitor screen"
           />
         </Carousel.Item>
         <Carousel.Item>
@@ -311,6 +315,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               delay: DURATION,
               config: { duration: DURATION }
             })}
+            alt="Blue figure standing in front of a flaming figure"
           />
         </Carousel.Item>
         <Carousel.Item>
@@ -324,6 +329,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               delay: DURATION,
               config: { duration: DURATION }
             })}
+            alt="Blue figure standing on a paltform with light beams emanating from the edge"
           />
         </Carousel.Item>
       </Carousel>
