@@ -12,17 +12,14 @@ import {
   faTwitch,
   faSteam
 } from '@fortawesome/free-brands-svg-icons'
+import { StaticImage } from "gatsby-plugin-image"
 
 import { navBar, navBarFixed, navLink, socialLink } from "./Header.module.scss"
 import Link from "../Link"
 
-import HeaderLogo1x from "./images/header-logo@1x.png"
-import HeaderLogo2x from "./images/header-logo@2x.png"
-import HeaderLogo3x from "./images/header-logo@3x.png"
-import HeaderLogo4x from "./images/header-logo@4x.png"
-
 interface LinkProps {
   to: string
+  ariaLabel?: string
   children: React.Node
   external?: boolean
 }
@@ -34,7 +31,7 @@ const NavLink = (props: LinkProps) => {
 }
 
 const SocialLink = (props: LinkProps) => (
-  <a href={props.to} className={clsx(socialLink, "mr-4 mr-md-3")} target="_blank" rel="noreferrer">
+  <a href={props.to} className={clsx(socialLink, "mr-4 mr-md-3")} aria-label={props?.ariaLabel} target="_blank" rel="noreferrer">
     {props.children}
   </a>
 )
@@ -48,15 +45,11 @@ export default function Header({ fixed }: Props) {
     <Navbar bg="dark" variant="dark" expand="md" className={clsx(navBar, { [navBarFixed]: fixed })}>
       <Navbar.Brand>
         <Link to="/">
-          <img
-            src={HeaderLogo1x}
-            srcSet={
-              `${HeaderLogo4x} 4x,
-              ${HeaderLogo3x} 3x,
-              ${HeaderLogo2x} 2x,
-              ${HeaderLogo1x} 1x`
-            }
+          <StaticImage
+            src="./images/HeaderLogo.webp"
             alt="Company Logo"
+            width={34}
+            placeholder="none"
           />
         </Link>
       </Navbar.Brand>
@@ -67,25 +60,25 @@ export default function Header({ fixed }: Props) {
           <NavLink to="/press/" external>Press</NavLink>
           <NavLink to="mailto:info@macondogames.com">Contact</NavLink>
           <div className="d-flex align-items-center pr-3 pl-3 pb-2 pb-md-0 pt-2 pt-md-0">
-            <SocialLink to="https://store.steampowered.com/app/1073970/Global_Steel/">
+            <SocialLink to="https://store.steampowered.com/app/1073970/Global_Steel/" ariaLabel="Steam">
               <FontAwesomeIcon icon={faSteam} size="1x" />
             </SocialLink>
-            <SocialLink to="https://twitter.com/macondostudios">
+            <SocialLink to="https://twitter.com/macondostudios" ariaLabel="Twitter">
               <FontAwesomeIcon icon={faTwitter} size="1x" />
             </SocialLink>
-            <SocialLink to="https://www.facebook.com/macondostudios">
+            <SocialLink to="https://www.facebook.com/macondostudios" ariaLabel="Facebook">
               <FontAwesomeIcon icon={faFacebookF} size="1x" />
             </SocialLink>
-            <SocialLink to="https://www.instagram.com/globalsteelgame">
+            <SocialLink to="https://www.instagram.com/globalsteelgame" ariaLabel="Instagram">
               <FontAwesomeIcon icon={faInstagram} size="1x" />
             </SocialLink>
-            <SocialLink to="https://www.youtube.com/channel/UCfYKziK0Ll8UZ9AiMTZT9DA">
+            <SocialLink to="https://www.youtube.com/channel/UCfYKziK0Ll8UZ9AiMTZT9DA" ariaLabel="Youtube">
               <FontAwesomeIcon icon={faYoutube} size="1x" />
             </SocialLink>
-            <SocialLink to="https://discord.gg/qVBvuy7Ny3">
+            <SocialLink to="https://discord.gg/qVBvuy7Ny3" ariaLabel="Discord">
               <FontAwesomeIcon icon={faDiscord} size="1x" />
             </SocialLink>
-            <SocialLink to="https://www.twitch.tv/macondogames">
+            <SocialLink to="https://www.twitch.tv/macondogames" ariaLabel="Twitch">
               <FontAwesomeIcon icon={faTwitch} size="1x" />
             </SocialLink>
           </div>
