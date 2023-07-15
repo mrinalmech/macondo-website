@@ -28,7 +28,7 @@ const SocialLink = (props: LinkProps) => (
     )}
     target="_blank"
     rel="noreferrer"
-    aria-label={props?.ariaLabel}
+    aria-label={props ?.ariaLabel}
   >
     {props.children}
   </a>
@@ -54,11 +54,11 @@ export default function Footer() {
       <SocialLink to="https://www.youtube.com/channel/UCfYKziK0Ll8UZ9AiMTZT9DA" ariaLabel="Youtube">
         <FontAwesomeIcon icon={faYoutube} size="2x" />
       </SocialLink>
-      <SocialLink to="https://discord.gg/qVBvuy7Ny3">
-        <FontAwesomeIcon icon={faDiscord} size="2x" ariaLabel="Discord"/>
+      <SocialLink to="https://discord.gg/qVBvuy7Ny3" ariaLabel="Discord">
+        <FontAwesomeIcon icon={faDiscord} size="2x" />
       </SocialLink>
-      <SocialLink to="https://www.twitch.tv/macondogames">
-        <FontAwesomeIcon icon={faTwitch} size="2x" ariaLabel="Twitch"/>
+      <SocialLink to="https://www.twitch.tv/macondogames" ariaLabel="Twitch">
+        <FontAwesomeIcon icon={faTwitch} size="2x" />
       </SocialLink>
     </div>
     <p className="white m-0 text-center"> Copyright © {currentYear} | Macondo Games Pvt. Ltd. </p>
