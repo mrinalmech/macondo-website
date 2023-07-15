@@ -16,6 +16,7 @@ import { root, socialLink } from "./Footer.module.scss"
 interface LinkProps {
   to: string
   children: React.Node
+  ariaLabel?: string
 }
 
 const SocialLink = (props: LinkProps) => (
@@ -27,6 +28,7 @@ const SocialLink = (props: LinkProps) => (
     )}
     target="_blank"
     rel="noreferrer"
+    aria-label={props?.ariaLabel}
   >
     {props.children}
   </a>
@@ -40,23 +42,23 @@ export default function Footer() {
   return <Container fluid className={clsx(root, "d-flex pt-4 pb-4 flex-column align-items-center justify-content-center")}>
     <h3 className="dark-blue m-0">Keep up with us!</h3>
     <div className="mt-4 mb-5 d-flex">
-      <SocialLink to="https://twitter.com/macondostudios">
+      <SocialLink to="https://twitter.com/macondostudios" ariaLabel="Twitter">
         <FontAwesomeIcon icon={faTwitter} size="2x" />
       </SocialLink>
-      <SocialLink to="https://www.facebook.com/macondostudios">
+      <SocialLink to="https://www.facebook.com/macondostudios" ariaLabel="Facebook">
         <FontAwesomeIcon icon={faFacebookF} size="2x" />
       </SocialLink>
-      <SocialLink to="https://www.instagram.com/globalsteelgame">
+      <SocialLink to="https://www.instagram.com/globalsteelgame" ariaLabel="Instagram">
         <FontAwesomeIcon icon={faInstagram} size="2x" />
       </SocialLink>
-      <SocialLink to="https://www.youtube.com/channel/UCfYKziK0Ll8UZ9AiMTZT9DA">
+      <SocialLink to="https://www.youtube.com/channel/UCfYKziK0Ll8UZ9AiMTZT9DA" ariaLabel="Youtube">
         <FontAwesomeIcon icon={faYoutube} size="2x" />
       </SocialLink>
       <SocialLink to="https://discord.gg/qVBvuy7Ny3">
-        <FontAwesomeIcon icon={faDiscord} size="2x" />
+        <FontAwesomeIcon icon={faDiscord} size="2x" ariaLabel="Discord"/>
       </SocialLink>
       <SocialLink to="https://www.twitch.tv/macondogames">
-        <FontAwesomeIcon icon={faTwitch} size="2x" />
+        <FontAwesomeIcon icon={faTwitch} size="2x" ariaLabel="Twitch"/>
       </SocialLink>
     </div>
     <p className="white m-0 text-center"> Copyright © {currentYear} | Macondo Games Pvt. Ltd. </p>
