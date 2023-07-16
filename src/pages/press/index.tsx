@@ -1,6 +1,6 @@
-import React from "react"
-import Layout from "../../components/Layout"
-import Head from "../../components/Head"
+import React from 'react';
+import Layout from '../../components/Layout';
+import Head from '../../components/Head';
 
 export default function PressKit() {
   return (
@@ -8,5 +8,5 @@ export default function PressKit() {
       <Head title="Press Kit" />
       Press Kit
     </Layout>
-  )
+  );
 }

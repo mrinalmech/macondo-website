@@ -1,24 +1,24 @@
-import React from "react"
-import { Link as GatsbyLink } from "gatsby"
+import React from 'react';
+import { Link as GatsbyLink } from 'gatsby';
 // Since DOM elements <a> cannot receive activeClassName
 // and partiallyActive, destructure the prop here and
 // pass it only to GatsbyLink
 
 interface Props {
-  to: string
-  children: React.Node
-  activeClassName?: string
-  partiallyActive?: boolean
-  className?: string
-  external?: boolean
-  [prop: string]: any
+  to: string;
+  children: React.Node;
+  activeClassName?: string;
+  partiallyActive?: boolean;
+  className?: string;
+  external?: boolean;
+  [prop: string]: any;
 }
 
-const Link = ({ children, to, activeClassName, partiallyActive, external, ...other }:Props) => {
+const Link = ({ children, to, activeClassName, partiallyActive, external, ...other }: Props) => {
   // Tailor the following test to your environment.
   // This example assumes that any internal link (intended for Gatsby)
   // will start with exactly one slash, and that anything else is external.
-  const internal = /^\/(?!\/)/.test(to) && !external
+  const internal = /^\/(?!\/)/.test(to) && !external;
   // Use Gatsby Link for internal links, and <a> for others
   if (internal) {
     return (
@@ -30,12 +30,12 @@ const Link = ({ children, to, activeClassName, partiallyActive, external, ...oth
       >
         {children}
       </GatsbyLink>
-    )
+    );
   }
   return (
     <a href={to} {...other}>
       {children}
     </a>
-  )
-}
-export default Link
+  );
+};
+export default Link;

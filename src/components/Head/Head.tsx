@@ -1,20 +1,15 @@
-import React from "react"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { useStaticQuery, graphql } from 'gatsby';
 
 interface Props {
-  description?: string
-  lang?: string
-  meta?: any[]
-  title: string
+  description?: string;
+  lang?: string;
+  meta?: any[];
+  title: string;
 }
 
-export default function Head({
-  description,
-  lang = "en",
-  meta = [],
-  title = "",
-}: Props) {
+export default function Head({ description, lang = 'en', meta = [], title = '' }: Props) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -26,10 +21,10 @@ export default function Head({
           }
         }
       }
-    `
-  )
+    `,
+  );
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description || site.siteMetadata.description;
 
   return (
     <Helmet
@@ -72,5 +67,5 @@ export default function Head({
         },
       ].concat(meta)}
     />
-  )
+  );
 }

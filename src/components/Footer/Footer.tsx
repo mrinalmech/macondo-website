@@ -1,22 +1,22 @@
-import React from "react"
-import Container from "react-bootstrap/Container"
-import clsx from "clsx"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react';
+import Container from 'react-bootstrap/Container';
+import clsx from 'clsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFacebookF,
   faTwitter,
   faInstagram,
   faYoutube,
   faDiscord,
-  faTwitch
-} from '@fortawesome/free-brands-svg-icons'
+  faTwitch,
+} from '@fortawesome/free-brands-svg-icons';
 
-import { root, socialLink } from "./Footer.module.scss"
+import { root, socialLink } from './Footer.module.scss';
 
 interface LinkProps {
-  to: string
-  children: React.Node
-  ariaLabel?: string
+  to: string;
+  children: React.Node;
+  ariaLabel?: string;
 }
 
 const SocialLink = (props: LinkProps) => (
@@ -24,43 +24,52 @@ const SocialLink = (props: LinkProps) => (
     href={props.to}
     className={clsx(
       socialLink,
-      "mr-1 ml-1 ml-sm-2 mr-sm-2 ml-md-3 mr-md-3 d-inline-block d-flex align-items-center justify-content-center"
+      'mr-1 ml-1 ml-sm-2 mr-sm-2 ml-md-3 mr-md-3 d-inline-block d-flex align-items-center justify-content-center',
     )}
     target="_blank"
     rel="noreferrer"
-    aria-label={props ?.ariaLabel}
+    aria-label={props?.ariaLabel}
   >
     {props.children}
   </a>
-)
-
+);
 
 export default function Footer() {
-
   const currentYear = new Date().getFullYear();
 
-  return <Container fluid className={clsx(root, "d-flex pt-4 pb-4 flex-column align-items-center justify-content-center")}>
-    <h3 className="dark-blue m-0">Keep up with us!</h3>
-    <div className="mt-4 mb-5 d-flex">
-      <SocialLink to="https://twitter.com/macondostudios" ariaLabel="Twitter">
-        <FontAwesomeIcon icon={faTwitter} size="2x" />
-      </SocialLink>
-      <SocialLink to="https://www.facebook.com/macondostudios" ariaLabel="Facebook">
-        <FontAwesomeIcon icon={faFacebookF} size="2x" />
-      </SocialLink>
-      <SocialLink to="https://www.instagram.com/globalsteelgame" ariaLabel="Instagram">
-        <FontAwesomeIcon icon={faInstagram} size="2x" />
-      </SocialLink>
-      <SocialLink to="https://www.youtube.com/channel/UCfYKziK0Ll8UZ9AiMTZT9DA" ariaLabel="Youtube">
-        <FontAwesomeIcon icon={faYoutube} size="2x" />
-      </SocialLink>
-      <SocialLink to="https://discord.gg/qVBvuy7Ny3" ariaLabel="Discord">
-        <FontAwesomeIcon icon={faDiscord} size="2x" />
-      </SocialLink>
-      <SocialLink to="https://www.twitch.tv/macondogames" ariaLabel="Twitch">
-        <FontAwesomeIcon icon={faTwitch} size="2x" />
-      </SocialLink>
-    </div>
-    <p className="white m-0 text-center"> Copyright © {currentYear} | Macondo Games Pvt. Ltd. </p>
-  </Container>
+  return (
+    <Container
+      fluid
+      className={clsx(
+        root,
+        'd-flex pt-4 pb-4 flex-column align-items-center justify-content-center',
+      )}
+    >
+      <h3 className="dark-blue m-0">Keep up with us!</h3>
+      <div className="mt-4 mb-5 d-flex">
+        <SocialLink to="https://twitter.com/macondostudios" ariaLabel="Twitter">
+          <FontAwesomeIcon icon={faTwitter} size="2x" />
+        </SocialLink>
+        <SocialLink to="https://www.facebook.com/macondostudios" ariaLabel="Facebook">
+          <FontAwesomeIcon icon={faFacebookF} size="2x" />
+        </SocialLink>
+        <SocialLink to="https://www.instagram.com/globalsteelgame" ariaLabel="Instagram">
+          <FontAwesomeIcon icon={faInstagram} size="2x" />
+        </SocialLink>
+        <SocialLink
+          to="https://www.youtube.com/channel/UCfYKziK0Ll8UZ9AiMTZT9DA"
+          ariaLabel="Youtube"
+        >
+          <FontAwesomeIcon icon={faYoutube} size="2x" />
+        </SocialLink>
+        <SocialLink to="https://discord.gg/qVBvuy7Ny3" ariaLabel="Discord">
+          <FontAwesomeIcon icon={faDiscord} size="2x" />
+        </SocialLink>
+        <SocialLink to="https://www.twitch.tv/macondogames" ariaLabel="Twitch">
+          <FontAwesomeIcon icon={faTwitch} size="2x" />
+        </SocialLink>
+      </div>
+      <p className="white m-0 text-center"> Copyright © {currentYear} | Macondo Games Pvt. Ltd. </p>
+    </Container>
+  );
 }
