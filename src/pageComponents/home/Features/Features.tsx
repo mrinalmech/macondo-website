@@ -12,17 +12,13 @@ import Players1x from './images/players@1x.webp';
 import Enemies1x from './images/enemies@1x.webp';
 import Upgrades1x from './images/upgrades@1x.webp';
 
-interface Props {
-  imageLoaded: () => any;
-}
-
-export default function Features({ imageLoaded }: Props) {
+export default function Features() {
   return (
     <div className={root}>
       <Container>
         <Row className={clsx(featureRow, 'd-flex')}>
           <Col md={5} className="d-flex flex-column justify-content-center order-2 order-md-1">
-            <LoadedImg onLoad={imageLoaded} src={Players1x} alt="" className="mw-100" />
+            <LoadedImg src={Players1x} alt="" className="mw-100" />
           </Col>
           <Col
             md={{ span: 6, offset: 1 }}
@@ -49,12 +45,12 @@ export default function Features({ imageLoaded }: Props) {
             </p>
           </Col>
           <Col md={{ span: 6, offset: 1 }} className="d-flex flex-column justify-content-center">
-            <LoadedImg onLoad={imageLoaded} src={Enemies1x} alt="" className="mw-100" />
+            <LoadedImg src={Enemies1x} alt="" className="mw-100" />
           </Col>
         </Row>
         <Row className={clsx(featureRow, 'd-flex')}>
           <Col md={5} className="d-flex flex-column justify-content-center order-2 order-md-1">
-            <LoadedImg onLoad={imageLoaded} src={Upgrades1x} alt="" className="mw-100" />
+            <LoadedImg src={Upgrades1x} alt="" className="mw-100" />
           </Col>
           <Col
             md={{ span: 6, offset: 1 }}

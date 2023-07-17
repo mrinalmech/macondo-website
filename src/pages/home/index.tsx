@@ -1,9 +1,10 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import Layout from '../../components/Layout';
 import Head from '../../components/Head';
 import Loader from '../../components/Loader';
 
+import { ImageLoadedContext } from '../../contexts/ImageLoadedContext';
 import { LoadingContext } from '../../contexts/LoadingContext';
 
 import Hero from '../../pageComponents/home/Hero';
@@ -28,11 +29,13 @@ const urls = [
   'ss4',
 ];
 
-document.body.style.overflow = 'hidden';
-
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const counter = useRef(0);
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+  }, []);
 
   const imageLoaded = () => {
     counter.current += 1;
@@ -44,12 +47,14 @@ export default function Home() {
 
   return (
     <LoadingContext.Provider value={loading}>
-      {loading && <Loader />}
-      <Layout fixedHeader>
-        <Head title="Macondo Games" />
-        <Hero imageLoaded={imageLoaded} />
-        <Features imageLoaded={imageLoaded} />
-      </Layout>
+      <ImageLoadedContext.Provider value={imageLoaded}>
+        {loading && <Loader />}
+        <Layout fixedHeader>
+          <Head title="Macondo Games" />
+          <Hero />
+          <Features />
+        </Layout>
+      </ImageLoadedContext.Provider>
     </LoadingContext.Provider>
   );
 }

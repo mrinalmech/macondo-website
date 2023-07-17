@@ -4,6 +4,9 @@ const postCssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const postCssFocus = require('postcss-focus');
 
 module.exports = {
+  flags: {
+    DEV_SSR: true
+  },
   siteMetadata: {
     title: 'Macondo Games',
     description:

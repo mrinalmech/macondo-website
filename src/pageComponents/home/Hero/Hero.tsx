@@ -38,17 +38,12 @@ import ScreenshotTwo from './images/screenshot-2.webp';
 import ScreenshotThree from './images/screenshot-3.webp';
 import ScreenshotFour from './images/screenshot-4.webp';
 
-interface Props {
-  imageLoaded: () => any;
-}
-
-export default function Hero({ imageLoaded }: Props) {
+export default function Hero() {
   const allImgsLoaded = !useContext(LoadingContext);
 
   const [bgImageLoading, setBgImageLoading] = useState(true);
   const bgImageLoaded = () => {
     setBgImageLoading(false);
-    imageLoaded();
   };
 
   const monitorEl = useRef(null);
@@ -110,44 +105,33 @@ export default function Hero({ imageLoaded }: Props) {
         )}
         <LoadedImg
           anim
-          onLoad={imageLoaded}
           animType="delay"
           src={Logo1x}
           className={clsx('position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ', logo)}
         />
+        <LoadedImg anim src={WallShade1x} className={clsx('position-absolute', wallShade)} />
         <LoadedImg
           anim
-          onLoad={imageLoaded}
-          src={WallShade1x}
-          className={clsx('position-absolute', wallShade)}
-        />
-        <LoadedImg
-          anim
-          onLoad={imageLoaded}
           src={WebsiteBaseL1_1x}
           className={clsx('position-absolute', baseL1, left)}
         />
         <LoadedImg
           anim
-          onLoad={imageLoaded}
           src={WebsiteBaseL2_1x}
           className={clsx('position-absolute', baseL2, left)}
         />
         <LoadedImg
           anim
-          onLoad={imageLoaded}
           src={WebsiteBaseL1_1x}
           className={clsx('position-absolute', baseL1, right)}
         />
         <LoadedImg
           anim
-          onLoad={imageLoaded}
           src={WebsiteBaseL2_1x}
           className={clsx('position-absolute', baseL2, right)}
         />
         <LoadedImg
           anim
-          onLoad={imageLoaded}
           refElem={monitorEl}
           src={Monitor1x}
           className={clsx('position-absolute', monitor)}
@@ -166,7 +150,6 @@ export default function Hero({ imageLoaded }: Props) {
           <Carousel.Item>
             <LoadedImg
               anim
-              onLoad={imageLoaded}
               src={ScreenshotTwo}
               animType="delay"
               alt="Red figure standing in front of ruined castle"
@@ -175,7 +158,6 @@ export default function Hero({ imageLoaded }: Props) {
           <Carousel.Item>
             <LoadedImg
               anim
-              onLoad={imageLoaded}
               src={ScreenshotOne}
               animType="delay"
               alt="Green figure standing in front of forest"
@@ -184,7 +166,6 @@ export default function Hero({ imageLoaded }: Props) {
           <Carousel.Item>
             <LoadedImg
               anim
-              onLoad={imageLoaded}
               src={ScreenshotZero}
               animType="delay"
               alt="Three figures in front of a monitor screen"
@@ -193,7 +174,6 @@ export default function Hero({ imageLoaded }: Props) {
           <Carousel.Item>
             <LoadedImg
               anim
-              onLoad={imageLoaded}
               src={ScreenshotThree}
               animType="delay"
               alt="Blue figure standing in front of a flaming figure"
@@ -202,7 +182,6 @@ export default function Hero({ imageLoaded }: Props) {
           <Carousel.Item>
             <LoadedImg
               anim
-              onLoad={imageLoaded}
               src={ScreenshotFour}
               animType="delay"
               alt="Blue figure standing on a platform with light beams emanating from the edge"

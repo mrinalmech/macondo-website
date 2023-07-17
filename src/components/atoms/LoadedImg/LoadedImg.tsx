@@ -2,25 +2,27 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import FadeInElement from '../FadeInElement';
 
+import { ImageLoadedContext } from '../../../contexts/ImageLoadedContext';
 import { LoadingContext } from '../../../contexts/LoadingContext';
 
 interface Props {
   anim?: boolean;
-  onLoad: () => any;
   refElem?: React.MutableRefObject<any>;
   src: string;
   [prop: string]: any;
 }
 
-export default function LoadedImg({ anim, onLoad, refElem, src, alt = '', ...other }: Props) {
+export default function LoadedImg({ anim, refElem, src, alt = '', ...other }: Props) {
   const imgEl = useRef(null);
+
   const allImgsLoaded = !useContext(LoadingContext);
+  const imageLoaded = useContext(ImageLoadedContext);
 
   const [loaded, setLoaded] = useState(false);
 
   const handleLoad = () => {
     if (!loaded) {
-      onLoad();
+      imageLoaded();
     }
   };
 
@@ -28,7 +30,7 @@ export default function LoadedImg({ anim, onLoad, refElem, src, alt = '', ...oth
     const img = imgEl.current;
     if (img && img.complete) {
       setLoaded(true);
-      handleLoad();
+      imageLoaded();
     }
     setLaterSrc(src);
   }, []);
