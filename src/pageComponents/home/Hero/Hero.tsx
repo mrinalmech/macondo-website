@@ -103,6 +103,26 @@ export default function Hero({ imageLoaded, loading }: Props) {
     return () => window.removeEventListener('resize', calculateDimensions);
   }, []); // Empty array ensures that effect is only run on mount
 
+  const fadeSettings = {
+    opacity: loading ? 0 : 1,
+    from: { opacity: 0 },
+    config: { duration: DURATION },
+  };
+
+  const delayedFadeSettings = {
+    ...fadeSettings,
+    delay: DURATION,
+  };
+
+  const doubleDelayedFadeSettings = {
+    ...fadeSettings,
+    delay: DURATION * 2,
+  };
+
+  const fadeAnim = useSpring(fadeSettings);
+  const delayedFadeAnim = useSpring(delayedFadeSettings);
+  const doubleDelayedFadeAnim = useSpring(doubleDelayedFadeSettings);
+
   return (
     <>
       <div
@@ -129,12 +149,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={useSpring({
-            opacity: loading ? 0 : 1,
-            from: { opacity: 0 },
-            delay: DURATION,
-            config: { duration: DURATION },
-          })}
+          style={delayedFadeAnim}
           src={Logo1x}
           srcSet={`${Logo4x} 4x,
       ${Logo3x} 3x,
@@ -146,11 +161,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={useSpring({
-            opacity: loading ? 0 : 1,
-            from: { opacity: 0 },
-            config: { duration: DURATION },
-          })}
+          style={fadeAnim}
           src={WallShade1x}
           srcSet={`${WallShade4x} 4x,
         ${WallShade3x} 3x,
@@ -162,11 +173,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={useSpring({
-            opacity: loading ? 0 : 1,
-            from: { opacity: 0 },
-            config: { duration: DURATION },
-          })}
+          style={fadeAnim}
           src={WebsiteBaseL1_1x}
           srcSet={`${WebsiteBaseL1_4x} 4x,
         ${WebsiteBaseL1_3x} 3x,
@@ -178,11 +185,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={useSpring({
-            opacity: loading ? 0 : 1,
-            from: { opacity: 0 },
-            config: { duration: DURATION },
-          })}
+          style={fadeAnim}
           src={WebsiteBaseL2_1x}
           srcSet={`${WebsiteBaseL2_4x} 4x,
         ${WebsiteBaseL2_3x} 3x,
@@ -194,11 +197,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={useSpring({
-            opacity: loading ? 0 : 1,
-            from: { opacity: 0 },
-            config: { duration: DURATION },
-          })}
+          style={fadeAnim}
           src={WebsiteBaseL1_1x}
           srcSet={`${WebsiteBaseL1_4x} 4x,
         ${WebsiteBaseL1_3x} 3x,
@@ -210,11 +209,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={useSpring({
-            opacity: loading ? 0 : 1,
-            from: { opacity: 0 },
-            config: { duration: DURATION },
-          })}
+          style={fadeAnim}
           src={WebsiteBaseL2_1x}
           srcSet={`${WebsiteBaseL2_4x} 4x,
         ${WebsiteBaseL2_3x} 3x,
@@ -226,11 +221,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={useSpring({
-            opacity: loading ? 0 : 1,
-            from: { opacity: 0 },
-            config: { duration: DURATION },
-          })}
+          style={fadeAnim}
           refElem={monitorEl}
           src={Monitor1x}
           srcSet={`${Monitor4x} 4x,
@@ -256,12 +247,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               anim
               onLoad={imageLoaded}
               src={ScreenshotTwo}
-              style={useSpring({
-                opacity: loading ? 0 : 1,
-                from: { opacity: 0 },
-                delay: DURATION,
-                config: { duration: DURATION },
-              })}
+              style={delayedFadeAnim}
               alt="Red figure standing in front of ruined castle"
             />
           </Carousel.Item>
@@ -270,12 +256,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               anim
               onLoad={imageLoaded}
               src={ScreenshotOne}
-              style={useSpring({
-                opacity: loading ? 0 : 1,
-                from: { opacity: 0 },
-                delay: DURATION,
-                config: { duration: DURATION },
-              })}
+              style={delayedFadeAnim}
               alt="Green figure standing in front of forest"
             />
           </Carousel.Item>
@@ -284,12 +265,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               anim
               onLoad={imageLoaded}
               src={ScreenshotZero}
-              style={useSpring({
-                opacity: loading ? 0 : 1,
-                from: { opacity: 0 },
-                delay: DURATION,
-                config: { duration: DURATION },
-              })}
+              style={delayedFadeAnim}
               alt="Tree figures in front of a monitor screen"
             />
           </Carousel.Item>
@@ -298,12 +274,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               anim
               onLoad={imageLoaded}
               src={ScreenshotThree}
-              style={useSpring({
-                opacity: loading ? 0 : 1,
-                from: { opacity: 0 },
-                delay: DURATION,
-                config: { duration: DURATION },
-              })}
+              style={delayedFadeAnim}
               alt="Blue figure standing in front of a flaming figure"
             />
           </Carousel.Item>
@@ -312,40 +283,16 @@ export default function Hero({ imageLoaded, loading }: Props) {
               anim
               onLoad={imageLoaded}
               src={ScreenshotFour}
-              style={useSpring({
-                opacity: loading ? 0 : 1,
-                from: { opacity: 0 },
-                delay: DURATION,
-                config: { duration: DURATION },
-              })}
+              style={delayedFadeAnim}
               alt="Blue figure standing on a platform with light beams emanating from the edge"
             />
           </Carousel.Item>
         </Carousel>
-        <animated.div
-          className={clsx('position-absolute', extension, left)}
-          style={useSpring({
-            opacity: loading ? 0 : 1,
-            from: { opacity: 0 },
-            config: { duration: DURATION },
-          })}
-        />
-        <animated.div
-          className={clsx('position-absolute', extension, right)}
-          style={useSpring({
-            opacity: loading ? 0 : 1,
-            from: { opacity: 0 },
-            config: { duration: DURATION },
-          })}
-        />
+        <animated.div className={clsx('position-absolute', extension, left)} style={fadeAnim} />
+        <animated.div className={clsx('position-absolute', extension, right)} style={fadeAnim} />
         <animated.div
           className={clsx('d-flex pl-3 pr-3 flex-column flex-lg-row', textContent)}
-          style={useSpring({
-            opacity: loading ? 0 : 1,
-            from: { opacity: 0 },
-            delay: DURATION * 2,
-            config: { duration: DURATION },
-          })}
+          style={doubleDelayedFadeAnim}
         >
           <div className="d-flex flex-column flex-md-row flex-lg-column justify-content-center text-center text-lg-right mb-2 mb-lg-0 mr-0 mr-lg-3 ">
             <h4 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2">Suit up.</h4>
