@@ -1,0 +1,27 @@
+$duration: 0.5s;
+
+.animImageInitial{
+    opacity:0;
+}
+
+.animImageFinal{
+    opacity: 1;
+}
+
+.fadeAnim {
+    animation: $duration linear 0s fade;
+}
+
+.fadeAnimDelay {
+    animation: $duration linear $duration fade;
+}
+
+.fadeAnimDoubleDelay {
+    animation: $duration linear 2*$duration fade;
+}
+
+
+@keyframes fade {
+    0%   {opacity: 0;}
+    100% {opacity: 1;}
+  }

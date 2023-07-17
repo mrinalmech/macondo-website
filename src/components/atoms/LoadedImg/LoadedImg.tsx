@@ -1,5 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { animated } from 'react-spring';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+
+import FadeInElement from '../FadeInElement';
+
+import { LoadingContext } from '../../../contexts/LoadingContext';
 
 interface Props {
   anim?: boolean;
@@ -11,6 +14,7 @@ interface Props {
 
 export default function LoadedImg({ anim, onLoad, refElem, src, ...other }: Props) {
   const imgEl = useRef(null);
+  const allImgsLoaded = !useContext(LoadingContext);
 
   const [loaded, setLoaded] = useState(false);
 
@@ -32,7 +36,16 @@ export default function LoadedImg({ anim, onLoad, refElem, src, ...other }: Prop
   const [laterSrc, setLaterSrc] = useState(null);
 
   if (anim) {
-    return <animated.img onLoad={handleLoad} ref={refElem || imgEl} src={laterSrc} {...other} />;
+    return (
+      <FadeInElement
+        type="img"
+        fadeIn={allImgsLoaded}
+        onLoad={handleLoad}
+        ref={refElem || imgEl}
+        src={laterSrc}
+        {...other}
+      />
+    );
   }
 
   return <img onLoad={handleLoad} ref={refElem || imgEl} src={laterSrc} {...other} />;

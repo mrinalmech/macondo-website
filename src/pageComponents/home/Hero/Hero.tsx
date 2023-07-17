@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useSpring, animated } from 'react-spring';
 import Carousel from 'react-bootstrap/Carousel';
 
-import LoadedImg from '../../../components/LoadedImg';
+import LoadedImg from '../../../components/atoms/LoadedImg';
 
 import {
   root,
@@ -23,25 +23,10 @@ import {
 } from './Hero.module.scss';
 
 import Monitor1x from './images/monitor@1x.webp';
-import Monitor2x from './images/monitor@2x.webp';
-import Monitor3x from './images/monitor@3x.webp';
-import Monitor4x from './images/monitor@4x.webp';
 import WallShade1x from './images/wallShade@1x.webp';
-import WallShade2x from './images/wallShade@2x.webp';
-import WallShade3x from './images/wallShade@3x.webp';
-import WallShade4x from './images/wallShade@4x.webp';
 import WebsiteBaseL1_1x from './images/websiteBaseL1@1x.webp';
-import WebsiteBaseL1_2x from './images/websiteBaseL1@2x.webp';
-import WebsiteBaseL1_3x from './images/websiteBaseL1@3x.webp';
-import WebsiteBaseL1_4x from './images/websiteBaseL1@4x.webp';
 import WebsiteBaseL2_1x from './images/websiteBaseL2@1x.webp';
-import WebsiteBaseL2_2x from './images/websiteBaseL2@2x.webp';
-import WebsiteBaseL2_3x from './images/websiteBaseL2@3x.webp';
-import WebsiteBaseL2_4x from './images/websiteBaseL2@4x.webp';
 import Logo1x from './images/logospace@1x.webp';
-import Logo2x from './images/logospace@2x.webp';
-import Logo3x from './images/logospace@3x.webp';
-import Logo4x from './images/logospace@4x.webp';
 
 import Repeat1x from './images/repeat@1x.webp';
 
@@ -56,7 +41,7 @@ interface Props {
   loading: boolean;
 }
 
-const DURATION = 300;
+const DURATION = 500;
 
 export default function Hero({ imageLoaded, loading }: Props) {
   const [bgImageLoading, setBgImageLoading] = useState(true);
@@ -151,10 +136,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
           onLoad={imageLoaded}
           style={delayedFadeAnim}
           src={Logo1x}
-          srcSet={`${Logo4x} 4x,
-      ${Logo3x} 3x,
-      ${Logo2x} 2x,
-      ${Logo1x} 1x`}
           alt=""
           className={clsx('position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ', logo)}
         />
@@ -163,10 +144,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
           onLoad={imageLoaded}
           style={fadeAnim}
           src={WallShade1x}
-          srcSet={`${WallShade4x} 4x,
-        ${WallShade3x} 3x,
-        ${WallShade2x} 2x,
-        ${WallShade1x} 1x`}
           alt=""
           className={clsx('position-absolute', wallShade)}
         />
@@ -175,10 +152,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
           onLoad={imageLoaded}
           style={fadeAnim}
           src={WebsiteBaseL1_1x}
-          srcSet={`${WebsiteBaseL1_4x} 4x,
-        ${WebsiteBaseL1_3x} 3x,
-        ${WebsiteBaseL1_2x} 2x,
-        ${WebsiteBaseL1_1x} 1x`}
           alt=""
           className={clsx('position-absolute', baseL1, left)}
         />
@@ -187,10 +160,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
           onLoad={imageLoaded}
           style={fadeAnim}
           src={WebsiteBaseL2_1x}
-          srcSet={`${WebsiteBaseL2_4x} 4x,
-        ${WebsiteBaseL2_3x} 3x,
-        ${WebsiteBaseL2_2x} 2x,
-        ${WebsiteBaseL2_1x} 1x`}
           alt=""
           className={clsx('position-absolute', baseL2, left)}
         />
@@ -199,10 +168,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
           onLoad={imageLoaded}
           style={fadeAnim}
           src={WebsiteBaseL1_1x}
-          srcSet={`${WebsiteBaseL1_4x} 4x,
-        ${WebsiteBaseL1_3x} 3x,
-        ${WebsiteBaseL1_2x} 2x,
-        ${WebsiteBaseL1_1x} 1x`}
           alt=""
           className={clsx('position-absolute', baseL1, right)}
         />
@@ -211,10 +176,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
           onLoad={imageLoaded}
           style={fadeAnim}
           src={WebsiteBaseL2_1x}
-          srcSet={`${WebsiteBaseL2_4x} 4x,
-        ${WebsiteBaseL2_3x} 3x,
-        ${WebsiteBaseL2_2x} 2x,
-        ${WebsiteBaseL2_1x} 1x`}
           alt=""
           className={clsx('position-absolute', baseL2, right)}
         />
@@ -224,10 +185,6 @@ export default function Hero({ imageLoaded, loading }: Props) {
           style={fadeAnim}
           refElem={monitorEl}
           src={Monitor1x}
-          srcSet={`${Monitor4x} 4x,
-        ${Monitor3x} 3x,
-        ${Monitor2x} 2x,
-        ${Monitor1x} 1x`}
           alt=""
           className={clsx('position-absolute', monitor)}
         />

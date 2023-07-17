@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import useInterval from '@use-it/interval';
 
 import { root } from './Loader.module.scss';
 
-interface Props {
-  loading: boolean;
-}
-export default function Loader({ loading }: Props) {
-  useEffect(() => {
-    document.body.style.overflow = loading ? 'hidden' : 'auto';
-  }, [loading]);
-
+export default function Loader() {
   const [dots, setDots] = useState('.');
 
   const updateDots = () => {
@@ -20,16 +13,12 @@ export default function Loader({ loading }: Props) {
   };
 
   useInterval(() => {
-    if (loading) {
-      updateDots();
-    }
+    updateDots();
   }, 500);
 
   return (
-    loading && (
-      <div className={clsx(root, 'd-flex align-items-center justify-content-center')}>
-        <h2 className="m-0">Loading{dots}</h2>
-      </div>
-    )
+    <div className={clsx(root, 'd-flex align-items-center justify-content-center')}>
+      <h2 className="m-0">Loading{dots}</h2>
+    </div>
   );
 }
