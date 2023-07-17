@@ -12,7 +12,7 @@ interface Props {
   [prop: string]: any;
 }
 
-export default function LoadedImg({ anim, onLoad, refElem, src, ...other }: Props) {
+export default function LoadedImg({ anim, onLoad, refElem, src, alt = '', ...other }: Props) {
   const imgEl = useRef(null);
   const allImgsLoaded = !useContext(LoadingContext);
 
@@ -43,10 +43,11 @@ export default function LoadedImg({ anim, onLoad, refElem, src, ...other }: Prop
         onLoad={handleLoad}
         ref={refElem || imgEl}
         src={laterSrc}
+        alt={alt}
         {...other}
       />
     );
   }
 
-  return <img onLoad={handleLoad} ref={refElem || imgEl} src={laterSrc} {...other} />;
+  return <img onLoad={handleLoad} ref={refElem || imgEl} src={laterSrc} alt={alt} {...other} />;
 }

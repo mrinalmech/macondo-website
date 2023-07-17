@@ -47,7 +47,7 @@ export default function Home() {
       {loading && <Loader />}
       <Layout fixedHeader>
         <Head title="Macondo Games" />
-        <Hero imageLoaded={imageLoaded} loading={loading} />
+        <Hero imageLoaded={imageLoaded} />
         <Features imageLoaded={imageLoaded} />
       </Layout>
     </LoadingContext.Provider>

@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import useInterval from '@use-it/interval';
 import clsx from 'clsx';
-import { useSpring, animated } from 'react-spring';
 import Carousel from 'react-bootstrap/Carousel';
 
+import FadeInElement from '../../../components/atoms/FadeInElement';
 import LoadedImg from '../../../components/atoms/LoadedImg';
+
+import { LoadingContext } from '../../../contexts/LoadingContext';
 
 import {
   root,
@@ -38,12 +40,11 @@ import ScreenshotFour from './images/screenshot-4.webp';
 
 interface Props {
   imageLoaded: () => any;
-  loading: boolean;
 }
 
-const DURATION = 500;
+export default function Hero({ imageLoaded }: Props) {
+  const allImgsLoaded = !useContext(LoadingContext);
 
-export default function Hero({ imageLoaded, loading }: Props) {
   const [bgImageLoading, setBgImageLoading] = useState(true);
   const bgImageLoaded = () => {
     setBgImageLoading(false);
@@ -78,35 +79,12 @@ export default function Hero({ imageLoaded, loading }: Props) {
   }, 500);
 
   useEffect(() => {
-    // Add event listener
     window.addEventListener('resize', calculateDimensions);
 
-    // Call handler right away so state gets updated with initial window size
     calculateDimensions();
 
-    // Remove event listener on cleanup
     return () => window.removeEventListener('resize', calculateDimensions);
-  }, []); // Empty array ensures that effect is only run on mount
-
-  const fadeSettings = {
-    opacity: loading ? 0 : 1,
-    from: { opacity: 0 },
-    config: { duration: DURATION },
-  };
-
-  const delayedFadeSettings = {
-    ...fadeSettings,
-    delay: DURATION,
-  };
-
-  const doubleDelayedFadeSettings = {
-    ...fadeSettings,
-    delay: DURATION * 2,
-  };
-
-  const fadeAnim = useSpring(fadeSettings);
-  const delayedFadeAnim = useSpring(delayedFadeSettings);
-  const doubleDelayedFadeAnim = useSpring(doubleDelayedFadeSettings);
+  }, []);
 
   return (
     <>
@@ -127,65 +105,51 @@ export default function Hero({ imageLoaded, loading }: Props) {
           <LoadedImg
             onLoad={bgImageLoaded}
             src={Repeat1x}
-            alt=""
             className={clsx('position-absolute', bgImg)}
           />
         )}
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={delayedFadeAnim}
+          animType="delay"
           src={Logo1x}
-          alt=""
           className={clsx('position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ', logo)}
         />
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={fadeAnim}
           src={WallShade1x}
-          alt=""
           className={clsx('position-absolute', wallShade)}
         />
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={fadeAnim}
           src={WebsiteBaseL1_1x}
-          alt=""
           className={clsx('position-absolute', baseL1, left)}
         />
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={fadeAnim}
           src={WebsiteBaseL2_1x}
-          alt=""
           className={clsx('position-absolute', baseL2, left)}
         />
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={fadeAnim}
           src={WebsiteBaseL1_1x}
-          alt=""
           className={clsx('position-absolute', baseL1, right)}
         />
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={fadeAnim}
           src={WebsiteBaseL2_1x}
-          alt=""
           className={clsx('position-absolute', baseL2, right)}
         />
         <LoadedImg
           anim
           onLoad={imageLoaded}
-          style={fadeAnim}
           refElem={monitorEl}
           src={Monitor1x}
-          alt=""
           className={clsx('position-absolute', monitor)}
         />
         <Carousel
@@ -204,7 +168,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               anim
               onLoad={imageLoaded}
               src={ScreenshotTwo}
-              style={delayedFadeAnim}
+              animType="delay"
               alt="Red figure standing in front of ruined castle"
             />
           </Carousel.Item>
@@ -213,7 +177,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               anim
               onLoad={imageLoaded}
               src={ScreenshotOne}
-              style={delayedFadeAnim}
+              animType="delay"
               alt="Green figure standing in front of forest"
             />
           </Carousel.Item>
@@ -222,8 +186,8 @@ export default function Hero({ imageLoaded, loading }: Props) {
               anim
               onLoad={imageLoaded}
               src={ScreenshotZero}
-              style={delayedFadeAnim}
-              alt="Tree figures in front of a monitor screen"
+              animType="delay"
+              alt="Three figures in front of a monitor screen"
             />
           </Carousel.Item>
           <Carousel.Item>
@@ -231,7 +195,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               anim
               onLoad={imageLoaded}
               src={ScreenshotThree}
-              style={delayedFadeAnim}
+              animType="delay"
               alt="Blue figure standing in front of a flaming figure"
             />
           </Carousel.Item>
@@ -240,16 +204,26 @@ export default function Hero({ imageLoaded, loading }: Props) {
               anim
               onLoad={imageLoaded}
               src={ScreenshotFour}
-              style={delayedFadeAnim}
+              animType="delay"
               alt="Blue figure standing on a platform with light beams emanating from the edge"
             />
           </Carousel.Item>
         </Carousel>
-        <animated.div className={clsx('position-absolute', extension, left)} style={fadeAnim} />
-        <animated.div className={clsx('position-absolute', extension, right)} style={fadeAnim} />
-        <animated.div
+        <FadeInElement
+          type="div"
+          className={clsx('position-absolute', extension, left)}
+          fadeIn={allImgsLoaded}
+        />
+        <FadeInElement
+          type="div"
+          className={clsx('position-absolute', extension, right)}
+          fadeIn={allImgsLoaded}
+        />
+        <FadeInElement
+          type="div"
           className={clsx('d-flex pl-3 pr-3 flex-column flex-lg-row', textContent)}
-          style={doubleDelayedFadeAnim}
+          animType="doubleDelay"
+          fadeIn={allImgsLoaded}
         >
           <div className="d-flex flex-column flex-md-row flex-lg-column justify-content-center text-center text-lg-right mb-2 mb-lg-0 mr-0 mr-lg-3 ">
             <h4 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2">Suit up.</h4>
@@ -266,7 +240,7 @@ export default function Hero({ imageLoaded, loading }: Props) {
               the 80s.
             </p>
           </div>
-        </animated.div>
+        </FadeInElement>
       </div>
     </>
   );
