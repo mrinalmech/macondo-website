@@ -1,9 +1,8 @@
 $enable-responsive-font-sizes: true;
-@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap/scss/bootstrap';
 
-@import "./_typography.scss";
-@import "./_colors.scss";
-
+@import './typography.scss';
+@import './colors.scss';
 
 body,
 html {
@@ -11,6 +10,6 @@ html {
   margin: 0;
 }
 
-body{
+body {
   overflow: hidden;
 }
