@@ -20,13 +20,13 @@ import Link from '../Link';
 interface LinkProps {
   to: string;
   ariaLabel?: string;
-  children: React.Node;
+  children: React.ReactNode;
   external?: boolean;
 }
 
 const NavLink = (props: LinkProps) => {
   return (
-    <Link to={props.to} className={clsx('nav-link pr-3 pl-3', navLink)} {...props}>
+    <Link className={clsx('nav-link pr-3 pl-3', navLink)} {...props}>
       {props.children}
     </Link>
   );
