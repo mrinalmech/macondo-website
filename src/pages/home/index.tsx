@@ -10,22 +10,21 @@ import { LoadingContext } from '../../contexts/LoadingContext';
 import Hero from '../../pageComponents/home/Hero';
 import Features from '../../pageComponents/home/Features';
 
-const noOfImages = 15;
+const noOfImages = 12;
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const counter = useRef(0);
 
   useEffect(() => {
-    //document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
   }, []);
 
   const imageLoaded = () => {
     counter.current += 1;
-    console.log(counter.current);
     if (counter.current >= noOfImages && loading) {
       setLoading(false);
-      //document.body.style.overflow = 'auto';
+      document.body.style.overflow = 'auto';
     }
   };
 
@@ -60,13 +59,13 @@ export const Head = ({ data }) => {
 };
 
 export const query = graphql`
-query {
-  site {
-    siteMetadata {
-      title
-      description
-      author
+  query {
+    site {
+      siteMetadata {
+        title
+        description
+        author
+      }
     }
   }
-}
 `;

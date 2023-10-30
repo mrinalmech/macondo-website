@@ -6,7 +6,7 @@
   background-image: linear-gradient($bg-blue, $bg-blue-dark);
   @include respond-below(sm) {
     padding: 5rem 1rem;
-    img {
+    :global(.gatsby-image-wrapper) {
       margin-top: 4rem;
     }
   }

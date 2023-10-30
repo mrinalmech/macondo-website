@@ -30,13 +30,13 @@ module.exports = {
         icon: `src/images/icon.png`,
       },
     },
-    /*{
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/assets/images`,
+        name: `featureImages`,
+        path: `${__dirname}/src/pageComponents/home/Features/images`,
       },
-    },*/
+    },
     {
       resolve: 'gatsby-plugin-sass',
       options: {

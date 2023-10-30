@@ -6,12 +6,11 @@ import { ImageLoadedContext } from '../../../contexts/ImageLoadedContext';
 import { LoadingContext } from '../../../contexts/LoadingContext';
 
 interface Props {
-  anim?: boolean;
   src: string;
   [prop: string]: any;
 }
 
-const LoadedImg = forwardRef(({ anim, refElem, src, alt = '', ...other }: Props, ref) => {
+const LoadedImg = forwardRef(({ refElem, src, alt = '', ...other }: Props, ref) => {
   const imgEl = useRef(null);
 
   const allImgsLoaded = !useContext(LoadingContext);
@@ -36,21 +35,17 @@ const LoadedImg = forwardRef(({ anim, refElem, src, alt = '', ...other }: Props,
 
   const [laterSrc, setLaterSrc] = useState(null);
 
-  if (anim) {
-    return (
-      <FadeInElement
-        type="img"
-        fadeIn={allImgsLoaded}
-        onLoad={handleLoad}
-        ref={ref}
-        src={laterSrc}
-        alt={alt}
-        {...other}
-      />
-    );
-  }
-
-  return <img onLoad={handleLoad} ref={refElem || imgEl} src={laterSrc} alt={alt} {...other} />;
+  return (
+    <FadeInElement
+      type="img"
+      fadeIn={allImgsLoaded}
+      onLoad={handleLoad}
+      ref={ref}
+      src={laterSrc}
+      alt={alt}
+      {...other}
+    />
+  );
 });
 
 export default LoadedImg;

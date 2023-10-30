@@ -38,16 +38,15 @@ function BackgroundImages() {
   return (
     <>
       <LoadedImg
-        anim
         animType="delay"
         src={Logo1x}
         className={clsx('position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ', logo)}
       />
-      <LoadedImg anim src={WallShade1x} className={clsx('position-absolute', wallShade)} />
-      <LoadedImg anim src={WebsiteBaseL1_1x} className={clsx('position-absolute', baseL1, left)} />
-      <LoadedImg anim src={WebsiteBaseL2_1x} className={clsx('position-absolute', baseL2, left)} />
-      <LoadedImg anim src={WebsiteBaseL1_1x} className={clsx('position-absolute', baseL1, right)} />
-      <LoadedImg anim src={WebsiteBaseL2_1x} className={clsx('position-absolute', baseL2, right)} />
+      <LoadedImg src={WallShade1x} className={clsx('position-absolute', wallShade)} />
+      <LoadedImg src={WebsiteBaseL1_1x} className={clsx('position-absolute', baseL1, left)} />
+      <LoadedImg src={WebsiteBaseL2_1x} className={clsx('position-absolute', baseL2, left)} />
+      <LoadedImg src={WebsiteBaseL1_1x} className={clsx('position-absolute', baseL1, right)} />
+      <LoadedImg src={WebsiteBaseL2_1x} className={clsx('position-absolute', baseL2, right)} />
     </>
   );
 }
@@ -115,12 +114,7 @@ function Monitor() {
 
   return (
     <>
-      <LoadedImg
-        anim
-        ref={monitorEl}
-        src={Monitor1x}
-        className={clsx('position-absolute', monitor)}
-      />
+      <LoadedImg ref={monitorEl} src={Monitor1x} className={clsx('position-absolute', monitor)} />
       <Carousel
         className={clsx(carousel, 'position-absolute')}
         controls={false}
@@ -134,7 +128,7 @@ function Monitor() {
       >
         {imgData.map((img, index) => (
           <Carousel.Item key={index}>
-            <LoadedImg anim src={img.src} animType="delay" alt={img.alt} />
+            <LoadedImg src={img.src} animType="delay" alt={img.alt} />
           </Carousel.Item>
         ))}
       </Carousel>

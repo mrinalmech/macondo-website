@@ -3,17 +3,13 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import clsx from 'clsx';
-
-import LoadedImg from '../../../components/atoms/LoadedImg';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import { root, featureRow } from './Features.module.scss';
 
-import Players from './images/players@1x.webp';
-import Enemies from './images/enemies@1x.webp';
-import Upgrades from './images/upgrades@1x.webp';
-
 interface FeatureProps {
-  imgUrl: string;
+  imgName: string;
   imgOnLeft?: boolean;
   heading: string;
   descriptionOne: string;
@@ -21,13 +17,25 @@ interface FeatureProps {
 }
 
 function Feature({
-  imgUrl,
+  imgName,
   imgOnLeft = true,
   heading,
   descriptionOne,
   descriptionTwo,
 }: FeatureProps) {
-  const imgContent = <LoadedImg src={imgUrl} alt="" className="mw-100" />;
+  const { allFile } = useStaticQuery(query);
+
+  let imgContent = null as React.ReactNode | null;
+
+  const img = allFile.nodes.find(file => file.name === imgName);
+
+  if (img) {
+    const image = getImage(img);
+
+    if (image) {
+      imgContent = <GatsbyImage image={image} alt="" objectFit="cover" className="mw-100" />;
+    }
+  }
 
   const textContent = (
     <>
@@ -39,12 +47,21 @@ function Feature({
 
   return (
     <Row className={clsx(featureRow, 'd-flex')}>
-      <Col md={5} className="d-flex flex-column justify-content-center order-2 order-md-1">
+      <Col
+        md={5}
+        className={clsx('d-flex flex-column justify-content-center order-md-1', {
+          ['order-2']: imgOnLeft,
+          ['order-1']: !imgOnLeft,
+        })}
+      >
         {imgOnLeft ? imgContent : textContent}
       </Col>
       <Col
         md={{ span: 6, offset: 1 }}
-        className="d-flex flex-column justify-content-center order-1 order-md-2"
+        className={clsx('d-flex flex-column justify-content-center order-md-2', {
+          ['order-1']: imgOnLeft,
+          ['order-2']: !imgOnLeft,
+        })}
       >
         {imgOnLeft ? textContent : imgContent}
       </Col>
@@ -57,21 +74,21 @@ export default function Features() {
     <div className={root}>
       <Container className="text-center">
         <Feature
-          imgUrl={Players}
+          imgName="players"
           heading="THE GOOD"
           descriptionOne="Shooting and blasting your way through hordes of enemies in an armored suit ...can be
               quite fun."
           descriptionTwo="Control three different characters in a world inspired by the cartoons of the 80s."
         />
         <Feature
-          imgUrl={Enemies}
+          imgName="enemies"
           imgOnLeft={false}
           heading="THE BAD"
           descriptionOne="The world out there is crawling with evil and you've signed up to take care of it."
           descriptionTwo="Travel through an assortment of locations fighting a variety of bosses and enemies."
         />
         <Feature
-          imgUrl={Upgrades}
+          imgName="upgrades"
           heading="...AND, THE UPGRADES"
           descriptionOne="Fighting your way through evil is not only fun, but also incredibly rewarding."
           descriptionTwo="With each kill, earn points and customize your equipment to switch up gameplay."
@@ -80,3 +97,16 @@ export default function Features() {
     </div>
   );
 }
+
+const query = graphql`
+  query {
+    allFile(filter: { sourceInstanceName: { eq: "featureImages" } }) {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(width: 540)
+        }
+      }
+    }
+  }
+`;
