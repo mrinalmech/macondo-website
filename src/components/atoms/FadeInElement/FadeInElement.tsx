@@ -10,7 +10,7 @@ import {
 } from './FadeInElement.module.scss';
 
 type Props = {
-  type: 'div' | 'img';
+  isImg?: boolean;
   fadeIn: boolean;
   className?: string;
   children?: React.ReactNode;
@@ -21,25 +21,26 @@ type Props = {
 const InputText = props => <input {...props} />;
 
 const FadeInElement = forwardRef(
-  ({ type, fadeIn, className, children, animType = 'normal', ...other }: Props, ref) => {
-    const fadeClass =
-      animType === 'delay'
-        ? fadeAnimDelay
-        : animType === 'doubleDelay'
-        ? fadeAnimDoubleDelay
-        : fadeAnim;
+  ({ isImg = false, fadeIn, className, children, animType = 'normal', ...other }: Props, ref) => {
+    const fadeClass = clsx({
+      [fadeAnim]: animType === 'normal',
+      [fadeAnimDelay]: animType === 'delay',
+      [fadeAnimDoubleDelay]: animType === 'doubleDelay',
+    });
+
     const animClass = fadeIn ? clsx(animImageFinal, fadeClass) : animImageInitial;
+
     const consolidatedClass = clsx(className, animClass);
 
-    if (type == 'div') {
+    if (!isImg) {
       return (
         <div className={consolidatedClass} {...other}>
           {children}
         </div>
       );
-    } else {
-      return <img className={consolidatedClass} ref={ref} {...other} />;
     }
+
+    return <img className={consolidatedClass} ref={ref} {...other} />;
   },
 );
 

@@ -37,7 +37,7 @@ const LoadedImg = forwardRef(({ refElem, src, alt = '', ...other }: Props, ref) 
 
   return (
     <FadeInElement
-      type="img"
+      isImg
       fadeIn={allImgsLoaded}
       onLoad={handleLoad}
       ref={ref}

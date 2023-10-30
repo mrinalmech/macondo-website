@@ -133,12 +133,10 @@ function Monitor() {
         ))}
       </Carousel>
       <FadeInElement
-        type="div"
         className={clsx('position-absolute', extension, left)}
         fadeIn={allImgsLoaded}
       />
       <FadeInElement
-        type="div"
         className={clsx('position-absolute', extension, right)}
         fadeIn={allImgsLoaded}
       />
