@@ -30,18 +30,18 @@ const urls = [
 ];
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const counter = useRef(0);
 
-  useEffect(() => {
+  /*useEffect(() => {
     document.body.style.overflow = 'hidden';
-  }, []);
+  }, []);*/
 
   const imageLoaded = () => {
     counter.current += 1;
     if (counter.current >= urls.length && loading) {
-      setLoading(false);
-      document.body.style.overflow = 'auto';
+      //setLoading(false);
+      //document.body.style.overflow = 'auto';
     }
   };
 

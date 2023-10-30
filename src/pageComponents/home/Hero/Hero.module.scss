@@ -3,7 +3,9 @@
 @import 'src/styles/breakpoints.scss';
 $monitor-img-width: 3406px;
 $monitor-img-height: 597px;
-$monitor-img-ratio: calc($monitor-img-height/$monitor-img-width); //note: A lot of custom breakpoints have to be used because of all the elements
+$monitor-img-ratio: calc(
+  $monitor-img-height/$monitor-img-width
+); //note: A lot of custom breakpoints have to be used because of all the elements
 
 .root {
   background-image: linear-gradient($black, $purple);
@@ -43,11 +45,11 @@ $monitor-img-ratio: calc($monitor-img-height/$monitor-img-width); //note: A lot 
   }
 
   .extension {
-    width: calc(((100% - 3406px)/2) + 3px);
+    width: calc(((100% - 3406px) / 2) + 3px);
     bottom: 85px;
     height: 445px;
     background: {
-      image: url("./images/repeat@1x.webp");
+      image: url('./images/repeat@1x.webp');
       repeat: repeat-x;
       position-x: right;
     }
@@ -242,7 +244,7 @@ $monitor-img-ratio: calc($monitor-img-height/$monitor-img-width); //note: A lot 
     @media screen and (max-height: 825px) {
       .logo {
         width: 190px;
-        top:0;
+        top: 0;
       }
     }
   }
@@ -293,13 +295,13 @@ $monitor-img-ratio: calc($monitor-img-height/$monitor-img-width); //note: A lot 
         right: -105px;
       }
     }
-    @media screen and (max-height:860px) {
+    @media screen and (max-height: 860px) {
       .logo {
         width: 250px;
         top: 85px;
       }
     }
-    @media screen and (max-height:830px) {
+    @media screen and (max-height: 830px) {
       .logo {
         width: 230px;
         top: 60px;
@@ -313,7 +315,7 @@ $monitor-img-ratio: calc($monitor-img-height/$monitor-img-width); //note: A lot 
         right: -135px;
       }
     }
-    @media screen and (max-height:800px) {
+    @media screen and (max-height: 800px) {
       .logo {
         width: 210px;
         top: 20px;
@@ -327,7 +329,7 @@ $monitor-img-ratio: calc($monitor-img-height/$monitor-img-width); //note: A lot 
         right: -150px;
       }
     }
-    @media screen and (max-height:750px) {
+    @media screen and (max-height: 750px) {
       .logo {
         width: 200px;
         top: 5px;
@@ -347,24 +349,24 @@ $monitor-img-ratio: calc($monitor-img-height/$monitor-img-width); //note: A lot 
       bottom: 260px;
     }
 
-    .logo{
+    .logo {
       top: 85px;
       width: 300px;
     }
 
-    @media screen and (max-height:860px) {
+    @media screen and (max-height: 860px) {
       .logo {
         width: 230px;
         top: 80px;
       }
     }
-    @media screen and (max-height:820px) {
+    @media screen and (max-height: 820px) {
       .logo {
         width: 210px;
         top: 50px;
       }
     }
-    @media screen and (max-height:775px) {
+    @media screen and (max-height: 775px) {
       .logo {
         width: 200px;
         top: 15px;
@@ -399,7 +401,6 @@ $monitor-img-ratio: calc($monitor-img-height/$monitor-img-width); //note: A lot 
         top: 15px;
       }
     }
-
   }
   @include respond-below(360px) {
     max-height: 700px;
@@ -432,7 +433,6 @@ $monitor-img-ratio: calc($monitor-img-height/$monitor-img-width); //note: A lot 
         top: 0;
       }
     }
-
   }
   @include respond-below(320px) {
     min-height: 595px;
@@ -475,11 +475,4 @@ $monitor-img-ratio: calc($monitor-img-height/$monitor-img-width); //note: A lot 
 
 .textContent {
   z-index: 7;
-}
-
-.bgImg {
-  opacity: 0;
-  height: 0;
-  width: 0;
-  z-index: -2;
 }
