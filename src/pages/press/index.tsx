@@ -1,12 +1,8 @@
 import React from 'react';
-import Layout from '../../components/Layout';
-import Head from '../../components/Head';
+import Page from '../../components/layouts/Page';
 
 export default function PressKit() {
-  return (
-    <Layout>
-      <Head title="Press Kit" />
-      Press Kit
-    </Layout>
-  );
+  return <Page>Press Kit</Page>;
 }
+
+export const Head = () => <title>Press Kit</title>;

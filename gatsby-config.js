@@ -5,7 +5,7 @@ const postCssFocus = require('postcss-focus');
 
 module.exports = {
   flags: {
-    DEV_SSR: true
+    DEV_SSR: true,
   },
   siteMetadata: {
     title: 'Macondo Games',
@@ -15,20 +15,6 @@ module.exports = {
     siteUrl: 'https://www.macondogames.com',
   },
   plugins: [
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `Macondo Games`,
-        short_name: `Macondo Games`,
-        start_url: `/`,
-        background_color: `#6b37bf`,
-        theme_color: `#6b37bf`,
-        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
-        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
-        display: `standalone`,
-        icon: `src/images/icon.png`, // This path is relative to the root of the site.
-      },
-    },
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
@@ -39,15 +25,6 @@ module.exports = {
         path: `${__dirname}/src/assets/images`,
       },
     },*/
-    /*{
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        workboxConfig: {
-          globPatterns: ['*.html','*.png','*.jpg']
-        }
-      }
-    },*/
-    `gatsby-plugin-react-helmet`,
     {
       resolve: 'gatsby-plugin-sass',
       options: {
@@ -62,6 +39,5 @@ module.exports = {
         ],
       },
     },
-    `gatsby-plugin-fontawesome-css`,
   ],
 };

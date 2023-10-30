@@ -15,7 +15,7 @@ import {
 import { StaticImage } from 'gatsby-plugin-image';
 
 import { navBar, navBarFixed, navLink, socialLink } from './Header.module.scss';
-import Link from '../Link';
+import Link from '../../atoms/Link';
 
 interface LinkProps {
   to: string;

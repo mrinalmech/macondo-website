@@ -1,13 +1,13 @@
 import React from 'react';
-import Header from '../Header';
-import Footer from '../Footer';
+import Header from '../../fragments/Header';
+import Footer from '../../fragments/Footer';
 
 type Props = {
   children?: React.ReactNode;
   fixedHeader?: boolean;
 };
 
-export default function Layout({ children, fixedHeader }: Props) {
+export default function Page({ children, fixedHeader }: Props) {
   return (
     <div className="min-vh-100 d-flex flex-column">
       <Header fixed={fixedHeader} />

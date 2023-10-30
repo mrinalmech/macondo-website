@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import Layout from '../../components/Layout';
-import Head from '../../components/Head';
-import Loader from '../../components/Loader';
+import Page from '../../components/layouts/Page';
+import Loader from '../../components/fragments/Loader';
 
 import { ImageLoadedContext } from '../../contexts/ImageLoadedContext';
 import { LoadingContext } from '../../contexts/LoadingContext';
@@ -49,12 +48,13 @@ export default function Home() {
     <LoadingContext.Provider value={loading}>
       <ImageLoadedContext.Provider value={imageLoaded}>
         {loading && <Loader />}
-        <Layout fixedHeader>
-          <Head title="Macondo Games" />
+        <Page fixedHeader>
           <Hero />
           <Features />
-        </Layout>
+        </Page>
       </ImageLoadedContext.Provider>
     </LoadingContext.Provider>
   );
 }
+
+export const Head = () => <title>Macondo Games</title>;
