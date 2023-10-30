@@ -10,37 +10,21 @@ import { LoadingContext } from '../../contexts/LoadingContext';
 import Hero from '../../pageComponents/home/Hero';
 import Features from '../../pageComponents/home/Features';
 
-const urls = [
-  'monitor',
-  'wallShade',
-  'websiteBaseL1Left',
-  'websiteBaseL2Left',
-  'websiteBaseL1Right',
-  'websiteBaseL2Right',
-  'logo',
-  'repeat',
-  'players',
-  'enemies',
-  'upgrades',
-  'ss0',
-  'ss1',
-  'ss2',
-  'ss3',
-  'ss4',
-];
+const noOfImages = 15;
 
 export default function Home() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const counter = useRef(0);
 
-  /*useEffect(() => {
-    document.body.style.overflow = 'hidden';
-  }, []);*/
+  useEffect(() => {
+    //document.body.style.overflow = 'hidden';
+  }, []);
 
   const imageLoaded = () => {
     counter.current += 1;
-    if (counter.current >= urls.length && loading) {
-      //setLoading(false);
+    console.log(counter.current);
+    if (counter.current >= noOfImages && loading) {
+      setLoading(false);
       //document.body.style.overflow = 'auto';
     }
   };

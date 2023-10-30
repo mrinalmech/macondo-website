@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import useInterval from '@use-it/interval';
 import clsx from 'clsx';
 import Carousel from 'react-bootstrap/Carousel';
 
@@ -77,11 +76,11 @@ function Monitor() {
     }
   };
 
-  useInterval(() => {
-    if (!dimensions.height) {
+  useEffect(() => {
+    if (allImgsLoaded && !dimensions.height) {
       calculateDimensions();
     }
-  }, 500);
+  }, [allImgsLoaded]);
 
   useEffect(() => {
     window.addEventListener('resize', calculateDimensions);
@@ -118,7 +117,7 @@ function Monitor() {
     <>
       <LoadedImg
         anim
-        refElem={monitorEl}
+        ref={monitorEl}
         src={Monitor1x}
         className={clsx('position-absolute', monitor)}
       />

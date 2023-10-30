@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import useInterval from '@use-it/interval';
+import { useInterval } from 'usehooks-ts';
 
 import { root } from './Loader.module.scss';
 

@@ -33,7 +33,7 @@ const FadeInElement = forwardRef(
 
     if (type == 'div') {
       return (
-        <div className={consolidatedClass} ref={ref} {...other}>
+        <div className={consolidatedClass} {...other}>
           {children}
         </div>
       );
