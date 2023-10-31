@@ -50,7 +50,15 @@ const LoadedImg = forwardRef(({ imgName, alt = '', animType, className }: Props,
     const image = getImage(img);
 
     if (image) {
-      imgContent = <GatsbyImage image={image} objectFit="cover" alt={alt} onLoad={handleLoad} />;
+      imgContent = (
+        <GatsbyImage
+          image={image}
+          objectFit="cover"
+          alt={alt}
+          onLoad={handleLoad}
+          loading="eager"
+        />
+      );
     }
   }
 
