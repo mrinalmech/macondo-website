@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { graphql } from 'gatsby';
 
 import Page from '../../components/layouts/Page';
@@ -10,19 +10,20 @@ import { LoadingContext } from '../../contexts/LoadingContext';
 import Hero from '../../pageComponents/home/Hero';
 import Features from '../../pageComponents/home/Features';
 
-const noOfImages = 12;
-
-export default function Home() {
+export default function Home({ data }) {
   const [loading, setLoading] = useState(true);
-  const counter = useRef(0);
+  const loadingDictionary = useRef({});
 
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-  }, []);
+  const imageLoaded = (name: string) => {
+    loadingDictionary.current = {
+      ...loadingDictionary.current,
+      [name]: true,
+    };
 
-  const imageLoaded = () => {
-    counter.current += 1;
-    if (counter.current >= noOfImages && loading) {
+    const loadedImgs = Object.keys(loadingDictionary.current);
+    const imgsToBeLoaded = data.allFile.nodes;
+
+    if (loadedImgs.length >= imgsToBeLoaded.length && loading) {
       setLoading(false);
       document.body.style.overflow = 'auto';
     }
@@ -65,6 +66,11 @@ export const query = graphql`
         title
         description
         author
+      }
+    }
+    allFile(filter: { sourceInstanceName: { eq: "loadingHeroImages" } }) {
+      nodes {
+        name
       }
     }
   }

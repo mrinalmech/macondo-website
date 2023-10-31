@@ -1,4 +1,7 @@
 import React, { useContext, useEffect, useRef, useState, forwardRef } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import $ from 'jquery';
 
 import FadeInElement from '../FadeInElement';
 
@@ -6,11 +9,13 @@ import { ImageLoadedContext } from '../../../contexts/ImageLoadedContext';
 import { LoadingContext } from '../../../contexts/LoadingContext';
 
 interface Props {
-  src: string;
-  [prop: string]: any;
+  imgName: string;
+  alt?: string;
+  className?: string;
+  animType?: 'normal' | 'delay' | 'doubleDelay';
 }
 
-const LoadedImg = forwardRef(({ refElem, src, alt = '', ...other }: Props, ref) => {
+const LoadedImg = forwardRef(({ imgName, alt = '', animType, className }: Props, ref) => {
   const imgEl = useRef(null);
 
   const allImgsLoaded = !useContext(LoadingContext);
@@ -20,32 +25,58 @@ const LoadedImg = forwardRef(({ refElem, src, alt = '', ...other }: Props, ref) 
 
   const handleLoad = () => {
     if (!loaded) {
-      imageLoaded();
+      imageLoaded(imgName);
     }
   };
 
   useEffect(() => {
-    const img = imgEl.current;
+    const imgContainer = ref ? ref.current : imgEl.current;
+    const gatsbyWrapper = $(imgContainer).children('div')[0];
+    const img = $(gatsbyWrapper).children('img')[0];
+
     if (img && img.complete) {
       setLoaded(true);
-      imageLoaded();
+      imageLoaded(imgName);
     }
-    setLaterSrc(src);
   }, []);
 
-  const [laterSrc, setLaterSrc] = useState(null);
+  const { allFile } = useStaticQuery(query);
+
+  let imgContent = null as React.ReactNode | null;
+
+  const img = allFile.nodes.find(file => file.name === imgName);
+
+  if (img) {
+    const image = getImage(img);
+
+    if (image) {
+      imgContent = <GatsbyImage image={image} objectFit="cover" alt={alt} onLoad={handleLoad} />;
+    }
+  }
 
   return (
     <FadeInElement
-      isImg
       fadeIn={allImgsLoaded}
-      onLoad={handleLoad}
-      ref={ref}
-      src={laterSrc}
-      alt={alt}
-      {...other}
-    />
+      animType={animType}
+      className={className}
+      ref={ref || imgEl}
+    >
+      {imgContent}
+    </FadeInElement>
   );
 });
 
 export default LoadedImg;
+
+const query = graphql`
+  query {
+    allFile(filter: { sourceInstanceName: { eq: "loadingHeroImages" } }) {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(placeholder: NONE)
+        }
+      }
+    }
+  }
+`;

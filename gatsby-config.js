@@ -38,6 +38,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `loadingHeroImages`,
+        path: `${__dirname}/src/pageComponents/home/Hero/images/loading`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-sass',
       options: {
         cssLoaderOptions: {

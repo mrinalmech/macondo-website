@@ -39,7 +39,7 @@ $monitor-img-ratio: calc(
   .monitor {
     bottom: 133px;
     z-index: 6;
-    max-width: $monitor-img-width;
+    width: $monitor-img-width;
     transform: translateY(19%);
     pointer-events: none;
   }
@@ -50,6 +50,12 @@ $monitor-img-ratio: calc(
     height: 445px;
     background: {
       image: url('./images/repeat@1x.webp');
+      image: image-set(
+        url('./images/repeat@1x.webp') 1x,
+        url('./images/repeat@2x.webp') 2x,
+        url('./images/repeat@3x.webp') 3x,
+        url('./images/repeat@4x.webp') 4x
+      );
       repeat: repeat-x;
       position-x: right;
     }
@@ -62,6 +68,7 @@ $monitor-img-ratio: calc(
   .logo {
     z-index: 4;
     top: 105px;
+    width: 357px;
     max-width: 100%;
   }
 

@@ -22,31 +22,19 @@ import {
   textContent,
 } from './Hero.module.scss';
 
-import Monitor1x from './images/monitor@1x.webp';
-import WallShade1x from './images/wallShade@1x.webp';
-import WebsiteBaseL1_1x from './images/websiteBaseL1@1x.webp';
-import WebsiteBaseL2_1x from './images/websiteBaseL2@1x.webp';
-import Logo1x from './images/logospace@1x.webp';
-
-import ScreenshotZero from './images/screenshot-0.webp';
-import ScreenshotOne from './images/screenshot-1.webp';
-import ScreenshotTwo from './images/screenshot-2.webp';
-import ScreenshotThree from './images/screenshot-3.webp';
-import ScreenshotFour from './images/screenshot-4.webp';
-
 function BackgroundImages() {
   return (
     <>
       <LoadedImg
         animType="delay"
-        src={Logo1x}
+        imgName="logo"
         className={clsx('position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ', logo)}
       />
-      <LoadedImg src={WallShade1x} className={clsx('position-absolute', wallShade)} />
-      <LoadedImg src={WebsiteBaseL1_1x} className={clsx('position-absolute', baseL1, left)} />
-      <LoadedImg src={WebsiteBaseL2_1x} className={clsx('position-absolute', baseL2, left)} />
-      <LoadedImg src={WebsiteBaseL1_1x} className={clsx('position-absolute', baseL1, right)} />
-      <LoadedImg src={WebsiteBaseL2_1x} className={clsx('position-absolute', baseL2, right)} />
+      <LoadedImg imgName="wallShade" className={clsx('position-absolute', wallShade)} />
+      <LoadedImg imgName="websiteBaseL1" className={clsx('position-absolute', baseL1, left)} />
+      <LoadedImg imgName="websiteBaseL2" className={clsx('position-absolute', baseL2, left)} />
+      <LoadedImg imgName="websiteBaseL1" className={clsx('position-absolute', baseL1, right)} />
+      <LoadedImg imgName="websiteBaseL2" className={clsx('position-absolute', baseL2, right)} />
     </>
   );
 }
@@ -91,30 +79,30 @@ function Monitor() {
 
   const imgData = [
     {
-      src: ScreenshotTwo,
+      imgName: 'screenshot2',
       alt: 'Red figure standing in front of ruined castle',
     },
     {
-      src: ScreenshotOne,
+      imgName: 'screenshot1',
       alt: 'Green figure standing in front of forest',
     },
     {
-      src: ScreenshotZero,
+      imgName: 'screenshot0',
       alt: 'Three figures in front of a monitor screen',
     },
     {
-      src: ScreenshotThree,
+      imgName: 'screenshot3',
       alt: 'Blue figure standing in front of a flaming figure',
     },
     {
-      src: ScreenshotFour,
+      imgName: 'screenshot4',
       alt: 'Blue figure standing on a platform with light beams emanating from the edge',
     },
   ];
 
   return (
     <>
-      <LoadedImg ref={monitorEl} src={Monitor1x} className={clsx('position-absolute', monitor)} />
+      <LoadedImg ref={monitorEl} imgName="monitor" className={clsx('position-absolute', monitor)} />
       <Carousel
         className={clsx(carousel, 'position-absolute')}
         controls={false}
@@ -128,7 +116,7 @@ function Monitor() {
       >
         {imgData.map((img, index) => (
           <Carousel.Item key={index}>
-            <LoadedImg src={img.src} animType="delay" alt={img.alt} />
+            <LoadedImg imgName={img.imgName} animType="delay" alt={img.alt} />
           </Carousel.Item>
         ))}
       </Carousel>
@@ -149,7 +137,6 @@ function TextContent() {
 
   return (
     <FadeInElement
-      type="div"
       className={clsx('d-flex pl-3 pr-3 flex-column flex-lg-row', textContent)}
       animType="doubleDelay"
       fadeIn={allImgsLoaded}
