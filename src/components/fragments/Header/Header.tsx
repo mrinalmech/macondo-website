@@ -14,35 +14,25 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { StaticImage } from 'gatsby-plugin-image';
 
-import { navBar, navBarFixed, navLink, socialLink } from './Header.module.scss';
-import Link from '../../atoms/Link';
+import { navBar, navBarFixed, navLink } from './Header.module.scss';
 
-interface LinkProps {
+import Link from '../../atoms/Link';
+import SocialLink from '../../atoms/SocialLink';
+
+interface NavLinkProps {
   to: string;
   ariaLabel?: string;
   children: React.ReactNode;
   external?: boolean;
 }
 
-const NavLink = (props: LinkProps) => {
+const NavLink = (props: NavLinkProps) => {
   return (
     <Link className={clsx('nav-link pr-3 pl-3', navLink)} {...props}>
       {props.children}
     </Link>
   );
 };
-
-const SocialLink = (props: LinkProps) => (
-  <a
-    href={props.to}
-    className={clsx(socialLink, 'mr-4 mr-md-3')}
-    aria-label={props?.ariaLabel}
-    target="_blank"
-    rel="noreferrer"
-  >
-    {props.children}
-  </a>
-);
 
 interface Props {
   fixed?: boolean;
@@ -73,30 +63,45 @@ export default function Header({ fixed }: Props) {
             <SocialLink
               to="https://store.steampowered.com/app/1073970/Global_Steel/"
               ariaLabel="Steam"
-            >
-              <FontAwesomeIcon icon={faSteam} size="1x" />
-            </SocialLink>
-            <SocialLink to="https://twitter.com/macondostudios" ariaLabel="Twitter">
-              <FontAwesomeIcon icon={faTwitter} size="1x" />
-            </SocialLink>
-            <SocialLink to="https://www.facebook.com/macondostudios" ariaLabel="Facebook">
-              <FontAwesomeIcon icon={faFacebookF} size="1x" />
-            </SocialLink>
-            <SocialLink to="https://www.instagram.com/globalsteelgame" ariaLabel="Instagram">
-              <FontAwesomeIcon icon={faInstagram} size="1x" />
-            </SocialLink>
+              type="small"
+              icon={faSteam}
+            />
+            <SocialLink
+              to="https://twitter.com/macondostudios"
+              ariaLabel="Twitter"
+              type="small"
+              icon={faTwitter}
+            />
+            <SocialLink
+              to="https://www.facebook.com/macondostudios"
+              ariaLabel="Facebook"
+              type="small"
+              icon={faFacebookF}
+            />
+            <SocialLink
+              to="https://www.instagram.com/globalsteelgame"
+              ariaLabel="Instagram"
+              type="small"
+              icon={faInstagram}
+            />
             <SocialLink
               to="https://www.youtube.com/channel/UCfYKziK0Ll8UZ9AiMTZT9DA"
               ariaLabel="Youtube"
-            >
-              <FontAwesomeIcon icon={faYoutube} size="1x" />
-            </SocialLink>
-            <SocialLink to="https://discord.gg/qVBvuy7Ny3" ariaLabel="Discord">
-              <FontAwesomeIcon icon={faDiscord} size="1x" />
-            </SocialLink>
-            <SocialLink to="https://www.twitch.tv/macondogames" ariaLabel="Twitch">
-              <FontAwesomeIcon icon={faTwitch} size="1x" />
-            </SocialLink>
+              type="small"
+              icon={faYoutube}
+            />
+            <SocialLink
+              to="https://discord.gg/qVBvuy7Ny3"
+              ariaLabel="Discord"
+              type="small"
+              icon={faDiscord}
+            />
+            <SocialLink
+              to="https://www.twitch.tv/macondogames"
+              ariaLabel="Twitch"
+              type="small"
+              icon={faTwitch}
+            />
           </div>
         </Nav>
       </Navbar.Collapse>

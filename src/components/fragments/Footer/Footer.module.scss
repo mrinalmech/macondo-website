@@ -1,32 +1,5 @@
 @import 'src/styles/colors.scss';
-@import 'src/styles/breakpoints.scss';
 
 .root {
   background: $black !important;
-}
-
-.socialLink {
-  color: $dark-blue;
-
-  border: 1px solid $dark-blue;
-  height: 60px;
-  width:60px;
-
-  &:hover{
-    background: rgba($dark-blue,0.9);
-    color: $white;
-  }
-
-  &:active{
-    background: $dark-blue;
-  }
-
-  @include respond-below(sm) {
-    height: 38px;
-    width:38px;
-
-    >svg{
-      font-size: 1.3rem;
-    }
-  }
 }

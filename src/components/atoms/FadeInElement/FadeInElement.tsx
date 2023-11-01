@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { forwardRef } from 'react';
+import React, { forwardRef, memo } from 'react';
 
 import {
   animImageInitial,
@@ -16,10 +16,8 @@ type Props = {
   animType?: 'normal' | 'delay' | 'doubleDelay';
 };
 
-const InputText = props => <input {...props} />;
-
-const FadeInElement = forwardRef(
-  ({ fadeIn, className, children, animType = 'normal' }: Props, ref) => {
+const FadeInElement = memo(
+  forwardRef(({ fadeIn, className, children, animType = 'normal' }: Props, ref) => {
     const fadeClass = clsx({
       [fadeAnim]: animType === 'normal',
       [fadeAnimDelay]: animType === 'delay',
@@ -35,7 +33,7 @@ const FadeInElement = forwardRef(
         {children}
       </div>
     );
-  },
+  }),
 );
 
 export default FadeInElement;

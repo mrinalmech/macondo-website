@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState, forwardRef } from 'react';
+import React, { useContext, useEffect, useRef, forwardRef, memo } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import $ from 'jquery';
@@ -15,61 +15,58 @@ interface Props {
   animType?: 'normal' | 'delay' | 'doubleDelay';
 }
 
-const LoadedImg = forwardRef(({ imgName, alt = '', animType, className }: Props, ref) => {
-  const imgEl = useRef(null);
+const LoadedImg = memo(
+  forwardRef(({ imgName, alt = '', animType, className }: Props, ref) => {
+    const imgEl = useRef(null);
 
-  const allImgsLoaded = !useContext(LoadingContext);
-  const imageLoaded = useContext(ImageLoadedContext);
+    const allImgsLoaded = !useContext(LoadingContext);
+    const imageLoaded = useContext(ImageLoadedContext);
 
-  const [loaded, setLoaded] = useState(false);
-
-  const handleLoad = () => {
-    if (!loaded) {
+    const handleLoad = () => {
       imageLoaded(imgName);
+    };
+
+    useEffect(() => {
+      const imgContainer = ref ? ref.current : imgEl.current;
+      const gatsbyWrapper = $(imgContainer).children('div')[0];
+      const img = $(gatsbyWrapper).children('img')[0];
+
+      if (img && img.complete) {
+        imageLoaded(imgName);
+      }
+    }, []);
+
+    const { monitorImg, otherImgs } = useStaticQuery(query);
+    const allImgs = monitorImg.nodes.concat(otherImgs.nodes);
+
+    const img = allImgs.find(file => file.name === imgName);
+
+    if (img) {
+      const image = getImage(img);
+
+      if (image) {
+        return (
+          <FadeInElement
+            fadeIn={allImgsLoaded}
+            animType={animType}
+            className={className}
+            ref={ref || imgEl}
+          >
+            <GatsbyImage
+              image={image}
+              objectFit="cover"
+              alt={alt}
+              onLoad={handleLoad}
+              loading="eager"
+            />
+          </FadeInElement>
+        );
+      }
     }
-  };
 
-  useEffect(() => {
-    const imgContainer = ref ? ref.current : imgEl.current;
-    const gatsbyWrapper = $(imgContainer).children('div')[0];
-    const img = $(gatsbyWrapper).children('img')[0];
-
-    if (img && img.complete) {
-      setLoaded(true);
-      imageLoaded(imgName);
-    }
-  }, []);
-
-  const { monitorImg, otherImgs } = useStaticQuery(query);
-  const allImgs = monitorImg.nodes.concat(otherImgs.nodes);
-
-  const img = allImgs.find(file => file.name === imgName);
-
-  if (img) {
-    const image = getImage(img);
-
-    if (image) {
-      return (
-        <FadeInElement
-          fadeIn={allImgsLoaded}
-          animType={animType}
-          className={className}
-          ref={ref || imgEl}
-        >
-          <GatsbyImage
-            image={image}
-            objectFit="cover"
-            alt={alt}
-            onLoad={handleLoad}
-            loading="eager"
-          />
-        </FadeInElement>
-      );
-    }
-  }
-
-  return null;
-});
+    return null;
+  }),
+);
 
 export default LoadedImg;
 

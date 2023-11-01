@@ -1,0 +1,48 @@
+@import 'src/styles/colors.scss';
+@import 'src/styles/breakpoints.scss';
+
+.socialLinkBig {
+  color: $dark-blue;
+
+  border: 1px solid $dark-blue;
+  height: 60px;
+  width: 60px;
+
+  &:hover {
+    background: rgba($dark-blue, 0.9);
+    color: $white;
+  }
+
+  &:active {
+    background: $dark-blue;
+  }
+
+  @include respond-below(sm) {
+    height: 38px;
+    width: 38px;
+
+    > svg {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.socialLinkSmall {
+  color: $white;
+
+  &:hover {
+    color: rgba($dark-blue, 0.9);
+  }
+
+  &:active {
+    color: $dark-blue;
+  }
+
+  &:last-of-type {
+    margin-right: 0 !important;
+  }
+
+  & > svg {
+    font-size: 1.3rem;
+  }
+}

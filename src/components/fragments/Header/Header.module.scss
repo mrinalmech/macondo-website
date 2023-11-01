@@ -8,12 +8,12 @@
   width: 100%;
 }
 
-.navBarFixed{
-  position:absolute;
-  background: transparent!important;
+.navBarFixed {
+  position: absolute;
+  background: transparent !important;
   @include respond-below(sm) {
     background: $black !important;
-    position:relative;
+    position: relative;
   }
 }
 
@@ -21,30 +21,10 @@
   color: $white !important;
 
   &:hover {
-    color: rgba($dark-blue,0.9) !important;
+    color: rgba($dark-blue, 0.9) !important;
   }
 
   &:active {
     color: $dark-blue !important;
-  }
-}
-
-.socialLink {
-  color: $white;
-
-  &:hover {
-    color: rgba($dark-blue,0.9);
-  }
-
-  &:active {
-    color: $dark-blue;
-  }
-
-  &:last-of-type {
-    margin-right: 0 !important;
-  }
-
-  & > svg {
-    font-size: 1.3rem;
   }
 }
