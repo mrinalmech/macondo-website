@@ -39,7 +39,6 @@ $monitor-img-ratio: calc(
   .monitor {
     bottom: 133px;
     z-index: 6;
-    width: $monitor-img-width;
     transform: translateY(19%);
     pointer-events: none;
   }
@@ -192,7 +191,13 @@ $monitor-img-ratio: calc(
 
     .monitor {
       width: 480vw;
+      height: calc(480vw * $monitor-img-ratio);
       bottom: 190px;
+
+      & > div {
+        width: 100% !important;
+        height: 100% !important;
+      }
     }
 
     .logo {

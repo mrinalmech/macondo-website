@@ -15,7 +15,6 @@ export default function Home({ data }) {
   const loadingDictionary = useRef({});
 
   const imageLoaded = (name: string) => {
-    console.log('Img loaded ' + name);
     loadingDictionary.current = {
       ...loadingDictionary.current,
       [name]: true,

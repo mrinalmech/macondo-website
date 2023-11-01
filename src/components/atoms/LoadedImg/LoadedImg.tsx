@@ -40,45 +40,54 @@ const LoadedImg = forwardRef(({ imgName, alt = '', animType, className }: Props,
     }
   }, []);
 
-  const { allFile } = useStaticQuery(query);
+  const { monitorImg, otherImgs } = useStaticQuery(query);
+  const allImgs = monitorImg.nodes.concat(otherImgs.nodes);
 
-  let imgContent = null as React.ReactNode | null;
-
-  const img = allFile.nodes.find(file => file.name === imgName);
+  const img = allImgs.find(file => file.name === imgName);
 
   if (img) {
     const image = getImage(img);
 
     if (image) {
-      imgContent = (
-        <GatsbyImage
-          image={image}
-          objectFit="cover"
-          alt={alt}
-          onLoad={handleLoad}
-          loading="eager"
-        />
+      return (
+        <FadeInElement
+          fadeIn={allImgsLoaded}
+          animType={animType}
+          className={className}
+          ref={ref || imgEl}
+        >
+          <GatsbyImage
+            image={image}
+            objectFit="cover"
+            alt={alt}
+            onLoad={handleLoad}
+            loading="eager"
+          />
+        </FadeInElement>
       );
     }
   }
 
-  return (
-    <FadeInElement
-      fadeIn={allImgsLoaded}
-      animType={animType}
-      className={className}
-      ref={ref || imgEl}
-    >
-      {imgContent}
-    </FadeInElement>
-  );
+  return null;
 });
 
 export default LoadedImg;
 
 const query = graphql`
   query {
-    allFile(filter: { sourceInstanceName: { eq: "loadingHeroImages" } }) {
+    monitorImg: allFile(
+      filter: { sourceInstanceName: { eq: "loadingHeroImages" }, name: { eq: "monitor" } }
+    ) {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(placeholder: NONE, layout: FIXED)
+        }
+      }
+    }
+    otherImgs: allFile(
+      filter: { sourceInstanceName: { eq: "loadingHeroImages" }, name: { ne: "monitor" } }
+    ) {
       nodes {
         name
         childImageSharp {
