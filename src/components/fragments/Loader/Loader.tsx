@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useInterval } from 'usehooks-ts';
 
-import { root } from './Loader.module.scss';
+import { root, transparent } from './Loader.module.scss';
 
-export default function Loader() {
+interface Props {
+  appLoaded: boolean;
+}
+
+export const LOADING_SCREEN_DURATION = 0.5;
+
+export default function Loader({ appLoaded }: Props) {
   const [dots, setDots] = useState('.');
 
   const updateDots = () => {
@@ -17,7 +23,12 @@ export default function Loader() {
   }, 500);
 
   return (
-    <div className={clsx(root, 'd-flex align-items-center justify-content-center')}>
+    <div
+      className={clsx(root, 'd-flex align-items-center justify-content-center', {
+        [transparent]: appLoaded,
+      })}
+      style={{ transitionDuration: `${LOADING_SCREEN_DURATION}s` }}
+    >
       <h2 className="m-0">Loading{dots}</h2>
     </div>
   );

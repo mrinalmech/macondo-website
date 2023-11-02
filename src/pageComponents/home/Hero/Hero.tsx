@@ -5,7 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import FadeInElement from '../../../components/atoms/FadeInElement';
 import LoadedImg from '../../../components/atoms/LoadedImg';
 
-import { LoadingContext } from '../../../contexts/LoadingContext';
+import { AppReadyContext } from '../../../contexts/AppReadyContext';
 
 import {
   root,
@@ -40,7 +40,7 @@ function BackgroundImages() {
 }
 
 function Monitor() {
-  const allImgsLoaded = !useContext(LoadingContext);
+  const appReady = useContext(AppReadyContext);
 
   const monitorEl = useRef(null);
 
@@ -64,10 +64,10 @@ function Monitor() {
   };
 
   useEffect(() => {
-    if (allImgsLoaded && !dimensions.height) {
+    if (appReady && !dimensions.height) {
       calculateDimensions();
     }
-  }, [allImgsLoaded]);
+  }, [appReady]);
 
   useEffect(() => {
     window.addEventListener('resize', calculateDimensions);
@@ -125,20 +125,14 @@ function Monitor() {
           </Carousel.Item>
         ))}
       </Carousel>
-      <FadeInElement
-        className={clsx('position-absolute', extension, left)}
-        fadeIn={allImgsLoaded}
-      />
-      <FadeInElement
-        className={clsx('position-absolute', extension, right)}
-        fadeIn={allImgsLoaded}
-      />
+      <FadeInElement className={clsx('position-absolute', extension, left)} fadeIn={appReady} />
+      <FadeInElement className={clsx('position-absolute', extension, right)} fadeIn={appReady} />
     </>
   );
 }
 
 function TextContent() {
-  const allImgsLoaded = !useContext(LoadingContext);
+  const allImgsLoaded = useContext(AppReadyContext);
 
   return (
     <FadeInElement

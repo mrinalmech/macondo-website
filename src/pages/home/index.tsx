@@ -2,43 +2,54 @@ import React, { useState, useRef } from 'react';
 import { graphql } from 'gatsby';
 
 import Page from '../../components/layouts/Page';
-import Loader from '../../components/fragments/Loader';
+import Loader, { LOADING_SCREEN_DURATION } from '../../components/fragments/Loader';
 
 import { ImageLoadedContext } from '../../contexts/ImageLoadedContext';
-import { LoadingContext } from '../../contexts/LoadingContext';
+import { AppReadyContext } from '../../contexts/AppReadyContext';
 
 import Hero from '../../pageComponents/home/Hero';
 import Features from '../../pageComponents/home/Features';
 
+type AppStatus = 'loadingStart' | 'loadingFinish' | 'ready';
+
 export default function Home({ data }) {
-  const [loading, setLoading] = useState(true);
-  const loadingDictionary = useRef({});
+  const [appStatus, setAppStatus] = useState('loadingStart' as AppStatus);
+
+  const appLoading = appStatus === 'loadingStart';
+  const appLoaded = appStatus != 'loadingStart';
+  const appReady = appStatus === 'ready';
+
+  const loadedImgDictionary = useRef({});
 
   const imageLoaded = (name: string) => {
-    loadingDictionary.current = {
-      ...loadingDictionary.current,
+    loadedImgDictionary.current = {
+      ...loadedImgDictionary.current,
       [name]: true,
     };
 
-    const loadedImgs = Object.keys(loadingDictionary.current);
+    const loadedImgs = Object.keys(loadedImgDictionary.current);
     const imgsToBeLoaded = data.allFile.nodes;
 
-    if (loadedImgs.length >= imgsToBeLoaded.length && loading) {
-      setLoading(false);
-      document.body.style.overflow = 'auto';
+    if (loadedImgs.length >= imgsToBeLoaded.length && appLoading) {
+      setAppStatus('loadingFinish');
+
+      setInterval(() => {
+        setAppStatus('ready');
+        document.body.style.overflow = 'auto';
+      }, LOADING_SCREEN_DURATION * 1000);
     }
   };
 
   return (
-    <LoadingContext.Provider value={loading}>
+    <AppReadyContext.Provider value={appReady}>
       <ImageLoadedContext.Provider value={imageLoaded}>
-        {loading && <Loader />}
+        {!appReady && <Loader appLoaded={appLoaded} />}
         <Page fixedHeader>
           <Hero />
           <Features />
         </Page>
       </ImageLoadedContext.Provider>
-    </LoadingContext.Provider>
+    </AppReadyContext.Provider>
   );
 }
 

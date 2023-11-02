@@ -1,1 +1,1 @@
-export { default } from './Loader';
+export { default, LOADING_SCREEN_DURATION } from './Loader';

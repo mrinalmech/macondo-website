@@ -6,7 +6,7 @@ import $ from 'jquery';
 import FadeInElement from '../FadeInElement';
 
 import { ImageLoadedContext } from '../../../contexts/ImageLoadedContext';
-import { LoadingContext } from '../../../contexts/LoadingContext';
+import { AppReadyContext } from '../../../contexts/AppReadyContext';
 
 interface Props {
   imgName: string;
@@ -19,7 +19,7 @@ const LoadedImg = memo(
   forwardRef(({ imgName, alt = '', animType, className }: Props, ref) => {
     const imgEl = useRef(null);
 
-    const allImgsLoaded = !useContext(LoadingContext);
+    const appReady = useContext(AppReadyContext);
     const imageLoaded = useContext(ImageLoadedContext);
 
     const handleLoad = () => {
@@ -47,7 +47,7 @@ const LoadedImg = memo(
       if (image) {
         return (
           <FadeInElement
-            fadeIn={allImgsLoaded}
+            fadeIn={appReady}
             animType={animType}
             className={className}
             ref={ref || imgEl}
