@@ -26,7 +26,7 @@ function BackgroundImages() {
   return (
     <>
       <LoadedImg
-        animType="delay"
+        animType="doubleDelay"
         imgName="logo"
         className={clsx('position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ', logo)}
       />
@@ -102,7 +102,12 @@ function Monitor() {
 
   return (
     <>
-      <LoadedImg ref={monitorEl} imgName="monitor" className={clsx('position-absolute', monitor)} />
+      <LoadedImg
+        ref={monitorEl}
+        imgName="monitor"
+        className={clsx('position-absolute', monitor)}
+        animType="delay"
+      />
       <Carousel
         className={clsx(carousel, 'position-absolute')}
         controls={false}
@@ -116,7 +121,7 @@ function Monitor() {
       >
         {imgData.map((img, index) => (
           <Carousel.Item key={index}>
-            <LoadedImg imgName={img.imgName} animType="delay" alt={img.alt} />
+            <LoadedImg imgName={img.imgName} animType="doubleDelay" alt={img.alt} />
           </Carousel.Item>
         ))}
       </Carousel>

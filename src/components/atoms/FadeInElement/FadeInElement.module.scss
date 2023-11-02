@@ -1,22 +1,21 @@
-$duration: 0.5s;
+$duration: 1s;
 
-.animImageInitial{
-    opacity:0;
+.animImageInitial {
+  opacity: 0;
 }
 
-.animImageFinal{
-    opacity: 1;
+.animImageFinal {
+  opacity: 1;
 }
 
 .fadeAnim {
-    transition: opacity $duration linear;
+  transition: opacity $duration linear;
 }
 
 .fadeAnimDelay {
-    transition: opacity $duration linear $duration;
+  transition: opacity $duration linear $duration;
 }
 
 .fadeAnimDoubleDelay {
-    transition: opacity $duration linear $duration*2;
+  transition: opacity $duration linear $duration * 2;
 }
-
