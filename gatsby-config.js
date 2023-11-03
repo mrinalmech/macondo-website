@@ -30,6 +30,7 @@ module.exports = {
         icon: `src/images/icon.png`,
       },
     },
+    'gatsby-plugin-offline',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
