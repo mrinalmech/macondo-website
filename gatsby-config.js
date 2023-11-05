@@ -30,6 +30,11 @@ module.exports = {
         icon: `src/images/icon.png`,
         icons: [
           {
+            src: 'src/images/icon.png',
+            sizes: '512X512',
+            type: 'image/png',
+          },
+          {
             src: 'src/images/maskable-icon.png',
             sizes: '192x192',
             type: 'image/png',
