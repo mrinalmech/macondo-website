@@ -28,6 +28,14 @@ module.exports = {
         theme_color: `#6b37bf`,
         display: `standalone`,
         icon: `src/images/icon.png`,
+        icons: [
+          {
+            src: 'src/images/maskable-icon.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'any maskable',
+          },
+        ],
       },
     },
     'gatsby-plugin-offline',
