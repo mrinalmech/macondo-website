@@ -16,11 +16,13 @@ describe('FadeInElement', () => {
     render(<Component fadeIn={false} />);
 
     expect(screen.getByText(/TestContent/i)).toBeInTheDocument();
+    expect(screen.getByText(/TestContent/i)).toHaveClass('animInitial');
   });
 
   test('Expect FadeInElement to be presented when visible', () => {
     render(<Component fadeIn />);
 
     expect(screen.getByText(/TestContent/i)).toBeInTheDocument();
+    expect(screen.getByText(/TestContent/i)).toHaveClass('animFinal');
   });
 });

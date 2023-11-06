@@ -22,13 +22,13 @@ describe('Link', () => {
     expect(screen.getByRole('link', { name: 'Test' })).toBeInTheDocument();
   });
 
-  test('Expect Link to point to correct destination', () => {
+  test('Expect internal link to point to correct destination', () => {
     render(<Component />);
 
     expect(screen.getByRole('link', { name: 'Test' })).toHaveAttribute('href', '/test-url');
   });
 
-  test('Expect external Link to point to correct destination', () => {
+  test('Expect external link to point to correct destination', () => {
     render(<Component external={true} />);
 
     expect(screen.getByRole('link', { name: 'Test' })).toHaveAttribute('href', '/test-url');
