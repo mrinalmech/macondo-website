@@ -12,7 +12,7 @@ describe('Link', () => {
     expect(screen.getByRole('link', { name: 'Test' })).toBeInTheDocument();
   });
 
-  test('Expect Link to be point to correct destination', () => {
+  test('Expect Link to point to correct destination', () => {
     render(<Component />);
 
     expect(screen.getByRole('link', { name: 'Test' })).toHaveAttribute('href', '/test-url');

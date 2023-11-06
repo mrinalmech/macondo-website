@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { graphql } from 'gatsby';
+import { FileSystemNode } from 'gatsby-source-filesystem';
 
 import Page from '../../components/layouts/Page';
 import SEO from '../../components/atoms/Seo';
@@ -13,7 +14,15 @@ import { AppReadyContext } from '../../contexts/AppReadyContext';
 
 type AppStatus = 'loadingStart' | 'loadingFinish' | 'ready';
 
-export default function Home({ data }) {
+interface Props {
+  data: {
+    allFile: {
+      nodes: FileSystemNode[];
+    };
+  };
+}
+
+export default function Home({ data }: Props) {
   const [appStatus, setAppStatus] = useState('loadingStart' as AppStatus);
 
   const appLoading = appStatus === 'loadingStart';
