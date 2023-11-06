@@ -3,7 +3,7 @@ import { Link as GatsbyLink } from 'gatsby';
 
 interface Props {
   to: string;
-  children: React.Node;
+  children: React.ReactNode;
   activeClassName?: string;
   partiallyActive?: boolean;
   className?: string;

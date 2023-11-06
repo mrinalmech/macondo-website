@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import React, { forwardRef, memo } from 'react';
 
 import {
-  animImageInitial,
-  animImageFinal,
+  animInitial,
+  animFinal,
   fadeAnim,
   fadeAnimDelay,
   fadeAnimDoubleDelay,
@@ -24,7 +24,7 @@ const FadeInElement = memo(
       [fadeAnimDoubleDelay]: animType === 'doubleDelay',
     });
 
-    const animClass = fadeIn ? clsx(animImageFinal, fadeClass) : animImageInitial;
+    const animClass = fadeIn ? clsx(animFinal, fadeClass) : animInitial;
 
     const consolidatedClass = clsx(className, animClass);
 
