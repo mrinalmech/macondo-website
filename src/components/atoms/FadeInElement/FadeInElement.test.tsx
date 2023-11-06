@@ -3,24 +3,16 @@ import { render, screen } from '@testing-library/react';
 
 import FadeInElement from './FadeInElement';
 
-interface Props {
-  fadeIn: boolean;
-}
-
 describe('FadeInElement', () => {
-  const Component = ({ fadeIn }: Props) => (
-    <FadeInElement fadeIn={fadeIn}>TestContent</FadeInElement>
-  );
-
   test('Expect FadeInElement to be presented when invisible', () => {
-    render(<Component fadeIn={false} />);
+    render(<FadeInElement fadeIn={false}>TestContent</FadeInElement>);
 
     expect(screen.getByText(/TestContent/i)).toBeInTheDocument();
     expect(screen.getByText(/TestContent/i)).toHaveClass('animInitial');
   });
 
   test('Expect FadeInElement to be presented when visible', () => {
-    render(<Component fadeIn />);
+    render(<FadeInElement fadeIn>TestContent</FadeInElement>);
 
     expect(screen.getByText(/TestContent/i)).toBeInTheDocument();
     expect(screen.getByText(/TestContent/i)).toHaveClass('animFinal');

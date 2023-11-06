@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import * as Gatsby from 'gatsby';
 
-import SEO, { Props } from './Seo';
+import SEO from './Seo';
 
 const useStaticQuery = jest.spyOn(Gatsby, `useStaticQuery`);
 const mockUseStaticQuery = {
@@ -35,10 +35,8 @@ afterEach(() => {
 });
 
 describe('SEO', () => {
-  const Component = ({ children, ...props }: Props) => <SEO {...props}>{children}</SEO>;
-
   test('Expect SEO to be presented with defaults', () => {
-    render(<Component />);
+    render(<SEO />);
 
     expect(screen.getByText(/TestDefaultTitle/i)).toBeInTheDocument();
     expect(getMeta('description')).toEqual('TestDefaultDescription');
@@ -53,7 +51,7 @@ describe('SEO', () => {
   });
 
   test('Expect SEO to be presented with overriden values', () => {
-    render(<Component title="TestTitle" description="TestDescription" pathname="/test-path" />);
+    render(<SEO title="TestTitle" description="TestDescription" pathname="/test-path" />);
 
     expect(screen.getByText(/TestTitle/i)).toBeInTheDocument();
     expect(getMeta('description')).toEqual('TestDescription');
@@ -66,9 +64,9 @@ describe('SEO', () => {
 
   test('Expect SEO to be presented with optional meta tags', () => {
     render(
-      <Component>
+      <SEO>
         <meta name="test-meta" content="test-content" />
-      </Component>,
+      </SEO>,
     );
 
     expect(getMeta('test-meta')).toEqual('test-content');

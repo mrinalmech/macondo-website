@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSiteMetadata } from '../../../hooks/useSiteMetadata';
 
-export interface Props {
+interface Props {
   title?: string;
   description?: string;
   pathname?: string;

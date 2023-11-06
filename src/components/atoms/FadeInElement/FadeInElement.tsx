@@ -9,12 +9,12 @@ import {
   fadeAnimDoubleDelay,
 } from './FadeInElement.module.scss';
 
-type Props = {
+interface Props {
   fadeIn: boolean;
   className?: string;
   children?: React.ReactNode;
   animType?: 'normal' | 'delay' | 'doubleDelay';
-};
+}
 
 const FadeInElement = memo(
   forwardRef(({ fadeIn, className, children, animType = 'normal' }: Props, ref) => {
