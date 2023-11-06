@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link as GatsbyLink } from 'gatsby';
 
-interface Props {
+export interface Props {
   to: string;
   children: React.ReactNode;
   activeClassName?: string;

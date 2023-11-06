@@ -3,11 +3,23 @@ import { render, screen } from '@testing-library/react';
 
 import FadeInElement from './FadeInElement';
 
-describe('FadeInElement', () => {
-  const Component = () => <FadeInElement fadeIn>TestContent</FadeInElement>;
+interface Props {
+  fadeIn: boolean;
+}
 
-  test('Expect FadeInElement to be presented', () => {
-    render(<Component />);
+describe('FadeInElement', () => {
+  const Component = ({ fadeIn }: Props) => (
+    <FadeInElement fadeIn={fadeIn}>TestContent</FadeInElement>
+  );
+
+  test('Expect FadeInElement to be presented when invisible', () => {
+    render(<Component fadeIn={false} />);
+
+    expect(screen.getByText(/TestContent/i)).toBeInTheDocument();
+  });
+
+  test('Expect FadeInElement to be presented when visible', () => {
+    render(<Component fadeIn />);
 
     expect(screen.getByText(/TestContent/i)).toBeInTheDocument();
   });

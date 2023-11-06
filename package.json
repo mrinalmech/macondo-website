@@ -15,7 +15,9 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "jest"
+    "test:unit": "jest --passWithNoTests",
+    "test:unit:coverage": "npm run test:unit -- --coverage",
+    "test:unit:watch": "npm run test:unit -- --watch"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
