@@ -10,6 +10,7 @@ import { root, featureRow } from './Features.module.scss';
 
 interface FeatureProps {
   imgName: string;
+  imgAlt?: string;
   imgOnLeft?: boolean;
   heading: string;
   descriptionOne: string;
@@ -18,6 +19,7 @@ interface FeatureProps {
 
 function Feature({
   imgName,
+  imgAlt = '',
   imgOnLeft = true,
   heading,
   descriptionOne,
@@ -33,7 +35,7 @@ function Feature({
     const image = getImage(img);
 
     if (image) {
-      imgContent = <GatsbyImage image={image} alt="" objectFit="cover" className="mw-100" />;
+      imgContent = <GatsbyImage image={image} alt={imgAlt} objectFit="cover" className="mw-100" />;
     }
   }
 
@@ -75,6 +77,7 @@ export default function Features() {
       <Container className="text-center">
         <Feature
           imgName="players"
+          imgAlt="Players"
           heading="THE GOOD"
           descriptionOne="Shooting and blasting your way through hordes of enemies in an armored suit ...can be
               quite fun."
@@ -82,6 +85,7 @@ export default function Features() {
         />
         <Feature
           imgName="enemies"
+          imgAlt="Enemies"
           imgOnLeft={false}
           heading="THE BAD"
           descriptionOne="The world out there is crawling with evil and you've signed up to take care of it."
@@ -89,6 +93,7 @@ export default function Features() {
         />
         <Feature
           imgName="upgrades"
+          imgAlt="Upgrades"
           heading="...AND, THE UPGRADES"
           descriptionOne="Fighting your way through evil is not only fun, but also incredibly rewarding."
           descriptionTwo="With each kill, earn points and customize your equipment to switch up gameplay."

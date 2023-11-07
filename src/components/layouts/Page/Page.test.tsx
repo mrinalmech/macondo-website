@@ -3,8 +3,8 @@ import { render, screen } from '@testing-library/react';
 
 import Page from './Page';
 
-describe('Footer', () => {
-  test('Expect page to be presented', () => {
+describe('Page', () => {
+  test('Expect Page to be presented', () => {
     const currentYear = new Date().getFullYear();
 
     render(<Page>Test content</Page>);

@@ -28,13 +28,34 @@ function BackgroundImages() {
       <LoadedImg
         animType="doubleDelay"
         imgName="logo"
+        alt="Logo"
         className={clsx('position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ', logo)}
       />
-      <LoadedImg imgName="wallShade" className={clsx('position-absolute', wallShade)} />
-      <LoadedImg imgName="websiteBaseL1" className={clsx('position-absolute', baseL1, left)} />
-      <LoadedImg imgName="websiteBaseL2" className={clsx('position-absolute', baseL2, left)} />
-      <LoadedImg imgName="websiteBaseL1" className={clsx('position-absolute', baseL1, right)} />
-      <LoadedImg imgName="websiteBaseL2" className={clsx('position-absolute', baseL2, right)} />
+      <LoadedImg
+        imgName="wallShade"
+        alt="WallShade"
+        className={clsx('position-absolute', wallShade)}
+      />
+      <LoadedImg
+        imgName="websiteBaseL1"
+        alt="WebsiteBaseL1Left"
+        className={clsx('position-absolute', baseL1, left)}
+      />
+      <LoadedImg
+        imgName="websiteBaseL2"
+        alt="WebsiteBaseL2Left"
+        className={clsx('position-absolute', baseL2, left)}
+      />
+      <LoadedImg
+        imgName="websiteBaseL1"
+        alt="WebsiteBaseL1Right"
+        className={clsx('position-absolute', baseL1, right)}
+      />
+      <LoadedImg
+        imgName="websiteBaseL2"
+        alt="WebsiteBaseL2Right"
+        className={clsx('position-absolute', baseL2, right)}
+      />
     </>
   );
 }
@@ -105,6 +126,7 @@ function Monitor() {
       <LoadedImg
         ref={monitorEl}
         imgName="monitor"
+        alt="Monitor"
         className={clsx('position-absolute', monitor)}
         animType="delay"
       />
