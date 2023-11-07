@@ -26,4 +26,13 @@ describe('SocialLink', () => {
 
     expect(screen.getByRole('link', { name: 'test-aria-label' })).toHaveClass('socialLinkBig');
   });
+
+  test('Expect link to point to correct url', () => {
+    render(<SocialLink to="/test-url" icon={faFacebookF} type="big" ariaLabel="test-aria-label" />);
+
+    expect(screen.getByRole('link', { name: 'test-aria-label' })).toHaveAttribute(
+      'href',
+      '/test-url',
+    );
+  });
 });
