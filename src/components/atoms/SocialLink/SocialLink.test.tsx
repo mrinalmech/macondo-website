@@ -10,7 +10,7 @@ describe('SocialLink', () => {
       <SocialLink to="/test-url" icon={faFacebookF} type="small" ariaLabel="test-aria-label" />,
     );
 
-    expect(screen.getByRole('link', { name: 'test-aria-label' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /test-aria-label/i })).toBeInTheDocument();
   });
 
   test('Expect correct styles if type is small', () => {
@@ -18,19 +18,19 @@ describe('SocialLink', () => {
       <SocialLink to="/test-url" icon={faFacebookF} type="small" ariaLabel="test-aria-label" />,
     );
 
-    expect(screen.getByRole('link', { name: 'test-aria-label' })).toHaveClass('socialLinkSmall');
+    expect(screen.getByRole('link', { name: /test-aria-label/i })).toHaveClass('socialLinkSmall');
   });
 
   test('Expect correct styles if type is big', () => {
     render(<SocialLink to="/test-url" icon={faFacebookF} type="big" ariaLabel="test-aria-label" />);
 
-    expect(screen.getByRole('link', { name: 'test-aria-label' })).toHaveClass('socialLinkBig');
+    expect(screen.getByRole('link', { name: /test-aria-label/i })).toHaveClass('socialLinkBig');
   });
 
   test('Expect link to point to correct url', () => {
     render(<SocialLink to="/test-url" icon={faFacebookF} type="big" ariaLabel="test-aria-label" />);
 
-    expect(screen.getByRole('link', { name: 'test-aria-label' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /test-aria-label/i })).toHaveAttribute(
       'href',
       '/test-url',
     );

@@ -54,7 +54,7 @@ export default function Header({ fixed }: Props) {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto align-items-end align-items-md-center">
           <NavLink to="https://blog.macondogames.com/">Blog</NavLink>
-          <NavLink to="/press/" external>
+          <NavLink to="/press" external>
             Press
           </NavLink>
           <NavLink to="mailto:info@macondogames.com">Contact</NavLink>

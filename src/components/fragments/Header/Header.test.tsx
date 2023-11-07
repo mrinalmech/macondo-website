@@ -1,15 +1,27 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import Footer from './Footer';
+import Header from './Header';
 
-describe('Footer', () => {
-  test('Expect footer to be presented', () => {
-    const currentYear = new Date().getFullYear();
+describe('Header', () => {
+  test('Expect header to be presented', () => {
+    render(<Header />);
 
-    render(<Footer />);
-
-    expect(screen.getByText(/Keep up with us!/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/Company Logo/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/Company Logo/i).parentElement).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: /Blog/i })).toHaveAttribute(
+      'href',
+      'https://blog.macondogames.com/',
+    );
+    expect(screen.getByRole('link', { name: /Press/i })).toHaveAttribute('href', '/press');
+    expect(screen.getByRole('link', { name: /Contact/i })).toHaveAttribute(
+      'href',
+      'mailto:info@macondogames.com',
+    );
+    expect(screen.getByRole('link', { name: /Steam/i })).toHaveAttribute(
+      'href',
+      'https://store.steampowered.com/app/1073970/Global_Steel/',
+    );
     expect(screen.getByRole('link', { name: /Twitter/i })).toHaveAttribute(
       'href',
       'https://twitter.com/macondostudios',
@@ -34,8 +46,5 @@ describe('Footer', () => {
       'href',
       'https://www.twitch.tv/macondogames',
     );
-    expect(
-      screen.getByText(`Copyright © ${currentYear} | Macondo Games Pvt. Ltd.`),
-    ).toBeInTheDocument();
   });
 });
