@@ -13,7 +13,7 @@ describe('SocialLink', () => {
     expect(screen.getByRole('link', { name: 'test-aria-label' })).toBeInTheDocument();
   });
 
-  test('Expect SocialLink to be have correct styles if type is small', () => {
+  test('Expect correct styles if type is small', () => {
     render(
       <SocialLink to="/test-url" icon={faFacebookF} type="small" ariaLabel="test-aria-label" />,
     );
@@ -21,7 +21,7 @@ describe('SocialLink', () => {
     expect(screen.getByRole('link', { name: 'test-aria-label' })).toHaveClass('socialLinkSmall');
   });
 
-  test('Expect SocialLink to be have correct styles if type is big', () => {
+  test('Expect correct styles if type is big', () => {
     render(<SocialLink to="/test-url" icon={faFacebookF} type="big" ariaLabel="test-aria-label" />);
 
     expect(screen.getByRole('link', { name: 'test-aria-label' })).toHaveClass('socialLinkBig');
