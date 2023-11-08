@@ -14,10 +14,13 @@ I have made it public to mostly act as a code portfolio. All code and assets are
 ## Overview
 
 This site is for my company Macondo Games and our first title - [Global Steel](https://store.steampowered.com/app/1073970/Global_Steel/). The site consists of two pages - a home page built in `Gatsby` housing a carousel with game screenshots and a press page built using [presskit.html](https://github.com/pixelnest/presskit.html) which is itself an SSG generating version of [presskit()](http://dopresskit.com/).
+
+The homepage has CSS powered animations, image optimization using `gatsby-plugin-image`, a loader which uses `gatsby-source-filesystem` etc. Using `react-hooks` I have ensured no matter the dimensions of the window, the screenshots always fit in the monitor.
+
 ## Testing
 **Unit testing**
 
-Unit and integration tests have been done for all the components. `gatsby-plugin-image` is mocked using `Jest` and `@testing-library/react` presenting simple `img` elements with an `alt` attribute so that they are present in the DOM during the tests. `GraphQL` queries are mocked by spying on `useStaticQuery` and returning objects with the same shape as the real data - This is based on the official docs - https://www.gatsbyjs.com/docs/how-to/testing/testing-components-with-graphql/.
+Unit and integration tests have been done for all the components. `gatsby-plugin-image` is mocked using `Jest` and `@testing-library/react` presenting simple `img` elements with an `alt` attribute so that they are present in the DOM during the tests. `GraphQL` queries are mocked by spying on `useStaticQuery` and returning objects with the same shape as the real data - This is based on the [official docs](https://www.gatsbyjs.com/docs/how-to/testing/testing-components-with-graphql/).
 
 **e2e testing**
 
