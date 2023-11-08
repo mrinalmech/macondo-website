@@ -163,9 +163,9 @@ function TextContent() {
       fadeIn={allImgsLoaded}
     >
       <div className="d-flex flex-column flex-md-row flex-lg-column justify-content-center text-center text-lg-right mb-2 mb-lg-0 mr-0 mr-lg-3 ">
-        <h4 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2">Suit up.</h4>
-        <h4 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2">Shoot 'em up.</h4>
-        <h4 className="white mb-0">Level up.</h4>
+        <h1 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2 h4">Suit up.</h1>
+        <h1 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2 h4">Shoot 'em up.</h1>
+        <h1 className="white mb-0 h4">Level up.</h1>
       </div>
       <div className={clsx(desc, 'text-center d-flex flex-column justify-content-center')}>
         <p className="white m-0">

@@ -24,8 +24,9 @@ export default function Footer() {
         root,
         'd-flex pt-4 pb-4 flex-column align-items-center justify-content-center',
       )}
+      as="footer"
     >
-      <h3 className="dark-blue m-0">Keep up with us!</h3>
+      <h2 className="dark-blue m-0 h3">Keep up with us!</h2>
       <div className="mt-4 mb-5 d-flex">
         <SocialLink
           to="https://twitter.com/macondostudios"

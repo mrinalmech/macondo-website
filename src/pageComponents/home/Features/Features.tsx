@@ -41,7 +41,7 @@ function Feature({
 
   const textContent = (
     <>
-      <h2 className="mb-4">{heading}</h2>
+      <h1 className="mb-4 h2">{heading}</h1>
       <p>{descriptionOne}</p>
       <p>{descriptionTwo}</p>
     </>

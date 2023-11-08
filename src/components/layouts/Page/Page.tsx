@@ -11,7 +11,7 @@ export default function Page({ children, fixedHeader }: Props) {
   return (
     <div className="min-vh-100 d-flex flex-column">
       <Header fixed={fixedHeader} />
-      <div className="flex-grow-1">{children}</div>
+      <main className="flex-grow-1">{children}</main>
       <Footer />
     </div>
   );
