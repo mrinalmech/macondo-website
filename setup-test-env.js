@@ -4,10 +4,7 @@ jest.mock('gatsby-plugin-image', () => {
   const React = require('react');
   const plugin = jest.requireActual('gatsby-plugin-image');
 
-  const mockImage = ({ alt }) =>
-    React.createElement('img', {
-      alt: alt,
-    });
+  const mockImage = ({ alt }) => <img alt={alt} />;
 
   const mockImageData = () => ({ width: 100 });
 
