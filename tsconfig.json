@@ -3,7 +3,10 @@
         "types": [
             "node",
             "jest",
-            "@testing-library/jest-dom"
+            "cypress", 
+            "cypress-axe",
+            "@testing-library/jest-dom",
+            "@testing-library/cypress"
         ],
         "target": "esnext",
         "lib": [
@@ -19,9 +22,8 @@
         "skipLibCheck": true
     },
     "include": [
+        "./cypress/**/*",
         "./src/**/*",
-        "./gatsby-node.ts",
-        "./gatsby-config.ts",
-        "./plugins/**/*"
+        "./cypress-config.ts",
     ]
 }

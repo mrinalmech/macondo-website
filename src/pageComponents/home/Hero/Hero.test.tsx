@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import * as Gatsby from 'gatsby';
 
 import Hero from './Hero';
+import { AppReadyContext } from '../../../contexts/AppReadyContext';
 
 const useStaticQuery = jest.spyOn(Gatsby, 'useStaticQuery');
 const mockUseStaticQuery = {
@@ -34,7 +35,11 @@ afterEach(() => {
 
 describe('Hero', () => {
   test('Expect Hero to be presented', () => {
-    render(<Hero />);
+    render(
+      <AppReadyContext.Provider value={true}>
+        <Hero />
+      </AppReadyContext.Provider>,
+    );
 
     expect(screen.getByAltText(/Logo/i)).toBeInTheDocument();
     expect(screen.getByAltText(/WallShade/i)).toBeInTheDocument();
