@@ -1,5 +1,5 @@
 describe('Homepage tests', () => {
-  it('Content is presented and slideshow works', () => {
+  it('Content is presented and carousel works', () => {
     cy.visit('/');
 
     cy.findByText(/SUIT UP/i).should('exist');
