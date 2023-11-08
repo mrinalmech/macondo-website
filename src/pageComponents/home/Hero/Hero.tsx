@@ -28,7 +28,7 @@ function BackgroundImages() {
       <LoadedImg
         animType="doubleDelay"
         imgName="logo"
-        alt="Logo"
+        alt="Game Logo"
         className={clsx('position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ', logo)}
       />
       <LoadedImg

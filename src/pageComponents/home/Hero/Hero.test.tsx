@@ -41,7 +41,7 @@ describe('Hero', () => {
       </AppReadyContext.Provider>,
     );
 
-    expect(screen.getByAltText(/Logo/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/Game Logo/i)).toBeInTheDocument();
     expect(screen.getByAltText(/WallShade/i)).toBeInTheDocument();
     expect(screen.getByAltText(/WebsiteBaseL1Left/i)).toBeInTheDocument();
     expect(screen.getByAltText(/WebsiteBaseL2Left/i)).toBeInTheDocument();
