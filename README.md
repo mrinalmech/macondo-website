@@ -14,6 +14,8 @@ I have made it public to mostly act as a code portfolio. All code and assets are
 ## Overview
 
 ## Testing
+**Unit testing**
+**e2e testing**
 
 ## Deployment
 
