@@ -26,9 +26,13 @@ The homepage has CSS powered animations, image optimization using `gatsby-plugin
 
 Unit and integration tests have been done for all the components. `gatsby-plugin-image` is mocked using `Jest` and `@testing-library/react` presenting simple `img` elements with an `alt` attribute so that they are present in the DOM during the tests. `GraphQL` queries are mocked by spying on `useStaticQuery` and returning objects with the same shape as the real data - This is based on the [official docs](https://www.gatsbyjs.com/docs/how-to/testing/testing-components-with-graphql/).
 
+Run `npm run test:unit` to run the tests.
+
 **e2e testing**
 
 Three simple e2e tests are present using `cypress` extended with `@testing-library/cypress`. A test for accessibility using `cypress-axe` and `axe-core` is present along with tests for the carousel on the home page as well as the generated press-kit page.
+
+Run `npm run test:e2e:prod` to run the tests.
 
 ## Deployment
 
