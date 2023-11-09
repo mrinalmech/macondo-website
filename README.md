@@ -32,6 +32,6 @@ Three simple e2e tests are present using `cypress` extended with `@testing-libra
 
 ## Deployment
 
-Deployed on an AWS S3 bucket served via Cloudfront. Github Actions is used for CI. Two websites corresponding to production and development. https://www.macondogames.com/ and https://dev.macondogames.com/ respectively. All tests are integrated into the build process.
+Deployed on an AWS S3 bucket served via Cloudfront. Github Actions is used for CI. There are two websites corresponding to production and development, https://www.macondogames.com/ and https://dev.macondogames.com/ respectively. All tests are integrated into the build process.
 
 
