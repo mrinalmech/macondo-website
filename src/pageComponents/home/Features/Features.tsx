@@ -69,6 +69,7 @@ export default function Features() {
         <Row>
           <Col md={{ span: 8, offset: 2 }} lg={{ span: 6, offset: 3 }}>
             <iframe
+              title="steam-widget"
               src="https://store.steampowered.com/widget/1073970/"
               width="100%"
               height="190"
