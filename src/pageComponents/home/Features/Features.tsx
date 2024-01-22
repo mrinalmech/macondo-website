@@ -13,18 +13,10 @@ interface FeatureProps {
   imgAlt?: string;
   imgOnLeft?: boolean;
   heading: string;
-  descriptionOne: string;
-  descriptionTwo: string;
+  description: string;
 }
 
-function Feature({
-  imgName,
-  imgAlt = '',
-  imgOnLeft = true,
-  heading,
-  descriptionOne,
-  descriptionTwo,
-}: FeatureProps) {
+function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description }: FeatureProps) {
   const { allFile } = useStaticQuery(query);
 
   let imgContent = null as React.ReactNode | null;
@@ -42,8 +34,7 @@ function Feature({
   const textContent = (
     <>
       <h1 className="mb-4 h2">{heading}</h1>
-      <p>{descriptionOne}</p>
-      <p>{descriptionTwo}</p>
+      <p>{description}</p>
     </>
   );
 
@@ -75,34 +66,35 @@ export default function Features() {
   return (
     <div className={root}>
       <Container className="text-center">
-        <iframe
-          src="https://store.steampowered.com/widget/1073970/"
-          width="646"
-          height="190"
-          className="border-0 mb-5"
-        />
+        <Row>
+          <Col md={{ span: 8, offset: 2 }} lg={{ span: 6, offset: 3 }}>
+            <iframe
+              src="https://store.steampowered.com/widget/1073970/"
+              width="100%"
+              height="190"
+              className="border-0 mb-5"
+            />
+          </Col>
+        </Row>
+
         <Feature
           imgName="players"
           imgAlt="Players"
           heading="THE GOOD"
-          descriptionOne="Shooting and blasting your way through hordes of enemies in an armored suit ...can be
-              quite fun."
-          descriptionTwo="Control three different characters in a world inspired by the cartoons of the 80s."
+          description="Control three different characters with varying playstyles for maximum replayability."
         />
         <Feature
           imgName="enemies"
           imgAlt="Enemies"
           imgOnLeft={false}
           heading="THE BAD"
-          descriptionOne="The world out there is crawling with evil and you've signed up to take care of it."
-          descriptionTwo="Travel through an assortment of locations fighting a variety of bosses and enemies."
+          description="Travel through an assortment of locations fighting a number of bosses and enemies."
         />
         <Feature
           imgName="upgrades"
           imgAlt="Upgrades"
           heading="...AND, THE UPGRADES"
-          descriptionOne="Fighting your way through evil is not only fun, but also incredibly rewarding."
-          descriptionTwo="With each kill, earn points and customize your equipment to switch up gameplay."
+          description="Earn points and customize your weaponry to switch up gameplay."
         />
       </Container>
     </div>

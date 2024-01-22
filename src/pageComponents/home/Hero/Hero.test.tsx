@@ -55,10 +55,6 @@ describe('Hero', () => {
     expect(screen.getByAltText(/flaming figure/i)).toBeInTheDocument();
     expect(screen.getByAltText(/light beams/i)).toBeInTheDocument();
 
-    expect(
-      screen.getByText(/1986. Armor suits, shiny guns and a badass attitude/i),
-    ).toBeInTheDocument();
-
     expect(screen.getByText(/Global Steel is a 2d run-and-gun video game/i)).toBeInTheDocument();
   });
 });

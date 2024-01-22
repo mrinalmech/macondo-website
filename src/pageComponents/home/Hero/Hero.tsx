@@ -169,11 +169,7 @@ function TextContent() {
       </div>
       <div className={clsx(desc, 'text-center d-flex flex-column justify-content-center')}>
         <p className="white m-0">
-          1986. Armor suits, shiny guns and a badass attitude are up for grabs. And guess what?
-          There are bad guys to take care of.
-        </p>
-        <p className="white m-0">
-          Global Steel is a 2d run-and-gun video game inspired by Saturday-morning cartoons from the
+          Global Steel is a 2d run-and-gun video game inspired by Saturday-morning cartoons of the
           80s.
         </p>
       </div>
