@@ -75,6 +75,12 @@ export default function Features() {
   return (
     <div className={root}>
       <Container className="text-center">
+        <iframe
+          src="https://store.steampowered.com/widget/1073970/"
+          width="646"
+          height="190"
+          className="border-0 mb-5"
+        />
         <Feature
           imgName="players"
           imgAlt="Players"

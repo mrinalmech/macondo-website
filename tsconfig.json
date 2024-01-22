@@ -22,8 +22,9 @@
         "skipLibCheck": true
     },
     "include": [
-        "./cypress/**/*",
-        "./src/**/*",
+        "index.d.ts",
+        "./cypress/**/*.{ts,tsx}",
+        "./src/**/*.{ts,tsx}",
         "./cypress-config.ts",
     ]
 }
