@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useSiteMetadata } from 'hooks/useSiteMetadata';
+import { useSiteMetadata } from '../../../hooks/useSiteMetadata';
 
 interface Props {
   title?: string;

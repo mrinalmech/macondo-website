@@ -2,15 +2,15 @@ import React, { useState, useRef } from 'react';
 import { graphql } from 'gatsby';
 import { FileSystemNode } from 'gatsby-source-filesystem';
 
-import Page from 'components/layouts/Page';
-import SEO from 'components/atoms/Seo';
-import Loader, { LOADING_SCREEN_DURATION } from 'components/fragments/Loader';
+import Page from '../../components/layouts/Page';
+import SEO from '../../components/atoms/Seo';
+import Loader, { LOADING_SCREEN_DURATION } from '../../components/fragments/Loader';
 
-import Hero from 'pageComponents/home/Hero';
-import Features from 'pageComponents/home/Features';
+import Hero from '../../pageComponents/home/Hero';
+import Features from '../../pageComponents/home/Features';
 
-import { ImageLoadedContext } from 'contexts/ImageLoadedContext';
-import { AppReadyContext } from 'contexts/AppReadyContext';
+import { ImageLoadedContext } from '../../contexts/ImageLoadedContext';
+import { AppReadyContext } from '../../contexts/AppReadyContext';
 
 type AppStatus = 'loadingStart' | 'loadingFinish' | 'ready';
 

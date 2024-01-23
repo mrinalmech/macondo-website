@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Header from 'components/fragments/Header';
-import Footer from 'components/fragments/Footer';
+import Header from '../../../components/fragments/Header';
+import Footer from '../../../components/fragments/Footer';
 
 type Props = {
   children?: React.ReactNode;

@@ -13,8 +13,8 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { StaticImage } from 'gatsby-plugin-image';
 
-import Link from 'components/atoms/Link';
-import SocialLink from 'components/atoms/SocialLink';
+import Link from '../../../components/atoms/Link';
+import SocialLink from '../../../components/atoms/SocialLink';
 
 import { navBar, navBarFixed, navLink } from './Header.module.scss';
 
