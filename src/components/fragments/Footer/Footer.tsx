@@ -10,7 +10,7 @@ import {
   faTwitch,
 } from '@fortawesome/free-brands-svg-icons';
 
-import SocialLink from '../../atoms/SocialLink';
+import SocialLink from 'components/atoms/SocialLink';
 
 import { root } from './Footer.module.scss';
 

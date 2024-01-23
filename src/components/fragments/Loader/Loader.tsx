@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useInterval } from 'usehooks-ts';
 
+import { LOADING_SCREEN_DURATION } from './constants';
+
 import { root, transparent } from './Loader.module.scss';
 
 interface Props {
   appLoaded: boolean;
 }
-
-export const LOADING_SCREEN_DURATION = 0.5;
 
 export default function Loader({ appLoaded }: Props) {
   const [dots, setDots] = useState('.');

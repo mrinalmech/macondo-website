@@ -2,10 +2,10 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import Carousel from 'react-bootstrap/Carousel';
 
-import FadeInElement from '../../../components/atoms/FadeInElement';
-import LoadedImg from '../../../components/atoms/LoadedImg';
+import FadeInElement from 'components/atoms/FadeInElement';
+import LoadedImg from 'components/atoms/LoadedImg';
 
-import { AppReadyContext } from '../../../contexts/AppReadyContext';
+import { AppReadyContext } from 'contexts/AppReadyContext';
 
 import {
   root,
@@ -63,7 +63,7 @@ function BackgroundImages() {
 function Monitor() {
   const appReady = useContext(AppReadyContext);
 
-  const monitorEl = useRef(null);
+  const monitorEl = useRef<HTMLDivElement | null>(null);
 
   const [dimensions, setDimensions] = useState({
     height: 0,

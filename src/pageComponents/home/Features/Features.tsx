@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import clsx from 'clsx';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { useStaticQuery, graphql } from 'gatsby';
+import { FileSystemNode } from 'gatsby-source-filesystem';
 
 import { root, featureRow } from './Features.module.scss';
 
@@ -17,7 +18,11 @@ interface FeatureProps {
 }
 
 function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description }: FeatureProps) {
-  const { allFile } = useStaticQuery(query);
+  const { allFile } = useStaticQuery(query) as {
+    allFile: {
+      nodes: FileSystemNode[];
+    };
+  };
 
   let imgContent = null as React.ReactNode | null;
 

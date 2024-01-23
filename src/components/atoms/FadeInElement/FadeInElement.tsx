@@ -17,7 +17,7 @@ interface Props {
 }
 
 const FadeInElement = memo(
-  forwardRef(({ fadeIn, className, children, animType = 'normal' }: Props, ref) => {
+  forwardRef<HTMLDivElement, Props>(({ fadeIn, className, children, animType = 'normal' }, ref) => {
     const fadeClass = clsx({
       [fadeAnim]: animType === 'normal',
       [fadeAnimDelay]: animType === 'delay',
@@ -35,5 +35,7 @@ const FadeInElement = memo(
     );
   }),
 );
+
+FadeInElement.displayName = 'FadeInElement';
 
 export default FadeInElement;

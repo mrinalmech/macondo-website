@@ -1,0 +1,1 @@
+export const LOADING_SCREEN_DURATION = 0.5;

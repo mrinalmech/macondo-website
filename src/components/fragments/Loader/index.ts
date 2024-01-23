@@ -1,1 +1,2 @@
-export { default, LOADING_SCREEN_DURATION } from './Loader';
+export { default } from './Loader';
+export { LOADING_SCREEN_DURATION } from './constants';
