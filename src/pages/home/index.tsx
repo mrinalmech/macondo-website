@@ -53,7 +53,7 @@ export default function Home({ data }: Props) {
   return (
     <AppReadyContext.Provider value={appReady}>
       <ImageLoadedContext.Provider value={imageLoaded}>
-        <Page fixedHeader>
+        <Page>
           {!appReady && <Loader appLoaded={appLoaded} />}
           <Hero />
           <Features />

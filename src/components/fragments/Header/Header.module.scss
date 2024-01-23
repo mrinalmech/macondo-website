@@ -1,21 +1,4 @@
 @import 'src/styles/colors.scss';
-@import 'src/styles/breakpoints.scss';
-
-.navBar {
-  background: $black !important;
-  top: 0;
-  z-index: 9999;
-  width: 100%;
-}
-
-.navBarFixed {
-  position: absolute;
-  background: transparent !important;
-  @include respond-below(sm) {
-    background: $black !important;
-    position: relative;
-  }
-}
 
 .navLink {
   color: $white !important;

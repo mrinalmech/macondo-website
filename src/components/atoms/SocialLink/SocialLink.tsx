@@ -15,11 +15,8 @@ interface LinkProps {
 export default function SocialLink({ to, ariaLabel, icon, type }: LinkProps) {
   const isSmallIcon = type === 'small';
   const styles = isSmallIcon
-    ? clsx(socialLinkSmall, 'mr-4 mr-md-3')
-    : clsx(
-        socialLinkBig,
-        'mr-1 ml-1 ml-sm-2 mr-sm-2 ml-md-3 mr-md-3 d-inline-block d-flex align-items-center justify-content-center',
-      );
+    ? clsx(socialLinkSmall, 'mr-4 md:mr-3')
+    : clsx(socialLinkBig, 'mx-1 sm:mx-2 md:mx-3 flex items-center justify-center');
   return (
     <a href={to} className={styles} target="_blank" rel="noreferrer" aria-label={ariaLabel}>
       <FontAwesomeIcon icon={icon} size={isSmallIcon ? '1x' : '2x'} />

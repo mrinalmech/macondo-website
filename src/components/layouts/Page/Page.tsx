@@ -5,14 +5,13 @@ import Footer from '../../../components/fragments/Footer';
 
 type Props = {
   children?: React.ReactNode;
-  fixedHeader?: boolean;
 };
 
-export default function Page({ children, fixedHeader }: Props) {
+export default function Page({ children }: Props) {
   return (
-    <div className="min-vh-100 d-flex flex-column">
-      <Header fixed={fixedHeader} />
-      <main className="flex-grow-1">{children}</main>
+    <div className="h-screen flex flex-col">
+      <Header />
+      <main className="grow">{children}</main>
       <Footer />
     </div>
   );

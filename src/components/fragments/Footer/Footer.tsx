@@ -20,14 +20,11 @@ export default function Footer() {
   return (
     <Container
       fluid
-      className={clsx(
-        root,
-        'd-flex pt-4 pb-4 flex-column align-items-center justify-content-center',
-      )}
+      className={clsx(root, 'flex py-4 flex-col items-center justify-center')}
       as="footer"
     >
       <h2 className="dark-blue m-0 h3">Keep up with us!</h2>
-      <div className="mt-4 mb-5 d-flex">
+      <div className="mt-4 mb-5 flex">
         <SocialLink
           to="https://twitter.com/macondostudios"
           ariaLabel="Twitter"

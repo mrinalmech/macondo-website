@@ -4,7 +4,7 @@ import { useInterval } from 'usehooks-ts';
 
 import { LOADING_SCREEN_DURATION } from './constants';
 
-import { root, transparent } from './Loader.module.scss';
+import { root } from './Loader.module.scss';
 
 interface Props {
   appLoaded: boolean;
@@ -24,14 +24,14 @@ export default function Loader({ appLoaded }: Props) {
 
   return (
     <div
-      className={clsx(root, 'd-flex align-items-center justify-content-center', {
-        [transparent]: appLoaded,
+      className={clsx(root, 'flex items-center justify-center h-screen w-screen fixed z-50', {
+        'opacity-0': appLoaded,
       })}
       style={{ transitionDuration: `${LOADING_SCREEN_DURATION}s` }}
       role="progressbar"
       aria-label="Loading"
     >
-      <h2 className="m-0">Loading{dots}</h2>
+      <h1 className="text-4xl">Loading{dots}</h1>
     </div>
   );
 }

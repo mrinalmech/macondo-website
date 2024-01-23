@@ -1,14 +1,14 @@
 @import 'src/styles/breakpoints.scss';
 @font-face {
-  font-family: "Retro Computer";
-  src: url("../fonts/retro_computer/retro_computer.ttf");
+  font-family: 'Retro Computer';
+  src: url('../fonts/retro_computer/retro_computer.ttf');
 }
 @font-face {
-  font:{
-    family: "Gotham";
+  font: {
+    family: 'Gotham';
     display: swap;
   }
-  src: url("../fonts/gotham/GothamBook.ttf");
+  src: url('../fonts/gotham/GothamBook.ttf');
 }
 
 a,
@@ -18,11 +18,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Retro Computer", sans-serif;
+  font-family: 'Retro Computer', sans-serif;
 }
 
 p {
-  font-family: "Gotham", sans-serif;
+  font-family: 'Gotham', sans-serif;
   @include respond-below(sm) {
     line-height: 1.3rem;
   }
