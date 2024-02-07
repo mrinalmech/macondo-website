@@ -44,10 +44,10 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
   );
 
   return (
-    <Row className={clsx(featureRow, 'd-flex')}>
+    <Row className={clsx(featureRow, 'flex')}>
       <Col
         md={5}
-        className={clsx('d-flex flex-column justify-content-center order-md-1', {
+        className={clsx('flex flex-col justify-center md:order-1', {
           ['order-2']: imgOnLeft,
           ['order-1']: !imgOnLeft,
         })}
@@ -56,7 +56,7 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
       </Col>
       <Col
         md={{ span: 6, offset: 1 }}
-        className={clsx('d-flex flex-column justify-content-center order-md-2', {
+        className={clsx('flex flex-col justify-center md:order-2', {
           ['order-1']: imgOnLeft,
           ['order-2']: !imgOnLeft,
         })}
