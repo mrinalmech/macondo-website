@@ -29,32 +29,28 @@ function BackgroundImages() {
         animType="doubleDelay"
         imgName="logo"
         alt="Game Logo"
-        className={clsx('position-absolute pl-2 pr-2 pl-sm-0 pr-sm-0 ', logo)}
+        className={clsx('absolute px-2 sm:px-0', logo)}
       />
-      <LoadedImg
-        imgName="wallShade"
-        alt="WallShade"
-        className={clsx('position-absolute', wallShade)}
-      />
+      <LoadedImg imgName="wallShade" alt="WallShade" className={clsx('absolute', wallShade)} />
       <LoadedImg
         imgName="websiteBaseL1"
         alt="WebsiteBaseL1Left"
-        className={clsx('position-absolute', baseL1, left)}
+        className={clsx('absolute', baseL1, left)}
       />
       <LoadedImg
         imgName="websiteBaseL2"
         alt="WebsiteBaseL2Left"
-        className={clsx('position-absolute', baseL2, left)}
+        className={clsx('absolute', baseL2, left)}
       />
       <LoadedImg
         imgName="websiteBaseL1"
         alt="WebsiteBaseL1Right"
-        className={clsx('position-absolute', baseL1, right)}
+        className={clsx('absolute', baseL1, right)}
       />
       <LoadedImg
         imgName="websiteBaseL2"
         alt="WebsiteBaseL2Right"
-        className={clsx('position-absolute', baseL2, right)}
+        className={clsx('absolute', baseL2, right)}
       />
     </>
   );
@@ -127,11 +123,11 @@ function Monitor() {
         ref={monitorEl}
         imgName="monitor"
         alt="Monitor"
-        className={clsx('position-absolute', monitor)}
+        className={clsx('absolute', monitor)}
         animType="delay"
       />
       <Carousel
-        className={clsx(carousel, 'position-absolute')}
+        className={clsx(carousel, 'absolute')}
         controls={false}
         indicators={false}
         fade
@@ -147,8 +143,8 @@ function Monitor() {
           </Carousel.Item>
         ))}
       </Carousel>
-      <FadeInElement className={clsx('position-absolute', extension, left)} fadeIn={appReady} />
-      <FadeInElement className={clsx('position-absolute', extension, right)} fadeIn={appReady} />
+      <FadeInElement className={clsx('absolute', extension, left)} fadeIn={appReady} />
+      <FadeInElement className={clsx('absolute', extension, right)} fadeIn={appReady} />
     </>
   );
 }
@@ -158,16 +154,16 @@ function TextContent() {
 
   return (
     <FadeInElement
-      className={clsx('d-flex pl-3 pr-3 flex-column flex-lg-row', textContent)}
+      className={clsx('flex flex-col lg:flex-row px-3', textContent)}
       animType="doubleDelay"
       fadeIn={allImgsLoaded}
     >
-      <div className="d-flex flex-column flex-md-row flex-lg-column justify-content-center text-center text-lg-right mb-2 mb-lg-0 mr-0 mr-lg-3 ">
-        <h1 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2 h4">Suit up.</h1>
-        <h1 className="white mr-2 mr-lg-0 mb-1 mb-md-0 mb-lg-2 h4">Shoot 'em up.</h1>
-        <h1 className="white mb-0 h4">Level up.</h1>
+      <div className="flex flex-col md:flex-row lg:flex-col justify-center text-center lg:text-right mb-2 lg:mg-0 mr-0 lg:mr-3 ">
+        <h1 className="white mr-2 lg:mr-0 mb-1 text-2xl">Suit up.</h1>
+        <h1 className="white mr-2 lg:mr-0 mb-1 text-2xl">Shoot 'em up.</h1>
+        <h1 className="white mb-0 text-2xl">Level up.</h1>
       </div>
-      <div className={clsx(desc, 'text-center d-flex flex-column justify-content-center')}>
+      <div className={clsx(desc, 'text-center flex flex-col justify-center')}>
         <p className="white m-0">
           Global Steel is a 2d run-and-gun video game inspired by Saturday-morning cartoons of the
           80s.
@@ -183,13 +179,13 @@ export default function Hero() {
       <div
         className={clsx(
           root,
-          `d-flex
-    align-items-end
-    justify-content-center
+          `flex
+    items-end
+    justify-center
     pb-4
-    pb-sm-2
-    pb-md-4
-    position-relative
+    sm:pb-2
+    md:pb-4
+    relative
     overflow-hidden`,
         )}
       >

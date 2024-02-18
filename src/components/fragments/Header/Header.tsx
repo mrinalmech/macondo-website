@@ -33,7 +33,7 @@ const NavLink = (props: NavLinkProps) => {
 
 export default function Header() {
   return (
-    <header className="p-4 w-full absolute bg-black flex justify-between">
+    <header className="p-4 w-full absolute bg-transparent flex justify-between z-50">
       <Link to="/">
         <StaticImage
           src="./images/HeaderLogo.webp"
