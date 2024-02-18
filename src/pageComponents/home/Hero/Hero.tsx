@@ -144,7 +144,7 @@ function Monitor() {
         ))}
       </Carousel>
       <FadeInElement className={clsx('absolute', extension, left)} fadeIn={appReady} />
-      <FadeInElement className={clsx('absolute', extension, right)} fadeIn={appReady} />
+      <FadeInElement className={clsx('absolute ', extension, right)} fadeIn={appReady} />
     </>
   );
 }
