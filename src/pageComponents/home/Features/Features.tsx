@@ -1,5 +1,4 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import clsx from 'clsx';
@@ -38,50 +37,46 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
 
   const textContent = (
     <>
-      <h1 className="mb-4 h2">{heading}</h1>
+      <h1 className="mb-4 text-2xl">{heading}</h1>
       <p>{description}</p>
     </>
   );
 
   return (
-    <Row className={clsx(featureRow, 'flex')}>
-      <Col
-        md={5}
+    <div className={clsx(featureRow, 'grid grid-cols-1 md:grid-cols-2 gap-20')}>
+      <div
         className={clsx('flex flex-col justify-center md:order-1', {
           ['order-2']: imgOnLeft,
           ['order-1']: !imgOnLeft,
         })}
       >
         {imgOnLeft ? imgContent : textContent}
-      </Col>
-      <Col
-        md={{ span: 6, offset: 1 }}
+      </div>
+      <div
         className={clsx('flex flex-col justify-center md:order-2', {
           ['order-1']: imgOnLeft,
           ['order-2']: !imgOnLeft,
         })}
       >
         {imgOnLeft ? textContent : imgContent}
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 }
 
 export default function Features() {
   return (
     <div className={root}>
-      <Container className="text-center">
-        <Row>
-          <Col md={{ span: 8, offset: 2 }} lg={{ span: 6, offset: 3 }}>
-            <iframe
-              title="steam-widget"
-              src="https://store.steampowered.com/widget/1073970/"
-              width="100%"
-              height="190"
-              className="border-0 mb-5"
-            />
-          </Col>
-        </Row>
+      <div className="container mx-auto px-4 max-w-6xl text-center">
+        <div className="max-w-2xl mx-auto mb-20">
+          <iframe
+            title="steam-widget"
+            src="https://store.steampowered.com/widget/1073970/"
+            width="100%"
+            height="190"
+            className="border-0 mb-5"
+          />
+        </div>
 
         <Feature
           imgName="players"
@@ -102,7 +97,7 @@ export default function Features() {
           heading="...AND, THE UPGRADES"
           description="Earn points and customize your weaponry to switch up gameplay."
         />
-      </Container>
+      </div>
     </div>
   );
 }
