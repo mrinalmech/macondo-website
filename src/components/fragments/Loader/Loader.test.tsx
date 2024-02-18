@@ -1,7 +1,8 @@
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 
-import Loader, { LOADING_SCREEN_DURATION } from './Loader';
+import Loader from './Loader';
+import { LOADING_SCREEN_DURATION } from './constants';
 
 beforeEach(() => {
   jest.useFakeTimers();
@@ -34,6 +35,6 @@ describe('Loader', () => {
   test('Expect Loader to be invisible if appLoaded', () => {
     render(<Loader appLoaded />);
 
-    expect(screen.getByText('Loading.').parentElement).toHaveClass('transparent');
+    expect(screen.getByText('Loading.').parentElement).toHaveClass('opacity-0');
   });
 });

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '~bootstrap/scss/bootstrap';
+
 @import './typography.scss';
 @import './colors.scss';
 

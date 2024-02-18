@@ -127,7 +127,7 @@ function Monitor() {
         animType="delay"
       />
       <Carousel
-        className={clsx(carousel, 'absolute')}
+        className={clsx(carousel, '!absolute')}
         controls={false}
         indicators={false}
         fade
