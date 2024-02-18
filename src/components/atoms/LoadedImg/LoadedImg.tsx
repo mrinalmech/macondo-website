@@ -69,7 +69,7 @@ const LoadedImg = memo(
   }),
 );
 
-LoadedImg.displayName = 'FadeInElement';
+LoadedImg.displayName = 'LoadedImg';
 
 export default LoadedImg;
 
