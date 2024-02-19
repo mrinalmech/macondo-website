@@ -10,7 +10,7 @@
   "scripts": {
     "presskit-build": "presskit build ./src/press -o ./public/press -L",
     "presskit-watch": "presskit build ./src/press -o ./public/press -L --watch",
-    "build": "gatsby build && npm run presskit-build",
+    "build": "npm run lint && gatsby build && npm run presskit-build",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
@@ -23,7 +23,8 @@
     "cy:run": "cross-env CYPRESS_baseUrl=http://localhost:9000 cypress run --browser chrome",
     "test:e2e": "cross-env CYPRESS_SUPPORT=y start-server-and-test develop http://localhost:8000 cy:open",
     "test:e2e:prod": "cross-env CYPRESS_SUPPORT=y npm run build && start-server-and-test serve http://localhost:9000 cy:open:prod",
-    "test:e2e:ci": "cross-env CYPRESS_SUPPORT=y npm run build && start-server-and-test serve http://localhost:9000 cy:run"
+    "test:e2e:ci": "cross-env CYPRESS_SUPPORT=y npm run build && start-server-and-test serve http://localhost:9000 cy:run",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx ./src"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
@@ -58,6 +59,7 @@
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.7",
     "@types/jquery": "^3.5.25",
+    "@typescript-eslint/parser": "^5.62.0",
     "autoprefixer": "^10.4.17",
     "axe-core": "^4.8.2",
     "babel-jest": "^29.7.0",
@@ -65,6 +67,11 @@
     "cross-env": "^7.0.3",
     "cypress": "^13.4.0",
     "cypress-axe": "^1.5.0",
+    "eslint": "^8.56.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-webpack-plugin": "^4.0.1",
+    "gatsby-plugin-eslint": "^4.0.4",
     "gatsby-plugin-postcss": "^6.13.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",

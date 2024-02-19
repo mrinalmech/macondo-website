@@ -40,7 +40,7 @@ const LoadedImg = memo(
           imageLoaded(imgName);
         }
       }
-    }, []);
+    }, [imageLoaded, imgName]);
 
     const { monitorImg, otherImgs } = useStaticQuery(query);
     const allImgs = monitorImg.nodes.concat(otherImgs.nodes);
@@ -69,7 +69,7 @@ const LoadedImg = memo(
   }),
 );
 
-LoadedImg.displayName = 'LoadedImg';
+LoadedImg.displayName = 'FadeInElement';
 
 export default LoadedImg;
 

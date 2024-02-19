@@ -44,16 +44,16 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
     <div className={clsx(featureRow, 'grid grid-cols-1 md:grid-cols-2 gap-20')}>
       <div
         className={clsx('flex flex-col justify-center md:order-1', {
-          ['order-2']: imgOnLeft,
-          ['order-1']: !imgOnLeft,
+          'order-2': imgOnLeft,
+          'order-1': !imgOnLeft,
         })}
       >
         {imgOnLeft ? imgContent : textContent}
       </div>
       <div
         className={clsx('flex flex-col justify-center md:order-2', {
-          ['order-1']: imgOnLeft,
-          ['order-2']: !imgOnLeft,
+          'order-1': imgOnLeft,
+          'order-2': !imgOnLeft,
         })}
       >
         {imgOnLeft ? textContent : imgContent}

@@ -26,7 +26,7 @@ export default function Home({ data }: Props) {
   const [appStatus, setAppStatus] = useState('loadingStart' as AppStatus);
 
   const appLoading = appStatus === 'loadingStart';
-  const appLoaded = appStatus != 'loadingStart';
+  const appLoaded = appStatus !== 'loadingStart';
   const appReady = appStatus === 'ready';
 
   const loadedImgDictionary = useRef({});
