@@ -24,9 +24,13 @@ export default function Loader({ appLoaded }: Props) {
 
   return (
     <div
-      className={clsx(root, 'flex items-center justify-center h-screen w-screen fixed z-50', {
-        'opacity-0': appLoaded,
-      })}
+      className={clsx(
+        root,
+        'flex items-center justify-center h-screen w-screen fixed z-50 font-retro',
+        {
+          'opacity-0': appLoaded,
+        },
+      )}
       style={{ transitionDuration: `${LOADING_SCREEN_DURATION}s` }}
       role="progressbar"
       aria-label="Loading"

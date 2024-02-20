@@ -41,7 +41,12 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
   );
 
   return (
-    <div className={clsx(featureRow, 'grid grid-cols-1 md:grid-cols-2 gap-20')}>
+    <div
+      className={clsx(
+        featureRow,
+        'grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 mb-28 sm:mb-20 last-of-type:mb-0',
+      )}
+    >
       <div
         className={clsx('flex flex-col justify-center md:order-1', {
           'order-2': imgOnLeft,
@@ -64,8 +69,8 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
 
 export default function Features() {
   return (
-    <div className={root}>
-      <div className="container mx-auto px-4 max-w-6xl text-center">
+    <div className={clsx(root, 'py-12 px-6 xs:py-20')}>
+      <div className="container p-0 mx-auto max-w-6xl text-center">
         <div className="max-w-2xl mx-auto mb-20">
           <iframe
             title="steam-widget"

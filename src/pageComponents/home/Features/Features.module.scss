@@ -1,31 +1,9 @@
 @import 'src/styles/colors.scss';
-@import 'src/styles/breakpoints.scss';
 
 .root {
-  padding: 5rem 0;
   background-image: linear-gradient($bg-blue, $bg-blue-dark);
-  @include respond-below(sm) {
-    padding: 5rem 1rem;
-    :global(.gatsby-image-wrapper) {
-      margin-top: 4rem;
-    }
-  }
-  @include respond-below(xs) {
-    padding: {
-      top: 3rem;
-      bottom: 3rem;
-    }
-  }
 }
 
 .featureRow {
   color: $light-blue;
-  margin-bottom: 5rem;
-  @include respond-below(sm) {
-    margin-bottom: 6rem;
-  }
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
 }

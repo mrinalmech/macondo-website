@@ -1,11 +1,12 @@
-@import 'src/styles/breakpoints.scss';
 @font-face {
   font-family: 'Retro Computer';
   src: url('../static/fonts/retro_computer.ttf');
 }
 
 p {
-  @include respond-below(sm) {
-    line-height: 1.3rem;
+  line-height: 1.3em;
+
+  @screen sm {
+    line-height: 1.5rem;
   }
 }

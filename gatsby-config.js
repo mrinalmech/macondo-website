@@ -17,7 +17,14 @@ module.exports = {
   plugins: [
     'gatsby-plugin-postcss',
     'gatsby-plugin-image',
-    'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-plugin-sharp',
+      options: {
+        defaults: {
+          quality: 100,
+        },
+      },
+    },
     'gatsby-plugin-eslint',
     'gatsby-transformer-sharp',
     {

@@ -44,7 +44,7 @@ $monitor-img-ratio: calc(
   }
 
   .extension {
-    width: calc(((100% - 3406px) / 2) + 3px);
+    width: calc(((100% - $monitor-img-width) / 2) + 3px);
     bottom: 85px;
     height: 445px;
     background: {
@@ -141,7 +141,7 @@ $monitor-img-ratio: calc(
       top: 45px;
     }
   }
-  @include respond-below(md) {
+  @include respond-below(992px) {
     min-height: 859px;
     .monitor {
       bottom: 185px;
@@ -185,7 +185,7 @@ $monitor-img-ratio: calc(
       }
     }
   }
-  @include respond-below(sm) {
+  @include respond-below(768px) {
     height: calc(100vh - #{$navbarHeight});
     min-height: 750px;
 
@@ -260,7 +260,7 @@ $monitor-img-ratio: calc(
       }
     }
   }
-  @include respond-below(xs) {
+  @include respond-below(576px) {
     min-height: 675px;
 
     .monitor {

@@ -1,12 +1,11 @@
 @import 'src/styles/colors.scss';
-@import 'src/styles/breakpoints.scss';
 
 .socialLinkBig {
   color: $dark-blue;
 
   border: 1px solid $dark-blue;
-  height: 60px;
-  width: 60px;
+  height: 38px;
+  width: 38px;
 
   &:hover {
     background: rgba($dark-blue, 0.9);
@@ -17,13 +16,16 @@
     background: $dark-blue;
   }
 
-  @include respond-below(sm) {
-    height: 38px;
-    width: 38px;
-
-    > svg {
-      font-size: 1.3rem;
+  > svg {
+    font-size: 1.3rem;
+    @screen sm {
+      font-size: 2em;
     }
+  }
+
+  @screen sm {
+    height: 60px;
+    width: 60px;
   }
 }
 
