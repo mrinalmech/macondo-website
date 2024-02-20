@@ -42,7 +42,7 @@ export default function Header() {
           placeholder="none"
         />
       </Link>
-      <nav className="flex">
+      <nav className="flex font-retro">
         <NavLink to="https://blog.macondogames.com/">Blog</NavLink>
         <NavLink to="/press" external>
           Press

@@ -16,7 +16,7 @@ export default function SocialLink({ to, ariaLabel, icon, type }: LinkProps) {
   const isSmallIcon = type === 'small';
   const styles = isSmallIcon
     ? clsx(socialLinkSmall, 'mr-4 md:mr-3')
-    : clsx(socialLinkBig, 'mx-1 sm:mx-2 md:mx-3 flex items-center justify-center');
+    : clsx(socialLinkBig, 'mx-1 sm:!mx-2 md:!mx-3 flex items-center justify-center');
   return (
     <a href={to} className={styles} target="_blank" rel="noreferrer" aria-label={ariaLabel}>
       <FontAwesomeIcon icon={icon} size={isSmallIcon ? '1x' : '2x'} />

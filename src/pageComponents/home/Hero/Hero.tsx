@@ -158,13 +158,13 @@ function TextContent() {
       animType="doubleDelay"
       fadeIn={allImgsLoaded}
     >
-      <div className="flex flex-col md:flex-row lg:flex-col justify-center text-center lg:text-right mb-2 lg:mg-0 mr-0 lg:mr-3 ">
+      <div className="flex flex-col md:flex-row lg:flex-col justify-center text-center lg:text-right mb-2 lg:mg-0 mr-0 lg:mr-3 font-retro">
         <h1 className="white mr-2 lg:mr-0 mb-1 text-2xl">Suit up.</h1>
         <h1 className="white mr-2 lg:mr-0 mb-1 text-2xl">Shoot &lsquo;em up.</h1>
         <h1 className="white mb-0 text-2xl">Level up.</h1>
       </div>
       <div className={clsx(desc, 'text-center flex flex-col justify-center')}>
-        <p className="white m-0">
+        <p className="white m-0 font-sans">
           Global Steel is a 2d run-and-gun video game inspired by Saturday-morning cartoons of the
           80s.
         </p>

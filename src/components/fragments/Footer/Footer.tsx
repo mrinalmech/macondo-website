@@ -23,7 +23,7 @@ export default function Footer() {
       className={clsx(root, 'flex py-4 flex-col items-center justify-center')}
       as="footer"
     >
-      <h2 className="dark-blue m-0 h3">Keep up with us!</h2>
+      <h2 className="dark-blue m-0 h3 font-retro">Keep up with us!</h2>
       <div className="mt-4 mb-5 flex">
         <SocialLink
           to="https://twitter.com/macondostudios"
@@ -62,7 +62,10 @@ export default function Footer() {
           type="big"
         />
       </div>
-      <p className="white m-0 text-center"> Copyright © {currentYear} | Macondo Games Pvt. Ltd. </p>
+      <p className="white m-0 text-center font-sans">
+        {' '}
+        Copyright © {currentYear} | Macondo Games Pvt. Ltd.{' '}
+      </p>
     </Container>
   );
 }

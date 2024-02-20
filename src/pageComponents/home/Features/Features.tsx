@@ -35,8 +35,8 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
 
   const textContent = (
     <>
-      <h1 className="mb-4 text-2xl">{heading}</h1>
-      <p>{description}</p>
+      <h1 className="mb-4 text-2xl font-retro">{heading}</h1>
+      <p className="font-sans">{description}</p>
     </>
   );
 
