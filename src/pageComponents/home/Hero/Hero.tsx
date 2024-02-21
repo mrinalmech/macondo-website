@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
-import Carousel from 'react-bootstrap/Carousel';
+import { useInterval } from 'usehooks-ts';
 
 import FadeInElement from '../../../components/atoms/FadeInElement';
 import LoadedImg from '../../../components/atoms/LoadedImg';
@@ -13,7 +13,6 @@ import {
   monitor,
   extension,
   wallShade,
-  carousel,
   logo,
   baseL1,
   baseL2,
@@ -21,6 +20,33 @@ import {
   right,
   textContent,
 } from './Hero.module.scss';
+
+interface CarouselProps {
+  style?: React.CSSProperties;
+}
+
+const imgData = [
+  {
+    imgName: 'screenshot2',
+    alt: 'Red figure standing in front of ruined castle',
+  },
+  {
+    imgName: 'screenshot1',
+    alt: 'Green figure standing in front of forest',
+  },
+  {
+    imgName: 'screenshot0',
+    alt: 'Three figures in front of a monitor screen',
+  },
+  {
+    imgName: 'screenshot3',
+    alt: 'Blue figure standing in front of a flaming figure',
+  },
+  {
+    imgName: 'screenshot4',
+    alt: 'Blue figure standing on a platform with light beams emanating from the edge',
+  },
+];
 
 function BackgroundImages() {
   return (
@@ -53,6 +79,34 @@ function BackgroundImages() {
         className={clsx('absolute', baseL2, right)}
       />
     </>
+  );
+}
+
+function Carousel({ style }: CarouselProps) {
+  const [active, setActive] = useState(0);
+
+  const updateActive = () => {
+    const newActive = (active + 1) % imgData.length;
+    setActive(newActive);
+  };
+
+  useInterval(() => {
+    updateActive();
+  }, 4000);
+
+  return (
+    <div className="absolute" style={style}>
+      {imgData.map((img, index) => (
+        <div
+          key={index}
+          className={clsx('absolute transition-opacity duration-1000', {
+            'opacity-0': active !== index,
+          })}
+        >
+          <LoadedImg imgName={img.imgName} animType="doubleDelay" alt={img.alt} />
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -94,29 +148,6 @@ function Monitor() {
     return () => window.removeEventListener('resize', calculateDimensions);
   }, []);
 
-  const imgData = [
-    {
-      imgName: 'screenshot2',
-      alt: 'Red figure standing in front of ruined castle',
-    },
-    {
-      imgName: 'screenshot1',
-      alt: 'Green figure standing in front of forest',
-    },
-    {
-      imgName: 'screenshot0',
-      alt: 'Three figures in front of a monitor screen',
-    },
-    {
-      imgName: 'screenshot3',
-      alt: 'Blue figure standing in front of a flaming figure',
-    },
-    {
-      imgName: 'screenshot4',
-      alt: 'Blue figure standing on a platform with light beams emanating from the edge',
-    },
-  ];
-
   return (
     <>
       <LoadedImg
@@ -127,22 +158,12 @@ function Monitor() {
         animType="delay"
       />
       <Carousel
-        className={clsx(carousel, '!absolute')}
-        controls={false}
-        indicators={false}
-        fade
         style={{
           height: dimensions.height,
           width: dimensions.width,
           bottom: dimensions.bottom,
         }}
-      >
-        {imgData.map((img, index) => (
-          <Carousel.Item key={index}>
-            <LoadedImg imgName={img.imgName} animType="doubleDelay" alt={img.alt} />
-          </Carousel.Item>
-        ))}
-      </Carousel>
+      />
       <FadeInElement className={clsx('absolute', extension, left)} fadeIn={appReady} />
       <FadeInElement className={clsx('absolute', extension, right)} fadeIn={appReady} />
     </>
