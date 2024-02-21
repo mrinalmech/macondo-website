@@ -1,5 +1,4 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
 import clsx from 'clsx';
 import {
   faFacebookF,
@@ -18,11 +17,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Container
-      fluid
-      className={clsx(root, 'flex py-4 flex-col items-center justify-center')}
-      as="footer"
-    >
+    <footer className={clsx(root, 'flex py-4 flex-col items-center justify-center')}>
       <h2 className="dark-blue m-0 h3 font-retro">Keep up with us!</h2>
       <div className="mt-4 mb-5 flex">
         <SocialLink
@@ -66,6 +61,6 @@ export default function Footer() {
         {' '}
         Copyright © {currentYear} | Macondo Games Pvt. Ltd.{' '}
       </p>
-    </Container>
+    </footer>
   );
 }
