@@ -11,3 +11,25 @@
     color: $dark-blue !important;
   }
 }
+
+.imgHolder {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 97%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 97%, 0 100%);
+}
+
+.navHolder {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 67%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 67%, 0 100%);
+}
+
+.imgLink {
+  :global(.gatsby-image-wrapper) {
+    transition-duration: 0.3s;
+  }
+
+  &:hover {
+    :global(.gatsby-image-wrapper) {
+      transform: rotate(2deg);
+    }
+  }
+}

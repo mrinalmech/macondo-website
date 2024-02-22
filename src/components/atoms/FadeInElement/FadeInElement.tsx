@@ -1,13 +1,7 @@
 import clsx from 'clsx';
 import React, { forwardRef, memo } from 'react';
 
-import {
-  animInitial,
-  animFinal,
-  fadeAnim,
-  fadeAnimDelay,
-  fadeAnimDoubleDelay,
-} from './FadeInElement.module.scss';
+import { fadeAnim, fadeAnimDelay, fadeAnimDoubleDelay } from './FadeInElement.module.scss';
 
 interface Props {
   fadeIn: boolean;
@@ -24,7 +18,7 @@ const FadeInElement = memo(
       [fadeAnimDoubleDelay]: animType === 'doubleDelay',
     });
 
-    const animClass = fadeIn ? clsx(animFinal, fadeClass) : animInitial;
+    const animClass = fadeIn ? clsx('opacity-100', fadeClass) : 'opacity-0';
 
     const consolidatedClass = clsx(className, animClass);
 
