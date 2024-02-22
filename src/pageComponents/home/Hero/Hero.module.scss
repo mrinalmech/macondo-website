@@ -78,28 +78,8 @@ $monitor-img-ratio: calc(
 
   .carousel {
     z-index: 5;
-    bottom: 278px;
-    width: 616px;
-    height: 278px;
-    overflow: hidden;
-
-    :global(.carousel-item) {
-      bottom: 0;
-      left: 0;
-      width: 100%;
-    }
-
-    > div > div,
-    > div,
-    img {
-      height: 100%;
-    }
-
-    img {
-      width: 100%;
-      object-fit: cover;
-    }
   }
+
   @media screen and (max-height: 900px) {
     .logo {
       top: 105px;

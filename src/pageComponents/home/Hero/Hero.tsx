@@ -19,6 +19,7 @@ import {
   left,
   right,
   textContent,
+  carousel,
 } from './Hero.module.scss';
 
 interface CarouselProps {
@@ -95,7 +96,7 @@ function Carousel({ style }: CarouselProps) {
   }, 4000);
 
   return (
-    <div className="absolute" style={style}>
+    <div className={clsx('absolute', carousel)} style={style}>
       {imgData.map((img, index) => (
         <div
           key={index}
@@ -171,13 +172,13 @@ function Monitor() {
 }
 
 function TextContent() {
-  const allImgsLoaded = useContext(AppReadyContext);
+  const appReady = useContext(AppReadyContext);
 
   return (
     <FadeInElement
       className={clsx('flex flex-col lg:flex-row px-3', textContent)}
       animType="doubleDelay"
-      fadeIn={allImgsLoaded}
+      fadeIn={appReady}
     >
       <div className="flex flex-col md:flex-row lg:flex-col justify-center text-center lg:text-right mb-2 lg:mg-0 mr-0 lg:mr-3 font-retro">
         <h1 className="white mr-2 lg:mr-0 mb-1 text-2xl">Suit up.</h1>
