@@ -45,7 +45,6 @@ export default function Home({ data }: Props) {
 
       setInterval(() => {
         setAppStatus('ready');
-        document.body.style.overflow = 'auto';
       }, LOADING_SCREEN_DURATION * 1000);
     }
   };
@@ -53,7 +52,7 @@ export default function Home({ data }: Props) {
   return (
     <AppReadyContext.Provider value={appReady}>
       <ImageLoadedContext.Provider value={imageLoaded}>
-        <Page>
+        <Page overFlowHidden={!appReady}>
           {!appReady && <Loader appLoaded={appLoaded} />}
           <Hero />
           <Features />
