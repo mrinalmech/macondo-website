@@ -15,7 +15,7 @@ interface LinkProps {
 export default function SocialLink({ to, ariaLabel, icon, type }: LinkProps) {
   const isSmallIcon = type === 'small';
   const styles = isSmallIcon
-    ? clsx(socialLinkSmall, 'px-4 md:px-3 last-of-type:pr-0')
+    ? clsx(socialLinkSmall, 'py-3 lg:py-0 lg:px-3 first-of-type:pt-0 lg:last-of-type:pr-0')
     : clsx(socialLinkBig, 'mx-1.5 sm:!mx-2 md:!mx-3');
   return (
     <a

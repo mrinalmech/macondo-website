@@ -74,7 +74,7 @@ export default function Header() {
   );
 
   const socialLinks = (
-    <div className="mt-2 lg:mt-0 lg:px-3 flex items-center">
+    <div className="mt-2 lg:mt-0 lg:px-3 flex flex-col lg:flex-row items-center">
       <SocialLink
         to="https://store.steampowered.com/app/1073970/Global_Steel/"
         ariaLabel="Steam"
@@ -139,7 +139,7 @@ export default function Header() {
             {socialLinks}
           </nav>
         </div>
-        <Link to="/" className={clsx('absolute top-3 left-5', imgLink)}>
+        <Link to="/" className={clsx('absolute top-2 left-2 lg:top-3 lg:left-5', imgLink)}>
           <div
             className={clsx('p-2.5 pr-2 transition-colors duration-150', imgHolder, {
               'bg-black': barBlack,
