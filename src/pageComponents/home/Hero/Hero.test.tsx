@@ -1,9 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import * as Gatsby from 'gatsby';
 
 import Hero from './Hero';
-import { AppReadyContext } from '../../../contexts/AppReadyContext';
+import { SLIDE_DURATION } from './constants';
 
 const useStaticQuery = jest.spyOn(Gatsby, 'useStaticQuery');
 const mockUseStaticQuery = {
@@ -27,19 +27,17 @@ const mockUseStaticQuery = {
 
 beforeEach(() => {
   useStaticQuery.mockImplementation(() => mockUseStaticQuery);
+  jest.useFakeTimers();
 });
 
 afterEach(() => {
   jest.restoreAllMocks();
+  jest.clearAllTimers();
 });
 
 describe('Hero', () => {
   test('Expect Hero to be presented', () => {
-    render(
-      <AppReadyContext.Provider value={true}>
-        <Hero />
-      </AppReadyContext.Provider>,
-    );
+    render(<Hero />);
 
     expect(screen.getByAltText(/Game Logo/)).toBeInTheDocument();
     expect(screen.getByAltText(/WallShade/)).toBeInTheDocument();
@@ -56,5 +54,52 @@ describe('Hero', () => {
     expect(screen.getByAltText(/light beams/)).toBeInTheDocument();
 
     expect(screen.getByText(/Global Steel is a 2d run-and-gun video game/)).toBeInTheDocument();
+  });
+
+  test('Expect slideshow to function properly', () => {
+    render(<Hero />);
+
+    const slideDuration = SLIDE_DURATION * 1000;
+
+    expect(screen.getByAltText(/Red figure/).parentElement?.parentElement).not.toHaveClass(
+      'opacity-0',
+    );
+    expect(screen.getByAltText(/Green figure/).parentElement?.parentElement).toHaveClass(
+      'opacity-0',
+    );
+
+    act(() => jest.advanceTimersByTime(slideDuration));
+
+    expect(screen.getByAltText(/Green figure/).parentElement?.parentElement).not.toHaveClass(
+      'opacity-0',
+    );
+    expect(screen.getByAltText(/Three figures/).parentElement?.parentElement).toHaveClass(
+      'opacity-0',
+    );
+
+    act(() => jest.advanceTimersByTime(slideDuration));
+
+    expect(screen.getByAltText(/Three figures/).parentElement?.parentElement).not.toHaveClass(
+      'opacity-0',
+    );
+    expect(screen.getByAltText(/flaming figure/).parentElement?.parentElement).toHaveClass(
+      'opacity-0',
+    );
+
+    act(() => jest.advanceTimersByTime(slideDuration));
+
+    expect(screen.getByAltText(/flaming figure/).parentElement?.parentElement).not.toHaveClass(
+      'opacity-0',
+    );
+    expect(screen.getByAltText(/light beams/).parentElement?.parentElement).toHaveClass(
+      'opacity-0',
+    );
+
+    act(() => jest.advanceTimersByTime(slideDuration));
+
+    expect(screen.getByAltText(/light beams/).parentElement?.parentElement).not.toHaveClass(
+      'opacity-0',
+    );
+    expect(screen.getByAltText(/Red figure/).parentElement?.parentElement).toHaveClass('opacity-0');
   });
 });

@@ -4,6 +4,7 @@ import * as Gatsby from 'gatsby';
 
 import LoadedImg from './LoadedImg';
 import { AppReadyContext } from '../../../contexts/AppReadyContext';
+import { ImageLoadedContext } from '../../../contexts/ImageLoadedContext';
 
 const useStaticQuery = jest.spyOn(Gatsby, 'useStaticQuery');
 const mockUseStaticQuery = {
@@ -14,6 +15,24 @@ const mockUseStaticQuery = {
     nodes: [{ name: 'testImg' }],
   },
 };
+
+jest.mock('gatsby-plugin-image', () => {
+  const plugin = jest.requireActual('gatsby-plugin-image');
+
+  const mockImage = ({ alt, handleLoad }: { alt: string; handleLoad: () => void }) => (
+    <div>
+      <img alt={alt} onLoad={handleLoad} />
+    </div>
+  );
+
+  return {
+    ...plugin,
+    getImage: jest.fn().mockImplementation(() => ({
+      mock: '',
+    })),
+    GatsbyImage: jest.fn().mockImplementation(mockImage),
+  };
+});
 
 beforeEach(() => {
   useStaticQuery.mockImplementation(() => mockUseStaticQuery);
@@ -40,7 +59,9 @@ describe('LoadedImg', () => {
         <LoadedImg imgName="testImg" alt="testImgAlt" />
       </AppReadyContext.Provider>,
     );
-    expect(screen.queryByAltText(/testImgAlt/)?.parentElement).toHaveClass('opacity-100');
+    expect(screen.queryByAltText(/testImgAlt/)?.parentElement?.parentElement).toHaveClass(
+      'opacity-100',
+    );
   });
 
   test('Expect LoadedImg to not be visible if app is not loaded', () => {
@@ -49,6 +70,19 @@ describe('LoadedImg', () => {
         <LoadedImg imgName="testImg" alt="testImgAlt" />
       </AppReadyContext.Provider>,
     );
-    expect(screen.queryByAltText(/testImgAlt/)?.parentElement).toHaveClass('opacity-0');
+    expect(screen.queryByAltText(/testImgAlt/)?.parentElement?.parentElement).toHaveClass(
+      'opacity-0',
+    );
+  });
+
+  test('Expect imageLoaded to be called after img is complete', () => {
+    const mockImageLoaded = jest.fn();
+    render(
+      <ImageLoadedContext.Provider value={mockImageLoaded}>
+        <LoadedImg imgName="testImg" />
+      </ImageLoadedContext.Provider>,
+    );
+
+    expect(mockImageLoaded).toHaveBeenCalledWith('testImg');
   });
 });

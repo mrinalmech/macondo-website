@@ -35,7 +35,6 @@ const LoadedImg = memo(
       if (imgContainer) {
         const gatsbyWrapper = $(imgContainer).children('div')[0];
         const img = $(gatsbyWrapper).children('img')[0] as HTMLImageElement;
-
         if (img && img.complete) {
           imageLoaded(imgName);
         }

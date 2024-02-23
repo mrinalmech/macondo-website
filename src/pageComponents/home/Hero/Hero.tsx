@@ -19,10 +19,12 @@ import {
   left,
   right,
   textContent,
-  carousel,
+  slideShow,
 } from './Hero.module.scss';
 
-interface CarouselProps {
+import { SLIDE_DURATION } from './constants';
+
+interface SlideshowProps {
   style?: React.CSSProperties;
 }
 
@@ -83,7 +85,7 @@ function BackgroundImages() {
   );
 }
 
-function Carousel({ style }: CarouselProps) {
+function Slideshow({ style }: SlideshowProps) {
   const [active, setActive] = useState(0);
 
   const updateActive = () => {
@@ -93,20 +95,22 @@ function Carousel({ style }: CarouselProps) {
 
   useInterval(() => {
     updateActive();
-  }, 4000);
+  }, SLIDE_DURATION * 1000);
 
   return (
-    <div className={clsx('absolute', carousel)} style={style}>
-      {imgData.map((img, index) => (
-        <div
-          key={index}
-          className={clsx('absolute transition-opacity duration-1000', {
-            'opacity-0': active !== index,
-          })}
-        >
-          <LoadedImg imgName={img.imgName} animType="doubleDelay" alt={img.alt} />
-        </div>
-      ))}
+    <div className={clsx('absolute', slideShow)} style={style}>
+      {imgData.map((img, index) => {
+        return (
+          <div
+            key={index}
+            className={clsx('absolute transition-opacity duration-1000', {
+              'opacity-0': active !== index,
+            })}
+          >
+            <LoadedImg imgName={img.imgName} animType="doubleDelay" alt={img.alt} />
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -158,7 +162,7 @@ function Monitor() {
         className={clsx('absolute', monitor)}
         animType="delay"
       />
-      <Carousel
+      <Slideshow
         style={{
           height: dimensions.height,
           width: dimensions.width,
