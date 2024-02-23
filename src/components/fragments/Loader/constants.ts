@@ -1,1 +1,2 @@
 export const LOADING_SCREEN_DURATION = 0.3;
+export const LOADING_DOTS_DURATION = 0.5;

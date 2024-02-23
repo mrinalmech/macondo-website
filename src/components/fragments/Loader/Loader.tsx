@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useInterval } from 'usehooks-ts';
 
-import { LOADING_SCREEN_DURATION } from './constants';
+import { LOADING_SCREEN_DURATION, LOADING_DOTS_DURATION } from './constants';
 
 import { root } from './Loader.module.scss';
 
@@ -20,7 +20,7 @@ export default function Loader({ appLoaded }: Props) {
 
   useInterval(() => {
     updateDots();
-  }, 500);
+  }, LOADING_DOTS_DURATION * 1000);
 
   return (
     <div

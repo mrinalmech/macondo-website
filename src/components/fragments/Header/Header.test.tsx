@@ -8,7 +8,10 @@ describe('Header', () => {
     render(<Header />);
 
     expect(screen.getByAltText(/Company Logo/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/Company Logo/i).parentElement).toHaveAttribute('href', '/');
+    expect(screen.getByAltText(/Company Logo/i).parentElement?.parentElement).toHaveAttribute(
+      'href',
+      '/',
+    );
     expect(screen.getByRole('link', { name: /Blog/i })).toHaveAttribute(
       'href',
       'https://blog.macondogames.com/',

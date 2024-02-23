@@ -34,12 +34,21 @@ describe('LoadedImg', () => {
     expect(screen.queryByAltText(/testImgAlt/i)).not.toBeInTheDocument();
   });
 
-  test('Expect LoadedImg to be not visible if app is loaded', () => {
+  test('Expect LoadedImg to be visible if app is loaded', () => {
     render(
       <AppReadyContext.Provider value={true}>
         <LoadedImg imgName="testImg" alt="testImgAlt" />
       </AppReadyContext.Provider>,
     );
-    expect(screen.queryByAltText(/testImgAlt/i)?.parentElement).toHaveClass('animFinal');
+    expect(screen.queryByAltText(/testImgAlt/i)?.parentElement).toHaveClass('opacity-100');
+  });
+
+  test('Expect LoadedImg to not be visible if app is not loaded', () => {
+    render(
+      <AppReadyContext.Provider value={false}>
+        <LoadedImg imgName="testImg" alt="testImgAlt" />
+      </AppReadyContext.Provider>,
+    );
+    expect(screen.queryByAltText(/testImgAlt/i)?.parentElement).toHaveClass('opacity-0');
   });
 });

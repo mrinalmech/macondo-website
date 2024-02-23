@@ -8,13 +8,13 @@ describe('FadeInElement', () => {
     render(<FadeInElement fadeIn={false}>TestContent</FadeInElement>);
 
     expect(screen.getByText(/TestContent/i)).toBeInTheDocument();
-    expect(screen.getByText(/TestContent/i)).toHaveClass('animInitial');
+    expect(screen.getByText(/TestContent/i)).toHaveClass('opacity-0');
   });
 
   test('Expect FadeInElement to be presented when visible', () => {
     render(<FadeInElement fadeIn>TestContent</FadeInElement>);
 
     expect(screen.getByText(/TestContent/i)).toBeInTheDocument();
-    expect(screen.getByText(/TestContent/i)).toHaveClass('animFinal');
+    expect(screen.getByText(/TestContent/i)).toHaveClass('opacity-100');
   });
 });
