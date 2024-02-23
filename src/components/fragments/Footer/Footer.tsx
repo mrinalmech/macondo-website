@@ -20,7 +20,7 @@ export default function Footer() {
     <footer
       className={clsx(root, '-mt-12 flex pt-8 pb-6 flex-col items-center justify-center bg-black')}
     >
-      <h2 className="dark-blue m-0 h3 font-retro">Keep up with us!</h2>
+      <h2 className="white m-0 h3 font-retro text-2xl">Keep up with us!</h2>
       <div className="mt-4 mb-5 flex">
         <SocialLink
           to="https://twitter.com/macondostudios"

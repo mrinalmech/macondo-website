@@ -1,19 +1,24 @@
 @import 'src/styles/colors.scss';
 
 .socialLinkBig {
-  color: $dark-blue;
+  color: $white;
 
-  border: 1px solid $dark-blue;
+  border: 1px solid $white;
   height: 38px;
   width: 38px;
 
   &:hover {
-    background: rgba($dark-blue, 0.9);
-    color: $white;
+    border-color: $red;
+
+    > svg {
+      filter: drop-shadow(3px 3px 0 rgba($red, 0.8));
+    }
   }
 
   &:active {
-    background: $dark-blue;
+    > svg {
+      filter: drop-shadow(3px 3px 0 $red);
+    }
   }
 
   > svg {
@@ -31,20 +36,17 @@
 
 .socialLinkSmall {
   color: $white;
+  transition: filter 0.1s linear;
 
   &:hover {
-    color: rgba($dark-blue, 0.9);
+    filter: drop-shadow(3px 3px 0 rgba($red, 0.8));
   }
 
   &:active {
-    color: $dark-blue;
-  }
-
-  &:last-of-type {
-    margin-right: 0 !important;
+    filter: drop-shadow(3px 3px 0 $red);
   }
 
   & > svg {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
   }
 }

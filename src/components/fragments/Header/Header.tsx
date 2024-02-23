@@ -25,7 +25,7 @@ interface NavLinkProps {
 
 const NavLink = (props: NavLinkProps) => {
   return (
-    <Link className={clsx('pr-3 pl-3', navLink)} {...props}>
+    <Link className={clsx('px-4 text-xl', navLink)} {...props}>
       {props.children}
     </Link>
   );
@@ -67,7 +67,7 @@ export default function Header() {
             Press
           </NavLink>
           <NavLink to="mailto:info@macondogames.com">Contact</NavLink>
-          <div className="px-3">
+          <div className="px-3 flex items-center">
             <SocialLink
               to="https://store.steampowered.com/app/1073970/Global_Steel/"
               ariaLabel="Steam"

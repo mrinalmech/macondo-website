@@ -2,13 +2,14 @@
 
 .navLink {
   color: $white !important;
+  transition: text-shadow 0.1s linear;
 
   &:hover {
-    color: rgba($dark-blue, 0.9) !important;
+    text-shadow: 3px 3px rgba($red, 0.8);
   }
 
   &:active {
-    color: $dark-blue !important;
+    text-shadow: 3px 3px $red;
   }
 }
 
