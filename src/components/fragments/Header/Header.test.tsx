@@ -1,7 +1,25 @@
 import React from 'react';
-import { act, render, screen, fireEvent } from '@testing-library/react';
+import {
+  act,
+  render,
+  screen,
+  fireEvent,
+  waitForElementToBeRemoved,
+  queryByTestId,
+} from '@testing-library/react';
 
 import Header from './Header';
+
+function resize(width: number) {
+  const event = new Event('resize', { bubbles: true, cancelable: true });
+
+  Object.defineProperty(window, 'innerWidth', {
+    writable: true,
+    configurable: true,
+    value: width,
+  });
+  window.dispatchEvent(event);
+}
 
 function scroll(scrollY: number) {
   const event = new Event('scroll', { bubbles: true, cancelable: true });
@@ -81,5 +99,19 @@ describe('Header', () => {
     fireEvent.click(screen.getByLabelText(/Open the menu/));
 
     expect(screen.getByTestId(/drawer/)).toBeInTheDocument();
+  });
+
+  test('Expect drawer to be hidden if screen is expanded', async () => {
+    act(() => resize(400));
+
+    render(<Header />);
+
+    fireEvent.click(screen.getByLabelText(/Open the menu/));
+
+    expect(screen.getByTestId(/drawer/)).toBeInTheDocument();
+
+    act(() => resize(1920));
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId(/drawer/));
   });
 });
