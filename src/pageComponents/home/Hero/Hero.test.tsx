@@ -41,20 +41,20 @@ describe('Hero', () => {
       </AppReadyContext.Provider>,
     );
 
-    expect(screen.getByAltText(/Game Logo/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/WallShade/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/WebsiteBaseL1Left/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/WebsiteBaseL2Left/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/WebsiteBaseL1Right/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/WebsiteBaseL2Right/i)).toBeInTheDocument();
-    expect(screen.getByAltText('Monitor')).toBeInTheDocument();
+    expect(screen.getByAltText(/Game Logo/)).toBeInTheDocument();
+    expect(screen.getByAltText(/WallShade/)).toBeInTheDocument();
+    expect(screen.getByAltText(/WebsiteBaseL1Left/)).toBeInTheDocument();
+    expect(screen.getByAltText(/WebsiteBaseL2Left/)).toBeInTheDocument();
+    expect(screen.getByAltText(/WebsiteBaseL1Right/)).toBeInTheDocument();
+    expect(screen.getByAltText(/WebsiteBaseL2Right/)).toBeInTheDocument();
+    expect(screen.getByAltText(/Monitor/)).toBeInTheDocument();
 
-    expect(screen.getByAltText(/Red figure/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/Green figure/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/Three figures/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/flaming figure/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/light beams/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/Red figure/)).toBeInTheDocument();
+    expect(screen.getByAltText(/Green figure/)).toBeInTheDocument();
+    expect(screen.getByAltText(/Three figures/)).toBeInTheDocument();
+    expect(screen.getByAltText(/flaming figure/)).toBeInTheDocument();
+    expect(screen.getByAltText(/light beams/)).toBeInTheDocument();
 
-    expect(screen.getByText(/Global Steel is a 2d run-and-gun video game/i)).toBeInTheDocument();
+    expect(screen.getByText(/Global Steel is a 2d run-and-gun video game/)).toBeInTheDocument();
   });
 });

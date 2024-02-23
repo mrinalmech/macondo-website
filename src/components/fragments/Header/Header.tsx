@@ -34,14 +34,14 @@ const NavLink = (props: NavLinkProps) => {
 export default function Header() {
   const [barBlack, setBarBlack] = useState(false);
 
-  const handleScroll = () => {
-    const position = window.scrollY;
-
-    const isNotAtTop = position !== 0;
-    setBarBlack(isNotAtTop);
-  };
-
   useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+
+      const isNotAtTop = position !== 0;
+      setBarBlack(isNotAtTop);
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
@@ -59,6 +59,7 @@ export default function Header() {
             'bg-black': barBlack,
           },
         )}
+        data-testid="nav-holder"
       >
         <nav className="flex font-retro">
           <NavLink to="https://blog.macondogames.com/">Blog</NavLink>

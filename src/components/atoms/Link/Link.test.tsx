@@ -7,13 +7,13 @@ describe('Link', () => {
   test('Expect Link to be presented', () => {
     render(<Link to="/test-url">Test</Link>);
 
-    expect(screen.getByRole('link', { name: /Test/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Test/ })).toBeInTheDocument();
   });
 
   test('Expect internal link to point to correct destination', () => {
     render(<Link to="/test-url">Test</Link>);
 
-    expect(screen.getByRole('link', { name: /Test/i })).toHaveAttribute('href', '/test-url');
+    expect(screen.getByRole('link', { name: /Test/ })).toHaveAttribute('href', '/test-url');
   });
 
   test('Expect external link to point to correct destination', () => {
@@ -23,6 +23,6 @@ describe('Link', () => {
       </Link>,
     );
 
-    expect(screen.getByRole('link', { name: /Test/i })).toHaveAttribute('href', '/test-url');
+    expect(screen.getByRole('link', { name: /Test/ })).toHaveAttribute('href', '/test-url');
   });
 });

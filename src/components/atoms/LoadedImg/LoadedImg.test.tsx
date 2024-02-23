@@ -26,12 +26,12 @@ afterEach(() => {
 describe('LoadedImg', () => {
   test('Expect LoadedImg to be presented', () => {
     render(<LoadedImg imgName="testImg" alt="testImgAlt" />);
-    expect(screen.getByAltText(/testImgAlt/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/testImgAlt/)).toBeInTheDocument();
   });
 
   test('Expect LoadedImg to be not presented if image not in filesystem', () => {
     render(<LoadedImg imgName="testImg2" alt="testImgAlt" />);
-    expect(screen.queryByAltText(/testImgAlt/i)).not.toBeInTheDocument();
+    expect(screen.queryByAltText(/testImgAlt/)).not.toBeInTheDocument();
   });
 
   test('Expect LoadedImg to be visible if app is loaded', () => {
@@ -40,7 +40,7 @@ describe('LoadedImg', () => {
         <LoadedImg imgName="testImg" alt="testImgAlt" />
       </AppReadyContext.Provider>,
     );
-    expect(screen.queryByAltText(/testImgAlt/i)?.parentElement).toHaveClass('opacity-100');
+    expect(screen.queryByAltText(/testImgAlt/)?.parentElement).toHaveClass('opacity-100');
   });
 
   test('Expect LoadedImg to not be visible if app is not loaded', () => {
@@ -49,6 +49,6 @@ describe('LoadedImg', () => {
         <LoadedImg imgName="testImg" alt="testImgAlt" />
       </AppReadyContext.Provider>,
     );
-    expect(screen.queryByAltText(/testImgAlt/i)?.parentElement).toHaveClass('opacity-0');
+    expect(screen.queryByAltText(/testImgAlt/)?.parentElement).toHaveClass('opacity-0');
   });
 });

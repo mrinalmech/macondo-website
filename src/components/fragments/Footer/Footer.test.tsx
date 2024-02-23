@@ -9,28 +9,28 @@ describe('Footer', () => {
 
     render(<Footer />);
 
-    expect(screen.getByText(/Keep up with us!/i)).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /Twitter/i })).toHaveAttribute(
+    expect(screen.getByText(/Keep up with us!/)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Twitter/ })).toHaveAttribute(
       'href',
       'https://twitter.com/macondostudios',
     );
-    expect(screen.getByRole('link', { name: /Facebook/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /Facebook/ })).toHaveAttribute(
       'href',
       'https://www.facebook.com/macondostudios',
     );
-    expect(screen.getByRole('link', { name: /Instagram/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /Instagram/ })).toHaveAttribute(
       'href',
       'https://www.instagram.com/globalsteelgame',
     );
-    expect(screen.getByRole('link', { name: /Youtube/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /Youtube/ })).toHaveAttribute(
       'href',
       'https://www.youtube.com/channel/UCfYKziK0Ll8UZ9AiMTZT9DA',
     );
-    expect(screen.getByRole('link', { name: /Discord/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /Discord/ })).toHaveAttribute(
       'href',
       'https://discord.gg/qVBvuy7Ny3',
     );
-    expect(screen.getByRole('link', { name: /Twitch/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /Twitch/ })).toHaveAttribute(
       'href',
       'https://www.twitch.tv/macondogames',
     );

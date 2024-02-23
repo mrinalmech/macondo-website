@@ -38,7 +38,7 @@ describe('SEO', () => {
   test('Expect SEO to be presented with defaults', () => {
     render(<SEO />);
 
-    expect(screen.getByText(/TestDefaultTitle/i)).toBeInTheDocument();
+    expect(screen.getByText(/TestDefaultTitle/)).toBeInTheDocument();
     expect(getMeta('description')).toEqual('TestDefaultDescription');
     expect(getMeta('og:title')).toEqual('TestDefaultTitle');
     expect(getMeta('og:description')).toEqual('TestDefaultDescription');
@@ -53,7 +53,7 @@ describe('SEO', () => {
   test('Expect SEO to be presented with overriden values', () => {
     render(<SEO title="TestTitle" description="TestDescription" pathname="/test-path" />);
 
-    expect(screen.getByText(/TestTitle/i)).toBeInTheDocument();
+    expect(screen.getByText(/TestTitle/)).toBeInTheDocument();
     expect(getMeta('description')).toEqual('TestDescription');
     expect(getMeta('og:title')).toEqual('TestTitle');
     expect(getMeta('og:description')).toEqual('TestDescription');

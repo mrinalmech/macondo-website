@@ -11,7 +11,10 @@ type Props = {
 
 export default function Page({ children, overFlowHidden = false }: Props) {
   return (
-    <div className={clsx('h-screen flex flex-col', { 'overflow-hidden': overFlowHidden })}>
+    <div
+      className={clsx('h-screen flex flex-col', { 'overflow-hidden': overFlowHidden })}
+      data-testid="page"
+    >
       <Header />
       <main className="grow">{children}</main>
       <Footer />
