@@ -20,6 +20,7 @@ export default function Hamburger({ isOpen, setIsOpen }: Props) {
       aria-label={isOpen ? 'Close the menu' : 'Open the menu'}
       aria-expanded={isOpen}
       aria-controls="drawer"
+      id="hamburger"
     >
       <span
         className={clsx(commonClass, {

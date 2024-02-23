@@ -23,6 +23,8 @@ export default function HeaderDrawer({ isOpen, setIsOpen, children }: Props) {
         paper: clsx(paper, 'w-full flex flex-col justify-start items-end pr-4 font-retro'),
       }}
       id="drawer"
+      data-testid="drawer"
+      aria-labelledby="hamburger"
     >
       {children}
     </Drawer>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen, fireEvent } from '@testing-library/react';
 
 import Header from './Header';
 
@@ -71,5 +71,15 @@ describe('Header', () => {
     act(() => scroll(50));
 
     expect(screen.getByTestId(/nav-holder/)).toHaveClass('bg-black');
+  });
+
+  test('Expect drawer to be only visible on click', () => {
+    render(<Header />);
+
+    expect(screen.queryByTestId(/drawer/)).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByLabelText(/Open the menu/));
+
+    expect(screen.getByTestId(/drawer/)).toBeInTheDocument();
   });
 });
