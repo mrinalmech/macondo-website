@@ -13,6 +13,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 
 import Link from '../../../components/atoms/Link';
 import SocialLink from '../../../components/atoms/SocialLink';
+import Hamburger from '../Hamburger';
 
 import { navLink, imgHolder, navHolder, imgLink } from './Header.module.scss';
 
@@ -33,6 +34,7 @@ const NavLink = (props: NavLinkProps) => {
 
 export default function Header() {
   const [barBlack, setBarBlack] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,6 +63,7 @@ export default function Header() {
         )}
         data-testid="nav-holder"
       >
+        <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
         <nav className="hidden lg:flex font-retro">
           <NavLink to="https://blog.macondogames.com/">Blog</NavLink>
           <NavLink to="/press" external>
