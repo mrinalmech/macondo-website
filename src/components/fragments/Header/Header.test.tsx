@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  act,
-  render,
-  screen,
-  fireEvent,
-  waitForElementToBeRemoved,
-  queryByTestId,
-} from '@testing-library/react';
+import { act, render, screen, fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
 
 import Header from './Header';
 
