@@ -17,6 +17,7 @@ export default function Hamburger({ isOpen, setIsOpen }: Props) {
     <button
       onClick={handleClick}
       className="flex flex-col lg:hidden justify-center items-center -mt-2"
+      data-testid="hamburger"
     >
       <span
         className={clsx(commonClass, {
