@@ -3,10 +3,11 @@
 
 .navLink {
   color: $white !important;
-  transition: text-shadow 0.1s linear;
+  transition-duration: 0.3s;
 
   &:hover {
     text-shadow: 3px 3px rgba($red, 0.8);
+    transform: rotate(3deg);
   }
 
   &:active {
@@ -31,7 +32,7 @@
 
   &:hover {
     :global(.gatsby-image-wrapper) {
-      transform: rotate(2deg);
+      transform: rotate(3deg);
     }
   }
 }
