@@ -10,7 +10,7 @@
   "scripts": {
     "presskit-build": "presskit build ./src/press -o ./public/press -L",
     "presskit-watch": "presskit build ./src/press -o ./public/press -L --watch",
-    "build": "npm run lint && gatsby build && npm run presskit-build",
+    "build": "npm run lint:build && gatsby build && npm run presskit-build",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
@@ -24,7 +24,8 @@
     "test:e2e": "cross-env CYPRESS_SUPPORT=y start-server-and-test develop http://localhost:8000 cy:open",
     "test:e2e:prod": "cross-env CYPRESS_SUPPORT=y npm run build && start-server-and-test serve http://localhost:9000 cy:open:prod",
     "test:e2e:ci": "cross-env CYPRESS_SUPPORT=y npm run build && start-server-and-test serve http://localhost:9000 cy:run",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx ./src"
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx ./src",
+    "lint build": "npm run lint -- --max-warnings 0"
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.0.16",

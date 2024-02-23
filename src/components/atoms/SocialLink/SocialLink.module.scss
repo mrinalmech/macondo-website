@@ -1,6 +1,11 @@
 @import 'src/styles/colors.scss';
 
+.socialLink {
+  transition: filter 0.1s linear;
+}
 .socialLinkBig {
+  @extend .socialLink;
+
   color: $white;
 
   border: 1px solid $white;
@@ -35,8 +40,9 @@
 }
 
 .socialLinkSmall {
+  @extend .socialLink;
+
   color: $white;
-  transition: filter 0.1s linear;
 
   &:hover {
     filter: drop-shadow(3px 3px 0 rgba($red, 0.8));

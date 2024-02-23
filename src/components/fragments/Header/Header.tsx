@@ -50,7 +50,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={clsx('fixed w-full z-50')}>
+    <header className="fixed w-full z-50">
       <div
         className={clsx(
           'p-4 pb-8 w-full flex justify-end z-50 transition-colors duration-150',
@@ -61,7 +61,7 @@ export default function Header() {
         )}
         data-testid="nav-holder"
       >
-        <nav className="flex font-retro">
+        <nav className="hidden lg:flex font-retro">
           <NavLink to="https://blog.macondogames.com/">Blog</NavLink>
           <NavLink to="/press" external>
             Press
