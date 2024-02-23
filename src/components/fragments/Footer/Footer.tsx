@@ -17,7 +17,9 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={clsx(root, 'flex py-4 flex-col items-center justify-center')}>
+    <footer
+      className={clsx(root, '-mt-12 flex pt-8 pb-6 flex-col items-center justify-center bg-black')}
+    >
       <h2 className="dark-blue m-0 h3 font-retro">Keep up with us!</h2>
       <div className="mt-4 mb-5 flex">
         <SocialLink

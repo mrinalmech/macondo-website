@@ -69,7 +69,7 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
 
 export default function Features() {
   return (
-    <div className={clsx(root, 'py-12 px-6 xs:py-20')}>
+    <div className={clsx(root, 'pt-12 pb-14 px-6 sm:pt-20 sm:pb-20')}>
       <div className="container p-0 mx-auto max-w-6xl text-center">
         <div className="max-w-2xl mx-auto mb-20">
           <iframe

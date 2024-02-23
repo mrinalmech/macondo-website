@@ -22,6 +22,7 @@ module.exports = {
     `eslint:recommended`,
     `plugin:react/recommended`,
     `plugin:jsx-a11y/recommended`,
+    `plugin:cypress/recommended`,
   ],
   parser: `@typescript-eslint/parser`,
   parserOptions: {

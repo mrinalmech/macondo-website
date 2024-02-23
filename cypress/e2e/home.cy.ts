@@ -4,11 +4,24 @@ describe('Homepage tests', () => {
 
     cy.findByText(/SUIT UP/i).should('exist');
 
-    cy.findByAltText(/Red figure/i).should('be.visible');
-    cy.findByAltText(/Green figure/i, { timeout: 10000 }).should('be.visible');
-    cy.findByAltText(/Three figures/i, { timeout: 10000 }).should('be.visible');
-    cy.findByAltText(/flaming figure/i, { timeout: 10000 }).should('be.visible');
-    cy.findByAltText(/light beams/i, { timeout: 10000 }).should('be.visible');
-    cy.findByAltText(/Red figure/i, { timeout: 10000 }).should('be.visible');
+    cy.findByAltText(/Red figure/).should('be.visible');
+    cy.findByAltText(/Green figure/, { timeout: 10000 }).should('be.visible');
+    cy.findByAltText(/Three figures/, { timeout: 10000 }).should('be.visible');
+    cy.findByAltText(/flaming figure/, { timeout: 10000 }).should('be.visible');
+    cy.findByAltText(/light beams/, { timeout: 10000 }).should('be.visible');
+    cy.findByAltText(/Red figure/, { timeout: 10000 }).should('be.visible');
+  });
+
+  it('Header changes background color on scroll', () => {
+    cy.visit('/');
+    cy.findByTestId(/nav-holder/)
+      .should('have.css', 'background-color')
+      .and('eq', 'rgba(0, 0, 0, 0)');
+
+    cy.scrollTo(0, 50);
+
+    cy.findByTestId(/nav-holder/)
+      .should('have.css', 'background-color')
+      .and('eq', 'rgb(0, 0, 0)');
   });
 });
