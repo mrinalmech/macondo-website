@@ -22,7 +22,7 @@ export default function HeaderDrawer({ isOpen, setIsOpen, children }: Props) {
         root: 'z-10 lg:hidden',
         paper: clsx(paper, 'w-full flex flex-col justify-start items-end pr-4 font-retro'),
       }}
-      data-testid="drawer"
+      id="drawer"
     >
       {children}
     </Drawer>

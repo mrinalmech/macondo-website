@@ -7,15 +7,15 @@ describe('Hamburger', () => {
   const mockIsOpen = jest.fn();
 
   test('Expect Hamburger to be presented', () => {
-    render(<Hamburger isOpen={true} setIsOpen={mockIsOpen} />);
+    render(<Hamburger isOpen={false} setIsOpen={mockIsOpen} />);
 
-    expect(screen.getByTestId(/hamburger/)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Open the menu/)).toBeInTheDocument();
   });
 
   test('Expect setIsOpen to be called when hamburger clicked', () => {
-    render(<Hamburger isOpen={true} setIsOpen={mockIsOpen} />);
+    render(<Hamburger isOpen={false} setIsOpen={mockIsOpen} />);
 
-    fireEvent.click(screen.getByTestId(/hamburger/));
+    fireEvent.click(screen.getByLabelText(/Open the menu/));
     expect(mockIsOpen).toHaveBeenCalled();
   });
 });

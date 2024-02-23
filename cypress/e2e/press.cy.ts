@@ -1,5 +1,6 @@
 describe('Presskit tests', () => {
   it('Navigates to press kit and content is presented', () => {
+    cy.viewport(1920, 1080);
     cy.visit('/');
     cy.findByRole('link', { name: /Press/ }).should('exist').click();
 
