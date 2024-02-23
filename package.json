@@ -25,7 +25,7 @@
     "test:e2e:prod": "cross-env CYPRESS_SUPPORT=y npm run build && start-server-and-test serve http://localhost:9000 cy:open:prod",
     "test:e2e:ci": "cross-env CYPRESS_SUPPORT=y npm run build && start-server-and-test serve http://localhost:9000 cy:run",
     "lint": "eslint --ext .ts,.tsx,.js,.jsx ./src",
-    "lint build": "npm run lint -- --max-warnings 0"
+    "lint:build": "npm run lint -- --max-warnings 0"
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.0.16",
