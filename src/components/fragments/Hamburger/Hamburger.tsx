@@ -5,6 +5,7 @@ interface Props {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
 }
+
 export default function Hamburger({ isOpen, setIsOpen }: Props) {
   const handleClick = () => {
     setIsOpen(!isOpen);

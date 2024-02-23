@@ -1,0 +1,8 @@
+@import 'src/styles/colors.scss';
+@import 'src/styles/constants.scss';
+
+.paper {
+  padding-top: $navbarHeight;
+  background-color: $dark-blue;
+  clip-path: polygon(6.5% 0, 100% 0, 100% 100%, 15% 100%);
+}
