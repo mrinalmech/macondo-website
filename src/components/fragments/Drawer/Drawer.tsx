@@ -19,7 +19,7 @@ export default function HeaderDrawer({ isOpen, setIsOpen, children }: Props) {
       onClick={handleClose}
       anchor="right"
       classes={{
-        root: 'z-10 lg:hidden',
+        root: '!z-10 lg:hidden',
         paper: clsx(paper, 'w-full flex flex-col justify-start items-end pr-4 font-retro'),
       }}
       id="drawer"
