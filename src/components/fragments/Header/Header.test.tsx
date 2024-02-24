@@ -1,29 +1,9 @@
 import React from 'react';
 import { act, render, screen, fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
 
+import { scroll, resize } from '../../../util/tests';
+
 import Header from './Header';
-
-function resize(width: number) {
-  const event = new Event('resize', { bubbles: true, cancelable: true });
-
-  Object.defineProperty(window, 'innerWidth', {
-    writable: true,
-    configurable: true,
-    value: width,
-  });
-  window.dispatchEvent(event);
-}
-
-function scroll(scrollY: number) {
-  const event = new Event('scroll', { bubbles: true, cancelable: true });
-
-  Object.defineProperty(window, 'scrollY', {
-    writable: true,
-    configurable: true,
-    value: scrollY,
-  });
-  window.dispatchEvent(event);
-}
 
 describe('Header', () => {
   test('Expect header to be presented', () => {
