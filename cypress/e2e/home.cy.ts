@@ -24,4 +24,46 @@ describe('Homepage tests', () => {
       .should('have.css', 'background-color')
       .and('eq', 'rgb(0, 0, 0)');
   });
+
+  it('Hamburger only visible on smaller screens', () => {
+    cy.viewport(1920, 1080);
+
+    cy.visit('/');
+
+    cy.findByLabelText(/Open the menu/, { timeout: 10000 }).should('not.be.visible');
+
+    cy.viewport(400, 1080);
+
+    cy.findByLabelText(/Open the menu/, { timeout: 10000 }).should('be.visible');
+  });
+
+  it('Drawer is toggled via hamburger', () => {
+    cy.viewport(400, 1080);
+
+    cy.visit('/');
+
+    cy.findByTestId(/drawer/, { timeout: 10000 }).should('not.exist');
+
+    cy.findByLabelText(/Open the menu/, { timeout: 10000 }).click();
+
+    cy.findByTestId(/drawer/, { timeout: 10000 }).should('be.visible');
+
+    cy.findByLabelText(/Close the menu/, { timeout: 10000 }).click();
+
+    cy.findByTestId(/drawer/, { timeout: 10000 }).should('not.exist');
+  });
+
+  it('Drawer is removed on increasing screen size', () => {
+    cy.viewport(400, 1080);
+
+    cy.visit('/');
+
+    cy.findByLabelText(/Open the menu/, { timeout: 10000 }).click();
+
+    cy.findByTestId(/drawer/, { timeout: 10000 }).should('be.visible');
+
+    cy.viewport(1920, 1080);
+
+    cy.findByTestId(/drawer/, { timeout: 10000 }).should('not.exist');
+  });
 });
