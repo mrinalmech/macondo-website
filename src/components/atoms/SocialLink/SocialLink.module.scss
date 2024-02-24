@@ -1,7 +1,11 @@
 @import 'src/styles/colors.scss';
 
-.socialLink > svg {
+.socialLink {
   transition-duration: 0.3s;
+
+  > svg {
+    transition-duration: 0.3s;
+  }
 }
 
 .socialLinkBig {

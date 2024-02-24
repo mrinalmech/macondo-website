@@ -126,7 +126,7 @@ export default function Header() {
       <header className="fixed w-full z-50">
         <div
           className={clsx(
-            'p-4 pb-8 w-full flex justify-end transition-colors duration-150',
+            'p-4 pb-8 w-full flex justify-end transition-colors duration-300',
             navHolder,
             {
               'bg-black': barBlack,
@@ -142,7 +142,7 @@ export default function Header() {
         </div>
         <Link to="/" className={clsx('absolute top-2 left-2 lg:top-3 lg:left-5', imgLink)}>
           <div
-            className={clsx('p-2.5 pr-2 transition-colors duration-150', imgHolder, {
+            className={clsx('p-2.5 pr-2 transition-colors duration-300', imgHolder, {
               'bg-black': barBlack,
             })}
           >

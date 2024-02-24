@@ -1,0 +1,23 @@
+@import 'src/styles/colors.scss';
+
+.root {
+  transition-duration: 0.3s;
+
+  span {
+    transition-duration: 0.3s;
+  }
+
+  &:hover {
+    transform: rotate(5deg);
+
+    span {
+      filter: drop-shadow(2px 2px 0 rgba($red, 0.8));
+    }
+  }
+
+  &:active {
+    span {
+      filter: drop-shadow(2px 2px 0 $red);
+    }
+  }
+}

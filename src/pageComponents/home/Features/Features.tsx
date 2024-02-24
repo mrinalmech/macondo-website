@@ -111,7 +111,7 @@ const query = graphql`
       nodes {
         name
         childImageSharp {
-          gatsbyImageData(width: 540)
+          gatsbyImageData(width: 540, placeholder: NONE)
         }
       }
     }

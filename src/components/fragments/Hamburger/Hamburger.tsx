@@ -1,6 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 
+import { root } from './Hamburger.module.scss';
+
 interface Props {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
@@ -16,7 +18,7 @@ export default function Hamburger({ isOpen, setIsOpen }: Props) {
   return (
     <button
       onClick={handleClick}
-      className="flex flex-col lg:hidden justify-center items-center -mt-2"
+      className={clsx('flex flex-col lg:hidden justify-center items-center -mt-2', root)}
       aria-label={isOpen ? 'Close the menu' : 'Open the menu'}
       aria-expanded={isOpen}
       aria-controls="drawer"
