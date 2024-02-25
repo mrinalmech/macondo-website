@@ -21,7 +21,7 @@ jobs:
           restore-keys: ${{ runner.os }}-node-
       - name: Build
         run: |
-          env CXXFLAGS="-std=c++17" npm ci --legacy-peer-deps
+          env CXXFLAGS="-std=c++17" NODE_ENV="production" npm ci --legacy-peer-deps
           npm run test:unit
           npm run test:e2e:ci
       - name: Configure AWS Credentials
