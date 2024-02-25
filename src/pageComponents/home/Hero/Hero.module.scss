@@ -67,7 +67,7 @@ $monitor-img-ratio: calc(
   .logo {
     z-index: 4;
     top: 105px;
-    width: 357px;
+    width: 420px;
     max-width: 100%;
   }
 
@@ -123,13 +123,10 @@ $monitor-img-ratio: calc(
   }
   @include respond-below(992px) {
     min-height: 859px;
-    .monitor {
-      bottom: 185px;
-    }
 
     .logo {
-      width: 340px;
-      top: 110px;
+      width: 380px;
+      top: 120px;
     }
 
     @media screen and (max-height: 920px) {
@@ -166,7 +163,6 @@ $monitor-img-ratio: calc(
     }
   }
   @include respond-below(768px) {
-    height: calc(100vh - #{$navbarHeight});
     min-height: 750px;
 
     .monitor {
@@ -181,8 +177,8 @@ $monitor-img-ratio: calc(
     }
 
     .logo {
-      top: 60px;
-      width: 320px;
+      top: 75px;
+      width: 310px;
     }
 
     .baseL1,
@@ -198,14 +194,11 @@ $monitor-img-ratio: calc(
       right: -50px;
     }
 
-    h1 {
-      font-size: 1.3rem;
-    }
     @media screen and (max-height: 940px) {
-      .logo {
+      /*.logo {
         width: 270px;
         top: 70px;
-      }
+      }*/
     }
     @media screen and (max-height: 915px) {
       .logo {
@@ -240,8 +233,21 @@ $monitor-img-ratio: calc(
       }
     }
   }
+
+  @include respond-below(700px) {
+    .logo {
+      width: 360px;
+      top: 100px;
+    }
+  }
+
+  @include respond-below(650px) {
+    max-height: 890px;
+  }
+
   @include respond-below(576px) {
     min-height: 675px;
+    max-height: 840px;
 
     .monitor {
       bottom: 200px;
@@ -249,7 +255,7 @@ $monitor-img-ratio: calc(
 
     .logo {
       width: 300px;
-      top: 115px;
+      top: 100px;
     }
 
     .baseL1,
@@ -265,9 +271,6 @@ $monitor-img-ratio: calc(
       right: -90px;
     }
 
-    h1 {
-      font-size: 1.2rem;
-    }
     @media screen and (max-height: 890px) {
       .logo {
         width: 270px;
@@ -328,22 +331,18 @@ $monitor-img-ratio: calc(
       }
     }
   }
-  @include respond-below(540px) {
-    .monitor {
-      bottom: 220px;
-    }
-  }
+
   @include respond-below(480px) {
-    max-height: 820px;
+    max-height: 780px;
     min-height: 700px;
 
     .monitor {
-      bottom: 260px;
+      bottom: 225x;
     }
 
     .logo {
-      top: 85px;
-      width: 300px;
+      top: 110px;
+      width: 320px;
     }
 
     @media screen and (max-height: 860px) {
@@ -366,16 +365,16 @@ $monitor-img-ratio: calc(
     }
   }
   @include respond-below(420px) {
-    max-height: 770px;
     min-height: 665px;
+    max-height: 750px;
 
     .monitor {
-      bottom: 280px;
+      bottom: 200px;
     }
 
     .logo {
-      width: 260px;
-      top: 80px;
+      width: 320px;
+      top: 110px;
     }
 
     .wallShade {
@@ -395,12 +394,12 @@ $monitor-img-ratio: calc(
     }
   }
   @include respond-below(360px) {
-    max-height: 700px;
+    max-height: 690px;
     min-height: 585px;
 
     .logo {
-      width: 240px;
-      top: 65px;
+      width: 270px;
+      top: 110px;
     }
     @media screen and (max-height: 760px) {
       .logo {
@@ -428,10 +427,7 @@ $monitor-img-ratio: calc(
   }
   @include respond-below(320px) {
     min-height: 595px;
-
-    .monitor {
-      bottom: 300px;
-    }
+    max-height: 640px;
 
     .logo {
       width: 220px;
@@ -462,7 +458,7 @@ $monitor-img-ratio: calc(
 }
 
 .desc {
-  max-width: 600px;
+  max-width: 500px;
 }
 
 .textContent {

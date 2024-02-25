@@ -58,6 +58,7 @@ const LoadedImg = memo(
               alt={alt}
               onLoad={handleLoad}
               loading="eager"
+              className="h-full w-full"
             />
           </FadeInElement>
         );

@@ -58,7 +58,7 @@ function BackgroundImages() {
         animType="doubleDelay"
         imgName="logo"
         alt="Game Logo"
-        className={clsx('absolute px-2 sm:px-0', logo)}
+        className={clsx('absolute', logo)}
       />
       <LoadedImg imgName="wallShade" alt="WallShade" className={clsx('absolute', wallShade)} />
       <LoadedImg
@@ -103,11 +103,16 @@ function Slideshow({ style }: SlideshowProps) {
         return (
           <div
             key={index}
-            className={clsx('absolute transition-opacity duration-1000', {
+            className={clsx('absolute transition-opacity duration-1000 h-full w-full', {
               'opacity-0': active !== index,
             })}
           >
-            <LoadedImg imgName={img.imgName} animType="doubleDelay" alt={img.alt} />
+            <LoadedImg
+              imgName={img.imgName}
+              animType="doubleDelay"
+              alt={img.alt}
+              className="h-full w-full"
+            />
           </div>
         );
       })}
@@ -184,13 +189,13 @@ function TextContent() {
       animType="doubleDelay"
       fadeIn={appReady}
     >
-      <div className="flex flex-col md:flex-row lg:flex-col justify-center text-center lg:text-right mb-2 lg:mg-0 mr-0 lg:mr-3 font-retro">
-        <h1 className="white mr-2 lg:mr-0 mb-1 text-2xl">Suit up.</h1>
-        <h1 className="white mr-2 lg:mr-0 mb-1 text-2xl">Shoot &lsquo;em up.</h1>
-        <h1 className="white mb-0 text-2xl">Level up.</h1>
+      <div className="flex flex-col md:flex-row lg:flex-col justify-center text-center lg:text-right mb-2 md:mb-1 lg:mb-0 mr-0 lg:mr-1 font-retro">
+        <h1 className="white mr-2 lg:mr-0 mb-0 text-xl sm:text-2xl">Suit up.</h1>
+        <h1 className="white mr-2 lg:mr-0 mb-0 text-xl sm:text-2xl">Shoot &lsquo;em up.</h1>
+        <h1 className="white mb-0 text-xl sm:text-2xl">Level up.</h1>
       </div>
-      <div className={clsx(desc, 'text-center flex flex-col justify-center')}>
-        <p className="white m-0 font-sans">
+      <div className={clsx(desc, 'text-center flex flex-col justify-center mb-2 lg:mb-0')}>
+        <p className="white m-0 font-sans text-sm sm:text-base">
           Global Steel is a 2d run-and-gun video game inspired by Saturday-morning cartoons of the
           80s.
         </p>
@@ -209,8 +214,6 @@ export default function Hero() {
     items-end
     justify-center
     pb-4
-    sm:pb-2
-    md:pb-4
     relative
     overflow-hidden`,
         )}
