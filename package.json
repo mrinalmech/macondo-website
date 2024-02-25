@@ -52,9 +52,11 @@
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-webpack-plugin": "^4.0.1",
     "gatsby": "^5.13.3",
+    "gatsby-plugin-eslint": "^4.0.4",
     "gatsby-plugin-image": "^3.13.1",
     "gatsby-plugin-manifest": "^5.13.1",
     "gatsby-plugin-offline": "^6.13.1",
+    "gatsby-plugin-postcss": "^6.13.1",
     "gatsby-plugin-sass": "^6.13.1",
     "gatsby-plugin-sharp": "^5.13.1",
     "gatsby-source-filesystem": "^5.13.1",
@@ -86,8 +88,6 @@
     "axe-core": "^4.8.4",
     "babel-jest": "^29.7.0",
     "babel-preset-gatsby": "^3.13.1",
-    "gatsby-plugin-eslint": "^4.0.4",
-    "gatsby-plugin-postcss": "^6.13.1",
     "postcss": "^8.4.35"
   },
   "repository": {
