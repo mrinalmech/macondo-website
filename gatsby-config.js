@@ -33,8 +33,8 @@ module.exports = {
         name: `Macondo Games`,
         short_name: `Macondo Games`,
         start_url: `/`,
-        background_color: `#6b37bf`,
-        theme_color: `#6b37bf`,
+        background_color: `#000`,
+        theme_color: `#000`,
         display: `standalone`,
         icon: `src/images/icon.png`,
         icons: [
