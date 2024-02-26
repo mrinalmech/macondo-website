@@ -1,15 +1,17 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 
 import Page from './Page';
 
 describe('Page', () => {
-  test('Expect Page to be presented', () => {
+  test('Expect Page to be presented', async () => {
     const currentYear = new Date().getFullYear();
 
     render(<Page>Test content</Page>);
 
-    expect(screen.getByText(/Test content/)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(/Test content/)).toBeInTheDocument();
+    });
 
     expect(screen.getByAltText(/Company Logo/)).toBeInTheDocument();
     expect(screen.getByAltText(/Company Logo/).parentElement?.parentElement).toHaveAttribute(

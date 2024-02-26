@@ -1,13 +1,24 @@
 import React from 'react';
-import { act, render, screen, fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
+import {
+  act,
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 
 import { scroll, resize } from '../../../util/tests';
 
 import Header from './Header';
 
 describe('Header', () => {
-  test('Expect header to be presented', () => {
+  test('Expect header to be presented', async () => {
     render(<Header />);
+
+    await waitFor(() => {
+      expect(screen.getByAltText(/Company Logo/)).toBeInTheDocument();
+    });
 
     expect(screen.getByAltText(/Company Logo/)).toBeInTheDocument();
     expect(screen.getByAltText(/Company Logo/).parentElement?.parentElement).toHaveAttribute(

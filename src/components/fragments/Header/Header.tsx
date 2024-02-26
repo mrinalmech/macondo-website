@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { lazy, useState, useEffect } from 'react';
 import clsx from 'clsx';
 import {
   faFacebookF,
@@ -11,14 +11,15 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { StaticImage } from 'gatsby-plugin-image';
 
-import Link from '../../../components/atoms/Link';
-import SocialLink from '../../../components/atoms/SocialLink';
-import Hamburger from '../Hamburger';
-import Drawer from '../Drawer';
-
 import { useBreakpointRegion } from '../../../hooks/useBreakpointRegion';
 
 import { navLink, imgHolder, navHolder, imgLink } from './Header.module.scss';
+
+import Link from '../../../components/atoms/Link';
+import SocialLink from '../../../components/atoms/SocialLink';
+import Hamburger from '../Hamburger';
+
+const Drawer = lazy(() => import('../Drawer'));
 
 interface NavLinkProps {
   to: string;
