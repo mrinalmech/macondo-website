@@ -142,7 +142,7 @@ export default function Header() {
         </div>
         <Link
           to="/"
-          className={clsx('absolute top-0 left-0 sm:top-2 sm:left-2 lg:top-3 lg:left-5', imgLink)}
+          className={clsx('absolute top-1 left-1 sm:top-2 sm:left-2 lg:top-3 lg:left-5', imgLink)}
         >
           <div
             className={clsx('p-2.5 pr-2 transition-colors duration-300', imgHolder, {

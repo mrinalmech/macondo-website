@@ -8,11 +8,10 @@ $monitor-img-ratio: calc(
 ); //note: A lot of custom breakpoints have to be used because of all the elements
 
 .root {
-  //background-image: linear-gradient($black, $purple);
-  background-color: pink;
+  background-image: linear-gradient($black, $purple);
   height: 100vh;
   min-height: 859px;
-  max-height: 975px;
+  max-height: 950px;
 
   .baseL1,
   .baseL2 {
@@ -94,8 +93,6 @@ $monitor-img-ratio: calc(
   }
 
   @include respond-below(992px) {
-    background-color: red;
-
     .logo {
       width: 380px;
       top: 120px;
@@ -131,8 +128,6 @@ $monitor-img-ratio: calc(
 
   @include respond-below(768px) {
     min-height: 914px;
-    background-color: pink;
-
     .monitor {
       width: 480vw;
       height: calc(480vw * $monitor-img-ratio);
@@ -178,7 +173,6 @@ $monitor-img-ratio: calc(
   }
 
   @include respond-below(700px) {
-    background-color: red;
     .logo {
       width: 360px;
       top: 100px;
@@ -188,7 +182,6 @@ $monitor-img-ratio: calc(
   @include respond-below(576px) {
     min-height: 799px;
     max-height: 830px;
-    background-color: pink;
 
     .monitor {
       bottom: 180px;
@@ -222,7 +215,6 @@ $monitor-img-ratio: calc(
   @include respond-below(480px) {
     max-height: 770px;
     min-height: 749px;
-    background-color: red;
 
     .monitor {
       bottom: 225x;
@@ -247,7 +239,6 @@ $monitor-img-ratio: calc(
   @include respond-below(420px) {
     min-height: 719px;
     max-height: 710px;
-    background-color: pink;
 
     .monitor {
       bottom: 200px;
@@ -270,7 +261,6 @@ $monitor-img-ratio: calc(
   @include respond-below(360px) {
     max-height: 670px;
     min-height: 659px;
-    background-color: red;
 
     .logo {
       width: 280px;
@@ -286,7 +276,6 @@ $monitor-img-ratio: calc(
   @include respond-below(320px) {
     min-height: 595px;
     max-height: 610px;
-    background-color: pink;
 
     .logo {
       width: 230px;

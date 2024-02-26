@@ -4,7 +4,7 @@
 .paper {
   padding-top: $navbarHeight;
   background-color: $dark-blue !important;
-  clip-path: polygon(10.5% 0, 100% 0, 100% 100%, 25% 100%);
+  clip-path: polygon(6.5% 0, 100% 0, 100% 100%, 25% 100%);
 
   @screen sm {
     clip-path: polygon(6% 0, 100% 0, 100% 100%, 20% 100%);
