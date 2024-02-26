@@ -28,6 +28,13 @@
 .imgLink {
   :global(.gatsby-image-wrapper) {
     transition-duration: 0.3s;
+    transition-property: transform;
+
+    width: 50px;
+
+    @screen sm {
+      width: 60px;
+    }
   }
 
   &:hover {
