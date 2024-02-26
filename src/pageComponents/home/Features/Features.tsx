@@ -1,10 +1,8 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import clsx from 'clsx';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { useStaticQuery, graphql } from 'gatsby';
+import { FileSystemNode } from 'gatsby-source-filesystem';
 
 import { root, featureRow } from './Features.module.scss';
 
@@ -17,7 +15,11 @@ interface FeatureProps {
 }
 
 function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description }: FeatureProps) {
-  const { allFile } = useStaticQuery(query);
+  const { allFile } = useStaticQuery(query) as {
+    allFile: {
+      nodes: FileSystemNode[];
+    };
+  };
 
   let imgContent = null as React.ReactNode | null;
 
@@ -27,56 +29,59 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
     const image = getImage(img);
 
     if (image) {
-      imgContent = <GatsbyImage image={image} alt={imgAlt} objectFit="cover" className="mw-100" />;
+      imgContent = (
+        <GatsbyImage image={image} alt={imgAlt} objectFit="contain" className="mw-100" />
+      );
     }
   }
 
   const textContent = (
     <>
-      <h1 className="mb-4 h2">{heading}</h1>
-      <p>{description}</p>
+      <h1 className="mb-4 text-2xl font-retro">{heading}</h1>
+      <p className="font-sans">{description}</p>
     </>
   );
 
   return (
-    <Row className={clsx(featureRow, 'd-flex')}>
-      <Col
-        md={5}
-        className={clsx('d-flex flex-column justify-content-center order-md-1', {
-          ['order-2']: imgOnLeft,
-          ['order-1']: !imgOnLeft,
+    <div
+      className={clsx(
+        featureRow,
+        'grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 mb-28 md:mb-14 lg:mb-20 last-of-type:mb-0',
+      )}
+    >
+      <div
+        className={clsx('flex flex-col justify-center md:order-1', {
+          'order-2': imgOnLeft,
+          'order-1': !imgOnLeft,
         })}
       >
         {imgOnLeft ? imgContent : textContent}
-      </Col>
-      <Col
-        md={{ span: 6, offset: 1 }}
-        className={clsx('d-flex flex-column justify-content-center order-md-2', {
-          ['order-1']: imgOnLeft,
-          ['order-2']: !imgOnLeft,
+      </div>
+      <div
+        className={clsx('flex flex-col justify-center md:order-2', {
+          'order-1': imgOnLeft,
+          'order-2': !imgOnLeft,
         })}
       >
         {imgOnLeft ? textContent : imgContent}
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 }
 
 export default function Features() {
   return (
-    <div className={root}>
-      <Container className="text-center">
-        <Row>
-          <Col md={{ span: 8, offset: 2 }} lg={{ span: 6, offset: 3 }}>
-            <iframe
-              title="steam-widget"
-              src="https://store.steampowered.com/widget/1073970/"
-              width="100%"
-              height="190"
-              className="border-0 mb-5"
-            />
-          </Col>
-        </Row>
+    <div className={clsx(root, 'pt-12 pb-14 px-6 sm:pt-20 sm:pb-20')}>
+      <div className="container p-0 mx-auto max-w-6xl text-center">
+        <div className="max-w-2xl mx-auto mb-20">
+          <iframe
+            title="steam-widget"
+            src="https://store.steampowered.com/widget/1073970/"
+            width="100%"
+            height="190"
+            className="border-0 mb-5"
+          />
+        </div>
 
         <Feature
           imgName="players"
@@ -97,7 +102,7 @@ export default function Features() {
           heading="...AND, THE UPGRADES"
           description="Earn points and customize your weaponry to switch up gameplay."
         />
-      </Container>
+      </div>
     </div>
   );
 }
@@ -108,7 +113,7 @@ const query = graphql`
       nodes {
         name
         childImageSharp {
-          gatsbyImageData(width: 540)
+          gatsbyImageData(width: 540, placeholder: NONE)
         }
       }
     }

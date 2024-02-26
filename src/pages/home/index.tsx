@@ -26,7 +26,7 @@ export default function Home({ data }: Props) {
   const [appStatus, setAppStatus] = useState('loadingStart' as AppStatus);
 
   const appLoading = appStatus === 'loadingStart';
-  const appLoaded = appStatus != 'loadingStart';
+  const appLoaded = appStatus !== 'loadingStart';
   const appReady = appStatus === 'ready';
 
   const loadedImgDictionary = useRef({});
@@ -45,7 +45,6 @@ export default function Home({ data }: Props) {
 
       setInterval(() => {
         setAppStatus('ready');
-        document.body.style.overflow = 'auto';
       }, LOADING_SCREEN_DURATION * 1000);
     }
   };
@@ -53,7 +52,7 @@ export default function Home({ data }: Props) {
   return (
     <AppReadyContext.Provider value={appReady}>
       <ImageLoadedContext.Provider value={imageLoaded}>
-        <Page fixedHeader>
+        <Page overFlowHidden={!appReady}>
           {!appReady && <Loader appLoaded={appLoaded} />}
           <Hero />
           <Features />

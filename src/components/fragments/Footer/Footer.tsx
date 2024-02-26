@@ -1,5 +1,4 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
 import clsx from 'clsx';
 import {
   faFacebookF,
@@ -10,7 +9,7 @@ import {
   faTwitch,
 } from '@fortawesome/free-brands-svg-icons';
 
-import SocialLink from '../../atoms/SocialLink';
+import SocialLink from '../../../components/atoms/SocialLink';
 
 import { root } from './Footer.module.scss';
 
@@ -18,16 +17,11 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Container
-      fluid
-      className={clsx(
-        root,
-        'd-flex pt-4 pb-4 flex-column align-items-center justify-content-center',
-      )}
-      as="footer"
+    <footer
+      className={clsx(root, '-mt-12 flex pt-8 pb-6 flex-col items-center justify-center bg-black')}
     >
-      <h2 className="dark-blue m-0 h3">Keep up with us!</h2>
-      <div className="mt-4 mb-5 d-flex">
+      <h2 className="red m-0 font-retro text-2xl">Keep up with us!</h2>
+      <div className="mt-4 mb-5 flex">
         <SocialLink
           to="https://twitter.com/macondostudios"
           ariaLabel="Twitter"
@@ -65,7 +59,9 @@ export default function Footer() {
           type="big"
         />
       </div>
-      <p className="white m-0 text-center"> Copyright © {currentYear} | Macondo Games Pvt. Ltd. </p>
-    </Container>
+      <p className="red px-1 text-center font-sans">
+        Copyright © {currentYear} | Macondo Games Pvt. Ltd.
+      </p>
+    </footer>
   );
 }

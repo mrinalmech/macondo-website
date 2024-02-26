@@ -1,5 +1,9 @@
 @import 'src/styles/colors.scss';
 
 .root {
-  background: $black !important;
+  clip-path: polygon(0 13.5%, 100% 0, 100% 100%, 0 100%);
+
+  @screen sm {
+    clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
+  }
 }

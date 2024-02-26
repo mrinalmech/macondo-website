@@ -1,17 +1,22 @@
 import React from 'react';
-import Header from '../../fragments/Header';
-import Footer from '../../fragments/Footer';
+import clsx from 'clsx';
+
+import Header from '../../../components/fragments/Header';
+import Footer from '../../../components/fragments/Footer';
 
 type Props = {
   children?: React.ReactNode;
-  fixedHeader?: boolean;
+  overFlowHidden?: boolean;
 };
 
-export default function Page({ children, fixedHeader }: Props) {
+export default function Page({ children, overFlowHidden = false }: Props) {
   return (
-    <div className="min-vh-100 d-flex flex-column">
-      <Header fixed={fixedHeader} />
-      <main className="flex-grow-1">{children}</main>
+    <div
+      className={clsx('h-screen flex flex-col', { 'overflow-hidden': overFlowHidden })}
+      data-testid="page"
+    >
+      <Header />
+      <main className="grow">{children}</main>
       <Footer />
     </div>
   );

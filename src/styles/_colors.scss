@@ -5,15 +5,20 @@ $dark-blue: #03a6f8;
 $bg-blue: #08466c;
 $bg-blue-dark: #042538;
 $purple: #1a0629;
+$red: #ef3f3f;
 
-.light-blue{
+.light-blue {
   color: $light-blue;
 }
 
-.dark-blue{
+.dark-blue {
   color: $dark-blue;
 }
 
-.white{
+.white {
   color: $white;
+}
+
+.red {
+  color: $red;
 }

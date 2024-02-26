@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, forwardRef, memo } from 'react';
+import React, { useContext, useEffect, useRef, forwardRef, memo, useImperativeHandle } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { FileSystemNode } from 'gatsby-source-filesystem';
@@ -17,8 +17,10 @@ interface Props {
 }
 
 const LoadedImg = memo(
-  forwardRef(({ imgName, alt = '', animType, className }: Props, ref) => {
-    const imgEl = useRef(null);
+  forwardRef<HTMLDivElement, Props>(({ imgName, alt = '', animType, className }, forwardedRef) => {
+    const ref = useRef<HTMLDivElement | null>(null);
+
+    useImperativeHandle(forwardedRef, () => ref.current as HTMLDivElement);
 
     const appReady = useContext(AppReadyContext);
     const imageLoaded = useContext(ImageLoadedContext);
@@ -28,14 +30,16 @@ const LoadedImg = memo(
     };
 
     useEffect(() => {
-      const imgContainer = ref ? ref.current : imgEl.current;
-      const gatsbyWrapper = $(imgContainer).children('div')[0];
-      const img = $(gatsbyWrapper).children('img')[0];
+      const imgContainer = ref.current;
 
-      if (img && img.complete) {
-        imageLoaded(imgName);
+      if (imgContainer) {
+        const gatsbyWrapper = $(imgContainer).children('div')[0];
+        const img = $(gatsbyWrapper).children('img')[0] as HTMLImageElement;
+        if (img && img.complete) {
+          imageLoaded(imgName);
+        }
       }
-    }, []);
+    }, [imageLoaded, imgName]);
 
     const { monitorImg, otherImgs } = useStaticQuery(query);
     const allImgs = monitorImg.nodes.concat(otherImgs.nodes);
@@ -47,18 +51,14 @@ const LoadedImg = memo(
 
       if (image) {
         return (
-          <FadeInElement
-            fadeIn={appReady}
-            animType={animType}
-            className={className}
-            ref={ref || imgEl}
-          >
+          <FadeInElement fadeIn={appReady} animType={animType} className={className} ref={ref}>
             <GatsbyImage
               image={image}
               objectFit="cover"
               alt={alt}
               onLoad={handleLoad}
               loading="eager"
+              className="h-full w-full"
             />
           </FadeInElement>
         );
@@ -68,6 +68,8 @@ const LoadedImg = memo(
     return null;
   }),
 );
+
+LoadedImg.displayName = 'LoadedImg';
 
 export default LoadedImg;
 

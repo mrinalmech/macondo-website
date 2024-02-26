@@ -1,13 +1,7 @@
 import clsx from 'clsx';
 import React, { forwardRef, memo } from 'react';
 
-import {
-  animInitial,
-  animFinal,
-  fadeAnim,
-  fadeAnimDelay,
-  fadeAnimDoubleDelay,
-} from './FadeInElement.module.scss';
+import { fadeAnim, fadeAnimDelay, fadeAnimDoubleDelay } from './FadeInElement.module.scss';
 
 interface Props {
   fadeIn: boolean;
@@ -17,14 +11,14 @@ interface Props {
 }
 
 const FadeInElement = memo(
-  forwardRef(({ fadeIn, className, children, animType = 'normal' }: Props, ref) => {
+  forwardRef<HTMLDivElement, Props>(({ fadeIn, className, children, animType = 'normal' }, ref) => {
     const fadeClass = clsx({
       [fadeAnim]: animType === 'normal',
       [fadeAnimDelay]: animType === 'delay',
       [fadeAnimDoubleDelay]: animType === 'doubleDelay',
     });
 
-    const animClass = fadeIn ? clsx(animFinal, fadeClass) : animInitial;
+    const animClass = fadeIn ? clsx('opacity-100', fadeClass) : 'opacity-0';
 
     const consolidatedClass = clsx(className, animClass);
 
@@ -35,5 +29,7 @@ const FadeInElement = memo(
     );
   }),
 );
+
+FadeInElement.displayName = 'FadeInElement';
 
 export default FadeInElement;

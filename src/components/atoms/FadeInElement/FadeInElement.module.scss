@@ -1,13 +1,5 @@
 $duration: 1s;
 
-.animInitial {
-  opacity: 0;
-}
-
-.animFinal {
-  opacity: 1;
-}
-
 .fadeAnim {
   transition: opacity $duration linear;
 }

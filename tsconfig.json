@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "baseUrl": "./",
         "types": [
             "node",
             "jest",
@@ -22,9 +23,9 @@
         "skipLibCheck": true
     },
     "include": [
-        "index.d.ts",
-        "./cypress/**/*.{ts,tsx}",
-        "./src/**/*.{ts,tsx}",
+        "./cypress/**/*",
+        "./src/**/*",
+        "./index.d.ts",
         "./cypress-config.ts",
     ]
 }

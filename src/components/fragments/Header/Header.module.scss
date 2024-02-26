@@ -1,30 +1,45 @@
 @import 'src/styles/colors.scss';
-@import 'src/styles/breakpoints.scss';
-
-.navBar {
-  background: $black !important;
-  top: 0;
-  z-index: 9999;
-  width: 100%;
-}
-
-.navBarFixed {
-  position: absolute;
-  background: transparent !important;
-  @include respond-below(sm) {
-    background: $black !important;
-    position: relative;
-  }
-}
+@import 'src/styles/constants.scss';
 
 .navLink {
   color: $white !important;
+  transition-duration: 0.3s;
 
   &:hover {
-    color: rgba($dark-blue, 0.9) !important;
+    text-shadow: 3px 3px rgba($red, 0.8);
+    transform: rotate(3deg);
   }
 
   &:active {
-    color: $dark-blue !important;
+    text-shadow: 3px 3px $red;
+  }
+}
+
+.navHolder {
+  height: $navbarHeight;
+
+  clip-path: polygon(0 0, 100% 0, 100% 67%, 0 100%);
+}
+
+.imgHolder {
+  clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
+}
+
+.imgLink {
+  :global(.gatsby-image-wrapper) {
+    transition-duration: 0.3s;
+    transition-property: transform;
+
+    width: 50px;
+
+    @screen sm {
+      width: 60px;
+    }
+  }
+
+  &:hover {
+    :global(.gatsby-image-wrapper) {
+      transform: rotate(3deg);
+    }
   }
 }

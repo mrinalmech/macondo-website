@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useInterval } from 'usehooks-ts';
 
-import { root, transparent } from './Loader.module.scss';
+import { LOADING_SCREEN_DURATION, LOADING_DOTS_DURATION } from './constants';
+
+import { root } from './Loader.module.scss';
 
 interface Props {
   appLoaded: boolean;
 }
-
-export const LOADING_SCREEN_DURATION = 0.5;
 
 export default function Loader({ appLoaded }: Props) {
   const [dots, setDots] = useState('.');
@@ -20,18 +20,22 @@ export default function Loader({ appLoaded }: Props) {
 
   useInterval(() => {
     updateDots();
-  }, 500);
+  }, LOADING_DOTS_DURATION * 1000);
 
   return (
     <div
-      className={clsx(root, 'd-flex align-items-center justify-content-center', {
-        [transparent]: appLoaded,
-      })}
+      className={clsx(
+        root,
+        'flex items-center justify-center h-screen w-screen fixed z-50 font-retro',
+        {
+          'opacity-0': appLoaded,
+        },
+      )}
       style={{ transitionDuration: `${LOADING_SCREEN_DURATION}s` }}
       role="progressbar"
       aria-label="Loading"
     >
-      <h2 className="m-0">Loading{dots}</h2>
+      <h1 className="text-4xl">Loading{dots}</h1>
     </div>
   );
 }

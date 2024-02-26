@@ -1,48 +1,70 @@
 @import 'src/styles/colors.scss';
-@import 'src/styles/breakpoints.scss';
+
+.socialLink {
+  transition-duration: 0.3s;
+
+  > svg {
+    transition-duration: 0.3s;
+  }
+}
 
 .socialLinkBig {
-  color: $dark-blue;
+  @extend .socialLink;
 
-  border: 1px solid $dark-blue;
-  height: 60px;
-  width: 60px;
+  color: $white;
+
+  border: 1px solid $white;
+  height: 43px;
+  width: 43px;
 
   &:hover {
-    background: rgba($dark-blue, 0.9);
-    color: $white;
+    border-color: $red;
+
+    > svg {
+      filter: drop-shadow(3px 3px 0 rgba($red, 0.8));
+      transform: rotate(7deg);
+    }
   }
 
   &:active {
-    background: $dark-blue;
+    > svg {
+      filter: drop-shadow(3px 3px 0 $red);
+    }
   }
 
-  @include respond-below(sm) {
-    height: 38px;
-    width: 38px;
+  > svg {
+    font-size: 1.5rem;
+  }
+
+  @screen sm {
+    height: 60px;
+    width: 60px;
 
     > svg {
-      font-size: 1.3rem;
+      font-size: 2em;
     }
   }
 }
 
 .socialLinkSmall {
+  @extend .socialLink;
+
   color: $white;
 
   &:hover {
-    color: rgba($dark-blue, 0.9);
+    > svg {
+      filter: drop-shadow(3px 3px 0 rgba($red, 0.8));
+      transform: rotate(7deg);
+    }
   }
 
   &:active {
-    color: $dark-blue;
-  }
-
-  &:last-of-type {
-    margin-right: 0 !important;
+    > svg {
+      filter: drop-shadow(3px 3px 0 $red);
+    }
   }
 
   & > svg {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
   }
 }
