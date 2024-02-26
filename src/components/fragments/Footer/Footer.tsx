@@ -59,9 +59,8 @@ export default function Footer() {
           type="big"
         />
       </div>
-      <p className="red m-0 text-center font-sans">
-        {' '}
-        Copyright © {currentYear} | Macondo Games Pvt. Ltd.{' '}
+      <p className="red px-1 text-center font-sans">
+        Copyright © {currentYear} | Macondo Games Pvt. Ltd.
       </p>
     </footer>
   );

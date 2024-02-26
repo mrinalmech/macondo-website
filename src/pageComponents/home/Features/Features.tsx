@@ -29,7 +29,9 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
     const image = getImage(img);
 
     if (image) {
-      imgContent = <GatsbyImage image={image} alt={imgAlt} objectFit="cover" className="mw-100" />;
+      imgContent = (
+        <GatsbyImage image={image} alt={imgAlt} objectFit="contain" className="mw-100" />
+      );
     }
   }
 
@@ -44,7 +46,7 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
     <div
       className={clsx(
         featureRow,
-        'grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 mb-28 sm:mb-20 last-of-type:mb-0',
+        'grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 mb-28 md:mb-14 lg:mb-20 last-of-type:mb-0',
       )}
     >
       <div

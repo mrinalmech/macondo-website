@@ -14,8 +14,8 @@
   color: $white;
 
   border: 1px solid $white;
-  height: 45px;
-  width: 45px;
+  height: 43px;
+  width: 43px;
 
   &:hover {
     border-color: $red;
@@ -33,15 +33,16 @@
   }
 
   > svg {
-    font-size: 1.7rem;
-    @screen sm {
-      font-size: 2em;
-    }
+    font-size: 1.5rem;
   }
 
   @screen sm {
     height: 60px;
     width: 60px;
+
+    > svg {
+      font-size: 2em;
+    }
   }
 }
 
