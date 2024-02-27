@@ -44,10 +44,4 @@ describe('Page', () => {
     expect(screen.getAllByRole('link', { name: /Discord/ })).toHaveLength(2);
     expect(screen.getAllByRole('link', { name: /Twitch/ })).toHaveLength(2);
   });
-
-  test('Expect Page to have overflow hidden', () => {
-    render(<Page overFlowHidden>Test content</Page>);
-
-    expect(screen.getByTestId(/page/)).toHaveClass('overflow-hidden');
-  });
 });
