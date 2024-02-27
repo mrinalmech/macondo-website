@@ -1,14 +1,18 @@
 import React from 'react';
-import { IconDefinition } from '@fortawesome/free-brands-svg-icons';
+import { config, IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
 import { socialLinkSmall, socialLinkBig } from './SocialLink.module.scss';
+
+config.autoAddCss = false;
 
 interface LinkProps {
   to: string;
   ariaLabel?: string;
-  icon: IconDefinition;
+  icon: IconProp;
   type: 'small' | 'big';
 }
 

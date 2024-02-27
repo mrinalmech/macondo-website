@@ -1,4 +1,4 @@
-import React, { lazy, useState, useEffect } from 'react';
+import React, { lazy, useState, useEffect, useCallback } from 'react';
 import clsx from 'clsx';
 import {
   faFacebookF,
@@ -50,20 +50,24 @@ export default function Header() {
     }
   }, [onTablet, isOpen]);
 
+  const handleScroll = useCallback(() => {
+    const position = window.scrollY;
+    const isNotAtTop = position !== 0;
+
+    setBarBlack(isNotAtTop);
+  }, []);
+
   useEffect(() => {
-    const handleScroll = () => {
-      const position = window.scrollY;
+    handleScroll();
+  }, [handleScroll]);
 
-      const isNotAtTop = position !== 0;
-      setBarBlack(isNotAtTop);
-    };
-
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   const links = (
     <>
