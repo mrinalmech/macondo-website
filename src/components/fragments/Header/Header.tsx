@@ -39,10 +39,15 @@ const NavLink = (props: NavLinkProps) => {
 export default function Header() {
   const [barBlack, setBarBlack] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [domLoaded, setDomLoaded] = useState(false);
 
   const breakpointRegion = useBreakpointRegion();
   const onTablet =
     breakpointRegion === 'xs' || breakpointRegion === 'sm' || breakpointRegion === 'md';
+
+  useEffect(() => {
+    setDomLoaded(true);
+  }, []);
 
   useEffect(() => {
     if (!onTablet && isOpen) {
@@ -163,10 +168,12 @@ export default function Header() {
           </div>
         </Link>
       </header>
-      <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
-        {links}
-        {socialLinks}
-      </Drawer>
+      {domLoaded && (
+        <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
+          {links}
+          {socialLinks}
+        </Drawer>
+      )}
     </>
   );
 }
