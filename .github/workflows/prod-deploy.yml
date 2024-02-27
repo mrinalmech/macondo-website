@@ -8,13 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Use Node.js 18
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18.x
+        uses: actions/checkout@v4
       - name: Cache node modules
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -25,13 +21,13 @@ jobs:
           npm run test:unit
           npm run test:e2e:ci
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Deploy
-        uses: jonelantha/gatsby-s3-action@v1
+        uses: jonelantha/gatsby-s3-action@v3
         with:
           dest-s3-bucket: ${{ secrets.AWS_S3_PROD_BUCKET }}
           cloudfront-id-to-invalidate: ${{ secrets.AWS_CLOUDFRONT_PROD_ID }}
