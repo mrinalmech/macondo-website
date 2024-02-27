@@ -144,7 +144,7 @@ export default function Header() {
           )}
           data-testid="nav-holder"
         >
-          {domLoaded && <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />}
+          <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
           <nav className="hidden lg:flex font-retro">
             {links}
             {socialLinks}
