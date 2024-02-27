@@ -40,6 +40,12 @@ export default function Home({ data }: Props) {
     const loadedImgs = Object.keys(loadedImgDictionary.current);
     const imgsToBeLoaded = data.allFile.nodes;
 
+    console.log('-------------------');
+    console.log('Image loaded ' + name);
+    console.log(loadedImgDictionary);
+    console.log(loadedImgs.length);
+    console.log(imgsToBeLoaded.length);
+
     if (loadedImgs.length >= imgsToBeLoaded.length && appLoading) {
       setInterval(() => {
         setAppStatus('ready');
