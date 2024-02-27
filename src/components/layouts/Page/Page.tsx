@@ -1,20 +1,15 @@
 import React from 'react';
-import clsx from 'clsx';
 
 import Header from '../../../components/fragments/Header';
 import Footer from '../../../components/fragments/Footer';
 
 type Props = {
   children?: React.ReactNode;
-  overFlowHidden?: boolean;
 };
 
-export default function Page({ children, overFlowHidden = false }: Props) {
+export default function Page({ children }: Props) {
   return (
-    <div
-      className={clsx('h-screen flex flex-col', { 'overflow-hidden': overFlowHidden })}
-      data-testid="page"
-    >
+    <div className="h-screen flex flex-col" data-testid="page">
       <Header />
       <main className="grow">{children}</main>
       <Footer />

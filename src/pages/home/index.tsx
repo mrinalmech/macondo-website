@@ -4,7 +4,6 @@ import { FileSystemNode } from 'gatsby-source-filesystem';
 
 import Page from '../../components/layouts/Page';
 import SEO from '../../components/atoms/Seo';
-import Loader, { LOADING_SCREEN_DURATION } from '../../components/fragments/Loader';
 
 import Hero from '../../pageComponents/home/Hero';
 import Features from '../../pageComponents/home/Features';
@@ -12,7 +11,7 @@ import Features from '../../pageComponents/home/Features';
 import { ImageLoadedContext } from '../../contexts/ImageLoadedContext';
 import { AppReadyContext } from '../../contexts/AppReadyContext';
 
-type AppStatus = 'loadingStart' | 'loadingFinish' | 'ready';
+type AppStatus = 'start' | 'ready';
 
 interface Props {
   data: {
@@ -22,11 +21,12 @@ interface Props {
   };
 }
 
-export default function Home({ data }: Props) {
-  const [appStatus, setAppStatus] = useState('loadingStart' as AppStatus);
+const FADE_DURATION = 0.3;
 
-  const appLoading = appStatus === 'loadingStart';
-  const appLoaded = appStatus !== 'loadingStart';
+export default function Home({ data }: Props) {
+  const [appStatus, setAppStatus] = useState('start' as AppStatus);
+
+  const appLoading = appStatus === 'start';
   const appReady = appStatus === 'ready';
 
   const loadedImgDictionary = useRef({});
@@ -41,19 +41,16 @@ export default function Home({ data }: Props) {
     const imgsToBeLoaded = data.allFile.nodes;
 
     if (loadedImgs.length >= imgsToBeLoaded.length && appLoading) {
-      setAppStatus('loadingFinish');
-
       setInterval(() => {
         setAppStatus('ready');
-      }, LOADING_SCREEN_DURATION * 1000);
+      }, FADE_DURATION * 1000);
     }
   };
 
   return (
     <AppReadyContext.Provider value={appReady}>
       <ImageLoadedContext.Provider value={imageLoaded}>
-        <Page overFlowHidden={!appReady}>
-          {!appReady && <Loader appLoaded={appLoaded} />}
+        <Page>
           <Hero />
           <Features />
         </Page>

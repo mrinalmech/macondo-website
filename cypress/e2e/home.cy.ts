@@ -2,7 +2,7 @@ describe('Homepage tests', () => {
   it('Content is presented and carousel works', () => {
     cy.visit('/');
 
-    cy.findByText(/SUIT UP/i).should('exist');
+    cy.findByAltText(/Game Logo/).should('be.visible');
 
     cy.findByAltText(/Red figure/).should('be.visible');
     cy.findByAltText(/Green figure/, { timeout: 10000 }).should('be.visible');
@@ -14,11 +14,14 @@ describe('Homepage tests', () => {
 
   it('Header changes background color on scroll', () => {
     cy.visit('/');
+
+    cy.findByAltText(/Game Logo/).should('be.visible');
+
     cy.findByTestId(/nav-holder/)
       .should('have.css', 'background-color')
       .and('eq', 'rgba(0, 0, 0, 0)');
 
-    cy.scrollTo(0, 50);
+    cy.scrollTo(0, 100);
 
     cy.findByTestId(/nav-holder/)
       .should('have.css', 'background-color')
@@ -42,6 +45,8 @@ describe('Homepage tests', () => {
 
     cy.visit('/');
 
+    cy.findByAltText(/Game Logo/).should('be.visible');
+
     cy.findByTestId(/drawer/, { timeout: 10000 }).should('not.exist');
 
     cy.findByLabelText(/Open the menu/, { timeout: 10000 }).click();
@@ -57,6 +62,8 @@ describe('Homepage tests', () => {
     cy.viewport(400, 1080);
 
     cy.visit('/');
+
+    cy.findByAltText(/Game Logo/).should('be.visible');
 
     cy.findByLabelText(/Open the menu/, { timeout: 10000 }).click();
 

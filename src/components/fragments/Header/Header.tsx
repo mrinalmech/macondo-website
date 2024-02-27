@@ -1,4 +1,4 @@
-import React, { lazy, useState, useEffect } from 'react';
+import React, { lazy, useState, useEffect, useCallback } from 'react';
 import clsx from 'clsx';
 import {
   faFacebookF,
@@ -39,10 +39,15 @@ const NavLink = (props: NavLinkProps) => {
 export default function Header() {
   const [barBlack, setBarBlack] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [domLoaded, setDomLoaded] = useState(false);
 
   const breakpointRegion = useBreakpointRegion();
   const onTablet =
     breakpointRegion === 'xs' || breakpointRegion === 'sm' || breakpointRegion === 'md';
+
+  useEffect(() => {
+    setDomLoaded(true);
+  }, []);
 
   useEffect(() => {
     if (!onTablet && isOpen) {
@@ -50,20 +55,24 @@ export default function Header() {
     }
   }, [onTablet, isOpen]);
 
+  const handleScroll = useCallback(() => {
+    const position = window.scrollY;
+    const isNotAtTop = position !== 0;
+
+    setBarBlack(isNotAtTop);
+  }, []);
+
   useEffect(() => {
-    const handleScroll = () => {
-      const position = window.scrollY;
+    handleScroll();
+  }, [handleScroll]);
 
-      const isNotAtTop = position !== 0;
-      setBarBlack(isNotAtTop);
-    };
-
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   const links = (
     <>
@@ -135,7 +144,7 @@ export default function Header() {
           )}
           data-testid="nav-holder"
         >
-          <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
+          <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} showHamburger={domLoaded} />
           <nav className="hidden lg:flex font-retro">
             {links}
             {socialLinks}
@@ -159,10 +168,12 @@ export default function Header() {
           </div>
         </Link>
       </header>
-      <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
-        {links}
-        {socialLinks}
-      </Drawer>
+      {domLoaded && (
+        <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
+          {links}
+          {socialLinks}
+        </Drawer>
+      )}
     </>
   );
 }
