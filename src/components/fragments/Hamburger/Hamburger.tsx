@@ -6,9 +6,10 @@ import { root } from './Hamburger.module.scss';
 interface Props {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
+  showHamburger: boolean;
 }
 
-export default function Hamburger({ isOpen, setIsOpen }: Props) {
+export default function Hamburger({ isOpen, setIsOpen, showHamburger }: Props) {
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
@@ -18,7 +19,10 @@ export default function Hamburger({ isOpen, setIsOpen }: Props) {
   return (
     <button
       onClick={handleClick}
-      className={clsx('flex flex-col lg:hidden justify-center items-center -mt-2', root)}
+      className={clsx('flex flex-col lg:hidden justify-center items-center -mt-2', root, {
+        'opacity-0': !showHamburger,
+        'pointer-events-none': !showHamburger,
+      })}
       aria-label={isOpen ? 'Close the menu' : 'Open the menu'}
       aria-expanded={isOpen}
       aria-controls="drawer"
