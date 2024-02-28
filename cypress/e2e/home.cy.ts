@@ -14,6 +14,24 @@ describe('Homepage tests', () => {
     cy.findByAltText(/animated suits of medieval armor/, { timeout: 10000 }).should('be.visible');
   });
 
+  it('Steam widget is loaded correctly', () => {
+    const getIframeDocument = () => {
+      return cy.get('iframe[title="steam-widget"]').its('0.contentDocument').should('exist');
+    };
+
+    const getIframeBody = () => {
+      return getIframeDocument().its('body').should('not.be.undefined').then(cy.wrap);
+    };
+
+    cy.visit('/');
+
+    cy.findByAltText(/Game Logo/).should('be.visible');
+
+    getIframeBody()
+      .findByText(/Wishlist on Steam/)
+      .should('be.visible');
+  });
+
   it('Header changes background color on scroll', () => {
     cy.visit('/');
 
