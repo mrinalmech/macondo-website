@@ -21,7 +21,7 @@
     "test:unit:watch": "npm run test:unit -- --watch",
     "cy:open": "cypress open --browser chrome --e2e",
     "cy:open:prod": "cross-env CYPRESS_baseUrl=http://localhost:9000 cypress open --browser chrome --e2e",
-    "cy:run": "cross-env CYPRESS_baseUrl=http://localhost:9000 cypress run --browser cchrome",
+    "cy:run": "cross-env CYPRESS_baseUrl=http://localhost:9000 cypress run --browser chrome",
     "test:e2e": "cross-env CYPRESS_SUPPORT=y start-server-and-test develop http://localhost:8000 cy:open",
     "test:e2e:prod": "start-server-and-test serve http://localhost:9000 cy:open:prod",
     "test:e2e:ci": "start-server-and-test serve http://localhost:9000 cy:run",
