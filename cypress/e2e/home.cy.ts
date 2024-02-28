@@ -4,12 +4,14 @@ describe('Homepage tests', () => {
 
     cy.findByAltText(/Game Logo/).should('be.visible');
 
-    cy.findByAltText(/Red figure/).should('be.visible');
-    cy.findByAltText(/Green figure/, { timeout: 10000 }).should('be.visible');
+    cy.findByAltText(/animated suits of medieval armor/).should('be.visible');
+    cy.findByAltText(/Rusted artillery gun in the foreground/, { timeout: 10000 }).should(
+      'be.visible',
+    );
     cy.findByAltText(/Three figures/, { timeout: 10000 }).should('be.visible');
     cy.findByAltText(/flaming figure/, { timeout: 10000 }).should('be.visible');
-    cy.findByAltText(/light beams/, { timeout: 10000 }).should('be.visible');
-    cy.findByAltText(/Red figure/, { timeout: 10000 }).should('be.visible');
+    cy.findByAltText(/black woman with an afro/, { timeout: 10000 }).should('be.visible');
+    cy.findByAltText(/animated suits of medieval armor/, { timeout: 10000 }).should('be.visible');
   });
 
   it('Header changes background color on scroll', () => {
