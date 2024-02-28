@@ -31,11 +31,11 @@ interface SlideshowProps {
 const imgData = [
   {
     imgName: 'screenshot2',
-    alt: 'Red figure standing in front of ruined castle',
+    alt: 'Woman in blue armor marching to fight two suits of animated suits of medieval armor.',
   },
   {
     imgName: 'screenshot1',
-    alt: 'Green figure standing in front of forest',
+    alt: 'Woman in blue armor releasing rockets to attack two enemies in purple armor, one normal height and the other short. Rusted artillery gun in the foreground.',
   },
   {
     imgName: 'screenshot0',
@@ -43,11 +43,11 @@ const imgData = [
   },
   {
     imgName: 'screenshot3',
-    alt: 'Blue figure standing in front of a flaming figure',
+    alt: 'Woman in blue armor standing in front of a flaming figure',
   },
   {
     imgName: 'screenshot4',
-    alt: 'Blue figure standing on a platform with light beams emanating from the edge',
+    alt: 'Woman in blue armor standing at end of bridge. Receives instructions from a black woman with an afro.',
   },
 ];
 

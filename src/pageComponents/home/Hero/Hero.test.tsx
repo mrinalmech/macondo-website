@@ -47,11 +47,11 @@ describe('Hero', () => {
     expect(screen.getByAltText(/WebsiteBaseL2Right/)).toBeInTheDocument();
     expect(screen.getByAltText(/Monitor/)).toBeInTheDocument();
 
-    expect(screen.getByAltText(/Red figure/)).toBeInTheDocument();
-    expect(screen.getByAltText(/Green figure/)).toBeInTheDocument();
+    expect(screen.getByAltText(/animated suits of medieval armor/)).toBeInTheDocument();
+    expect(screen.getByAltText(/Rusted artillery gun in the foreground/)).toBeInTheDocument();
     expect(screen.getByAltText(/Three figures/)).toBeInTheDocument();
     expect(screen.getByAltText(/flaming figure/)).toBeInTheDocument();
-    expect(screen.getByAltText(/light beams/)).toBeInTheDocument();
+    expect(screen.getByAltText(/black woman with an afro/)).toBeInTheDocument();
 
     expect(screen.getByText(/Global Steel is a 2d run-and-gun video game/)).toBeInTheDocument();
   });
@@ -61,18 +61,18 @@ describe('Hero', () => {
 
     const slideDuration = SLIDE_DURATION * 1000;
 
-    expect(screen.getByAltText(/Red figure/).parentElement?.parentElement).not.toHaveClass(
-      'opacity-0',
-    );
-    expect(screen.getByAltText(/Green figure/).parentElement?.parentElement).toHaveClass(
-      'opacity-0',
-    );
+    expect(
+      screen.getByAltText(/animated suits of medieval armor/).parentElement?.parentElement,
+    ).not.toHaveClass('opacity-0');
+    expect(
+      screen.getByAltText(/Rusted artillery gun in the foreground/).parentElement?.parentElement,
+    ).toHaveClass('opacity-0');
 
     act(() => jest.advanceTimersByTime(slideDuration));
 
-    expect(screen.getByAltText(/Green figure/).parentElement?.parentElement).not.toHaveClass(
-      'opacity-0',
-    );
+    expect(
+      screen.getByAltText(/Rusted artillery gun in the foreground/).parentElement?.parentElement,
+    ).not.toHaveClass('opacity-0');
     expect(screen.getByAltText(/Three figures/).parentElement?.parentElement).toHaveClass(
       'opacity-0',
     );
@@ -91,15 +91,17 @@ describe('Hero', () => {
     expect(screen.getByAltText(/flaming figure/).parentElement?.parentElement).not.toHaveClass(
       'opacity-0',
     );
-    expect(screen.getByAltText(/light beams/).parentElement?.parentElement).toHaveClass(
-      'opacity-0',
-    );
+    expect(
+      screen.getByAltText(/black woman with an afro/).parentElement?.parentElement,
+    ).toHaveClass('opacity-0');
 
     act(() => jest.advanceTimersByTime(slideDuration));
 
-    expect(screen.getByAltText(/light beams/).parentElement?.parentElement).not.toHaveClass(
-      'opacity-0',
-    );
-    expect(screen.getByAltText(/Red figure/).parentElement?.parentElement).toHaveClass('opacity-0');
+    expect(
+      screen.getByAltText(/black woman with an afro/).parentElement?.parentElement,
+    ).not.toHaveClass('opacity-0');
+    expect(
+      screen.getByAltText(/animated suits of medieval armor/).parentElement?.parentElement,
+    ).toHaveClass('opacity-0');
   });
 });

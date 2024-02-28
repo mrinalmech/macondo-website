@@ -4,7 +4,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import { FileSystemNode } from 'gatsby-source-filesystem';
 
-import { root, featureRow } from './Features.module.scss';
+import { root, widget, featureRow } from './Features.module.scss';
 
 interface FeatureProps {
   imgName: string;
@@ -37,8 +37,8 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
 
   const textContent = (
     <>
-      <h1 className="mb-4 text-2xl font-retro">{heading}</h1>
-      <p className="font-sans">{description}</p>
+      <h1 className="mb-2 sm:mb-4 text-xl sm:text-2xl font-retro">{heading}</h1>
+      <p className="font-sans text-sm sm:text-base">{description}</p>
     </>
   );
 
@@ -46,7 +46,7 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
     <div
       className={clsx(
         featureRow,
-        'grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 mb-28 md:mb-14 lg:mb-20 last-of-type:mb-0',
+        'grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 mb-14 sm:mb-24 md:mb-14 lg:mb-20 last-of-type:mb-0',
       )}
     >
       <div
@@ -71,18 +71,17 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
 
 export default function Features() {
   return (
-    <div className={clsx(root, 'pt-12 pb-14 px-6 sm:pt-20 sm:pb-20')}>
+    <div className={clsx(root, 'pt-8 sm:pt-12 pb-14 px-6 sm:pt-20 sm:pb-20')}>
       <div className="container p-0 mx-auto max-w-6xl text-center">
-        <div className="max-w-2xl mx-auto mb-20">
+        <div className={clsx('max-w-2xl mx-auto mb-10 md:mb-20', widget)}>
           <iframe
             title="steam-widget"
             src="https://store.steampowered.com/widget/1073970/"
             width="100%"
-            height="190"
-            className="border-0 mb-5"
+            height="100%"
+            className="border-0"
           />
         </div>
-
         <Feature
           imgName="players"
           imgAlt="Players"

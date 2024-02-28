@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, forwardRef, memo, useImperativeHandle } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage, ImageDataLike, getImage } from 'gatsby-plugin-image';
 import { FileSystemNode } from 'gatsby-source-filesystem';
 import $ from 'jquery';
 
@@ -44,7 +44,7 @@ const LoadedImg = memo(
     const { monitorImg, otherImgs } = useStaticQuery(query);
     const allImgs = monitorImg.nodes.concat(otherImgs.nodes);
 
-    const img = allImgs.find((file: FileSystemNode) => file.name === imgName);
+    const img: ImageDataLike = allImgs.find((file: FileSystemNode) => file.name === imgName);
 
     if (img) {
       const image = getImage(img);
