@@ -7,3 +7,21 @@
 .featureRow {
   color: $light-blue;
 }
+
+.widget {
+  height: 190px;
+  @media screen and (max-width: 420px) {
+    height: 200px;
+    margin: {
+      left: -15px;
+      right: -15px;
+    }
+  }
+
+  @media screen and (max-width: 380px) {
+    margin: {
+      left: -18px;
+      right: -18px;
+    }
+  }
+}
