@@ -27,5 +27,7 @@
         "./src/**/*",
         "./index.d.ts",
         "./cypress-config.ts",
+        "./gatsby-config.ts",
+        "./tailwind.config.ts"
     ]
 }

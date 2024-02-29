@@ -1,9 +1,11 @@
-const autoprefixer = require('autoprefixer');
-const postCssDiscardDuplicates = require('postcss-discard-duplicates');
-const postCssFlexbugsFixes = require('postcss-flexbugs-fixes');
-const postCssFocus = require('postcss-focus');
+import type { GatsbyConfig } from 'gatsby';
 
-module.exports = {
+import autoprefixer from 'autoprefixer';
+import postCssDiscardDuplicates from 'postcss-discard-duplicates';
+import postCssFlexbugsFixes from 'postcss-flexbugs-fixes';
+import postCssFocus from 'postcss-focus';
+
+const config: GatsbyConfig = {
   flags: {
     DEV_SSR: true,
   },
@@ -83,3 +85,5 @@ module.exports = {
     },
   ],
 };
+
+export default config;
