@@ -63,7 +63,12 @@ export const Head = () => <SEO />;
 
 export const query = graphql`
   query ($language: String!) {
-    locales: allLocale(filter: { ns: { in: ["index"] }, language: { eq: $language } }) {
+    locales: allLocale(
+      filter: {
+        ns: { in: ["home-hero", "home-features", "header", "footer"] }
+        language: { eq: $language }
+      }
+    ) {
       edges {
         node {
           ns

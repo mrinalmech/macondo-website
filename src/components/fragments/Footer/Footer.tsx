@@ -1,4 +1,5 @@
 import React from 'react';
+import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import clsx from 'clsx';
 import {
   faFacebookF,
@@ -14,13 +15,17 @@ import SocialLink from '../../../components/atoms/SocialLink';
 import { root } from './Footer.module.scss';
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   const currentYear = new Date().getFullYear();
 
   return (
     <footer
       className={clsx(root, '-mt-12 flex pt-8 pb-6 flex-col items-center justify-center bg-black')}
     >
-      <h2 className="red m-0 font-retro text-xl sm:text-2xl">Keep up with us!</h2>
+      <h2 className="red m-0 font-retro text-center text-xl sm:text-2xl">
+        <Trans i18nKey="footer_text">Keep up with us!</Trans>
+      </h2>
       <div className="mt-4 mb-5 flex">
         <SocialLink
           to="https://twitter.com/macondostudios"
@@ -60,7 +65,7 @@ export default function Footer() {
         />
       </div>
       <p className="red px-1 text-center font-sans text-sm sm:text-base">
-        Copyright © {currentYear} | Macondo Games Pvt. Ltd.
+        {`${t('copyright')} © ${currentYear} | Macondo Games Pvt. Ltd.`}
       </p>
     </footer>
   );

@@ -1,5 +1,5 @@
 import React, { lazy, useState, useEffect, useCallback } from 'react';
-import { Link as IntLink, useI18next } from 'gatsby-plugin-react-i18next';
+import { Link as IntLink, useI18next, Trans } from 'gatsby-plugin-react-i18next';
 import clsx from 'clsx';
 import {
   faFacebookF,
@@ -79,11 +79,15 @@ export default function Header() {
 
   const links = (
     <>
-      <NavLink to="https://blog.macondogames.com/">Blog</NavLink>
-      <NavLink to="/press" external>
-        Press
+      <NavLink to="https://blog.macondogames.com/">
+        <Trans i18nKey="blog">Blog</Trans>
       </NavLink>
-      <NavLink to="mailto:info@macondogames.com">Contact</NavLink>
+      <NavLink to="/press" external>
+        <Trans i18nKey="press">Press</Trans>
+      </NavLink>
+      <NavLink to="mailto:info@macondogames.com">
+        <Trans i18nKey="contact">Contact</Trans>
+      </NavLink>
     </>
   );
 

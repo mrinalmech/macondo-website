@@ -191,9 +191,15 @@ function TextContent() {
       fadeIn={appReady}
     >
       <div className="flex flex-col md:flex-row lg:flex-col justify-center text-center lg:text-right mb-2 md:mb-1 lg:mb-0 mr-0 lg:mr-1 font-retro">
-        <h1 className="white mr-2 lg:mr-0 mb-0 text-xl sm:text-2xl">Suit up.</h1>
-        <h1 className="white mr-2 lg:mr-0 mb-0 text-xl sm:text-2xl">Shoot &lsquo;em up.</h1>
-        <h1 className="white mb-0 text-xl sm:text-2xl">Level up.</h1>
+        <h1 className="white mr-2 lg:mr-0 mb-0 text-xl sm:text-2xl">
+          <Trans i18nKey="game_tagline_1">Suit up.</Trans>
+        </h1>
+        <h1 className="white mr-2 lg:mr-0 mb-0 text-xl sm:text-2xl">
+          <Trans i18nKey="game_tagline_2">Shoot &lsquo;em up.</Trans>
+        </h1>
+        <h1 className="white mb-0 text-xl sm:text-2xl">
+          <Trans i18nKey="game_tagline_3">Level up.</Trans>
+        </h1>
       </div>
       <div className={clsx(desc, 'text-center flex flex-col justify-center mb-2 lg:mb-0')}>
         <p className="white m-0 font-sans text-sm sm:text-base">

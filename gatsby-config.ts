@@ -92,6 +92,12 @@ const config: GatsbyConfig = {
             escapeValue: false, // not needed for react as it escapes by default
           },
         },
+        pages: [
+          {
+            matchPath: '/press',
+            languages: ['en'],
+          },
+        ],
       },
     },
     {
