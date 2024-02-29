@@ -17,11 +17,11 @@ describe('Header', () => {
     render(<Header />);
 
     await waitFor(() => {
-      expect(screen.getByAltText(/Company Logo/)).toBeInTheDocument();
+      expect(screen.getByAltText(/logo_alt/)).toBeInTheDocument();
     });
 
-    expect(screen.getByAltText(/Company Logo/)).toBeInTheDocument();
-    expect(screen.getByAltText(/Company Logo/).closest('a')).toHaveAttribute('href', '/');
+    expect(screen.getByAltText(/logo_alt/)).toBeInTheDocument();
+    expect(screen.getByAltText(/logo_alt/).closest('a')).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: /Blog/ })).toHaveAttribute(
       'href',
       'https://blog.macondogames.com/',
@@ -77,7 +77,7 @@ describe('Header', () => {
 
     expect(screen.queryByTestId(/drawer/)).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByLabelText(/Open the menu/));
+    fireEvent.click(screen.getByLabelText(/hamburger_open/));
 
     expect(screen.getByTestId(/drawer/)).toBeInTheDocument();
   });
@@ -87,7 +87,7 @@ describe('Header', () => {
 
     render(<Header />);
 
-    fireEvent.click(screen.getByLabelText(/Open the menu/));
+    fireEvent.click(screen.getByLabelText(/hamburger_open/));
 
     expect(screen.getByTestId(/drawer/)).toBeInTheDocument();
 

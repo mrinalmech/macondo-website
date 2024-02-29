@@ -9,7 +9,7 @@ import { root, widget, featureRow } from './Features.module.scss';
 
 interface FeatureProps {
   imgName: string;
-  imgAlt?: string;
+  imgAlt: string;
   imgOnLeft?: boolean;
   heading: string;
   description: string;
@@ -87,22 +87,22 @@ export default function Features() {
         </div>
         <Feature
           imgName="players"
-          imgAlt="Three figures leaping into action - one in blue, one in red and one in green."
-          heading={t('feature-1-heading')}
-          description={t('feature-1-desc')}
+          imgAlt={t('feature_1_alt')}
+          heading={t('feature_1_heading')}
+          description={t('feature_1_desc')}
         />
         <Feature
           imgName="enemies"
-          imgAlt="Four figures in a menacing pose, holding their weapons aloft."
+          imgAlt={t('feature_2_alt')}
           imgOnLeft={false}
-          heading={t('feature-2-heading')}
-          description={t('feature-2-desc')}
+          heading={t('feature_2_heading')}
+          description={t('feature_2_desc')}
         />
         <Feature
           imgName="upgrades"
-          imgAlt="Three different guns, disassembled so you can see their interiors."
-          heading={t('feature-3-heading')}
-          description={t('feature-3-desc')}
+          imgAlt={t('feature_3_alt')}
+          heading={t('feature_3_heading')}
+          description={t('feature_3_desc')}
         />
       </div>
     </div>

@@ -1,5 +1,8 @@
 {
     "blog":"Blog",
     "press":"Drücken Sie",
-    "contact":"Kontakt"
+    "contact":"Kontakt",
+    "logo_alt": "Firmenlogo",
+    "hamburger_open":"Öffnen Sie das Menü",
+    "hamburger_close":"Schließen Sie das Menü"
 }

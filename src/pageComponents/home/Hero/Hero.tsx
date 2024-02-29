@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { Trans } from 'gatsby-plugin-react-i18next';
+import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import clsx from 'clsx';
 import { useInterval } from 'usehooks-ts';
 
@@ -28,29 +28,6 @@ import { SLIDE_DURATION } from './constants';
 interface SlideshowProps {
   style?: React.CSSProperties;
 }
-
-const imgData = [
-  {
-    imgName: 'screenshot2',
-    alt: 'Woman in blue armor marching to fight two suits of animated suits of medieval armor.',
-  },
-  {
-    imgName: 'screenshot1',
-    alt: 'Woman in blue armor releasing rockets to attack two enemies in purple armor, one normal height and the other short. Rusted artillery gun in the foreground.',
-  },
-  {
-    imgName: 'screenshot0',
-    alt: 'Three figures in front of a monitor screen',
-  },
-  {
-    imgName: 'screenshot3',
-    alt: 'Woman in blue armor standing in front of a flaming figure',
-  },
-  {
-    imgName: 'screenshot4',
-    alt: 'Woman in blue armor standing at end of bridge. Receives instructions from a black woman with an afro.',
-  },
-];
 
 function BackgroundImages() {
   return (
@@ -87,6 +64,31 @@ function BackgroundImages() {
 }
 
 function Slideshow({ style }: SlideshowProps) {
+  const { t } = useTranslation();
+
+  const imgData = [
+    {
+      imgName: 'screenshot0',
+      alt: t('screenshot_0_alt'),
+    },
+    {
+      imgName: 'screenshot1',
+      alt: t('screenshot_1_alt'),
+    },
+    {
+      imgName: 'screenshot2',
+      alt: t('screenshot_2_alt'),
+    },
+    {
+      imgName: 'screenshot3',
+      alt: t('screenshot_3_alt'),
+    },
+    {
+      imgName: 'screenshot4',
+      alt: t('screenshot_4_alt'),
+    },
+  ];
+
   const [active, setActive] = useState(0);
 
   const updateActive = () => {

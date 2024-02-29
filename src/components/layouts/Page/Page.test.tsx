@@ -13,8 +13,8 @@ describe('Page', () => {
       expect(screen.getByText(/Test content/)).toBeInTheDocument();
     });
 
-    expect(screen.getByAltText(/Company Logo/)).toBeInTheDocument();
-    expect(screen.getByAltText(/Company Logo/).closest('a')).toHaveAttribute('href', '/');
+    expect(screen.getByAltText(/logo_alt/)).toBeInTheDocument();
+    expect(screen.getByAltText(/logo_alt/).closest('a')).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: /Blog/ })).toHaveAttribute(
       'href',
       'https://blog.macondogames.com/',

@@ -1,5 +1,5 @@
 import React, { lazy, useState, useEffect, useCallback } from 'react';
-import { Link as IntLink, useI18next, Trans } from 'gatsby-plugin-react-i18next';
+import { Link as IntLink, useI18next, Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import clsx from 'clsx';
 import {
   faFacebookF,
@@ -39,6 +39,7 @@ const NavLink = (props: NavLinkProps) => {
 
 export default function Header() {
   const { languages, originalPath, i18n } = useI18next();
+  const { t } = useTranslation();
 
   const [barBlack, setBarBlack] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -187,7 +188,7 @@ export default function Header() {
           >
             <StaticImage
               src="./images/HeaderLogo.png"
-              alt="Company Logo"
+              alt={t('logo_alt')}
               width={60}
               placeholder="none"
             />

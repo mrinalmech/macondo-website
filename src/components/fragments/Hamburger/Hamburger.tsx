@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'gatsby-plugin-react-i18next';
 import clsx from 'clsx';
 
 import { root } from './Hamburger.module.scss';
@@ -10,6 +11,8 @@ interface Props {
 }
 
 export default function Hamburger({ isOpen, setIsOpen, showHamburger }: Props) {
+  const { t } = useTranslation();
+
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
@@ -23,7 +26,9 @@ export default function Hamburger({ isOpen, setIsOpen, showHamburger }: Props) {
         'opacity-0': !showHamburger,
         'pointer-events-none': !showHamburger,
       })}
-      aria-label={isOpen ? 'Close the menu' : 'Open the menu'}
+      aria-label={
+        isOpen ? t('hamburger_close') || 'Close the menu' : t('hamburger_open') || 'Open the menu'
+      }
       aria-expanded={isOpen}
       aria-controls="drawer"
       id="hamburger"

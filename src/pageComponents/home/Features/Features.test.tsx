@@ -23,13 +23,13 @@ describe('Features', () => {
   test('Expect Features to be presented', () => {
     render(<Features />);
 
-    expect(screen.getByAltText(/Three figures leaping into action/)).toBeInTheDocument();
-    expect(screen.getByText(/feature-1-heading/)).toBeInTheDocument();
+    expect(screen.getByAltText(/feature_1_alt/)).toBeInTheDocument();
+    expect(screen.getByText(/feature_1_heading/)).toBeInTheDocument();
 
-    expect(screen.getByAltText(/Four figures in a menacing pose/)).toBeInTheDocument();
-    expect(screen.getByText(/feature-2-heading/)).toBeInTheDocument();
+    expect(screen.getByAltText(/feature_2_alt/)).toBeInTheDocument();
+    expect(screen.getByText(/feature_2_heading/)).toBeInTheDocument();
 
-    expect(screen.getByAltText(/Three different guns, disassembled/)).toBeInTheDocument();
-    expect(screen.getByText(/feature-3-heading/)).toBeInTheDocument();
+    expect(screen.getByAltText(/feature_3_alt/)).toBeInTheDocument();
+    expect(screen.getByText(/feature_3_heading/)).toBeInTheDocument();
   });
 });
