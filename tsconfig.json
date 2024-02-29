@@ -25,6 +25,7 @@
     "include": [
         "./cypress/**/*",
         "./src/**/*",
+        "./util/**/*",
         "./index.d.ts",
         "./cypress-config.ts",
         "./gatsby-config.ts",

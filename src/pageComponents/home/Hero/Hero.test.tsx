@@ -61,46 +61,46 @@ describe('Hero', () => {
 
     const slideDuration = SLIDE_DURATION * 1000;
 
-    expect(screen.getByAltText(/screenshot_0_alt/).parentElement?.parentElement).not.toHaveClass(
+    expect(screen.getByAltText(/screenshot_0_alt/).closest('.duration-1000')).not.toHaveClass(
       'opacity-0',
     );
-    expect(screen.getByAltText(/screenshot_1_alt/).parentElement?.parentElement).toHaveClass(
-      'opacity-0',
-    );
-
-    act(() => jest.advanceTimersByTime(slideDuration));
-
-    expect(screen.getByAltText(/screenshot_1_alt/).parentElement?.parentElement).not.toHaveClass(
-      'opacity-0',
-    );
-    expect(screen.getByAltText(/screenshot_2_alt/).parentElement?.parentElement).toHaveClass(
+    expect(screen.getByAltText(/screenshot_1_alt/).closest('.duration-1000')).toHaveClass(
       'opacity-0',
     );
 
     act(() => jest.advanceTimersByTime(slideDuration));
 
-    expect(screen.getByAltText(/screenshot_2_alt/).parentElement?.parentElement).not.toHaveClass(
+    expect(screen.getByAltText(/screenshot_1_alt/).closest('.duration-1000')).not.toHaveClass(
       'opacity-0',
     );
-    expect(screen.getByAltText(/screenshot_3_alt/).parentElement?.parentElement).toHaveClass(
-      'opacity-0',
-    );
-
-    act(() => jest.advanceTimersByTime(slideDuration));
-
-    expect(screen.getByAltText(/screenshot_3_alt/).parentElement?.parentElement).not.toHaveClass(
-      'opacity-0',
-    );
-    expect(screen.getByAltText(/screenshot_4_alt/).parentElement?.parentElement).toHaveClass(
+    expect(screen.getByAltText(/screenshot_2_alt/).closest('.duration-1000')).toHaveClass(
       'opacity-0',
     );
 
     act(() => jest.advanceTimersByTime(slideDuration));
 
-    expect(screen.getByAltText(/screenshot_4_alt/).parentElement?.parentElement).not.toHaveClass(
+    expect(screen.getByAltText(/screenshot_2_alt/).closest('.duration-1000')).not.toHaveClass(
       'opacity-0',
     );
-    expect(screen.getByAltText(/screenshot_0_alt/).parentElement?.parentElement).toHaveClass(
+    expect(screen.getByAltText(/screenshot_3_alt/).closest('.duration-1000')).toHaveClass(
+      'opacity-0',
+    );
+
+    act(() => jest.advanceTimersByTime(slideDuration));
+
+    expect(screen.getByAltText(/screenshot_3_alt/).closest('.duration-1000')).not.toHaveClass(
+      'opacity-0',
+    );
+    expect(screen.getByAltText(/screenshot_4_alt/).closest('.duration-1000')).toHaveClass(
+      'opacity-0',
+    );
+
+    act(() => jest.advanceTimersByTime(slideDuration));
+
+    expect(screen.getByAltText(/screenshot_4_alt/).closest('.duration-1000')).not.toHaveClass(
+      'opacity-0',
+    );
+    expect(screen.getByAltText(/screenshot_0_alt/).closest('.duration-1000')).toHaveClass(
       'opacity-0',
     );
   });

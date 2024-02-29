@@ -22,7 +22,10 @@ jest.mock('gatsby-plugin-image', () => {
 });
 
 jest.mock('react-i18next', () => {
+  const React = require('react');
   const plugin = jest.requireActual('react-i18next');
+
+  const mockTrans = ({ children }) => <>{children}</>;
 
   return {
     ...plugin,
@@ -34,6 +37,7 @@ jest.mock('react-i18next', () => {
         },
       };
     },
+    Trans: jest.fn().mockImplementation(mockTrans),
     initReactI18next: {
       type: '3rdParty',
       init: () => {},
