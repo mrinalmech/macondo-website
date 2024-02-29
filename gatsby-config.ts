@@ -5,6 +5,8 @@ import postCssDiscardDuplicates from 'postcss-discard-duplicates';
 import postCssFlexbugsFixes from 'postcss-flexbugs-fixes';
 import postCssFocus from 'postcss-focus';
 
+import { languages, defaultLanguage } from './languages';
+
 const config: GatsbyConfig = {
   flags: {
     DEV_SSR: true,
@@ -67,6 +69,29 @@ const config: GatsbyConfig = {
       options: {
         name: `loadingHeroImages`,
         path: `${__dirname}/src/pageComponents/home/Hero/images/loading`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/locales`,
+        name: `locale`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-react-i18next',
+      options: {
+        languages,
+        defaultLanguage,
+        siteUrl: 'https://www.macondogames.com',
+        i18nextOptions: {
+          fallbackLng: defaultLanguage,
+          supportedLngs: languages,
+          defaultNS: 'common',
+          interpolation: {
+            escapeValue: false, // not needed for react as it escapes by default
+          },
+        },
       },
     },
     {

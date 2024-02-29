@@ -62,7 +62,16 @@ export default function Home({ data }: Props) {
 export const Head = () => <SEO />;
 
 export const query = graphql`
-  query {
+  query ($language: String!) {
+    locales: allLocale(filter: { ns: { in: ["index"] }, language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
     allFile(filter: { sourceInstanceName: { eq: "loadingHeroImages" } }) {
       nodes {
         name

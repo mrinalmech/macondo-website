@@ -1,4 +1,5 @@
 import React, { lazy, useState, useEffect, useCallback } from 'react';
+import { Link as IntLink, useI18next } from 'gatsby-plugin-react-i18next';
 import clsx from 'clsx';
 import {
   faFacebookF,
@@ -13,7 +14,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 
 import { useBreakpointRegion } from '../../../hooks/useBreakpointRegion';
 
-import { navLink, imgHolder, navHolder, imgLink } from './Header.module.scss';
+import { navLink, langLink, imgHolder, navHolder, imgLink } from './Header.module.scss';
 
 import Link from '../../../components/atoms/Link';
 import SocialLink from '../../../components/atoms/SocialLink';
@@ -30,13 +31,15 @@ interface NavLinkProps {
 
 const NavLink = (props: NavLinkProps) => {
   return (
-    <Link className={clsx('mb-4 lg:mb-0 px-0 lg:px-4 text-xl', navLink)} {...props}>
+    <Link className={clsx('mb-4 lg:mb-0 px-0 lg:px-4 text-xl white', navLink)} {...props}>
       {props.children}
     </Link>
   );
 };
 
 export default function Header() {
+  const { languages, originalPath, i18n } = useI18next();
+
   const [barBlack, setBarBlack] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [domLoaded, setDomLoaded] = useState(false);
@@ -131,12 +134,30 @@ export default function Header() {
     </div>
   );
 
+  const languageChanger = (
+    <div className="flex items-center mt-3 lg:mt-0 ml-0 lg:ml-3">
+      {languages.map(lng => (
+        <IntLink
+          to={originalPath === '/home/' ? '/' : originalPath}
+          language={lng}
+          placeholder={lng}
+          key={lng}
+          className={clsx('flex mr-2 last-of-type:mr-0 font-sans white', langLink, {
+            'underline underline-offset-4': i18n.resolvedLanguage === lng,
+          })}
+        >
+          {lng}
+        </IntLink>
+      ))}
+    </div>
+  );
+
   return (
     <>
       <header className="fixed w-full z-50">
         <div
           className={clsx(
-            'p-4 pb-8 w-full flex justify-end transition-colors duration-300',
+            'px-6 pt-4 pb-8 w-full flex justify-end transition-colors duration-300',
             navHolder,
             {
               'bg-black': barBlack,
@@ -148,6 +169,7 @@ export default function Header() {
           <nav className="hidden lg:flex font-retro">
             {links}
             {socialLinks}
+            {languageChanger}
           </nav>
         </div>
         <Link
@@ -172,6 +194,7 @@ export default function Header() {
         <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
           {links}
           {socialLinks}
+          {languageChanger}
         </Drawer>
       )}
     </>
