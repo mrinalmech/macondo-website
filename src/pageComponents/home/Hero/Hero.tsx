@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
+import { Trans } from 'gatsby-plugin-react-i18next';
 import clsx from 'clsx';
 import { useInterval } from 'usehooks-ts';
 
@@ -196,8 +197,10 @@ function TextContent() {
       </div>
       <div className={clsx(desc, 'text-center flex flex-col justify-center mb-2 lg:mb-0')}>
         <p className="white m-0 font-sans text-sm sm:text-base">
-          Global Steel is a 2d run-and-gun video game inspired by Saturday-morning cartoons of the
-          80s.
+          <Trans i18nKey="game_desc">
+            Global Steel is a 2d run-and-gun video game inspired by Saturday-morning cartoons of the
+            80s.
+          </Trans>
         </p>
       </div>
     </FadeInElement>
