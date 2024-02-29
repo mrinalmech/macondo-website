@@ -23,7 +23,7 @@ export default function Footer() {
     <footer
       className={clsx(root, '-mt-12 flex pt-8 pb-6 flex-col items-center justify-center bg-black')}
     >
-      <h2 className="red m-0 font-retro text-center text-xl sm:text-2xl">
+      <h2 className="red m-0 px-1 font-retro text-center text-xl sm:text-2xl">
         <Trans i18nKey="footer_text">Keep up with us!</Trans>
       </h2>
       <div className="mt-4 mb-5 flex">

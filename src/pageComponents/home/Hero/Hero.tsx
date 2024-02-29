@@ -194,7 +194,11 @@ function TextContent() {
       animType="doubleDelay"
       fadeIn={appReady}
     >
-      <div className="flex flex-col md:flex-row lg:flex-col justify-center text-center lg:text-right mb-2 md:mb-1 lg:mb-0 mr-0 lg:mr-1 font-retro">
+      <div
+        className={clsx(
+          'flex flex-col md:flex-row lg:flex-col justify-center text-center lg:text-right mb-2 md:mb-1 lg:mb-0 mr-0 lg:mr-1 font-retro',
+        )}
+      >
         <h1 className="white mr-2 lg:mr-0 mb-0 text-xl sm:text-2xl">
           <Trans i18nKey="game_tagline_1">Suit up.</Trans>
         </h1>

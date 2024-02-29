@@ -140,14 +140,14 @@ export default function Header() {
   );
 
   const languageChanger = (
-    <div className="flex items-center mt-3 lg:mt-0 ml-0 lg:ml-3">
+    <div className="flex items-center mt-3 lg:mt-0 ml-0 lg:ml-3 font-sans font-normal">
       {languages.map(lng => (
         <IntLink
           to={originalPath === '/home/' ? '/' : originalPath}
           language={lng}
           placeholder={lng}
           key={lng}
-          className={clsx('flex mr-2 last-of-type:mr-0 font-sans white', langLink, {
+          className={clsx('flex mr-2 last-of-type:mr-0 white', langLink, {
             'underline underline-offset-4': i18n.resolvedLanguage === lng,
           })}
         >
@@ -171,7 +171,12 @@ export default function Header() {
           data-testid="nav-holder"
         >
           <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} showHamburger={domLoaded} />
-          <nav className="hidden lg:flex font-retro">
+          <nav
+            className={clsx('hidden lg:flex', {
+              'font-retro': i18n.resolvedLanguage === 'en',
+              'font-sans font-semibold': i18n.resolvedLanguage !== 'en',
+            })}
+          >
             {links}
             {socialLinks}
             {languageChanger}
