@@ -35,7 +35,7 @@ describe('Footer', () => {
       'https://www.twitch.tv/macondogames',
     );
     expect(
-      screen.getByText(`Copyright © ${currentYear} | Macondo Games Pvt. Ltd.`),
+      screen.getByText(`copyright © ${currentYear} | Macondo Games Pvt. Ltd.`),
     ).toBeInTheDocument();
   });
 });

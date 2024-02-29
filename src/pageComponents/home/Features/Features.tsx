@@ -87,20 +87,20 @@ export default function Features() {
         </div>
         <Feature
           imgName="players"
-          imgAlt="Players"
+          imgAlt="Three figures leaping into action - one in blue, one in red and one in green."
           heading={t('feature-1-heading')}
           description={t('feature-1-desc')}
         />
         <Feature
           imgName="enemies"
-          imgAlt="Enemies"
+          imgAlt="Four figures in a menacing pose, holding their weapons aloft."
           imgOnLeft={false}
           heading={t('feature-2-heading')}
           description={t('feature-2-desc')}
         />
         <Feature
           imgName="upgrades"
-          imgAlt="Upgrades"
+          imgAlt="Three different guns, disassembled so you can see their interiors."
           heading={t('feature-3-heading')}
           description={t('feature-3-desc')}
         />

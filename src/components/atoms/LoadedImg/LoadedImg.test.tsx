@@ -16,24 +16,6 @@ const mockUseStaticQuery = {
   },
 };
 
-jest.mock('gatsby-plugin-image', () => {
-  const plugin = jest.requireActual('gatsby-plugin-image');
-
-  const mockImage = ({ alt, handleLoad }: { alt: string; handleLoad: () => void }) => (
-    <div>
-      <img alt={alt} onLoad={handleLoad} />
-    </div>
-  );
-
-  return {
-    ...plugin,
-    getImage: jest.fn().mockImplementation(() => ({
-      mock: '',
-    })),
-    GatsbyImage: jest.fn().mockImplementation(mockImage),
-  };
-});
-
 beforeEach(() => {
   useStaticQuery.mockImplementation(() => mockUseStaticQuery);
 });

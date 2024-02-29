@@ -21,10 +21,7 @@ describe('Header', () => {
     });
 
     expect(screen.getByAltText(/Company Logo/)).toBeInTheDocument();
-    expect(screen.getByAltText(/Company Logo/).parentElement?.parentElement).toHaveAttribute(
-      'href',
-      '/',
-    );
+    expect(screen.getByAltText(/Company Logo/).closest('a')).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: /Blog/ })).toHaveAttribute(
       'href',
       'https://blog.macondogames.com/',

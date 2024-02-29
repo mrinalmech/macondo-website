@@ -14,10 +14,7 @@ describe('Page', () => {
     });
 
     expect(screen.getByAltText(/Company Logo/)).toBeInTheDocument();
-    expect(screen.getByAltText(/Company Logo/).parentElement?.parentElement).toHaveAttribute(
-      'href',
-      '/',
-    );
+    expect(screen.getByAltText(/Company Logo/).closest('a')).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: /Blog/ })).toHaveAttribute(
       'href',
       'https://blog.macondogames.com/',
@@ -34,7 +31,7 @@ describe('Page', () => {
 
     expect(screen.getByText(/Keep up with us!/)).toBeInTheDocument();
     expect(
-      screen.getByText(`Copyright © ${currentYear} | Macondo Games Pvt. Ltd.`),
+      screen.getByText(`copyright © ${currentYear} | Macondo Games Pvt. Ltd.`),
     ).toBeInTheDocument();
 
     expect(screen.getAllByRole('link', { name: /Twitter/ })).toHaveLength(2);
