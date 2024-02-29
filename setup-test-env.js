@@ -38,9 +38,5 @@ jest.mock('react-i18next', () => {
       };
     },
     Trans: jest.fn().mockImplementation(mockTrans),
-    initReactI18next: {
-      type: '3rdParty',
-      init: () => {},
-    },
   };
 });
