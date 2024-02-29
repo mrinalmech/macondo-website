@@ -14,59 +14,68 @@ interface Props {
   alt?: string;
   className?: string;
   animType?: 'normal' | 'delay' | 'doubleDelay';
+  testId?: string;
 }
 
 const LoadedImg = memo(
-  forwardRef<HTMLDivElement, Props>(({ imgName, alt = '', animType, className }, forwardedRef) => {
-    const ref = useRef<HTMLDivElement | null>(null);
+  forwardRef<HTMLDivElement, Props>(
+    ({ imgName, alt = '', animType, className, testId }, forwardedRef) => {
+      const ref = useRef<HTMLDivElement | null>(null);
 
-    useImperativeHandle(forwardedRef, () => ref.current as HTMLDivElement);
+      useImperativeHandle(forwardedRef, () => ref.current as HTMLDivElement);
 
-    const appReady = useContext(AppReadyContext);
-    const imageLoaded = useContext(ImageLoadedContext);
+      const appReady = useContext(AppReadyContext);
+      const imageLoaded = useContext(ImageLoadedContext);
 
-    const handleLoad = () => {
-      imageLoaded(imgName);
-    };
+      const handleLoad = () => {
+        imageLoaded(imgName);
+      };
 
-    useEffect(() => {
-      const imgContainer = ref.current;
+      useEffect(() => {
+        const imgContainer = ref.current;
 
-      if (imgContainer) {
-        const gatsbyWrapper = $(imgContainer).children('div')[0];
-        const img = $(gatsbyWrapper).children('img')[0] as HTMLImageElement;
-        if (img && img.complete) {
-          imageLoaded(imgName);
+        if (imgContainer) {
+          const gatsbyWrapper = $(imgContainer).children('div')[0];
+          const img = $(gatsbyWrapper).children('img')[0] as HTMLImageElement;
+          if (img && img.complete) {
+            imageLoaded(imgName);
+          }
+        }
+      }, [imageLoaded, imgName]);
+
+      const { monitorImg, otherImgs } = useStaticQuery(query);
+      const allImgs = monitorImg.nodes.concat(otherImgs.nodes);
+
+      const img: ImageDataLike = allImgs.find((file: FileSystemNode) => file.name === imgName);
+
+      if (img) {
+        const image = getImage(img);
+
+        if (image) {
+          return (
+            <FadeInElement
+              fadeIn={appReady}
+              animType={animType}
+              className={className}
+              ref={ref}
+              testId={testId}
+            >
+              <GatsbyImage
+                image={image}
+                objectFit="cover"
+                alt={alt}
+                onLoad={handleLoad}
+                loading="eager"
+                className="h-full w-full"
+              />
+            </FadeInElement>
+          );
         }
       }
-    }, [imageLoaded, imgName]);
 
-    const { monitorImg, otherImgs } = useStaticQuery(query);
-    const allImgs = monitorImg.nodes.concat(otherImgs.nodes);
-
-    const img: ImageDataLike = allImgs.find((file: FileSystemNode) => file.name === imgName);
-
-    if (img) {
-      const image = getImage(img);
-
-      if (image) {
-        return (
-          <FadeInElement fadeIn={appReady} animType={animType} className={className} ref={ref}>
-            <GatsbyImage
-              image={image}
-              objectFit="cover"
-              alt={alt}
-              onLoad={handleLoad}
-              loading="eager"
-              className="h-full w-full"
-            />
-          </FadeInElement>
-        );
-      }
-    }
-
-    return null;
-  }),
+      return null;
+    },
+  ),
 );
 
 LoadedImg.displayName = 'LoadedImg';

@@ -30,33 +30,35 @@ interface SlideshowProps {
 }
 
 function BackgroundImages() {
+  const { t } = useTranslation();
+
   return (
     <>
       <LoadedImg
         animType="doubleDelay"
         imgName="logo"
-        alt="Game Logo"
+        alt={t('game_logo_alt') || 'Game Logo'}
         className={clsx('absolute', logo)}
       />
-      <LoadedImg imgName="wallShade" alt="WallShade" className={clsx('absolute', wallShade)} />
+      <LoadedImg imgName="wallShade" testId="wall-shade" className={clsx('absolute', wallShade)} />
       <LoadedImg
         imgName="websiteBaseL1"
-        alt="WebsiteBaseL1Left"
+        testId="websiteBaseL1-left"
         className={clsx('absolute', baseL1, left)}
       />
       <LoadedImg
         imgName="websiteBaseL2"
-        alt="WebsiteBaseL2Left"
+        testId="websiteBaseL2-left"
         className={clsx('absolute', baseL2, left)}
       />
       <LoadedImg
         imgName="websiteBaseL1"
-        alt="WebsiteBaseL1Right"
+        testId="websiteBaseL1-right"
         className={clsx('absolute', baseL1, right)}
       />
       <LoadedImg
         imgName="websiteBaseL2"
-        alt="WebsiteBaseL2Right"
+        testId="websiteBaseL2-right"
         className={clsx('absolute', baseL2, right)}
       />
     </>
@@ -166,7 +168,7 @@ function Monitor() {
       <LoadedImg
         ref={monitorEl}
         imgName="monitor"
-        alt="Monitor"
+        testId="monitor"
         className={clsx('absolute', monitor)}
         animType="delay"
       />

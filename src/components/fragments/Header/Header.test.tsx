@@ -17,11 +17,11 @@ describe('Header', () => {
     render(<Header />);
 
     await waitFor(() => {
-      expect(screen.getByAltText(/logo_alt/)).toBeInTheDocument();
+      expect(screen.getByAltText(/company_logo_alt/)).toBeInTheDocument();
     });
 
-    expect(screen.getByAltText(/logo_alt/)).toBeInTheDocument();
-    expect(screen.getByAltText(/logo_alt/).closest('a')).toHaveAttribute('href', '/');
+    expect(screen.getByAltText(/company_logo_alt/)).toBeInTheDocument();
+    expect(screen.getByAltText(/company_logo_alt/).closest('a')).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: /Blog/ })).toHaveAttribute(
       'href',
       'https://blog.macondogames.com/',

@@ -188,7 +188,7 @@ export default function Header() {
           >
             <StaticImage
               src="./images/HeaderLogo.png"
-              alt={t('logo_alt')}
+              alt={t('company_logo_alt')}
               width={60}
               placeholder="none"
             />

@@ -39,13 +39,13 @@ describe('Hero', () => {
   test('Expect Hero to be presented', () => {
     render(<Hero />);
 
-    expect(screen.getByAltText(/Game Logo/)).toBeInTheDocument();
-    expect(screen.getByAltText(/WallShade/)).toBeInTheDocument();
-    expect(screen.getByAltText(/WebsiteBaseL1Left/)).toBeInTheDocument();
-    expect(screen.getByAltText(/WebsiteBaseL2Left/)).toBeInTheDocument();
-    expect(screen.getByAltText(/WebsiteBaseL1Right/)).toBeInTheDocument();
-    expect(screen.getByAltText(/WebsiteBaseL2Right/)).toBeInTheDocument();
-    expect(screen.getByAltText(/Monitor/)).toBeInTheDocument();
+    expect(screen.getByAltText(/game_logo_alt/)).toBeInTheDocument();
+    expect(screen.getByTestId(/wall-shade/)).toBeInTheDocument();
+    expect(screen.getByTestId(/websiteBaseL1-left/)).toBeInTheDocument();
+    expect(screen.getByTestId(/websiteBaseL2-left/)).toBeInTheDocument();
+    expect(screen.getByTestId(/websiteBaseL1-right/)).toBeInTheDocument();
+    expect(screen.getByTestId(/websiteBaseL2-right/)).toBeInTheDocument();
+    expect(screen.getByTestId(/monitor/)).toBeInTheDocument();
 
     expect(screen.getByAltText(/screenshot_0_alt/)).toBeInTheDocument();
     expect(screen.getByAltText(/screenshot_1_alt/)).toBeInTheDocument();
