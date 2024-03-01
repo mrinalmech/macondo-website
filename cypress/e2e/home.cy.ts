@@ -14,6 +14,27 @@ describe('Homepage tests', () => {
     cy.findByAltText(/animated suits of medieval armor/, { timeout: 10000 }).should('be.visible');
   });
 
+  it('Language switching works and german language content is presented', () => {
+    cy.viewport(1920, 1080);
+
+    cy.visit('/');
+
+    cy.findByRole('link', { name: /de/ }).should('exist').click();
+
+    cy.findByAltText(/Spiellogo/).should('be.visible');
+
+    cy.findByAltText(/animierte mittelalterliche Rüstungen zu kämpfen/).should('be.visible');
+    cy.findByAltText(/Verrostetes Artilleriegeschütz im Vordergrund/, { timeout: 10000 }).should(
+      'be.visible',
+    );
+    cy.findByAltText(/vor einem Monitor/, { timeout: 10000 }).should('be.visible');
+    cy.findByAltText(/brennenden Figur/, { timeout: 10000 }).should('be.visible');
+    cy.findByAltText(/schwarzen Frau mit Afro/, { timeout: 10000 }).should('be.visible');
+    cy.findByAltText(/animierte mittelalterliche Rüstungen zu kämpfen/, { timeout: 10000 }).should(
+      'be.visible',
+    );
+  });
+
   it('Steam widget is loaded correctly', () => {
     const getIframeDocument = () => {
       return cy.get('iframe[title="steam-widget"]').its('0.contentDocument').should('exist');
