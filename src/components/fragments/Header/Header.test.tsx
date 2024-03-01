@@ -7,6 +7,7 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
+import * as gatsByPluginI18 from 'gatsby-plugin-react-i18next';
 
 import { scroll, resize } from '../../../util/tests';
 
@@ -14,6 +15,17 @@ import Header from './Header';
 
 describe('Header', () => {
   test('Expect header to be presented', async () => {
+    jest.spyOn(gatsByPluginI18, 'useI18next').mockImplementation(
+      () =>
+        ({
+          languages: ['en', 'de'],
+          i18n: {
+            resolvedLanguage: 'en',
+          },
+          originalPath: '/',
+        } as any),
+    );
+
     render(<Header />);
 
     await waitFor(() => {
@@ -22,6 +34,7 @@ describe('Header', () => {
 
     expect(screen.getByAltText(/company_logo_alt/)).toBeInTheDocument();
     expect(screen.getByAltText(/company_logo_alt/).closest('a')).toHaveAttribute('href', '/');
+
     expect(screen.getByRole('link', { name: /Blog/ })).toHaveAttribute(
       'href',
       'https://blog.macondogames.com/',
@@ -31,6 +44,7 @@ describe('Header', () => {
       'href',
       'mailto:info@macondogames.com',
     );
+
     expect(screen.getByRole('link', { name: /Steam/ })).toHaveAttribute(
       'href',
       'https://store.steampowered.com/app/1073970/Global_Steel/',
@@ -59,6 +73,31 @@ describe('Header', () => {
       'href',
       'https://www.twitch.tv/macondogames',
     );
+
+    expect(screen.getByRole('link', { name: /en/ })).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: /en/ })).toHaveClass('underline');
+
+    expect(screen.getByRole('link', { name: /de/ })).toHaveAttribute('href', '/de/');
+    expect(screen.getByRole('link', { name: /de/ })).not.toHaveClass('underline');
+  });
+
+  test('Expect correct language link to be active', () => {
+    jest.spyOn(gatsByPluginI18, 'useI18next').mockImplementation(
+      () =>
+        ({
+          languages: ['en', 'de'],
+          i18n: {
+            resolvedLanguage: 'de',
+          },
+          originalPath: '/',
+        } as any),
+    );
+
+    render(<Header />);
+
+    expect(screen.getByRole('link', { name: /en/ })).not.toHaveClass('underline');
+
+    expect(screen.getByRole('link', { name: /de/ })).toHaveClass('underline');
   });
 
   test('Expect header to have black background on scroll', () => {
