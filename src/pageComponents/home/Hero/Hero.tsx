@@ -1,4 +1,8 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, { useContext, useState, useEffect, useRef, useCallback } from 'react';
+import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
+import { useStaticQuery, graphql } from 'gatsby';
+import { FileSystemNode } from 'gatsby-source-filesystem';
+import { IGatsbyImageData, getImage } from 'gatsby-plugin-image';
 import clsx from 'clsx';
 import { useInterval } from 'usehooks-ts';
 
@@ -24,72 +28,109 @@ import {
 
 import { SLIDE_DURATION } from './constants';
 
-interface SlideshowProps {
+interface ComponentProps {
+  getImgData: (imgName: string) => IGatsbyImageData | null;
+}
+
+interface SlideshowProps extends ComponentProps {
   style?: React.CSSProperties;
 }
 
-const imgData = [
-  {
-    imgName: 'screenshot2',
-    alt: 'Woman in blue armor marching to fight two suits of animated suits of medieval armor.',
-  },
-  {
-    imgName: 'screenshot1',
-    alt: 'Woman in blue armor releasing rockets to attack two enemies in purple armor, one normal height and the other short. Rusted artillery gun in the foreground.',
-  },
-  {
-    imgName: 'screenshot0',
-    alt: 'Three figures in front of a monitor screen',
-  },
-  {
-    imgName: 'screenshot3',
-    alt: 'Woman in blue armor standing in front of a flaming figure',
-  },
-  {
-    imgName: 'screenshot4',
-    alt: 'Woman in blue armor standing at end of bridge. Receives instructions from a black woman with an afro.',
-  },
-];
+const getImgDataFromFiles = (imgName: string, imgs: FileSystemNode[]): IGatsbyImageData | null => {
+  const img = imgs.find((file: FileSystemNode) => file.name === imgName);
 
-function BackgroundImages() {
+  if (img) {
+    const image = getImage(img);
+
+    if (image) {
+      return image;
+    }
+  }
+
+  return null;
+};
+
+function BackgroundImages({ getImgData }: ComponentProps) {
+  const { t } = useTranslation();
+
   return (
     <>
       <LoadedImg
         animType="doubleDelay"
         imgName="logo"
-        alt="Game Logo"
+        imgData={getImgData('logo')}
+        alt={t('game_logo_alt') || 'Game Logo'}
         className={clsx('absolute', logo)}
       />
-      <LoadedImg imgName="wallShade" alt="WallShade" className={clsx('absolute', wallShade)} />
+      <LoadedImg
+        imgName="wallShade"
+        imgData={getImgData('wallShade')}
+        testId="wall-shade"
+        className={clsx('absolute', wallShade)}
+      />
       <LoadedImg
         imgName="websiteBaseL1"
-        alt="WebsiteBaseL1Left"
+        imgData={getImgData('websiteBaseL1')}
+        testId="websiteBaseL1-left"
         className={clsx('absolute', baseL1, left)}
       />
       <LoadedImg
         imgName="websiteBaseL2"
-        alt="WebsiteBaseL2Left"
+        imgData={getImgData('websiteBaseL2')}
+        testId="websiteBaseL2-left"
         className={clsx('absolute', baseL2, left)}
       />
       <LoadedImg
         imgName="websiteBaseL1"
-        alt="WebsiteBaseL1Right"
+        imgData={getImgData('websiteBaseL1')}
+        testId="websiteBaseL1-right"
         className={clsx('absolute', baseL1, right)}
       />
       <LoadedImg
         imgName="websiteBaseL2"
-        alt="WebsiteBaseL2Right"
+        imgData={getImgData('websiteBaseL2')}
+        testId="websiteBaseL2-right"
         className={clsx('absolute', baseL2, right)}
       />
     </>
   );
 }
 
-function Slideshow({ style }: SlideshowProps) {
+function Slideshow({ style, getImgData }: SlideshowProps) {
+  const { t } = useTranslation();
+
+  const imgsData = [
+    {
+      imgName: 'screenshot0',
+      imgData: getImgData('screenshot0'),
+      alt: t('screenshot_0_alt'),
+    },
+    {
+      imgName: 'screenshot1',
+      imgData: getImgData('screenshot1'),
+      alt: t('screenshot_1_alt'),
+    },
+    {
+      imgName: 'screenshot2',
+      imgData: getImgData('screenshot2'),
+      alt: t('screenshot_2_alt'),
+    },
+    {
+      imgName: 'screenshot3',
+      imgData: getImgData('screenshot3'),
+      alt: t('screenshot_3_alt'),
+    },
+    {
+      imgName: 'screenshot4',
+      imgData: getImgData('screenshot4'),
+      alt: t('screenshot_4_alt'),
+    },
+  ];
+
   const [active, setActive] = useState(0);
 
   const updateActive = () => {
-    const newActive = (active + 1) % imgData.length;
+    const newActive = (active + 1) % imgsData.length;
     setActive(newActive);
   };
 
@@ -99,7 +140,7 @@ function Slideshow({ style }: SlideshowProps) {
 
   return (
     <div className={clsx('absolute', slideShow)} style={style}>
-      {imgData.map((img, index) => {
+      {imgsData.map((img, index) => {
         return (
           <div
             key={index}
@@ -109,6 +150,7 @@ function Slideshow({ style }: SlideshowProps) {
           >
             <LoadedImg
               imgName={img.imgName}
+              imgData={img.imgData}
               animType="doubleDelay"
               alt={img.alt}
               className="h-full w-full"
@@ -120,7 +162,7 @@ function Slideshow({ style }: SlideshowProps) {
   );
 }
 
-function Monitor() {
+function Monitor({ getImgData }: ComponentProps) {
   const appReady = useContext(AppReadyContext);
 
   const monitorEl = useRef<HTMLDivElement | null>(null);
@@ -163,7 +205,8 @@ function Monitor() {
       <LoadedImg
         ref={monitorEl}
         imgName="monitor"
-        alt="Monitor"
+        imgData={getImgData('monitor')}
+        testId="monitor"
         className={clsx('absolute', monitor)}
         animType="delay"
       />
@@ -173,6 +216,7 @@ function Monitor() {
           width: dimensions.width,
           bottom: dimensions.bottom,
         }}
+        getImgData={getImgData}
       />
       <FadeInElement className={clsx('absolute', extension, left)} fadeIn={appReady} />
       <FadeInElement className={clsx('absolute', extension, right)} fadeIn={appReady} />
@@ -189,15 +233,27 @@ function TextContent() {
       animType="doubleDelay"
       fadeIn={appReady}
     >
-      <div className="flex flex-col md:flex-row lg:flex-col justify-center text-center lg:text-right mb-2 md:mb-1 lg:mb-0 mr-0 lg:mr-1 font-retro">
-        <h1 className="white mr-2 lg:mr-0 mb-0 text-xl sm:text-2xl">Suit up.</h1>
-        <h1 className="white mr-2 lg:mr-0 mb-0 text-xl sm:text-2xl">Shoot &lsquo;em up.</h1>
-        <h1 className="white mb-0 text-xl sm:text-2xl">Level up.</h1>
+      <div
+        className={clsx(
+          'flex flex-col md:flex-row lg:flex-col justify-center text-center lg:text-right mb-2 md:mb-1 lg:mb-0 mr-0 lg:mr-1 font-retro',
+        )}
+      >
+        <h1 className="white mr-2 lg:mr-0 mb-0 text-xl sm:text-2xl">
+          <Trans i18nKey="game_tagline_1">Suit up.</Trans>
+        </h1>
+        <h1 className="white mr-2 lg:mr-0 mb-0 text-xl sm:text-2xl">
+          <Trans i18nKey="game_tagline_2">Shoot &lsquo;em up.</Trans>
+        </h1>
+        <h1 className="white mb-0 text-xl sm:text-2xl">
+          <Trans i18nKey="game_tagline_3">Level up.</Trans>
+        </h1>
       </div>
       <div className={clsx(desc, 'text-center flex flex-col justify-center mb-2 lg:mb-0')}>
         <p className="white m-0 font-sans text-sm sm:text-base">
-          Global Steel is a 2d run-and-gun video game inspired by Saturday-morning cartoons of the
-          80s.
+          <Trans i18nKey="game_desc">
+            Global Steel is a 2d run-and-gun video game inspired by Saturday-morning cartoons of the
+            80s.
+          </Trans>
         </p>
       </div>
     </FadeInElement>
@@ -205,6 +261,15 @@ function TextContent() {
 }
 
 export default function Hero() {
+  const { otherImgs, monitorImg } = useStaticQuery(query);
+
+  const allImgs = otherImgs.nodes.concat(monitorImg.nodes);
+
+  const getImgData = useCallback(
+    (imgName: string) => getImgDataFromFiles(imgName, allImgs),
+    [allImgs],
+  );
+
   return (
     <>
       <div
@@ -218,10 +283,35 @@ export default function Hero() {
     overflow-hidden`,
         )}
       >
-        <BackgroundImages />
-        <Monitor />
+        <BackgroundImages getImgData={getImgData} />
+        <Monitor getImgData={getImgData} />
         <TextContent />
       </div>
     </>
   );
 }
+
+const query = graphql`
+  query {
+    monitorImg: allFile(
+      filter: { sourceInstanceName: { eq: "loadingHeroImages" }, name: { eq: "monitor" } }
+    ) {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(placeholder: NONE, layout: FIXED)
+        }
+      }
+    }
+    otherImgs: allFile(
+      filter: { sourceInstanceName: { eq: "loadingHeroImages" }, name: { ne: "monitor" } }
+    ) {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(placeholder: NONE)
+        }
+      }
+    }
+  }
+`;

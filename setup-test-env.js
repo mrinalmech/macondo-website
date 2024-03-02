@@ -4,8 +4,11 @@ jest.mock('gatsby-plugin-image', () => {
   const React = require('react');
   const plugin = jest.requireActual('gatsby-plugin-image');
 
-  const mockImage = ({ alt }) => <img alt={alt} />;
-
+  const mockImage = ({ alt, handleLoad }) => (
+    <div>
+      <img alt={alt} onLoad={handleLoad} />
+    </div>
+  );
   const mockImageData = () => ({ width: 100 });
 
   const mockPlugin = {
@@ -16,4 +19,24 @@ jest.mock('gatsby-plugin-image', () => {
   };
 
   return mockPlugin;
+});
+
+jest.mock('react-i18next', () => {
+  const React = require('react');
+  const plugin = jest.requireActual('react-i18next');
+
+  const mockTrans = ({ children }) => <>{children}</>;
+
+  return {
+    ...plugin,
+    useTranslation: () => {
+      return {
+        t: str => str,
+        i18n: {
+          changeLanguage: () => new Promise(() => {}),
+        },
+      };
+    },
+    Trans: jest.fn().mockImplementation(mockTrans),
+  };
 });

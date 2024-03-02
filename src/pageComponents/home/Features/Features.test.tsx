@@ -23,13 +23,13 @@ describe('Features', () => {
   test('Expect Features to be presented', () => {
     render(<Features />);
 
-    expect(screen.getByAltText(/Players/)).toBeInTheDocument();
-    expect(screen.getByText(/THE GOOD/)).toBeInTheDocument();
+    expect(screen.getByAltText(/feature_1_alt/)).toBeInTheDocument();
+    expect(screen.getByText(/feature_1_heading/)).toBeInTheDocument();
 
-    expect(screen.getByAltText(/Enemies/)).toBeInTheDocument();
-    expect(screen.getByText(/THE BAD/)).toBeInTheDocument();
+    expect(screen.getByAltText(/feature_2_alt/)).toBeInTheDocument();
+    expect(screen.getByText(/feature_2_heading/)).toBeInTheDocument();
 
-    expect(screen.getByAltText(/Upgrades/)).toBeInTheDocument();
-    expect(screen.getByText(/...AND, THE UPGRADES/)).toBeInTheDocument();
+    expect(screen.getByAltText(/feature_3_alt/)).toBeInTheDocument();
+    expect(screen.getByText(/feature_3_heading/)).toBeInTheDocument();
   });
 });

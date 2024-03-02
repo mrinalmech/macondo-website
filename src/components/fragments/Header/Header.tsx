@@ -1,4 +1,5 @@
 import React, { lazy, useState, useEffect, useCallback } from 'react';
+import { Link as IntLink, useI18next, Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import clsx from 'clsx';
 import {
   faFacebookF,
@@ -13,7 +14,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 
 import { useBreakpointRegion } from '../../../hooks/useBreakpointRegion';
 
-import { navLink, imgHolder, navHolder, imgLink } from './Header.module.scss';
+import { navLink, langLink, imgHolder, navHolder, imgLink } from './Header.module.scss';
 
 import Link from '../../../components/atoms/Link';
 import SocialLink from '../../../components/atoms/SocialLink';
@@ -30,13 +31,16 @@ interface NavLinkProps {
 
 const NavLink = (props: NavLinkProps) => {
   return (
-    <Link className={clsx('mb-4 lg:mb-0 px-0 lg:px-4 text-xl', navLink)} {...props}>
+    <Link className={clsx('mb-4 lg:mb-0 px-0 lg:px-4 text-xl white', navLink)} {...props}>
       {props.children}
     </Link>
   );
 };
 
 export default function Header() {
+  const { languages, originalPath, i18n } = useI18next();
+  const { t } = useTranslation();
+
   const [barBlack, setBarBlack] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [domLoaded, setDomLoaded] = useState(false);
@@ -76,11 +80,15 @@ export default function Header() {
 
   const links = (
     <>
-      <NavLink to="https://blog.macondogames.com/">Blog</NavLink>
-      <NavLink to="/press" external>
-        Press
+      <NavLink to="https://blog.macondogames.com/">
+        <Trans i18nKey="blog">Blog</Trans>
       </NavLink>
-      <NavLink to="mailto:info@macondogames.com">Contact</NavLink>
+      <NavLink to="/press" external>
+        <Trans i18nKey="press">Press</Trans>
+      </NavLink>
+      <NavLink to="mailto:info@macondogames.com">
+        <Trans i18nKey="contact">Contact</Trans>
+      </NavLink>
     </>
   );
 
@@ -131,12 +139,30 @@ export default function Header() {
     </div>
   );
 
+  const languageChanger = (
+    <div className="flex items-center mt-3 lg:mt-0 ml-0 lg:ml-3 font-sans font-normal">
+      {languages.map(lng => (
+        <IntLink
+          to={originalPath === '/home/' ? '/' : originalPath}
+          language={lng}
+          placeholder={lng}
+          key={lng}
+          className={clsx('flex mr-2 last-of-type:mr-0 white', langLink, {
+            'underline underline-offset-4': i18n.resolvedLanguage === lng,
+          })}
+        >
+          {lng}
+        </IntLink>
+      ))}
+    </div>
+  );
+
   return (
     <>
       <header className="fixed w-full z-50">
         <div
           className={clsx(
-            'p-4 pb-8 w-full flex justify-end transition-colors duration-300',
+            'px-6 pt-4 pb-8 w-full flex justify-end transition-colors duration-300',
             navHolder,
             {
               'bg-black': barBlack,
@@ -145,14 +171,21 @@ export default function Header() {
           data-testid="nav-holder"
         >
           <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} showHamburger={domLoaded} />
-          <nav className="hidden lg:flex font-retro">
+          <nav
+            className={clsx('hidden lg:flex', {
+              'font-retro': i18n.resolvedLanguage === 'en',
+              'font-sans font-semibold': i18n.resolvedLanguage !== 'en',
+            })}
+          >
             {links}
             {socialLinks}
+            {languageChanger}
           </nav>
         </div>
         <Link
           to="/"
           className={clsx('absolute top-1 left-1 sm:top-2 sm:left-2 lg:top-3 lg:left-5', imgLink)}
+          aria-label={t('company_logo_label')}
         >
           <div
             className={clsx('p-2.5 pr-2 transition-colors duration-300', imgHolder, {
@@ -161,7 +194,7 @@ export default function Header() {
           >
             <StaticImage
               src="./images/HeaderLogo.png"
-              alt="Company Logo"
+              alt={t('company_logo_alt')}
               width={60}
               placeholder="none"
             />
@@ -172,6 +205,7 @@ export default function Header() {
         <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
           {links}
           {socialLinks}
+          {languageChanger}
         </Drawer>
       )}
     </>

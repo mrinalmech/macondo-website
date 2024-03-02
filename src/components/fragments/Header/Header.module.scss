@@ -2,7 +2,6 @@
 @import 'src/styles/constants.scss';
 
 .navLink {
-  color: $white !important;
   transition-duration: 0.3s;
 
   &:hover {
@@ -41,5 +40,18 @@
     :global(.gatsby-image-wrapper) {
       transform: rotate(3deg);
     }
+  }
+}
+
+.langLink {
+  transition-duration: 0.1s;
+
+  &:hover {
+    text-shadow: 2px 2px rgba($red, 0.8);
+    transform: rotate(3deg);
+  }
+
+  &:active {
+    text-shadow: 2px 2px $red;
   }
 }

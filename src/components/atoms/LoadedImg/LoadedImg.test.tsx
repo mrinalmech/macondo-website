@@ -1,62 +1,23 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import * as Gatsby from 'gatsby';
 
 import LoadedImg from './LoadedImg';
 import { AppReadyContext } from '../../../contexts/AppReadyContext';
 import { ImageLoadedContext } from '../../../contexts/ImageLoadedContext';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 
-const useStaticQuery = jest.spyOn(Gatsby, 'useStaticQuery');
-const mockUseStaticQuery = {
-  monitorImg: {
-    nodes: [],
-  },
-  otherImgs: {
-    nodes: [{ name: 'testImg' }],
-  },
-};
-
-jest.mock('gatsby-plugin-image', () => {
-  const plugin = jest.requireActual('gatsby-plugin-image');
-
-  const mockImage = ({ alt, handleLoad }: { alt: string; handleLoad: () => void }) => (
-    <div>
-      <img alt={alt} onLoad={handleLoad} />
-    </div>
-  );
-
-  return {
-    ...plugin,
-    getImage: jest.fn().mockImplementation(() => ({
-      mock: '',
-    })),
-    GatsbyImage: jest.fn().mockImplementation(mockImage),
-  };
-});
-
-beforeEach(() => {
-  useStaticQuery.mockImplementation(() => mockUseStaticQuery);
-});
-
-afterEach(() => {
-  jest.restoreAllMocks();
-});
+const mockImgData = { width: 100 } as IGatsbyImageData;
 
 describe('LoadedImg', () => {
   test('Expect LoadedImg to be presented', () => {
-    render(<LoadedImg imgName="testImg" alt="testImgAlt" />);
+    render(<LoadedImg imgName="testImg" alt="testImgAlt" imgData={mockImgData} />);
     expect(screen.getByAltText(/testImgAlt/)).toBeInTheDocument();
-  });
-
-  test('Expect LoadedImg to be not presented if image not in filesystem', () => {
-    render(<LoadedImg imgName="testImg2" alt="testImgAlt" />);
-    expect(screen.queryByAltText(/testImgAlt/)).not.toBeInTheDocument();
   });
 
   test('Expect LoadedImg to be visible if app is loaded', () => {
     render(
       <AppReadyContext.Provider value={true}>
-        <LoadedImg imgName="testImg" alt="testImgAlt" />
+        <LoadedImg imgName="testImg" alt="testImgAlt" imgData={mockImgData} />
       </AppReadyContext.Provider>,
     );
     expect(screen.queryByAltText(/testImgAlt/)?.parentElement?.parentElement).toHaveClass(
@@ -67,7 +28,7 @@ describe('LoadedImg', () => {
   test('Expect LoadedImg to not be visible if app is not loaded', () => {
     render(
       <AppReadyContext.Provider value={false}>
-        <LoadedImg imgName="testImg" alt="testImgAlt" />
+        <LoadedImg imgName="testImg" alt="testImgAlt" imgData={mockImgData} />
       </AppReadyContext.Provider>,
     );
     expect(screen.queryByAltText(/testImgAlt/)?.parentElement?.parentElement).toHaveClass(
@@ -79,7 +40,7 @@ describe('LoadedImg', () => {
     const mockImageLoaded = jest.fn();
     render(
       <ImageLoadedContext.Provider value={mockImageLoaded}>
-        <LoadedImg imgName="testImg" />
+        <LoadedImg imgName="testImg" imgData={mockImgData} />
       </ImageLoadedContext.Provider>,
     );
 

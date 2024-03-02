@@ -39,19 +39,19 @@ describe('Hero', () => {
   test('Expect Hero to be presented', () => {
     render(<Hero />);
 
-    expect(screen.getByAltText(/Game Logo/)).toBeInTheDocument();
-    expect(screen.getByAltText(/WallShade/)).toBeInTheDocument();
-    expect(screen.getByAltText(/WebsiteBaseL1Left/)).toBeInTheDocument();
-    expect(screen.getByAltText(/WebsiteBaseL2Left/)).toBeInTheDocument();
-    expect(screen.getByAltText(/WebsiteBaseL1Right/)).toBeInTheDocument();
-    expect(screen.getByAltText(/WebsiteBaseL2Right/)).toBeInTheDocument();
-    expect(screen.getByAltText(/Monitor/)).toBeInTheDocument();
+    expect(screen.getByAltText(/game_logo_alt/)).toBeInTheDocument();
+    expect(screen.getByTestId(/wall-shade/)).toBeInTheDocument();
+    expect(screen.getByTestId(/websiteBaseL1-left/)).toBeInTheDocument();
+    expect(screen.getByTestId(/websiteBaseL2-left/)).toBeInTheDocument();
+    expect(screen.getByTestId(/websiteBaseL1-right/)).toBeInTheDocument();
+    expect(screen.getByTestId(/websiteBaseL2-right/)).toBeInTheDocument();
+    expect(screen.getByTestId(/monitor/)).toBeInTheDocument();
 
-    expect(screen.getByAltText(/animated suits of medieval armor/)).toBeInTheDocument();
-    expect(screen.getByAltText(/Rusted artillery gun in the foreground/)).toBeInTheDocument();
-    expect(screen.getByAltText(/Three figures/)).toBeInTheDocument();
-    expect(screen.getByAltText(/flaming figure/)).toBeInTheDocument();
-    expect(screen.getByAltText(/black woman with an afro/)).toBeInTheDocument();
+    expect(screen.getByAltText(/screenshot_0_alt/)).toBeInTheDocument();
+    expect(screen.getByAltText(/screenshot_1_alt/)).toBeInTheDocument();
+    expect(screen.getByAltText(/screenshot_2_alt/)).toBeInTheDocument();
+    expect(screen.getByAltText(/screenshot_3_alt/)).toBeInTheDocument();
+    expect(screen.getByAltText(/screenshot_4_alt/)).toBeInTheDocument();
 
     expect(screen.getByText(/Global Steel is a 2d run-and-gun video game/)).toBeInTheDocument();
   });
@@ -61,47 +61,47 @@ describe('Hero', () => {
 
     const slideDuration = SLIDE_DURATION * 1000;
 
-    expect(
-      screen.getByAltText(/animated suits of medieval armor/).parentElement?.parentElement,
-    ).not.toHaveClass('opacity-0');
-    expect(
-      screen.getByAltText(/Rusted artillery gun in the foreground/).parentElement?.parentElement,
-    ).toHaveClass('opacity-0');
-
-    act(() => jest.advanceTimersByTime(slideDuration));
-
-    expect(
-      screen.getByAltText(/Rusted artillery gun in the foreground/).parentElement?.parentElement,
-    ).not.toHaveClass('opacity-0');
-    expect(screen.getByAltText(/Three figures/).parentElement?.parentElement).toHaveClass(
+    expect(screen.getByAltText(/screenshot_0_alt/).closest('.duration-1000')).not.toHaveClass(
+      'opacity-0',
+    );
+    expect(screen.getByAltText(/screenshot_1_alt/).closest('.duration-1000')).toHaveClass(
       'opacity-0',
     );
 
     act(() => jest.advanceTimersByTime(slideDuration));
 
-    expect(screen.getByAltText(/Three figures/).parentElement?.parentElement).not.toHaveClass(
+    expect(screen.getByAltText(/screenshot_1_alt/).closest('.duration-1000')).not.toHaveClass(
       'opacity-0',
     );
-    expect(screen.getByAltText(/flaming figure/).parentElement?.parentElement).toHaveClass(
+    expect(screen.getByAltText(/screenshot_2_alt/).closest('.duration-1000')).toHaveClass(
       'opacity-0',
     );
 
     act(() => jest.advanceTimersByTime(slideDuration));
 
-    expect(screen.getByAltText(/flaming figure/).parentElement?.parentElement).not.toHaveClass(
+    expect(screen.getByAltText(/screenshot_2_alt/).closest('.duration-1000')).not.toHaveClass(
       'opacity-0',
     );
-    expect(
-      screen.getByAltText(/black woman with an afro/).parentElement?.parentElement,
-    ).toHaveClass('opacity-0');
+    expect(screen.getByAltText(/screenshot_3_alt/).closest('.duration-1000')).toHaveClass(
+      'opacity-0',
+    );
 
     act(() => jest.advanceTimersByTime(slideDuration));
 
-    expect(
-      screen.getByAltText(/black woman with an afro/).parentElement?.parentElement,
-    ).not.toHaveClass('opacity-0');
-    expect(
-      screen.getByAltText(/animated suits of medieval armor/).parentElement?.parentElement,
-    ).toHaveClass('opacity-0');
+    expect(screen.getByAltText(/screenshot_3_alt/).closest('.duration-1000')).not.toHaveClass(
+      'opacity-0',
+    );
+    expect(screen.getByAltText(/screenshot_4_alt/).closest('.duration-1000')).toHaveClass(
+      'opacity-0',
+    );
+
+    act(() => jest.advanceTimersByTime(slideDuration));
+
+    expect(screen.getByAltText(/screenshot_4_alt/).closest('.duration-1000')).not.toHaveClass(
+      'opacity-0',
+    );
+    expect(screen.getByAltText(/screenshot_0_alt/).closest('.duration-1000')).toHaveClass(
+      'opacity-0',
+    );
   });
 });

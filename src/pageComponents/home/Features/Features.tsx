@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import { useTranslation } from 'gatsby-plugin-react-i18next';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import { FileSystemNode } from 'gatsby-source-filesystem';
@@ -8,7 +9,7 @@ import { root, widget, featureRow } from './Features.module.scss';
 
 interface FeatureProps {
   imgName: string;
-  imgAlt?: string;
+  imgAlt: string;
   imgOnLeft?: boolean;
   heading: string;
   description: string;
@@ -70,6 +71,8 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
 }
 
 export default function Features() {
+  const { t } = useTranslation();
+
   return (
     <div className={clsx(root, 'pt-8 sm:pt-12 pb-14 px-6 sm:pt-20 sm:pb-20')}>
       <div className="container p-0 mx-auto max-w-6xl text-center">
@@ -84,22 +87,22 @@ export default function Features() {
         </div>
         <Feature
           imgName="players"
-          imgAlt="Players"
-          heading="THE GOOD"
-          description="Control three different characters with varying playstyles for maximum replayability."
+          imgAlt={t('feature_1_alt')}
+          heading={t('feature_1_heading')}
+          description={t('feature_1_desc')}
         />
         <Feature
           imgName="enemies"
-          imgAlt="Enemies"
+          imgAlt={t('feature_2_alt')}
           imgOnLeft={false}
-          heading="THE BAD"
-          description="Travel through an assortment of locations fighting a number of bosses and enemies."
+          heading={t('feature_2_heading')}
+          description={t('feature_2_desc')}
         />
         <Feature
           imgName="upgrades"
-          imgAlt="Upgrades"
-          heading="...AND, THE UPGRADES"
-          description="Earn points and customize your weaponry to switch up gameplay."
+          imgAlt={t('feature_3_alt')}
+          heading={t('feature_3_heading')}
+          description={t('feature_3_desc')}
         />
       </div>
     </div>

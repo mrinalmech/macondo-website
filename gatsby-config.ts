@@ -1,9 +1,13 @@
-const autoprefixer = require('autoprefixer');
-const postCssDiscardDuplicates = require('postcss-discard-duplicates');
-const postCssFlexbugsFixes = require('postcss-flexbugs-fixes');
-const postCssFocus = require('postcss-focus');
+import type { GatsbyConfig } from 'gatsby';
 
-module.exports = {
+import autoprefixer from 'autoprefixer';
+import postCssDiscardDuplicates from 'postcss-discard-duplicates';
+import postCssFlexbugsFixes from 'postcss-flexbugs-fixes';
+import postCssFocus from 'postcss-focus';
+
+import { languages, defaultLanguage } from './languages';
+
+const config: GatsbyConfig = {
   flags: {
     DEV_SSR: true,
   },
@@ -68,6 +72,35 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/locales`,
+        name: `locale`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-react-i18next',
+      options: {
+        languages,
+        defaultLanguage,
+        siteUrl: 'https://www.macondogames.com',
+        i18nextOptions: {
+          fallbackLng: defaultLanguage,
+          supportedLngs: languages,
+          defaultNS: 'common',
+          interpolation: {
+            escapeValue: false, // not needed for react as it escapes by default
+          },
+        },
+        pages: [
+          {
+            matchPath: '/press',
+            languages: ['en'],
+          },
+        ],
+      },
+    },
+    {
       resolve: 'gatsby-plugin-sass',
       options: {
         cssLoaderOptions: {
@@ -83,3 +116,5 @@ module.exports = {
     },
   ],
 };
+
+export default config;
