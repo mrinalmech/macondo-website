@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useRef, forwardRef, memo, useImperativeHandle } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, ImageDataLike, getImage } from 'gatsby-plugin-image';
-import { FileSystemNode } from 'gatsby-source-filesystem';
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import $ from 'jquery';
 
 import FadeInElement from '../FadeInElement';
@@ -11,6 +9,7 @@ import { AppReadyContext } from '../../../contexts/AppReadyContext';
 
 interface Props {
   imgName: string;
+  imgData: IGatsbyImageData | null;
   alt?: string;
   className?: string;
   animType?: 'normal' | 'delay' | 'doubleDelay';
@@ -19,7 +18,7 @@ interface Props {
 
 const LoadedImg = memo(
   forwardRef<HTMLDivElement, Props>(
-    ({ imgName, alt = '', animType, className, testId }, forwardedRef) => {
+    ({ imgName, imgData, alt = '', animType, className, testId }, forwardedRef) => {
       const ref = useRef<HTMLDivElement | null>(null);
 
       useImperativeHandle(forwardedRef, () => ref.current as HTMLDivElement);
@@ -43,34 +42,25 @@ const LoadedImg = memo(
         }
       }, [imageLoaded, imgName]);
 
-      const { monitorImg, otherImgs } = useStaticQuery(query);
-      const allImgs = monitorImg.nodes.concat(otherImgs.nodes);
-
-      const img: ImageDataLike = allImgs.find((file: FileSystemNode) => file.name === imgName);
-
-      if (img) {
-        const image = getImage(img);
-
-        if (image) {
-          return (
-            <FadeInElement
-              fadeIn={appReady}
-              animType={animType}
-              className={className}
-              ref={ref}
-              testId={testId}
-            >
-              <GatsbyImage
-                image={image}
-                objectFit="cover"
-                alt={alt}
-                onLoad={handleLoad}
-                loading="eager"
-                className="h-full w-full"
-              />
-            </FadeInElement>
-          );
-        }
+      if (imgData) {
+        return (
+          <FadeInElement
+            fadeIn={appReady}
+            animType={animType}
+            className={className}
+            ref={ref}
+            testId={testId}
+          >
+            <GatsbyImage
+              image={imgData}
+              objectFit="cover"
+              alt={alt}
+              onLoad={handleLoad}
+              loading="eager"
+              className="h-full w-full"
+            />
+          </FadeInElement>
+        );
       }
 
       return null;
@@ -81,28 +71,3 @@ const LoadedImg = memo(
 LoadedImg.displayName = 'LoadedImg';
 
 export default LoadedImg;
-
-const query = graphql`
-  query {
-    monitorImg: allFile(
-      filter: { sourceInstanceName: { eq: "loadingHeroImages" }, name: { eq: "monitor" } }
-    ) {
-      nodes {
-        name
-        childImageSharp {
-          gatsbyImageData(placeholder: NONE, layout: FIXED)
-        }
-      }
-    }
-    otherImgs: allFile(
-      filter: { sourceInstanceName: { eq: "loadingHeroImages" }, name: { ne: "monitor" } }
-    ) {
-      nodes {
-        name
-        childImageSharp {
-          gatsbyImageData(placeholder: NONE)
-        }
-      }
-    }
-  }
-`;

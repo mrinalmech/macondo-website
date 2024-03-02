@@ -1,5 +1,8 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, { useContext, useState, useEffect, useRef, useCallback } from 'react';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
+import { useStaticQuery, graphql } from 'gatsby';
+import { FileSystemNode } from 'gatsby-source-filesystem';
+import { IGatsbyImageData, getImage } from 'gatsby-plugin-image';
 import clsx from 'clsx';
 import { useInterval } from 'usehooks-ts';
 
@@ -25,11 +28,29 @@ import {
 
 import { SLIDE_DURATION } from './constants';
 
-interface SlideshowProps {
+interface ComponentProps {
+  getImgData: (imgName: string) => IGatsbyImageData | null;
+}
+
+interface SlideshowProps extends ComponentProps {
   style?: React.CSSProperties;
 }
 
-function BackgroundImages() {
+const getImgDataFromFiles = (imgName: string, imgs: FileSystemNode[]): IGatsbyImageData | null => {
+  const img = imgs.find((file: FileSystemNode) => file.name === imgName);
+
+  if (img) {
+    const image = getImage(img);
+
+    if (image) {
+      return image;
+    }
+  }
+
+  return null;
+};
+
+function BackgroundImages({ getImgData }: ComponentProps) {
   const { t } = useTranslation();
 
   return (
@@ -37,27 +58,37 @@ function BackgroundImages() {
       <LoadedImg
         animType="doubleDelay"
         imgName="logo"
+        imgData={getImgData('logo')}
         alt={t('game_logo_alt') || 'Game Logo'}
         className={clsx('absolute', logo)}
       />
-      <LoadedImg imgName="wallShade" testId="wall-shade" className={clsx('absolute', wallShade)} />
+      <LoadedImg
+        imgName="wallShade"
+        imgData={getImgData('wallShade')}
+        testId="wall-shade"
+        className={clsx('absolute', wallShade)}
+      />
       <LoadedImg
         imgName="websiteBaseL1"
+        imgData={getImgData('websiteBaseL1')}
         testId="websiteBaseL1-left"
         className={clsx('absolute', baseL1, left)}
       />
       <LoadedImg
         imgName="websiteBaseL2"
+        imgData={getImgData('websiteBaseL2')}
         testId="websiteBaseL2-left"
         className={clsx('absolute', baseL2, left)}
       />
       <LoadedImg
         imgName="websiteBaseL1"
+        imgData={getImgData('websiteBaseL1')}
         testId="websiteBaseL1-right"
         className={clsx('absolute', baseL1, right)}
       />
       <LoadedImg
         imgName="websiteBaseL2"
+        imgData={getImgData('websiteBaseL2')}
         testId="websiteBaseL2-right"
         className={clsx('absolute', baseL2, right)}
       />
@@ -65,28 +96,33 @@ function BackgroundImages() {
   );
 }
 
-function Slideshow({ style }: SlideshowProps) {
+function Slideshow({ style, getImgData }: SlideshowProps) {
   const { t } = useTranslation();
 
-  const imgData = [
+  const imgsData = [
     {
       imgName: 'screenshot0',
+      imgData: getImgData('screenshot0'),
       alt: t('screenshot_0_alt'),
     },
     {
       imgName: 'screenshot1',
+      imgData: getImgData('screenshot1'),
       alt: t('screenshot_1_alt'),
     },
     {
       imgName: 'screenshot2',
+      imgData: getImgData('screenshot2'),
       alt: t('screenshot_2_alt'),
     },
     {
       imgName: 'screenshot3',
+      imgData: getImgData('screenshot3'),
       alt: t('screenshot_3_alt'),
     },
     {
       imgName: 'screenshot4',
+      imgData: getImgData('screenshot4'),
       alt: t('screenshot_4_alt'),
     },
   ];
@@ -94,7 +130,7 @@ function Slideshow({ style }: SlideshowProps) {
   const [active, setActive] = useState(0);
 
   const updateActive = () => {
-    const newActive = (active + 1) % imgData.length;
+    const newActive = (active + 1) % imgsData.length;
     setActive(newActive);
   };
 
@@ -104,7 +140,7 @@ function Slideshow({ style }: SlideshowProps) {
 
   return (
     <div className={clsx('absolute', slideShow)} style={style}>
-      {imgData.map((img, index) => {
+      {imgsData.map((img, index) => {
         return (
           <div
             key={index}
@@ -114,6 +150,7 @@ function Slideshow({ style }: SlideshowProps) {
           >
             <LoadedImg
               imgName={img.imgName}
+              imgData={img.imgData}
               animType="doubleDelay"
               alt={img.alt}
               className="h-full w-full"
@@ -125,7 +162,7 @@ function Slideshow({ style }: SlideshowProps) {
   );
 }
 
-function Monitor() {
+function Monitor({ getImgData }: ComponentProps) {
   const appReady = useContext(AppReadyContext);
 
   const monitorEl = useRef<HTMLDivElement | null>(null);
@@ -168,6 +205,7 @@ function Monitor() {
       <LoadedImg
         ref={monitorEl}
         imgName="monitor"
+        imgData={getImgData('monitor')}
         testId="monitor"
         className={clsx('absolute', monitor)}
         animType="delay"
@@ -178,6 +216,7 @@ function Monitor() {
           width: dimensions.width,
           bottom: dimensions.bottom,
         }}
+        getImgData={getImgData}
       />
       <FadeInElement className={clsx('absolute', extension, left)} fadeIn={appReady} />
       <FadeInElement className={clsx('absolute', extension, right)} fadeIn={appReady} />
@@ -222,6 +261,15 @@ function TextContent() {
 }
 
 export default function Hero() {
+  const { otherImgs, monitorImg } = useStaticQuery(query);
+
+  const allImgs = otherImgs.nodes.concat(monitorImg.nodes);
+
+  const getImgData = useCallback(
+    (imgName: string) => getImgDataFromFiles(imgName, allImgs),
+    [allImgs],
+  );
+
   return (
     <>
       <div
@@ -235,10 +283,35 @@ export default function Hero() {
     overflow-hidden`,
         )}
       >
-        <BackgroundImages />
-        <Monitor />
+        <BackgroundImages getImgData={getImgData} />
+        <Monitor getImgData={getImgData} />
         <TextContent />
       </div>
     </>
   );
 }
+
+const query = graphql`
+  query {
+    monitorImg: allFile(
+      filter: { sourceInstanceName: { eq: "loadingHeroImages" }, name: { eq: "monitor" } }
+    ) {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(placeholder: NONE, layout: FIXED)
+        }
+      }
+    }
+    otherImgs: allFile(
+      filter: { sourceInstanceName: { eq: "loadingHeroImages" }, name: { ne: "monitor" } }
+    ) {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(placeholder: NONE)
+        }
+      }
+    }
+  }
+`;
