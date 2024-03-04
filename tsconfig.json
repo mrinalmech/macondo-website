@@ -29,6 +29,8 @@
         "./index.d.ts",
         "./cypress-config.ts",
         "./gatsby-config.ts",
+        "./gatsby-browser.ts",
+        "./gatsby-ssr.ts",
         "./tailwind.config.ts"
     ]
 }

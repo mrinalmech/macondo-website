@@ -5,7 +5,6 @@ import $ from 'jquery';
 import FadeInElement from '../FadeInElement';
 
 import { ImageLoadedContext } from '../../../contexts/ImageLoadedContext';
-import { AppReadyContext } from '../../../contexts/AppReadyContext';
 
 interface Props {
   imgName: string;
@@ -23,7 +22,6 @@ const LoadedImg = memo(
 
       useImperativeHandle(forwardedRef, () => ref.current as HTMLDivElement);
 
-      const appReady = useContext(AppReadyContext);
       const imageLoaded = useContext(ImageLoadedContext);
 
       const handleLoad = () => {
@@ -44,13 +42,7 @@ const LoadedImg = memo(
 
       if (imgData) {
         return (
-          <FadeInElement
-            fadeIn={appReady}
-            animType={animType}
-            className={className}
-            ref={ref}
-            testId={testId}
-          >
+          <FadeInElement animType={animType} className={className} ref={ref} testId={testId}>
             <GatsbyImage
               image={imgData}
               objectFit="cover"

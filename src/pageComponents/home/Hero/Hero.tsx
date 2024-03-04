@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import { useStaticQuery, graphql } from 'gatsby';
 import { FileSystemNode } from 'gatsby-source-filesystem';
@@ -6,10 +7,10 @@ import { IGatsbyImageData, getImage } from 'gatsby-plugin-image';
 import clsx from 'clsx';
 import { useInterval } from 'usehooks-ts';
 
+import { selectAppLoaded } from '../../../store/appSlice';
+
 import FadeInElement from '../../../components/atoms/FadeInElement';
 import LoadedImg from '../../../components/atoms/LoadedImg';
-
-import { AppReadyContext } from '../../../contexts/AppReadyContext';
 
 import {
   root,
@@ -163,7 +164,7 @@ function Slideshow({ style, getImgData }: SlideshowProps) {
 }
 
 function Monitor({ getImgData }: ComponentProps) {
-  const appReady = useContext(AppReadyContext);
+  const appLoaded = useSelector(selectAppLoaded);
 
   const monitorEl = useRef<HTMLDivElement | null>(null);
 
@@ -187,10 +188,10 @@ function Monitor({ getImgData }: ComponentProps) {
   };
 
   useEffect(() => {
-    if (appReady && !dimensions.height) {
+    if (appLoaded && !dimensions.height) {
       calculateDimensions();
     }
-  }, [appReady, dimensions.height]);
+  }, [appLoaded, dimensions.height]);
 
   useEffect(() => {
     window.addEventListener('resize', calculateDimensions);
@@ -218,20 +219,17 @@ function Monitor({ getImgData }: ComponentProps) {
         }}
         getImgData={getImgData}
       />
-      <FadeInElement className={clsx('absolute', extension, left)} fadeIn={appReady} />
-      <FadeInElement className={clsx('absolute', extension, right)} fadeIn={appReady} />
+      <FadeInElement className={clsx('absolute', extension, left)} />
+      <FadeInElement className={clsx('absolute', extension, right)} />
     </>
   );
 }
 
 function TextContent() {
-  const appReady = useContext(AppReadyContext);
-
   return (
     <FadeInElement
       className={clsx('flex flex-col lg:flex-row px-3', textContent)}
       animType="doubleDelay"
-      fadeIn={appReady}
     >
       <div
         className={clsx(

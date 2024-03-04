@@ -91,7 +91,7 @@ const config: GatsbyConfig = {
           supportedLngs: languages,
           defaultNS: 'common',
           interpolation: {
-            escapeValue: false, // not needed for react as it escapes by default
+            escapeValue: false,
           },
         },
         redirect: isProduction,
