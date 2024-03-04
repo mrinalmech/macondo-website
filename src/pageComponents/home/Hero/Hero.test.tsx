@@ -25,8 +25,14 @@ const mockUseStaticQuery = {
   },
 };
 
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useSelector: jest.fn().mockImplementation(() => true),
+}));
+
 beforeEach(() => {
   useStaticQuery.mockImplementation(() => mockUseStaticQuery);
+
   jest.useFakeTimers();
 });
 

@@ -53,6 +53,7 @@ const getImgDataFromFiles = (imgName: string, imgs: FileSystemNode[]): IGatsbyIm
 
 function BackgroundImages({ getImgData }: ComponentProps) {
   const { t } = useTranslation();
+  const appLoaded = useSelector(selectAppLoaded);
 
   return (
     <>
@@ -62,36 +63,42 @@ function BackgroundImages({ getImgData }: ComponentProps) {
         imgData={getImgData('logo')}
         alt={t('game_logo_alt') || 'Game Logo'}
         className={clsx('absolute', logo)}
+        fadeIn={appLoaded}
       />
       <LoadedImg
         imgName="wallShade"
         imgData={getImgData('wallShade')}
         testId="wall-shade"
         className={clsx('absolute', wallShade)}
+        fadeIn={appLoaded}
       />
       <LoadedImg
         imgName="websiteBaseL1"
         imgData={getImgData('websiteBaseL1')}
         testId="websiteBaseL1-left"
         className={clsx('absolute', baseL1, left)}
+        fadeIn={appLoaded}
       />
       <LoadedImg
         imgName="websiteBaseL2"
         imgData={getImgData('websiteBaseL2')}
         testId="websiteBaseL2-left"
         className={clsx('absolute', baseL2, left)}
+        fadeIn={appLoaded}
       />
       <LoadedImg
         imgName="websiteBaseL1"
         imgData={getImgData('websiteBaseL1')}
         testId="websiteBaseL1-right"
         className={clsx('absolute', baseL1, right)}
+        fadeIn={appLoaded}
       />
       <LoadedImg
         imgName="websiteBaseL2"
         imgData={getImgData('websiteBaseL2')}
         testId="websiteBaseL2-right"
         className={clsx('absolute', baseL2, right)}
+        fadeIn={appLoaded}
       />
     </>
   );
@@ -99,6 +106,7 @@ function BackgroundImages({ getImgData }: ComponentProps) {
 
 function Slideshow({ style, getImgData }: SlideshowProps) {
   const { t } = useTranslation();
+  const appLoaded = useSelector(selectAppLoaded);
 
   const imgsData = [
     {
@@ -155,6 +163,7 @@ function Slideshow({ style, getImgData }: SlideshowProps) {
               animType="doubleDelay"
               alt={img.alt}
               className="h-full w-full"
+              fadeIn={appLoaded}
             />
           </div>
         );
@@ -210,6 +219,7 @@ function Monitor({ getImgData }: ComponentProps) {
         testId="monitor"
         className={clsx('absolute', monitor)}
         animType="delay"
+        fadeIn={appLoaded}
       />
       <Slideshow
         style={{
@@ -219,17 +229,20 @@ function Monitor({ getImgData }: ComponentProps) {
         }}
         getImgData={getImgData}
       />
-      <FadeInElement className={clsx('absolute', extension, left)} />
-      <FadeInElement className={clsx('absolute', extension, right)} />
+      <FadeInElement className={clsx('absolute', extension, left)} fadeIn={appLoaded} />
+      <FadeInElement className={clsx('absolute', extension, right)} fadeIn={appLoaded} />
     </>
   );
 }
 
 function TextContent() {
+  const appLoaded = useSelector(selectAppLoaded);
+
   return (
     <FadeInElement
       className={clsx('flex flex-col lg:flex-row px-3', textContent)}
       animType="doubleDelay"
+      fadeIn={appLoaded}
     >
       <div
         className={clsx(

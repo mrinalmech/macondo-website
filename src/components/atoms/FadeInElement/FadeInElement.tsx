@@ -1,12 +1,10 @@
 import clsx from 'clsx';
-import { useSelector } from 'react-redux';
 import React, { forwardRef, memo } from 'react';
 
 import { fadeAnim, fadeAnimDelay, fadeAnimDoubleDelay } from './FadeInElement.module.scss';
 
-import { selectAppLoaded } from '../../../store/appSlice';
-
 interface Props {
+  fadeIn: boolean;
   className?: string;
   children?: React.ReactNode;
   animType?: 'normal' | 'delay' | 'doubleDelay';
@@ -14,27 +12,27 @@ interface Props {
 }
 
 const FadeInElement = memo(
-  forwardRef<HTMLDivElement, Props>(({ className, children, animType = 'normal', testId }, ref) => {
-    const appLoaded = useSelector(selectAppLoaded);
+  forwardRef<HTMLDivElement, Props>(
+    ({ fadeIn, className, children, animType = 'normal', testId }, ref) => {
+      const normalAnim = animType === 'normal';
+      const delayAnim = animType === 'delay';
+      const doubleDelayAnim = animType === 'doubleDelay';
 
-    const normalAnim = animType === 'normal';
-    const delayAnim = animType === 'delay';
-    const doubleDelayAnim = animType === 'doubleDelay';
+      const consolidatedClass = clsx(className, {
+        'opacity-0': !fadeIn,
+        'opacity-100': fadeIn,
+        [fadeAnim]: normalAnim,
+        [fadeAnimDelay]: delayAnim,
+        [fadeAnimDoubleDelay]: doubleDelayAnim,
+      });
 
-    const consolidatedClass = clsx(className, {
-      'opacity-0': !appLoaded,
-      'opacity-100': appLoaded,
-      [fadeAnim]: normalAnim,
-      [fadeAnimDelay]: delayAnim,
-      [fadeAnimDoubleDelay]: doubleDelayAnim,
-    });
-
-    return (
-      <div className={consolidatedClass} ref={ref} data-testid={testId}>
-        {children}
-      </div>
-    );
-  }),
+      return (
+        <div className={consolidatedClass} ref={ref} data-testid={testId}>
+          {children}
+        </div>
+      );
+    },
+  ),
 );
 
 FadeInElement.displayName = 'FadeInElement';
