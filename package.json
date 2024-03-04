@@ -16,7 +16,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test:unit": "cross-env DEBUG_PRINT_LIMIT=10000 jest --passWithNoTests",
+    "test:unit": "jest --passWithNoTests",
     "test:unit:coverage": "npm run test:unit -- --coverage",
     "test:unit:watch": "npm run test:unit -- --watch",
     "cy:open": "cypress open --browser chrome --e2e",

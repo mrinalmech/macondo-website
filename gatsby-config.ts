@@ -7,6 +7,8 @@ import postCssFocus from 'postcss-focus';
 
 import { languages, defaultLanguage } from './languages';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const config: GatsbyConfig = {
   flags: {
     DEV_SSR: true,
@@ -92,6 +94,7 @@ const config: GatsbyConfig = {
             escapeValue: false, // not needed for react as it escapes by default
           },
         },
+        redirect: isProduction,
         pages: [
           {
             matchPath: '/press',
