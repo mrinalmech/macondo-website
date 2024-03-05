@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { graphql } from 'gatsby';
 import { FileSystemNode } from 'gatsby-source-filesystem';
 
@@ -9,9 +10,8 @@ import Hero from '../../pageComponents/home/Hero';
 import Features from '../../pageComponents/home/Features';
 
 import { ImageLoadedContext } from '../../contexts/ImageLoadedContext';
-import { AppReadyContext } from '../../contexts/AppReadyContext';
-
-type AppStatus = 'start' | 'ready';
+import { selectAppLoaded, setAppLoaded } from '../../store/appSlice';
+import { RootDispatch } from '../../store/createStore';
 
 interface Props {
   data: {
@@ -21,13 +21,9 @@ interface Props {
   };
 }
 
-const FADE_DURATION = 0.3;
-
 export default function Home({ data }: Props) {
-  const [appStatus, setAppStatus] = useState('start' as AppStatus);
-
-  const appLoading = appStatus === 'start';
-  const appReady = appStatus === 'ready';
+  const dispatch = useDispatch<RootDispatch>();
+  const appLoaded = useSelector(selectAppLoaded);
 
   const loadedImgDictionary = useRef({});
 
@@ -40,22 +36,18 @@ export default function Home({ data }: Props) {
     const loadedImgs = Object.keys(loadedImgDictionary.current);
     const imgsToBeLoaded = data.allFile.nodes;
 
-    if (loadedImgs.length >= imgsToBeLoaded.length && appLoading) {
-      setInterval(() => {
-        setAppStatus('ready');
-      }, FADE_DURATION * 1000);
+    if (loadedImgs.length >= imgsToBeLoaded.length && appLoaded === false) {
+      dispatch(setAppLoaded(true));
     }
   };
 
   return (
-    <AppReadyContext.Provider value={appReady}>
-      <ImageLoadedContext.Provider value={imageLoaded}>
-        <Page>
-          <Hero />
-          <Features />
-        </Page>
-      </ImageLoadedContext.Provider>
-    </AppReadyContext.Provider>
+    <ImageLoadedContext.Provider value={imageLoaded}>
+      <Page>
+        <Hero />
+        <Features />
+      </Page>
+    </ImageLoadedContext.Provider>
   );
 }
 

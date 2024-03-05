@@ -14,15 +14,17 @@ interface Props {
 const FadeInElement = memo(
   forwardRef<HTMLDivElement, Props>(
     ({ fadeIn, className, children, animType = 'normal', testId }, ref) => {
-      const fadeClass = clsx({
-        [fadeAnim]: animType === 'normal',
-        [fadeAnimDelay]: animType === 'delay',
-        [fadeAnimDoubleDelay]: animType === 'doubleDelay',
+      const normalAnim = animType === 'normal';
+      const delayAnim = animType === 'delay';
+      const doubleDelayAnim = animType === 'doubleDelay';
+
+      const consolidatedClass = clsx(className, {
+        'opacity-0': !fadeIn,
+        'opacity-100': fadeIn,
+        [fadeAnim]: normalAnim,
+        [fadeAnimDelay]: delayAnim,
+        [fadeAnimDoubleDelay]: doubleDelayAnim,
       });
-
-      const animClass = fadeIn ? clsx('opacity-100', fadeClass) : 'opacity-0';
-
-      const consolidatedClass = clsx(className, animClass);
 
       return (
         <div className={consolidatedClass} ref={ref} data-testid={testId}>

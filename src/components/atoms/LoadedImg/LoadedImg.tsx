@@ -5,11 +5,11 @@ import $ from 'jquery';
 import FadeInElement from '../FadeInElement';
 
 import { ImageLoadedContext } from '../../../contexts/ImageLoadedContext';
-import { AppReadyContext } from '../../../contexts/AppReadyContext';
 
 interface Props {
   imgName: string;
   imgData: IGatsbyImageData | null;
+  fadeIn: boolean;
   alt?: string;
   className?: string;
   animType?: 'normal' | 'delay' | 'doubleDelay';
@@ -18,12 +18,11 @@ interface Props {
 
 const LoadedImg = memo(
   forwardRef<HTMLDivElement, Props>(
-    ({ imgName, imgData, alt = '', animType, className, testId }, forwardedRef) => {
+    ({ imgName, imgData, fadeIn, alt = '', animType, className, testId }, forwardedRef) => {
       const ref = useRef<HTMLDivElement | null>(null);
 
       useImperativeHandle(forwardedRef, () => ref.current as HTMLDivElement);
 
-      const appReady = useContext(AppReadyContext);
       const imageLoaded = useContext(ImageLoadedContext);
 
       const handleLoad = () => {
@@ -45,11 +44,11 @@ const LoadedImg = memo(
       if (imgData) {
         return (
           <FadeInElement
-            fadeIn={appReady}
             animType={animType}
             className={className}
             ref={ref}
             testId={testId}
+            fadeIn={fadeIn}
           >
             <GatsbyImage
               image={imgData}

@@ -7,6 +7,13 @@ import postCssFocus from 'postcss-focus';
 
 import { languages, defaultLanguage } from './languages';
 
+const isProduction = process.env.NODE_ENV === 'production';
+const isDevDeployment = process.env.DEPLOY_ENV === 'development';
+
+console.log('----------------------------------------------------------------------');
+console.log(process.env);
+console.log('----------------------------------------------------------------------');
+
 const config: GatsbyConfig = {
   flags: {
     DEV_SSR: true,
@@ -16,7 +23,7 @@ const config: GatsbyConfig = {
     description:
       'Purveyor of the finest gaming wares. Macondo Games is a studio located in Mumbai, India working on their first title, a 2d run and gun shooter Global Steel.',
     author: 'Mrinal Mech',
-    siteUrl: 'https://www.macondogames.com',
+    siteUrl: isDevDeployment ? 'https://dev.macondogames.com/' : 'https://www.macondogames.com',
   },
   plugins: [
     'gatsby-plugin-postcss',
@@ -60,6 +67,13 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `ogImages`,
+        path: `${__dirname}/src/components/atoms/Seo/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `featureImages`,
         path: `${__dirname}/src/pageComponents/home/Features/images`,
       },
@@ -74,8 +88,8 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/locales`,
         name: `locale`,
+        path: `${__dirname}/locales`,
       },
     },
     {
@@ -89,9 +103,10 @@ const config: GatsbyConfig = {
           supportedLngs: languages,
           defaultNS: 'common',
           interpolation: {
-            escapeValue: false, // not needed for react as it escapes by default
+            escapeValue: false,
           },
         },
+        redirect: isProduction,
         pages: [
           {
             matchPath: '/press',
