@@ -10,10 +10,6 @@ import { languages, defaultLanguage } from './languages';
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevDeployment = process.env.DEPLOY_ENV === 'development';
 
-console.log('----------------------------------------------------------------------');
-console.log(process.env);
-console.log('----------------------------------------------------------------------');
-
 const config: GatsbyConfig = {
   flags: {
     DEV_SSR: true,
