@@ -40,9 +40,11 @@ describe('SEO', () => {
 
     expect(screen.getByText(/TestDefaultTitle/)).toBeInTheDocument();
     expect(getMeta('description')).toEqual('TestDefaultDescription');
+    expect(getMeta('og:type')).toEqual('website');
     expect(getMeta('og:title')).toEqual('TestDefaultTitle');
     expect(getMeta('og:description')).toEqual('TestDefaultDescription');
-    expect(getMeta('og:type')).toEqual('website');
+    expect(getMeta('og:url')).toEqual('test-default-url');
+    expect(getMeta('og:site_name')).toEqual('TestDefaultTitle');
     expect(getMeta('twitter:card')).toEqual('summary');
     expect(getMeta('twitter:title')).toEqual('TestDefaultTitle');
     expect(getMeta('twitter:url')).toEqual('test-default-url');
@@ -53,11 +55,13 @@ describe('SEO', () => {
   test('Expect SEO to be presented with overriden values', () => {
     render(<SEO title="TestTitle" description="TestDescription" pathname="/test-path" />);
 
-    expect(screen.getByText(/TestTitle/)).toBeInTheDocument();
+    expect(screen.getByText(/TestDefaultTitle \| TestTitle/)).toBeInTheDocument();
     expect(getMeta('description')).toEqual('TestDescription');
-    expect(getMeta('og:title')).toEqual('TestTitle');
+    expect(getMeta('og:title')).toEqual('TestDefaultTitle | TestTitle');
     expect(getMeta('og:description')).toEqual('TestDescription');
-    expect(getMeta('twitter:title')).toEqual('TestTitle');
+    expect(getMeta('og:url')).toEqual('test-default-url/test-path');
+    expect(getMeta('og:site_name')).toEqual('TestDefaultTitle | TestTitle');
+    expect(getMeta('twitter:title')).toEqual('TestDefaultTitle | TestTitle');
     expect(getMeta('twitter:url')).toEqual('test-default-url/test-path');
     expect(getMeta('twitter:description')).toEqual('TestDescription');
   });

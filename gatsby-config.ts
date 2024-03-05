@@ -62,6 +62,13 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `ogImages`,
+        path: `${__dirname}/src/components/atoms/Seo/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `featureImages`,
         path: `${__dirname}/src/pageComponents/home/Features/images`,
       },
@@ -76,8 +83,8 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/locales`,
         name: `locale`,
+        path: `${__dirname}/locales`,
       },
     },
     {
