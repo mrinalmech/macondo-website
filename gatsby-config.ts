@@ -7,12 +7,12 @@ import postCssFocus from 'postcss-focus';
 
 import { languages, defaultLanguage } from './languages';
 
+require('dotenv').config({
+  path: '.env',
+});
+
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevDeployment = process.env.DEPLOY_ENV === 'development';
-
-console.log('----------------------------------------------------------------------');
-console.log(process.env);
-console.log('----------------------------------------------------------------------');
 
 const config: GatsbyConfig = {
   flags: {

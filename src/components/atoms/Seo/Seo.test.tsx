@@ -23,7 +23,7 @@ const mockUseStaticQuery = {
             height: 100,
             images: {
               fallback: {
-                src: '/test-url',
+                src: '/img-url',
               },
             },
           },
@@ -64,11 +64,21 @@ describe('SEO', () => {
     expect(getMeta('og:description')).toEqual('TestDefaultDescription');
     expect(getMeta('og:url')).toEqual('test-default-url');
     expect(getMeta('og:site_name')).toEqual('TestDefaultTitle');
+    expect(getMeta('og:image')).toEqual('test-default-url/img-url');
+    expect(getMeta('og:image:width')).toEqual('100');
+    expect(getMeta('og:image:height')).toEqual('100');
+    expect(getMeta('og:image:alt')).toEqual(
+      'Side profile of three figures. Game logo on the left side of the image.',
+    );
     expect(getMeta('twitter:card')).toEqual('summary_large_image');
     expect(getMeta('twitter:title')).toEqual('TestDefaultTitle');
     expect(getMeta('twitter:url')).toEqual('test-default-url');
     expect(getMeta('twitter:description')).toEqual('TestDefaultDescription');
     expect(getMeta('twitter:creator')).toEqual('TestDefaultAuthor');
+    expect(getMeta('twitter:image')).toEqual('test-default-url/img-url');
+    expect(getMeta('twitter:image:alt')).toEqual(
+      'Side profile of three figures. Game logo on the left side of the image.',
+    );
   });
 
   test('Expect SEO to be presented with overriden values', () => {
