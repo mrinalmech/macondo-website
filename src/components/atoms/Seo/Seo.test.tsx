@@ -38,6 +38,8 @@ function getMeta(metaName: string) {
   for (let i = 0; i < metas.length; i += 1) {
     if (metas[i].getAttribute('name') === metaName) {
       return metas[i].getAttribute('content');
+    } else if (metas[i].getAttribute('property') === metaName) {
+      return metas[i].getAttribute('content');
     }
   }
   return '';

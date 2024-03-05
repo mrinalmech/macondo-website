@@ -34,21 +34,20 @@ export default function SEO({ title, description, pathname, children }: Props) {
     <>
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
-      <meta name="og:type" content="website" />
-      <meta name="og:title" content={seo.title} />
-      <meta name="og:description" content={seo.description} />
-      <meta name="og:url" content={seo.url} />
-      <meta name="og:site_name" content={seo.title} />
-      <meta name="og:image" content={ogImgUrl} />
-      <meta name="og:image:width" content={`${ogImg.width}`} />
-      <meta name="og:image:height" content={`${ogImg.height}`} />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:description" content={seo.description} />
+      <meta property="og:url" content={seo.url} />
+      <meta property="og:site_name" content={seo.title} />
+      <meta property="og:image" content={ogImgUrl} />
+      <meta property="og:image:width" content={`${ogImg.width}`} />
+      <meta property="og:image:height" content={`${ogImg.height}`} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:url" content={seo.url} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:creator" content={seo.author} />
       <meta name="twitter:image" content={ogImgUrl} />
-
       {children}
     </>
   );
