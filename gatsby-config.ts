@@ -8,6 +8,7 @@ import postCssFocus from 'postcss-focus';
 import { languages, defaultLanguage } from './languages';
 
 const isProduction = process.env.NODE_ENV === 'production';
+const isDevDeployment = process.env.DEPLOY_ENV === 'development';
 
 const config: GatsbyConfig = {
   flags: {
@@ -18,7 +19,7 @@ const config: GatsbyConfig = {
     description:
       'Purveyor of the finest gaming wares. Macondo Games is a studio located in Mumbai, India working on their first title, a 2d run and gun shooter Global Steel.',
     author: 'Mrinal Mech',
-    siteUrl: 'https://www.macondogames.com',
+    siteUrl: isDevDeployment ? 'https://dev.macondogames.com/' : 'https://www.macondogames.com',
   },
   plugins: [
     'gatsby-plugin-postcss',

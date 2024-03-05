@@ -14,7 +14,7 @@ describe('Homepage tests', () => {
     cy.findByAltText(/animated suits of medieval armor/, { timeout: 10000 }).should('be.visible');
   });
 
-  it('Language switching works and german language content is presented', () => {
+  it('Language switching works and German language content is presented', () => {
     cy.viewport(1920, 1080);
 
     cy.visit('/');

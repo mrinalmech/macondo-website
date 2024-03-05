@@ -19,7 +19,7 @@ jobs:
         run: |
           env CXXFLAGS="-std=c++17" npm ci --legacy-peer-deps --omit=dev
           npm run test:unit
-          npm run build-and-test:e2e:ci
+          env DEPLOY_ENV="development" && npm run build-and-test:e2e:ci
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
