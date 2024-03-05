@@ -15,6 +15,7 @@ export default function SEO({ title, description, pathname, children }: Props) {
 
   const ogImg = allFile.nodes[0].childImageSharp.gatsbyImageData;
   const ogImgUrl = ogImg.images.fallback.src;
+  const ogImgAlt = 'Side profile of three figures. Game logo on the left side of the image.';
 
   const {
     title: defaultTitle,
@@ -42,12 +43,14 @@ export default function SEO({ title, description, pathname, children }: Props) {
       <meta property="og:image" content={`${seo.url}${ogImgUrl}`} />
       <meta property="og:image:width" content={`${ogImg.width}`} />
       <meta property="og:image:height" content={`${ogImg.height}`} />
+      <meta property="og:image:alt" content={ogImgAlt} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:url" content={seo.url} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:creator" content={seo.author} />
       <meta name="twitter:image" content={`${seo.url}${ogImgUrl}`} />
+      <meta name="twitter:image:alt" content={ogImgAlt} />
       {children}
     </>
   );
