@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { useTranslation } from 'gatsby-plugin-react-i18next';
+import { useIntersectionObserver } from 'usehooks-ts';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import { FileSystemNode } from 'gatsby-source-filesystem';
@@ -16,11 +17,23 @@ interface FeatureProps {
 }
 
 function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description }: FeatureProps) {
+  const { isIntersecting, ref } = useIntersectionObserver({
+    threshold: 0.45,
+  });
+
   const { allFile } = useStaticQuery(query) as {
     allFile: {
       nodes: FileSystemNode[];
     };
   };
+
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (!visible && isIntersecting) {
+      setVisible(true);
+    }
+  }, [isIntersecting, visible]);
 
   let imgContent = null as React.ReactNode | null;
 
@@ -31,7 +44,18 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
 
     if (image) {
       imgContent = (
-        <GatsbyImage image={image} alt={imgAlt} objectFit="contain" className="mw-100" />
+        <GatsbyImage
+          image={image}
+          alt={imgAlt}
+          objectFit="contain"
+          className={clsx('mw-100 ease-linear duration-300', {
+            '-left-6': !visible && imgOnLeft,
+            '-right-6': !visible && !imgOnLeft,
+            'left-0': visible && imgOnLeft,
+            'right-0': visible && !imgOnLeft,
+            'opacity-0': !visible,
+          })}
+        />
       );
     }
   }
@@ -55,6 +79,7 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
           'order-2': imgOnLeft,
           'order-1': !imgOnLeft,
         })}
+        ref={imgOnLeft ? ref : null}
       >
         {imgOnLeft ? imgContent : textContent}
       </div>
@@ -63,6 +88,7 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
           'order-1': imgOnLeft,
           'order-2': !imgOnLeft,
         })}
+        ref={!imgOnLeft ? ref : null}
       >
         {imgOnLeft ? textContent : imgContent}
       </div>
