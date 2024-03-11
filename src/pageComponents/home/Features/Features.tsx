@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import { useTranslation } from 'gatsby-plugin-react-i18next';
 import { useIntersectionObserver } from 'usehooks-ts';
@@ -6,17 +7,30 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import { FileSystemNode } from 'gatsby-source-filesystem';
 
+import { selectFeaturesImagesLoaded, setImageLoaded } from '../../../store/appSlice';
+
 import { root, widget, featureRow } from './Features.module.scss';
 
 interface FeatureProps {
   imgName: string;
+  imgsNames: string[];
   imgAlt: string;
   imgOnLeft?: boolean;
   heading: string;
   description: string;
 }
 
-function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description }: FeatureProps) {
+function Feature({
+  imgName,
+  imgsNames,
+  imgAlt = '',
+  imgOnLeft = true,
+  heading,
+  description,
+}: FeatureProps) {
+  const dispatch = useDispatch();
+  const imgsLoaded = useSelector(selectFeaturesImagesLoaded);
+
   const { isIntersecting, ref } = useIntersectionObserver({
     threshold: 0.45,
   });
@@ -27,13 +41,14 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
     };
   };
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(imgsLoaded);
 
   useEffect(() => {
     if (!visible && isIntersecting) {
       setVisible(true);
+      dispatch(setImageLoaded({ imgName, imgsNames }));
     }
-  }, [isIntersecting, visible]);
+  }, [isIntersecting, visible, dispatch, imgName, imgsNames]);
 
   let imgContent = null as React.ReactNode | null;
 
@@ -99,6 +114,32 @@ function Feature({ imgName, imgAlt = '', imgOnLeft = true, heading, description 
 export default function Features() {
   const { t } = useTranslation();
 
+  const features = [
+    {
+      imgName: 'players',
+      imgAlt: t('feature_1_alt'),
+      imgOnLeft: true,
+      heading: t('feature_1_heading'),
+      description: t('feature_1_desc'),
+    },
+    {
+      imgName: 'enemies',
+      imgAlt: t('feature_2_alt'),
+      imgOnLeft: false,
+      heading: t('feature_2_heading'),
+      description: t('feature_2_desc'),
+    },
+    {
+      imgName: 'upgrades',
+      imgAlt: t('feature_3_alt'),
+      imgOnLeft: true,
+      heading: t('feature_3_heading'),
+      description: t('feature_3_desc'),
+    },
+  ];
+
+  const imgsNames = features.map(f => f.imgName);
+
   return (
     <div className={clsx(root, 'pt-8 sm:pt-12 pb-14 px-6 sm:pt-20 sm:pb-20')}>
       <div className="container p-0 mx-auto max-w-6xl text-center">
@@ -111,25 +152,17 @@ export default function Features() {
             className="border-0"
           />
         </div>
-        <Feature
-          imgName="players"
-          imgAlt={t('feature_1_alt')}
-          heading={t('feature_1_heading')}
-          description={t('feature_1_desc')}
-        />
-        <Feature
-          imgName="enemies"
-          imgAlt={t('feature_2_alt')}
-          imgOnLeft={false}
-          heading={t('feature_2_heading')}
-          description={t('feature_2_desc')}
-        />
-        <Feature
-          imgName="upgrades"
-          imgAlt={t('feature_3_alt')}
-          heading={t('feature_3_heading')}
-          description={t('feature_3_desc')}
-        />
+        {features.map(f => (
+          <Feature
+            key={f.imgName}
+            imgName={f.imgName}
+            imgsNames={imgsNames}
+            imgAlt={f.imgAlt}
+            imgOnLeft={f.imgOnLeft}
+            heading={f.heading}
+            description={f.description}
+          />
+        ))}
       </div>
     </div>
   );
