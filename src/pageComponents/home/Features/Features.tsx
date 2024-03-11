@@ -7,9 +7,14 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import { FileSystemNode } from 'gatsby-source-filesystem';
 
-import { selectFeaturesImagesLoaded, setImageLoaded } from '../../../store/appSlice';
+import {
+  selectFeaturesImagesLoaded,
+  selectSteamLoaded,
+  setImageLoaded,
+  setSteamLoaded,
+} from '../../../store/appSlice';
 
-import { root, widget, featureRow } from './Features.module.scss';
+import { root, widget, featureRow, placeholder } from './Features.module.scss';
 
 interface FeatureProps {
   imgName: string;
@@ -111,6 +116,39 @@ function Feature({
   );
 }
 
+function Widget() {
+  const dispatch = useDispatch();
+  const steamLoaded = useSelector(selectSteamLoaded);
+
+  const { isIntersecting, ref } = useIntersectionObserver({
+    threshold: 0.01,
+  });
+
+  const [visible, setVisible] = useState(steamLoaded);
+
+  useEffect(() => {
+    if (!visible && isIntersecting) {
+      setVisible(true);
+      dispatch(setSteamLoaded(true));
+    }
+  }, [isIntersecting, visible, dispatch]);
+
+  return (
+    <div className={clsx('max-w-2xl mx-auto mb-10 md:mb-20 relative', widget)} ref={ref}>
+      <div className={clsx('w-full absolute z-10', placeholder)} />
+      {visible && (
+        <iframe
+          title="steam-widget"
+          src="https://store.steampowered.com/widget/1073970/"
+          width="100%"
+          height="100%"
+          className="border-0 z-20 relative"
+        />
+      )}
+    </div>
+  );
+}
+
 export default function Features() {
   const { t } = useTranslation();
 
@@ -143,15 +181,7 @@ export default function Features() {
   return (
     <div className={clsx(root, 'pt-8 sm:pt-12 pb-14 px-6 sm:pt-20 sm:pb-20')}>
       <div className="container p-0 mx-auto max-w-6xl text-center">
-        <div className={clsx('max-w-2xl mx-auto mb-10 md:mb-20', widget)}>
-          <iframe
-            title="steam-widget"
-            src="https://store.steampowered.com/widget/1073970/"
-            width="100%"
-            height="100%"
-            className="border-0"
-          />
-        </div>
+        <Widget />
         {features.map(f => (
           <Feature
             key={f.imgName}
