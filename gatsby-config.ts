@@ -112,6 +112,10 @@ const config: GatsbyConfig = {
             matchPath: '/press',
             languages: ['en'],
           },
+          {
+            matchPath: '/dev-404-page',
+            languages: ['en'],
+          },
         ],
       },
     },
