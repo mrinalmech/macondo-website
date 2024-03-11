@@ -114,4 +114,26 @@ describe('Homepage tests', () => {
 
     cy.findByTestId(/drawer/, { timeout: 10000 }).should('not.exist');
   });
+
+  it('Features images fade into view on scroll', () => {
+    cy.viewport(1920, 1080);
+
+    cy.visit('/');
+
+    cy.findByAltText(/Three figures leaping into action/).should('not.be.visible');
+
+    cy.scrollTo(0, 750);
+
+    cy.findByAltText(/Three figures leaping into action/).should('be.visible');
+    cy.findByAltText(/Four figures in a menacing pose/).should('not.be.visible');
+
+    cy.scrollTo(0, 1250);
+
+    cy.findByAltText(/Four figures in a menacing pose/).should('be.visible');
+    cy.findByAltText(/Three different guns/).should('not.be.visible');
+
+    cy.scrollTo(0, 1750);
+
+    cy.findByAltText(/Three different guns/).should('be.visible');
+  });
 });

@@ -240,7 +240,7 @@ function TextContent() {
 
   return (
     <FadeInElement
-      className={clsx('flex flex-col lg:flex-row px-3', textContent)}
+      className={clsx('flex flex-col lg:flex-row items-center px-3', textContent)}
       animType="doubleDelay"
       fadeIn={appLoaded}
     >

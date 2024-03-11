@@ -4,8 +4,8 @@ jest.mock('gatsby-plugin-image', () => {
   const React = require('react');
   const plugin = jest.requireActual('gatsby-plugin-image');
 
-  const mockImage = ({ alt, handleLoad }) => (
-    <div>
+  const mockImage = ({ alt, handleLoad, className }) => (
+    <div className={className}>
       <img alt={alt} onLoad={handleLoad} />
     </div>
   );
