@@ -35,22 +35,22 @@ describe('Homepage tests', () => {
     );
   });
 
-  it('Steam widget is loaded correctly', () => {
-    const getIframeDocument = () => {
-      return cy.get('iframe[title="steam-widget"]').its('0.contentDocument').should('exist');
-    };
-
-    const getIframeBody = () => {
-      return getIframeDocument().its('body').should('not.be.undefined').then(cy.wrap);
-    };
+  it('Steam widget is loaded correctly on scroll', () => {
+    cy.viewport(1920, 1000);
 
     cy.visit('/');
 
-    cy.findByAltText(/Game Logo/).should('be.visible');
+    cy.findByTitle(/steam-widget/).should('not.exist');
 
-    getIframeBody()
-      .findByText(/Wishlist on Steam/)
-      .should('be.visible');
+    cy.scrollTo(0, 250);
+
+    cy.findByTitle(/steam-widget/)
+      .iframe()
+      .then(iframes => {
+        cy.wrap(iframes[0])
+          .findByText(/Wishlist on Steam/)
+          .should('be.visible');
+      });
   });
 
   it('Header changes background color on scroll', () => {

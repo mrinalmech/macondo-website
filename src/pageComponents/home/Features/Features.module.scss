@@ -1,5 +1,8 @@
 @import 'src/styles/colors.scss';
 
+$steam-background-color: #282e39;
+$steam-border-color: #2d3139;
+
 .root {
   background-image: linear-gradient($bg-blue, $bg-blue-dark);
 }
@@ -24,4 +27,10 @@
       right: -18px;
     }
   }
+}
+
+.placeholder {
+  height: 168px;
+  background: $steam-background-color;
+  border: 1px solid $steam-border-color;
 }
