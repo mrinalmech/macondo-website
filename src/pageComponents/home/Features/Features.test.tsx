@@ -36,8 +36,8 @@ afterEach(() => {
 
 describe('Features', () => {
   test('Expect Features to be presented', () => {
-    (reactRedux.useSelector as any).mockImplementation(() => false);
-    (useHooks.useIntersectionObserver as any).mockImplementation(() => ({ isIntersecting: false }));
+    (reactRedux.useSelector as any).mockReturnValue(false);
+    (useHooks.useIntersectionObserver as any).mockReturnValue({ isIntersecting: false });
 
     render(<Features />);
 
@@ -52,8 +52,8 @@ describe('Features', () => {
   });
 
   test('Expect Feature images to be invisible when not in view', () => {
-    (reactRedux.useSelector as any).mockImplementation(() => false);
-    (useHooks.useIntersectionObserver as any).mockImplementation(() => ({ isIntersecting: false }));
+    (reactRedux.useSelector as any).mockReturnValue(false);
+    (useHooks.useIntersectionObserver as any).mockReturnValue({ isIntersecting: false });
 
     render(<Features />);
 
@@ -63,8 +63,8 @@ describe('Features', () => {
   });
 
   test('Expect Feature images to be visible when in view', () => {
-    (reactRedux.useSelector as any).mockImplementation(() => false);
-    (useHooks.useIntersectionObserver as any).mockImplementation(() => ({ isIntersecting: true }));
+    (reactRedux.useSelector as any).mockReturnValue(false);
+    (useHooks.useIntersectionObserver as any).mockReturnValue({ isIntersecting: true });
 
     render(<Features />);
 
@@ -73,9 +73,31 @@ describe('Features', () => {
     expect(screen.getByAltText(/feature_3_alt/)?.parentElement).not.toHaveClass('opacity-0');
   });
 
+  test('Expect redux store to be updated when images come into view', () => {
+    (reactRedux.useSelector as any).mockReturnValue(false);
+    (useHooks.useIntersectionObserver as any).mockReturnValue({ isIntersecting: true });
+
+    render(<Features />);
+
+    expect(mockDispatch).toHaveBeenCalledWith({
+      payload: { imgName: 'players', imgsNames: ['players', 'enemies', 'upgrades'] },
+      type: 'app/setImageLoaded',
+    });
+
+    expect(mockDispatch).toHaveBeenCalledWith({
+      payload: { imgName: 'enemies', imgsNames: ['players', 'enemies', 'upgrades'] },
+      type: 'app/setImageLoaded',
+    });
+
+    expect(mockDispatch).toHaveBeenCalledWith({
+      payload: { imgName: 'upgrades', imgsNames: ['players', 'enemies', 'upgrades'] },
+      type: 'app/setImageLoaded',
+    });
+  });
+
   test('Expect Feature images to be visible when not in view and all images have been loaded', () => {
-    (reactRedux.useSelector as any).mockImplementation(() => true);
-    (useHooks.useIntersectionObserver as any).mockImplementation(() => ({ isIntersecting: false }));
+    (reactRedux.useSelector as any).mockReturnValue(true);
+    (useHooks.useIntersectionObserver as any).mockReturnValue({ isIntersecting: false });
 
     render(<Features />);
 
