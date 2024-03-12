@@ -37,7 +37,7 @@ afterEach(() => {
 });
 
 describe('Features', () => {
-  /*test('Expect Features to be presented', () => {
+  test('Expect Features to be presented', () => {
     (reactRedux.useSelector as any).mockReturnValue(false);
     (useHooks.useIntersectionObserver as any).mockReturnValue({ isIntersecting: false });
 
@@ -106,7 +106,7 @@ describe('Features', () => {
     expect(screen.getByAltText(/feature_1_alt/)?.parentElement).not.toHaveClass('opacity-0');
     expect(screen.getByAltText(/feature_2_alt/)?.parentElement).not.toHaveClass('opacity-0');
     expect(screen.getByAltText(/feature_3_alt/)?.parentElement).not.toHaveClass('opacity-0');
-  });*/
+  });
 
   test('Expect steam widget to not be present when not scrolled', () => {
     (reactRedux.useSelector as any).mockReturnValue(false);
@@ -136,6 +136,8 @@ describe('Features', () => {
     (useHooks.useIntersectionObserver as any).mockReturnValue({ isIntersecting: true });
 
     render(<Features />);
+
+    act(() => scroll(1));
 
     expect(screen.getByTitle(/steam-widget/)).toBeInTheDocument();
     expect(screen.getByTitle(/steam-widget/)).not.toHaveClass('opacity-0');

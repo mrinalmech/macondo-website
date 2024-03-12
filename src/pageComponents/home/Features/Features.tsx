@@ -150,17 +150,11 @@ function Widget() {
   const [visible, setVisible] = useState(steamLoaded);
 
   useEffect(() => {
-    if (isIntersecting) {
-      if (!shouldLoad) {
-        setShouldLoad(true);
-      }
-
-      if (!visible) {
-        setVisible(true);
-        dispatch(setSteamLoaded(true));
-      }
+    if (isIntersecting && !visible) {
+      setVisible(true);
+      dispatch(setSteamLoaded(true));
     }
-  }, [isIntersecting, visible, shouldLoad, dispatch]);
+  }, [isIntersecting, visible, dispatch]);
 
   return (
     <div className={clsx('max-w-2xl mx-auto mb-10 md:mb-20 relative', widget)} ref={ref}>
