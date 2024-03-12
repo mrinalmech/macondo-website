@@ -75,3 +75,4 @@ WordPress
 # Cypress
 cypress/videos
 cypress/screenshots
+cypress/downloads

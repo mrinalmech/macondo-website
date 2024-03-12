@@ -272,9 +272,9 @@ function TextContent() {
 }
 
 export default function Hero() {
-  const { otherImgs, monitorImg } = useStaticQuery(query);
+  const { otherImgs, logoImg, monitorImg } = useStaticQuery(query);
 
-  const allImgs = otherImgs.nodes.concat(monitorImg.nodes);
+  const allImgs = otherImgs.nodes.concat(monitorImg.nodes).concat(logoImg.nodes);
 
   const getImgData = useCallback(
     (imgName: string) => getImgDataFromFiles(imgName, allImgs),
@@ -314,8 +314,21 @@ const query = graphql`
         }
       }
     }
+    logoImg: allFile(
+      filter: { sourceInstanceName: { eq: "loadingHeroImages" }, name: { eq: "logo" } }
+    ) {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(placeholder: NONE, width: 420)
+        }
+      }
+    }
     otherImgs: allFile(
-      filter: { sourceInstanceName: { eq: "loadingHeroImages" }, name: { ne: "monitor" } }
+      filter: {
+        sourceInstanceName: { eq: "loadingHeroImages" }
+        name: { nin: ["monitor", "logo"] }
+      }
     ) {
       nodes {
         name
