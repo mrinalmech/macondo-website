@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import { useTranslation } from 'gatsby-plugin-react-i18next';
@@ -124,25 +124,54 @@ function Widget() {
     threshold: 0.01,
   });
 
+  const [shouldLoad, setShouldLoad] = useState(steamLoaded);
+
+  const handleScroll = useCallback(() => {
+    const position = window.scrollY;
+    const isNotAtTop = position !== 0;
+
+    if (!shouldLoad && isNotAtTop) {
+      setShouldLoad(true);
+    }
+  }, [shouldLoad]);
+
+  useEffect(() => {
+    handleScroll();
+  }, [handleScroll]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
   const [visible, setVisible] = useState(steamLoaded);
 
   useEffect(() => {
-    if (!visible && isIntersecting) {
-      setVisible(true);
-      dispatch(setSteamLoaded(true));
+    if (isIntersecting) {
+      if (!shouldLoad) {
+        setShouldLoad(true);
+      }
+
+      if (!visible) {
+        setVisible(true);
+        dispatch(setSteamLoaded(true));
+      }
     }
-  }, [isIntersecting, visible, dispatch]);
+  }, [isIntersecting, visible, shouldLoad, dispatch]);
 
   return (
     <div className={clsx('max-w-2xl mx-auto mb-10 md:mb-20 relative', widget)} ref={ref}>
-      <div className={clsx('w-full absolute z-10', placeholder)} />
-      {visible && (
+      <div className={clsx('w-full absolute z-10', placeholder, { 'animate-pulse': !visible })} />
+      {shouldLoad && (
         <iframe
           title="steam-widget"
           src="https://store.steampowered.com/widget/1073970/"
           width="100%"
           height="100%"
-          className="border-0 z-20 relative"
+          className={clsx('border-0 z-20 relative duration-1000', { 'opacity-0': !visible })}
         />
       )}
     </div>

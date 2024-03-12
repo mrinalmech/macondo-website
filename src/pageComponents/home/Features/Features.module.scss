@@ -13,6 +13,7 @@ $steam-border-color: #2d3139;
 
 .widget {
   height: 190px;
+
   @media screen and (max-width: 420px) {
     height: 200px;
     margin: {

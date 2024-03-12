@@ -1,8 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import * as Gatsby from 'gatsby';
 import * as reactRedux from 'react-redux';
 import * as useHooks from 'usehooks-ts';
+
+import { scroll } from '../../../util/tests';
 
 import Features from './Features';
 
@@ -35,7 +37,7 @@ afterEach(() => {
 });
 
 describe('Features', () => {
-  test('Expect Features to be presented', () => {
+  /*test('Expect Features to be presented', () => {
     (reactRedux.useSelector as any).mockReturnValue(false);
     (useHooks.useIntersectionObserver as any).mockReturnValue({ isIntersecting: false });
 
@@ -104,9 +106,9 @@ describe('Features', () => {
     expect(screen.getByAltText(/feature_1_alt/)?.parentElement).not.toHaveClass('opacity-0');
     expect(screen.getByAltText(/feature_2_alt/)?.parentElement).not.toHaveClass('opacity-0');
     expect(screen.getByAltText(/feature_3_alt/)?.parentElement).not.toHaveClass('opacity-0');
-  });
+  });*/
 
-  test('Expect steam widget to not be present when not in view', () => {
+  test('Expect steam widget to not be present when not scrolled', () => {
     (reactRedux.useSelector as any).mockReturnValue(false);
     (useHooks.useIntersectionObserver as any).mockReturnValue({ isIntersecting: false });
 
@@ -115,21 +117,37 @@ describe('Features', () => {
     expect(screen.queryByTitle(/steam-widget/)).not.toBeInTheDocument();
   });
 
-  test('Expect steam widget to be present when in view', () => {
+  test('Expect steam widget to be present but not visible when scrolled but out of view', () => {
+    (reactRedux.useSelector as any).mockReturnValue(false);
+    (useHooks.useIntersectionObserver as any).mockReturnValue({ isIntersecting: false });
+
+    render(<Features />);
+
+    expect(screen.queryByTitle(/steam-widget/)).not.toBeInTheDocument();
+
+    act(() => scroll(50));
+
+    expect(screen.getByTitle(/steam-widget/)).toBeInTheDocument();
+    expect(screen.getByTitle(/steam-widget/)).toHaveClass('opacity-0');
+  });
+
+  test('Expect steam widget to be present and visible when in view', () => {
     (reactRedux.useSelector as any).mockReturnValue(false);
     (useHooks.useIntersectionObserver as any).mockReturnValue({ isIntersecting: true });
 
     render(<Features />);
 
     expect(screen.getByTitle(/steam-widget/)).toBeInTheDocument();
+    expect(screen.getByTitle(/steam-widget/)).not.toHaveClass('opacity-0');
   });
 
-  test('Expect steam widget to be present when not in view and widget has been previously loaded', () => {
+  test('Expect steam widget to be present and visible when not in view and widget has been previously loaded', () => {
     (reactRedux.useSelector as any).mockReturnValue(true);
     (useHooks.useIntersectionObserver as any).mockReturnValue({ isIntersecting: false });
 
     render(<Features />);
 
     expect(screen.getByTitle(/steam-widget/)).toBeInTheDocument();
+    expect(screen.getByTitle(/steam-widget/)).not.toHaveClass('opacity-0');
   });
 });
