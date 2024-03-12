@@ -133,6 +133,14 @@ const config: GatsbyConfig = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        printRejected: true,
+        tailwind: true,
+        purgeOnly: ['/src/styles/global.scss'],
+      },
+    },
   ],
 };
 

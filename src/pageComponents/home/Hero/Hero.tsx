@@ -323,7 +323,7 @@ const query = graphql`
           gatsbyImageData(
             placeholder: NONE
             width: 420
-            sizes: "(max-width: 320px) 230px, (max-width: 360px) 280px, (max-width: 480px) 320px, (max-width: 700px) 360px,(max-width: 992px) 380px, 420px"
+            sizes: "(max-width: 320px) 230px, (max-width: 360px) 280px, (max-width: 480px) 320px, (max-width: 700px) 360px, (max-width: 992px) 380px, 420px"
             breakpoints: [230, 280, 320, 360, 380, 420]
           )
         }
