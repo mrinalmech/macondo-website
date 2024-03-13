@@ -10,6 +10,7 @@ interface Props {
   children?: React.ReactNode;
   lang?: string;
   ogImgAlt?: string;
+  isTest?: boolean;
 }
 
 export default function SEO({
@@ -19,6 +20,7 @@ export default function SEO({
   children,
   lang = 'en',
   ogImgAlt = 'Side profile of three figures. Game logo on the left side of the image.',
+  isTest,
 }: Props) {
   const { allFile } = useStaticQuery(query);
 
@@ -41,7 +43,7 @@ export default function SEO({
 
   return (
     <>
-      <html lang={lang} />
+      {!isTest ? <html lang={lang} /> : <meta name="lang" content={lang} />}
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
       <meta property="og:type" content="website" />
