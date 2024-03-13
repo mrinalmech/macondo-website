@@ -18,6 +18,15 @@ interface Props {
     allFile: {
       nodes: FileSystemNode[];
     };
+    locales: {
+      edges: {
+        node: {
+          ns: string;
+          data: string;
+          language: string;
+        };
+      }[];
+    };
   };
 }
 
@@ -51,13 +60,24 @@ export default function Home({ data }: Props) {
   );
 }
 
-export const Head = () => <SEO />;
+export const Head = ({ data }: Props) => {
+  const dataLanguageNode = data.locales.edges.find(e => e.node.ns === 'index')?.node;
+
+  if (dataLanguageNode) {
+    const lang = dataLanguageNode.language;
+    const data = JSON.parse(dataLanguageNode.data);
+
+    return <SEO lang={lang} description={data['site_meta_desc']} ogImgAlt={data['og_img_alt']} />;
+  }
+
+  return <SEO />;
+};
 
 export const query = graphql`
   query ($language: String!) {
     locales: allLocale(
       filter: {
-        ns: { in: ["home-hero", "home-features", "header", "footer"] }
+        ns: { in: ["home-hero", "home-features", "header", "footer", "index"] }
         language: { eq: $language }
       }
     ) {

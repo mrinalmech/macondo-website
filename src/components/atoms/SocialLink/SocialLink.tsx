@@ -3,8 +3,6 @@ import { config, IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 
-import '@fortawesome/fontawesome-svg-core/styles.css';
-
 import { socialLinkSmall, socialLinkBig } from './SocialLink.module.scss';
 
 config.autoAddCss = false;

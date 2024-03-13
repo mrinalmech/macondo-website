@@ -35,14 +35,21 @@ describe('Homepage tests', () => {
     );
   });
 
-  it('Steam widget is loaded correctly on scroll', () => {
+  it('Steam widget is loaded correctly on scroll and becomes visible when it is in view', () => {
     cy.viewport(1920, 1000);
 
     cy.visit('/');
 
     cy.findByTitle(/steam-widget/).should('not.exist');
 
+    cy.scrollTo(0, 10);
+
+    cy.findByTitle(/steam-widget/).should('exist');
+    cy.findByTitle(/steam-widget/).should('not.be.visible');
+
     cy.scrollTo(0, 250);
+
+    cy.findByTitle(/steam-widget/).should('be.visible');
 
     cy.findByTitle(/steam-widget/)
       .iframe()

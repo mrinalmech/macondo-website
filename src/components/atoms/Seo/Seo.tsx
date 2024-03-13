@@ -8,14 +8,24 @@ interface Props {
   description?: string;
   pathname?: string;
   children?: React.ReactNode;
+  lang?: string;
+  ogImgAlt?: string;
+  isTest?: boolean;
 }
 
-export default function SEO({ title, description, pathname, children }: Props) {
+export default function SEO({
+  title,
+  description,
+  pathname,
+  children,
+  lang = 'en',
+  ogImgAlt = 'Side profile of three figures. Game logo on the left side of the image.',
+  isTest,
+}: Props) {
   const { allFile } = useStaticQuery(query);
 
   const ogImg = allFile.nodes[0].childImageSharp.gatsbyImageData;
   const ogImgUrl = ogImg.images.fallback.src;
-  const ogImgAlt = 'Side profile of three figures. Game logo on the left side of the image.';
 
   const {
     title: defaultTitle,
@@ -33,6 +43,7 @@ export default function SEO({ title, description, pathname, children }: Props) {
 
   return (
     <>
+      {!isTest ? <html lang={lang} /> : <meta name="lang" content={lang} />}
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
       <meta property="og:type" content="website" />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, prettyDOM } from '@testing-library/react';
 import * as Gatsby from 'gatsby';
 
 import SEO from './Seo';
@@ -54,10 +54,13 @@ afterEach(() => {
 });
 
 describe('SEO', () => {
+  const TestSEO = (props: { [prop: string]: any }) => <SEO isTest {...props} />;
+
   test('Expect SEO to be presented with defaults', () => {
-    render(<SEO />);
+    render(<TestSEO />);
 
     expect(screen.getByText(/TestDefaultTitle/)).toBeInTheDocument();
+    expect(getMeta('lang')).toEqual('en');
     expect(getMeta('description')).toEqual('TestDefaultDescription');
     expect(getMeta('og:type')).toEqual('website');
     expect(getMeta('og:title')).toEqual('TestDefaultTitle');
@@ -82,9 +85,18 @@ describe('SEO', () => {
   });
 
   test('Expect SEO to be presented with overriden values', () => {
-    render(<SEO title="TestTitle" description="TestDescription" pathname="/test-path" />);
+    render(
+      <TestSEO
+        lang="de"
+        title="TestTitle"
+        description="TestDescription"
+        pathname="/test-path"
+        ogImgAlt="TestOgImgAlt"
+      />,
+    );
 
     expect(screen.getByText(/TestDefaultTitle \| TestTitle/)).toBeInTheDocument();
+    expect(getMeta('lang')).toEqual('de');
     expect(getMeta('description')).toEqual('TestDescription');
     expect(getMeta('og:title')).toEqual('TestDefaultTitle | TestTitle');
     expect(getMeta('og:description')).toEqual('TestDescription');
@@ -93,13 +105,14 @@ describe('SEO', () => {
     expect(getMeta('twitter:title')).toEqual('TestDefaultTitle | TestTitle');
     expect(getMeta('twitter:url')).toEqual('test-default-url/test-path');
     expect(getMeta('twitter:description')).toEqual('TestDescription');
+    expect(getMeta('twitter:image:alt')).toEqual('TestOgImgAlt');
   });
 
   test('Expect SEO to be presented with optional meta tags', () => {
     render(
-      <SEO>
+      <TestSEO>
         <meta name="test-meta" content="test-content" />
-      </SEO>,
+      </TestSEO>,
     );
 
     expect(getMeta('test-meta')).toEqual('test-content');

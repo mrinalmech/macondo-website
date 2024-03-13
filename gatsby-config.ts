@@ -13,6 +13,7 @@ require('dotenv').config({
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevDeployment = process.env.DEPLOY_ENV === 'development';
+const isLocalMachine = process.env.DEPLOY_ENV === 'local';
 
 const config: GatsbyConfig = {
   flags: {
@@ -21,11 +22,17 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: 'Macondo Games',
     description:
-      'Purveyor of the finest gaming wares. Macondo Games is a studio located in Mumbai, India working on their first title, a 2d run and gun shooter Global Steel.',
+      'Purveyor of the finest gaming wares. Macondo Games is a studio located in Goa, India working on their first title, a 2d run and gun shooter Global Steel.',
     author: 'Mrinal Mech',
     siteUrl: isDevDeployment ? 'https://dev.macondogames.com/' : 'https://www.macondogames.com',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
+      options: {
+        disable: !isLocalMachine,
+      },
+    },
     'gatsby-plugin-postcss',
     'gatsby-plugin-image',
     {
@@ -131,6 +138,14 @@ const config: GatsbyConfig = {
           postCssFlexbugsFixes(),
           postCssFocus(),
         ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        printRejected: true,
+        tailwind: true,
+        purgeOnly: ['/src/styles/global.scss'],
       },
     },
   ],

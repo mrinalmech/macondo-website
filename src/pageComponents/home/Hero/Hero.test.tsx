@@ -7,12 +7,14 @@ import { SLIDE_DURATION } from './constants';
 
 const useStaticQuery = jest.spyOn(Gatsby, 'useStaticQuery');
 const mockUseStaticQuery = {
+  logoImg: {
+    nodes: [{ name: 'logo' }],
+  },
   monitorImg: {
     nodes: [{ name: 'monitor' }],
   },
   otherImgs: {
     nodes: [
-      { name: 'logo' },
       { name: 'wallShade' },
       { name: 'websiteBaseL1' },
       { name: 'websiteBaseL2' },
