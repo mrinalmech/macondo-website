@@ -150,6 +150,7 @@ export default function Header() {
           className={clsx('flex mr-2 last-of-type:mr-0 white', langLink, {
             'underline underline-offset-4': i18n.resolvedLanguage === lng,
           })}
+          aria-label={t(`to_${lng}`) as string}
         >
           {lng}
         </IntLink>
@@ -160,9 +161,30 @@ export default function Header() {
   return (
     <>
       <header className="fixed w-full z-50">
+        <Link
+          to="/"
+          className={clsx(
+            'absolute top-1 left-1 sm:top-2 sm:left-2 lg:top-3 lg:left-5 z-10',
+            imgLink,
+          )}
+          aria-label={t('company_logo_label')}
+        >
+          <div
+            className={clsx('p-2.5 pr-2 transition-colors duration-300', imgHolder, {
+              'bg-black': barBlack,
+            })}
+          >
+            <StaticImage
+              src="./images/HeaderLogo.png"
+              alt={t('company_logo_alt')}
+              width={60}
+              placeholder="none"
+            />
+          </div>
+        </Link>
         <div
           className={clsx(
-            'px-6 pt-4 pb-8 w-full flex justify-end transition-colors duration-300',
+            'px-6 pt-4 pb-8 w-full flex justify-end transition-colors duration-300 z-0',
             navHolder,
             {
               'bg-black': barBlack,
@@ -182,24 +204,6 @@ export default function Header() {
             {languageChanger}
           </nav>
         </div>
-        <Link
-          to="/"
-          className={clsx('absolute top-1 left-1 sm:top-2 sm:left-2 lg:top-3 lg:left-5', imgLink)}
-          aria-label={t('company_logo_label')}
-        >
-          <div
-            className={clsx('p-2.5 pr-2 transition-colors duration-300', imgHolder, {
-              'bg-black': barBlack,
-            })}
-          >
-            <StaticImage
-              src="./images/HeaderLogo.png"
-              alt={t('company_logo_alt')}
-              width={60}
-              placeholder="none"
-            />
-          </div>
-        </Link>
       </header>
       {domLoaded && (
         <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
