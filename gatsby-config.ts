@@ -21,11 +21,12 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: 'Macondo Games',
     description:
-      'Purveyor of the finest gaming wares. Macondo Games is a studio located in Mumbai, India working on their first title, a 2d run and gun shooter Global Steel.',
+      'Purveyor of the finest gaming wares. Macondo Games is a studio located in Goa, India working on their first title, a 2d run and gun shooter Global Steel.',
     author: 'Mrinal Mech',
     siteUrl: isDevDeployment ? 'https://dev.macondogames.com/' : 'https://www.macondogames.com',
   },
   plugins: [
+    'gatsby-plugin-webpack-bundle-analyser-v2',
     'gatsby-plugin-postcss',
     'gatsby-plugin-image',
     {

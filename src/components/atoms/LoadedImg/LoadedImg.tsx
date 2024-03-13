@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, forwardRef, memo, useImperativeHandle } from 'react';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
-import $ from 'jquery';
 
 import FadeInElement from '../FadeInElement';
 
@@ -33,8 +32,8 @@ const LoadedImg = memo(
         const imgContainer = ref.current;
 
         if (imgContainer) {
-          const gatsbyWrapper = $(imgContainer).children('div')[0];
-          const img = $(gatsbyWrapper).children('img')[0] as HTMLImageElement;
+          const gatsbyWrapper = imgContainer.getElementsByTagName('div')[0];
+          const img = gatsbyWrapper.getElementsByTagName('img')[0] as HTMLImageElement;
           if (img && img.complete) {
             imageLoaded(imgName);
           }
