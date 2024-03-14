@@ -9,6 +9,8 @@ const mockUseStaticQuery = {
       description: 'Test description',
       author: 'Test author',
       siteUrl: '/',
+      googleSiteVerification: 'Test site verification',
+      ogImgAlt: 'Test img alt',
     },
   },
 };
@@ -30,6 +32,8 @@ describe('useSiteMetadata', () => {
       description: 'Test description',
       author: 'Test author',
       siteUrl: '/',
+      googleSiteVerification: 'Test site verification',
+      ogImgAlt: 'Test img alt',
     });
   });
 });
