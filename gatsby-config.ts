@@ -26,6 +26,7 @@ const config: GatsbyConfig = {
     author: 'Mrinal Mech',
     siteUrl: isDevDeployment ? 'https://dev.macondogames.com/' : 'https://www.macondogames.com',
     googleSiteVerification: 'z9-8K1FfiaGau_IyT7Wu09kWn800XDnlTJUshG8bSCs',
+    ogImgAlt: 'Side profile of three figures. Game logo on the left side of the image.',
   },
   plugins: [
     {
