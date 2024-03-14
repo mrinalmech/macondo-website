@@ -12,26 +12,8 @@ const mockUseStaticQuery = {
       description: 'TestDefaultDescription',
       author: 'TestDefaultAuthor',
       siteUrl: 'test-default-url',
-      ogImgAlt: 'TestDefaultOgImgAlt',
       googleSiteVerification: 'TestDefaultGoogleSiteVerification',
     },
-  },
-  allFile: {
-    nodes: [
-      {
-        childImageSharp: {
-          gatsbyImageData: {
-            width: 100,
-            height: 100,
-            images: {
-              fallback: {
-                src: '/img-url',
-              },
-            },
-          },
-        },
-      },
-    ],
   },
 };
 
@@ -69,17 +51,11 @@ describe('SEO', () => {
     expect(getMeta('og:description')).toEqual('TestDefaultDescription');
     expect(getMeta('og:url')).toEqual('test-default-url');
     expect(getMeta('og:site_name')).toEqual('TestDefaultTitle');
-    expect(getMeta('og:image')).toEqual('test-default-url/img-url');
-    expect(getMeta('og:image:width')).toEqual('100');
-    expect(getMeta('og:image:height')).toEqual('100');
-    expect(getMeta('og:image:alt')).toEqual('TestDefaultOgImgAlt');
     expect(getMeta('twitter:card')).toEqual('summary_large_image');
     expect(getMeta('twitter:title')).toEqual('TestDefaultTitle');
     expect(getMeta('twitter:url')).toEqual('test-default-url');
     expect(getMeta('twitter:description')).toEqual('TestDefaultDescription');
     expect(getMeta('twitter:creator')).toEqual('TestDefaultAuthor');
-    expect(getMeta('twitter:image')).toEqual('test-default-url/img-url');
-    expect(getMeta('twitter:image:alt')).toEqual('TestDefaultOgImgAlt');
     expect(getMeta('google-site-verification')).toEqual('TestDefaultGoogleSiteVerification');
   });
 
@@ -90,6 +66,15 @@ describe('SEO', () => {
         title="TestTitle"
         description="TestDescription"
         pathname="/test-path"
+        ogImg={{
+          width: 100,
+          height: 100,
+          images: {
+            fallback: {
+              src: '/og-img-url',
+            },
+          },
+        }}
         ogImgAlt="TestOgImgAlt"
       />,
     );
@@ -101,9 +86,14 @@ describe('SEO', () => {
     expect(getMeta('og:description')).toEqual('TestDescription');
     expect(getMeta('og:url')).toEqual('test-default-url/test-path');
     expect(getMeta('og:site_name')).toEqual('TestDefaultTitle | TestTitle');
+    expect(getMeta('og:image')).toEqual('test-default-url/og-img-url');
+    expect(getMeta('og:image:width')).toEqual('100');
+    expect(getMeta('og:image:height')).toEqual('100');
+    expect(getMeta('og:image:alt')).toEqual('TestOgImgAlt');
     expect(getMeta('twitter:title')).toEqual('TestDefaultTitle | TestTitle');
     expect(getMeta('twitter:url')).toEqual('test-default-url/test-path');
     expect(getMeta('twitter:description')).toEqual('TestDescription');
+    expect(getMeta('twitter:image')).toEqual('test-default-url/og-img-url');
     expect(getMeta('twitter:image:alt')).toEqual('TestOgImgAlt');
   });
 

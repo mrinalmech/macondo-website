@@ -1,5 +1,6 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { Script } from 'gatsby';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 
 import { useSiteMetadata } from '../../../hooks/useSiteMetadata';
 
@@ -9,7 +10,9 @@ interface Props {
   pathname?: string;
   children?: React.ReactNode;
   lang?: string;
+  ogImg?: IGatsbyImageData;
   ogImgAlt?: string;
+  schema?: string;
   isTest?: boolean;
 }
 
@@ -20,17 +23,15 @@ export default function SEO({
   children,
   lang = 'en',
   ogImgAlt,
+  ogImg,
+  schema,
   isTest,
 }: Props) {
-  const { allFile } = useStaticQuery(query);
-
-  const ogImg = allFile.nodes[0].childImageSharp.gatsbyImageData;
-  const ogImgUrl = ogImg.images.fallback.src;
+  const ogImgUrl = ogImg?.images?.fallback?.src;
 
   const {
     title: defaultTitle,
     description: defaultDescription,
-    ogImgAlt: defaultOgImgAlt,
     googleSiteVerification,
     siteUrl,
     author,
@@ -39,9 +40,8 @@ export default function SEO({
   const seo = {
     title: title ? `${defaultTitle} | ${title}` : defaultTitle,
     description: description || defaultDescription,
-    url: `${siteUrl}${pathname || ``}`,
+    url: `${siteUrl}${pathname || ''}`,
     author,
-    ogImgAlt: ogImgAlt || defaultOgImgAlt,
     googleSiteVerification,
   };
 
@@ -49,38 +49,38 @@ export default function SEO({
     <>
       {!isTest ? <html lang={lang} /> : <meta name="lang" content={lang} />}
       <title>{seo.title}</title>
+      {schema && (
+        <Script type="application/ld+json" strategy="off-main-thread">
+          {schema}
+        </Script>
+      )}
       <meta name="description" content={seo.description} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />
       <meta property="og:url" content={seo.url} />
       <meta property="og:site_name" content={seo.title} />
-      <meta property="og:image" content={`${seo.url}${ogImgUrl}`} />
-      <meta property="og:image:width" content={`${ogImg.width}`} />
-      <meta property="og:image:height" content={`${ogImg.height}`} />
-      <meta property="og:image:alt" content={seo.ogImgAlt} />
+      {ogImg && (
+        <>
+          <meta property="og:image" content={`${siteUrl}${ogImgUrl}`} />
+          <meta property="og:image:width" content={`${ogImg.width}`} />
+          <meta property="og:image:height" content={`${ogImg.height}`} />
+          {ogImgAlt && <meta property="og:image:alt" content={ogImgAlt} />}
+        </>
+      )}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:url" content={seo.url} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:creator" content={seo.author} />
-      <meta name="twitter:image" content={`${seo.url}${ogImgUrl}`} />
-      <meta name="twitter:image:alt" content={seo.ogImgAlt} />
+      {ogImg && (
+        <>
+          <meta name="twitter:image" content={`${siteUrl}${ogImgUrl}`} />
+          {ogImgAlt && <meta name="twitter:image:alt" content={ogImgAlt} />}
+        </>
+      )}
       <meta name="google-site-verification" content={googleSiteVerification} />
       {children}
     </>
   );
 }
-
-const query = graphql`
-  query {
-    allFile(filter: { sourceInstanceName: { eq: "ogImages" }, name: { eq: "og" } }) {
-      nodes {
-        name
-        childImageSharp {
-          gatsbyImageData(placeholder: NONE, layout: FIXED, width: 1200)
-        }
-      }
-    }
-  }
-`;
