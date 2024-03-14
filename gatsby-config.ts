@@ -33,6 +33,30 @@ const config: GatsbyConfig = {
         disable: !isLocalMachine,
       },
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: isDevDeployment ? 'https://dev.macondogames.com/' : 'https://www.macondogames.com',
+        sitemap: isDevDeployment
+          ? 'https://dev.macondogames.com/sitemap.xml'
+          : 'https://www.macondogames.com/sitemap.xml',
+        policy: [
+          {
+            userAgent: '*',
+            disallow: [
+              '/*wallShade.png',
+              '/*wallShade.webp',
+              '/*monitor.png',
+              '*/monitor.webp',
+              '*/websiteBaseL1.png',
+              '*/websiteBaseL1.webp',
+              '*/websiteBaseL2.png',
+              '*/websiteBaseL2.webp',
+            ],
+          },
+        ],
+      },
+    },
     'gatsby-plugin-postcss',
     'gatsby-plugin-image',
     {
