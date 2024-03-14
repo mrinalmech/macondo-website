@@ -11,9 +11,32 @@ require('dotenv').config({
   path: '.env',
 });
 
+interface i18nContext {
+  language: string;
+  languages: [string];
+  defaultLanguage: string;
+  originalPath: string;
+}
+
+interface SitePageContext {
+  i18n: i18nContext;
+}
+
+interface SitePage {
+  context: SitePageContext;
+}
+
+interface AllSitePages {
+  allSitePage: {
+    nodes: SitePage[];
+  };
+}
+
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevDeployment = process.env.DEPLOY_ENV === 'development';
 const isLocalMachine = process.env.DEPLOY_ENV === 'local';
+
+const siteUrl = isDevDeployment ? 'https://dev.macondogames.com' : 'https://www.macondogames.com';
 
 const config: GatsbyConfig = {
   flags: {
@@ -24,7 +47,7 @@ const config: GatsbyConfig = {
     description:
       'Purveyor of the finest gaming wares. Macondo Games is a studio located in Goa, India working on their first title, a 2d run and gun shooter Global Steel.',
     author: 'Mrinal Mech',
-    siteUrl: isDevDeployment ? 'https://dev.macondogames.com/' : 'https://www.macondogames.com',
+    siteUrl,
     googleSiteVerification: 'z9-8K1FfiaGau_IyT7Wu09kWn800XDnlTJUshG8bSCs',
     ogImgAlt: 'Side profile of three figures. Game logo on the left side of the image.',
   },
@@ -36,12 +59,76 @@ const config: GatsbyConfig = {
       },
     },
     {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        query: `
+        {
+          allSitePage(filter: {context: {i18n: {routed: {eq: false}}}}) {
+            nodes {
+              context {
+                i18n {
+                  defaultLanguage
+                  languages
+                  originalPath
+                }
+              }
+              path
+            }
+          }
+        }
+      `,
+        resolveSiteUrl: () => siteUrl,
+        resolvePages: ({ allSitePage: { nodes: allPages } }: AllSitePages) => {
+          const pressPage = allPages.find(page => page.context.i18n.originalPath === '/press/');
+
+          if (pressPage) {
+            const pressGlobalSteelPage = {
+              ...pressPage,
+              context: {
+                ...pressPage.context,
+                i18n: {
+                  ...pressPage.context.i18n,
+                  originalPath: '/press/globalsteel/',
+                },
+              },
+            };
+
+            return [...allPages, pressGlobalSteelPage];
+          }
+
+          return allPages;
+        },
+        serialize: (node: SitePage) => {
+          const { languages, originalPath, defaultLanguage } = node.context.i18n;
+
+          const newPath = originalPath === '/home/' ? '/' : originalPath;
+
+          const url = siteUrl + newPath;
+          const links = [
+            { lang: defaultLanguage, url },
+            { lang: 'x-default', url },
+          ];
+          languages.forEach(lang => {
+            if (lang === defaultLanguage) return;
+            links.push({ lang, url: `${siteUrl}/${lang}${newPath}` });
+          });
+
+          return {
+            url,
+            changefreq: 'daily',
+            priority: newPath === '/' ? 1.0 : 0.7,
+            links,
+          };
+        },
+      },
+    },
+    {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: isDevDeployment ? 'https://dev.macondogames.com/' : 'https://www.macondogames.com',
         sitemap: isDevDeployment
-          ? 'https://dev.macondogames.com/sitemap.xml'
-          : 'https://www.macondogames.com/sitemap.xml',
+          ? 'https://dev.macondogames.com/sitemap-index.xml'
+          : 'https://www.macondogames.com/sitemap-index.xml',
         policy: [
           {
             userAgent: '*',
