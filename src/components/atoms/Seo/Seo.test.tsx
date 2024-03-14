@@ -86,14 +86,14 @@ describe('SEO', () => {
     expect(getMeta('og:description')).toEqual('TestDescription');
     expect(getMeta('og:url')).toEqual('test-default-url/test-path');
     expect(getMeta('og:site_name')).toEqual('TestDefaultTitle | TestTitle');
-    expect(getMeta('og:image')).toEqual('/og-img-url');
+    expect(getMeta('og:image')).toEqual('test-default-url/og-img-url');
     expect(getMeta('og:image:width')).toEqual('100');
     expect(getMeta('og:image:height')).toEqual('100');
     expect(getMeta('og:image:alt')).toEqual('TestOgImgAlt');
     expect(getMeta('twitter:title')).toEqual('TestDefaultTitle | TestTitle');
     expect(getMeta('twitter:url')).toEqual('test-default-url/test-path');
     expect(getMeta('twitter:description')).toEqual('TestDescription');
-    expect(getMeta('twitter:image')).toEqual('/og-img-url');
+    expect(getMeta('twitter:image')).toEqual('test-default-url/og-img-url');
     expect(getMeta('twitter:image:alt')).toEqual('TestOgImgAlt');
   });
 

@@ -62,7 +62,7 @@ export default function SEO({
       <meta property="og:site_name" content={seo.title} />
       {ogImg && (
         <>
-          <meta property="og:image" content={ogImgUrl} />
+          <meta property="og:image" content={`${siteUrl}${ogImgUrl}`} />
           <meta property="og:image:width" content={`${ogImg.width}`} />
           <meta property="og:image:height" content={`${ogImg.height}`} />
           {ogImgAlt && <meta property="og:image:alt" content={ogImgAlt} />}
@@ -75,7 +75,7 @@ export default function SEO({
       <meta name="twitter:creator" content={seo.author} />
       {ogImg && (
         <>
-          <meta name="twitter:image" content={ogImgUrl} />
+          <meta name="twitter:image" content={`${siteUrl}${ogImgUrl}`} />
           {ogImgAlt && <meta name="twitter:image:alt" content={ogImgAlt} />}
         </>
       )}
