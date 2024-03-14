@@ -9,7 +9,6 @@ export const useSiteMetadata = () => {
           description
           author
           siteUrl
-          ogImgAlt
           googleSiteVerification
         }
       }

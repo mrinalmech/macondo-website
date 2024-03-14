@@ -45,11 +45,10 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: 'Macondo Games',
     description:
-      'Purveyor of the finest gaming wares. Macondo Games is a studio located in Goa, India working on their first title, a 2d run and gun shooter Global Steel.',
+      'Macondo Games is a studio located in Goa, India working on their first title, a 2d run and gun shooter Global Steel.',
     author: 'Mrinal Mech',
     siteUrl,
     googleSiteVerification: 'z9-8K1FfiaGau_IyT7Wu09kWn800XDnlTJUshG8bSCs',
-    ogImgAlt: 'Side profile of three figures. Game logo on the left side of the image.',
   },
   plugins: [
     {
@@ -187,8 +186,8 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `ogImages`,
-        path: `${__dirname}/src/components/atoms/Seo/images`,
+        name: `homeImages`,
+        path: `${__dirname}/src/pages/home/images`,
       },
     },
     {
