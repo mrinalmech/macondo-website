@@ -95,22 +95,21 @@ function Feature({
       )}
     >
       <div
-        className={clsx('flex flex-col justify-center md:order-1', {
-          'order-2': imgOnLeft,
-          'order-1': !imgOnLeft,
+        className={clsx('flex flex-col justify-center order-1', {
+          'md:order-1': imgOnLeft,
+          'md:order-2': !imgOnLeft,
         })}
-        ref={imgOnLeft ? ref : null}
+        ref={ref}
       >
-        {imgOnLeft ? imgContent : textContent}
+        {imgContent}
       </div>
       <div
-        className={clsx('flex flex-col justify-center md:order-2', {
-          'order-1': imgOnLeft,
-          'order-2': !imgOnLeft,
+        className={clsx('flex flex-col justify-center order-2', {
+          'md:order-2': imgOnLeft,
+          'md:order-1': !imgOnLeft,
         })}
-        ref={!imgOnLeft ? ref : null}
       >
-        {imgOnLeft ? textContent : imgContent}
+        {textContent}
       </div>
     </div>
   );

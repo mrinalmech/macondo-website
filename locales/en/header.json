@@ -5,5 +5,7 @@
     "company_logo_alt":"Company Logo",
     "company_logo_label":"Home",
     "hamburger_open":"Open the menu",
-    "hamburger_close":"Close the menu"
+    "hamburger_close":"Close the menu",
+    "to_de":"Change language to German",
+    "to_en":"Change language to English"
 }

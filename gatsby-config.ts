@@ -25,12 +25,38 @@ const config: GatsbyConfig = {
       'Purveyor of the finest gaming wares. Macondo Games is a studio located in Goa, India working on their first title, a 2d run and gun shooter Global Steel.',
     author: 'Mrinal Mech',
     siteUrl: isDevDeployment ? 'https://dev.macondogames.com/' : 'https://www.macondogames.com',
+    googleSiteVerification: 'z9-8K1FfiaGau_IyT7Wu09kWn800XDnlTJUshG8bSCs',
+    ogImgAlt: 'Side profile of three figures. Game logo on the left side of the image.',
   },
   plugins: [
     {
       resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
       options: {
         disable: !isLocalMachine,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: isDevDeployment ? 'https://dev.macondogames.com/' : 'https://www.macondogames.com',
+        sitemap: isDevDeployment
+          ? 'https://dev.macondogames.com/sitemap.xml'
+          : 'https://www.macondogames.com/sitemap.xml',
+        policy: [
+          {
+            userAgent: '*',
+            disallow: [
+              '/*wallShade.png',
+              '/*wallShade.webp',
+              '/*monitor.png',
+              '*/monitor.webp',
+              '*/websiteBaseL1.png',
+              '*/websiteBaseL1.webp',
+              '*/websiteBaseL2.png',
+              '*/websiteBaseL2.webp',
+            ],
+          },
+        ],
       },
     },
     'gatsby-plugin-postcss',

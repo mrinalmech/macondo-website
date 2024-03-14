@@ -19,7 +19,7 @@ export default function SEO({
   pathname,
   children,
   lang = 'en',
-  ogImgAlt = 'Side profile of three figures. Game logo on the left side of the image.',
+  ogImgAlt,
   isTest,
 }: Props) {
   const { allFile } = useStaticQuery(query);
@@ -30,6 +30,8 @@ export default function SEO({
   const {
     title: defaultTitle,
     description: defaultDescription,
+    ogImgAlt: defaultOgImgAlt,
+    googleSiteVerification,
     siteUrl,
     author,
   } = useSiteMetadata();
@@ -39,6 +41,8 @@ export default function SEO({
     description: description || defaultDescription,
     url: `${siteUrl}${pathname || ``}`,
     author,
+    ogImgAlt: ogImgAlt || defaultOgImgAlt,
+    googleSiteVerification,
   };
 
   return (
@@ -54,14 +58,15 @@ export default function SEO({
       <meta property="og:image" content={`${seo.url}${ogImgUrl}`} />
       <meta property="og:image:width" content={`${ogImg.width}`} />
       <meta property="og:image:height" content={`${ogImg.height}`} />
-      <meta property="og:image:alt" content={ogImgAlt} />
+      <meta property="og:image:alt" content={seo.ogImgAlt} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:url" content={seo.url} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:creator" content={seo.author} />
       <meta name="twitter:image" content={`${seo.url}${ogImgUrl}`} />
-      <meta name="twitter:image:alt" content={ogImgAlt} />
+      <meta name="twitter:image:alt" content={seo.ogImgAlt} />
+      <meta name="google-site-verification" content={googleSiteVerification} />
       {children}
     </>
   );

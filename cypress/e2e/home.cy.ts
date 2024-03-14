@@ -19,7 +19,9 @@ describe('Homepage tests', () => {
 
     cy.visit('/');
 
-    cy.findByRole('link', { name: /de/ }).should('exist').click();
+    cy.findByRole('link', { name: /Change language to German/ })
+      .should('exist')
+      .click();
 
     cy.findByAltText(/Spiellogo/).should('be.visible');
 
