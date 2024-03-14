@@ -25,6 +25,7 @@ const config: GatsbyConfig = {
       'Purveyor of the finest gaming wares. Macondo Games is a studio located in Goa, India working on their first title, a 2d run and gun shooter Global Steel.',
     author: 'Mrinal Mech',
     siteUrl: isDevDeployment ? 'https://dev.macondogames.com/' : 'https://www.macondogames.com',
+    googleSiteVerification: 'z9-8K1FfiaGau_IyT7Wu09kWn800XDnlTJUshG8bSCs',
   },
   plugins: [
     {
