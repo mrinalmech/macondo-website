@@ -43,7 +43,7 @@ const config: GatsbyConfig = {
     DEV_SSR: true,
   },
   siteMetadata: {
-    title: 'Macondo Games',
+    title: 'Macondo Games Dev',
     description:
       'Macondo Games is a studio located in Goa, India working on their first title, a 2d run and gun shooter Global Steel.',
     author: 'Mrinal Mech',
