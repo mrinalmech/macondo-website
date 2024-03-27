@@ -69,7 +69,6 @@ export default function Home({ data }: Props) {
   return (
     <ImageLoadedContext.Provider value={imageLoaded}>
       <Page>
-        Test
         <Hero />
         <Features />
       </Page>
