@@ -1,135 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <company>
-  <title>Macondo Games</title>
-  <based-in>Mumbai, India</based-in>
-  <founding-date>August 18, 2015</founding-date>
-  <website>https://www.macondogames.com</website>
-  <press-contact>
-    press@macondogames.com
-  </press-contact>
-
-  <!-- Google analytics ID: -->
-  <analytics></analytics>
-
-  <phone>
-    -
-  </phone>
-  <address>
-    <line>
-      Tezpur
-    </line>
-    <line>
-      Assam
-    </line>
-    <line>
-      India
-    </line>
-  </address>
-
-  <socials>
-    <social>
-      <name>
-        Twitter (@macondostudios)
-      </name>
-      <link>
-        https://twitter.com/macondostudios
-      </link>
-    </social>
-    <social>
-      <name>
-        Facebook (@macondostudios)
-      </name>
-      <link>
-        https://www.facebook.com/macondostudios
-      </link>
-    </social>
-    <social>
-      <name>
-        Instagram (@macondogames)
-      </name>
-      <link>
-        https://www.instagram.com/macondogames
-      </link>
-    </social>
-    <social>
-      <name>
-        Twitch (@macondogames)
-      </name>
-      <link>
-        https://www.twitch.tv/macondogames
-      </link>
-    </social>
-    <social>
-      <name>
-        Youtube
-      </name>
-      <link>
-        https://www.youtube.com/channel/UCfYKziK0Ll8UZ9AiMTZT9DA
-      </link>
-    </social>
-    <social>
-      <name>
-        Discord
-      </name>
-      <link>
-        https://discord.gg/qVBvuy7Ny3
-      </link>
-    </social>
-  </socials>
-
-  <description>
-    We are a small indie studio located in Mumbai, India working on our first title Global Steel, a run-and-gun shooter inspired by Saturday morning cartoons from the 80s.
-  </description>
-
-  <!-- Choose between a single block: -->
-  <history>
-    Macondo Games was founded by Mrinal Mech in 2015 in Mumbai, India. He always enjoyed playing video games as a child growing up so the next logical step was making them, and here we are.
-  </history>
-
-  <!-- Or multiple blocks: -->
-  <!-- <histories> <history> <header></header> <text></text> </history> </histories> -->
-
-  <trailers></trailers>
-
-  <awards></awards>
-
-  <quotes></quotes>
-
-  <additionals></additionals>
-
-  <credits>
-    <credit>
-      <person>
-        Mrinal Mech
-      </person>
-      <role>
-        Founder, Game Director, Macondo Games
-      </role>
-    </credit>
-  </credits>
-
-  <contacts>
-    <contact>
-      <name>Inquiries</name>
-      <mail>info@macondogames.com</mail>
-    </contact>
-    <contact>
-      <name>Twitter</name>
-      <link>
-        https://twitter.com/macondostudios
-      </link>
-    </contact>
-    <contact>
-      <name>Facebook</name>
-      <link>
-        https://www.facebook.com/macondostudios
-      </link>
-    </contact>
-    <contact>
-      <name>Web</name>
-      <link>
-        https://www.macondogames.com
-      </link>
-    </contact>
-  </contacts>
+    <title>Macondo Games</title>
+    <based-in>Mumbai, India</based-in>
+    <founding-date>August 18, 2015</founding-date>
+    <website>https://www.macondogames.com</website>
+    <press-contact>        
+        press@macondogames.com
+    </press-contact>
+    <!-- Google analytics ID: -->
+    <analytics />
+    <phone>        
+        -
+    </phone>
+    <address>
+        <line>            
+            Panaji
+        </line>
+        <line>            
+            Goa
+        </line>
+        <line>            
+            India
+        </line>
+    </address>
+    <socials>
+        <social>
+            <name>                
+                Twitter (@macondostudios)
+            </name>
+            <link>                
+                https://twitter.com/macondostudios
+            </link>
+        </social>
+        <social>
+            <name>                
+                Facebook (@macondostudios)
+            </name>
+            <link>                
+                https://www.facebook.com/macondostudios
+            </link>
+        </social>
+        <social>
+            <name>                
+                Instagram (@macondogames)
+            </name>
+            <link>                
+                https://www.instagram.com/macondogames
+            </link>
+        </social>
+        <social>
+            <name>                
+                Twitch (@macondogames)
+            </name>
+            <link>                
+                https://www.twitch.tv/macondogames
+            </link>
+        </social>
+        <social>
+            <name>                
+                Youtube
+            </name>
+            <link>                
+                https://www.youtube.com/channel/UCfYKziK0Ll8UZ9AiMTZT9DA
+            </link>
+        </social>
+        <social>
+            <name>                
+                Discord
+            </name>
+            <link>                
+                https://discord.gg/qVBvuy7Ny3
+            </link>
+        </social>
+    </socials>
+    <description>        
+        We are a small indie studio located in Mumbai, India working on our first title Global Steel, a run-and-gun shooter inspired by Saturday morning cartoons from the 80s.
+    </description>
+    <!-- Choose between a single block: -->
+    <history>        
+        Macondo Games was founded by Mrinal Mech in 2015 in Mumbai, India. He always enjoyed playing video games as a child growing up so the next logical step was making them, and here we are.
+    </history>
+    <!-- Or multiple blocks: -->
+    <!-- <histories> <history> <header></header> <text></text> </history> </histories> -->
+    <trailers />
+    <awards />
+    <quotes />
+    <additionals />
+    <credits>
+        <credit>
+            <person>                
+                Mrinal Mech
+            </person>
+            <role>                
+                Founder, Game Director, Macondo Games
+            </role>
+        </credit>
+    </credits>
+    <contacts>
+        <contact>
+            <name>Inquiries</name>
+            <mail>info@macondogames.com</mail>
+        </contact>
+        <contact>
+            <name>Twitter</name>
+            <link>                
+                https://twitter.com/macondostudios
+            </link>
+        </contact>
+        <contact>
+            <name>Facebook</name>
+            <link>                
+                https://www.facebook.com/macondostudios
+            </link>
+        </contact>
+        <contact>
+            <name>Web</name>
+            <link>                
+                https://www.macondogames.com
+            </link>
+        </contact>
+    </contacts>
 </company>
