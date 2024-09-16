@@ -13,7 +13,7 @@ const mockUseStaticQuery = {
   monitorImg: {
     nodes: [{ name: 'monitor' }],
   },
-  otherImgs: {
+  otherHeroImgs: {
     nodes: [
       { name: 'wallShade' },
       { name: 'websiteBaseL1' },

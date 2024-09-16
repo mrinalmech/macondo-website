@@ -1,1 +1,1 @@
-export { default } from './LoadedImg';
+export { default, PropsBase as LoadedImgPropsBase } from './LoadedImg';

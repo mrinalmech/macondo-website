@@ -13,20 +13,6 @@ $monitor-img-ratio: calc(
   min-height: 859px;
   max-height: 950px;
 
-  .baseL1,
-  .baseL2 {
-    top: 0;
-    max-width: 50%;
-  }
-
-  .baseL1 {
-    z-index: 3;
-  }
-
-  .baseL2 {
-    z-index: 2;
-  }
-
   .left {
     left: 0;
   }
@@ -34,6 +20,31 @@ $monitor-img-ratio: calc(
   .right {
     right: 0;
     transform: scaleX(-1);
+  }
+
+  .baseL1,
+  .baseL2 {
+    top: 0;
+    max-width: 50%;
+  }
+
+  .baseL2 {
+    z-index: 2;
+  }
+
+  .baseL1 {
+    z-index: 3;
+  }
+
+  .logo {
+    z-index: 4;
+    top: 105px;
+    width: 420px;
+    max-width: 100%;
+  }
+
+  .slideShow {
+    z-index: 5;
   }
 
   .monitor {
@@ -64,20 +75,9 @@ $monitor-img-ratio: calc(
     }
   }
 
-  .logo {
-    z-index: 4;
-    top: 105px;
-    width: 420px;
-    max-width: 100%;
-  }
-
   .wallShade {
     top: 0;
     z-index: 1;
-  }
-
-  .slideShow {
-    z-index: 5;
   }
 
   @media screen and (max-height: 900px) {
