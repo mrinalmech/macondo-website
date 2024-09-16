@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useContext, forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import { useStaticQuery, graphql } from 'gatsby';
@@ -10,7 +10,9 @@ import { useInterval } from 'usehooks-ts';
 import { selectAppLoaded } from '../../../store/appSlice';
 
 import FadeInElement from '../../../components/atoms/FadeInElement';
-import LoadedImg from '../../../components/atoms/LoadedImg';
+import LoadedImg, { LoadedImgPropsBase } from '../../../components/atoms/LoadedImg';
+
+import { HeroImageLoadedContext } from '../../../contexts/HeroImageLoadedContext';
 
 import {
   root,
@@ -51,13 +53,22 @@ const getImgDataFromFiles = (imgName: string, imgs: FileSystemNode[]): IGatsbyIm
   return null;
 };
 
+const HeroLoadedImg = forwardRef<HTMLDivElement, LoadedImgPropsBase>(function HeroLoadedImg(
+  props,
+  ref,
+) {
+  const imageLoaded = useContext(HeroImageLoadedContext);
+
+  return <LoadedImg ref={ref} imageLoaded={imageLoaded} {...props} />;
+});
+
 function BackgroundImages({ getImgData }: ComponentProps) {
   const { t } = useTranslation();
   const appLoaded = useSelector(selectAppLoaded);
 
   return (
     <>
-      <LoadedImg
+      <HeroLoadedImg
         animType="doubleDelay"
         imgName="logo"
         imgData={getImgData('logo')}
@@ -65,35 +76,35 @@ function BackgroundImages({ getImgData }: ComponentProps) {
         className={clsx('absolute', logo)}
         fadeIn={appLoaded}
       />
-      <LoadedImg
+      <HeroLoadedImg
         imgName="wallShade"
         imgData={getImgData('wallShade')}
         testId="wall-shade"
         className={clsx('absolute', wallShade)}
         fadeIn={appLoaded}
       />
-      <LoadedImg
+      <HeroLoadedImg
         imgName="websiteBaseL1"
         imgData={getImgData('websiteBaseL1')}
         testId="websiteBaseL1-left"
         className={clsx('absolute', baseL1, left)}
         fadeIn={appLoaded}
       />
-      <LoadedImg
+      <HeroLoadedImg
         imgName="websiteBaseL2"
         imgData={getImgData('websiteBaseL2')}
         testId="websiteBaseL2-left"
         className={clsx('absolute', baseL2, left)}
         fadeIn={appLoaded}
       />
-      <LoadedImg
+      <HeroLoadedImg
         imgName="websiteBaseL1"
         imgData={getImgData('websiteBaseL1')}
         testId="websiteBaseL1-right"
         className={clsx('absolute', baseL1, right)}
         fadeIn={appLoaded}
       />
-      <LoadedImg
+      <HeroLoadedImg
         imgName="websiteBaseL2"
         imgData={getImgData('websiteBaseL2')}
         testId="websiteBaseL2-right"
@@ -157,7 +168,7 @@ function Slideshow({ style, getImgData }: SlideshowProps) {
               'opacity-0': active !== index,
             })}
           >
-            <LoadedImg
+            <HeroLoadedImg
               imgName={img.imgName}
               imgData={img.imgData}
               animType="doubleDelay"
@@ -212,7 +223,7 @@ function Monitor({ getImgData }: ComponentProps) {
 
   return (
     <>
-      <LoadedImg
+      <HeroLoadedImg
         ref={monitorEl}
         imgName="monitor"
         imgData={getImgData('monitor')}
@@ -272,9 +283,9 @@ function TextContent() {
 }
 
 export default function Hero() {
-  const { otherImgs, logoImg, monitorImg } = useStaticQuery(query);
+  const { otherHeroImgs, logoImg, monitorImg } = useStaticQuery(query);
 
-  const allImgs = otherImgs.nodes.concat(monitorImg.nodes).concat(logoImg.nodes);
+  const allImgs = otherHeroImgs.nodes.concat(monitorImg.nodes).concat(logoImg.nodes);
 
   const getImgData = useCallback(
     (imgName: string) => getImgDataFromFiles(imgName, allImgs),
@@ -329,7 +340,7 @@ const query = graphql`
         }
       }
     }
-    otherImgs: allFile(
+    otherHeroImgs: allFile(
       filter: {
         sourceInstanceName: { eq: "loadingHeroImages" }
         name: { nin: ["monitor", "logo"] }

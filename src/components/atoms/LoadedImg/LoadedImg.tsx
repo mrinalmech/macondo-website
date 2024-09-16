@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useRef, forwardRef, memo, useImperativeHandle } from 'react';
+import React, { useEffect, useRef, forwardRef, memo, useImperativeHandle } from 'react';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 
 import FadeInElement from '../FadeInElement';
 
-import { ImageLoadedContext } from '../../../contexts/ImageLoadedContext';
-
-interface Props {
+export interface PropsBase {
   imgName: string;
   imgData: IGatsbyImageData | null;
   fadeIn: boolean;
@@ -15,14 +13,19 @@ interface Props {
   testId?: string;
 }
 
+interface Props extends PropsBase {
+  imageLoaded: (name: string) => void;
+}
+
 const LoadedImg = memo(
   forwardRef<HTMLDivElement, Props>(
-    ({ imgName, imgData, fadeIn, alt = '', animType, className, testId }, forwardedRef) => {
+    (
+      { imgName, imgData, fadeIn, imageLoaded, alt = '', animType, className, testId },
+      forwardedRef,
+    ) => {
       const ref = useRef<HTMLDivElement | null>(null);
 
       useImperativeHandle(forwardedRef, () => ref.current as HTMLDivElement);
-
-      const imageLoaded = useContext(ImageLoadedContext);
 
       const handleLoad = () => {
         imageLoaded(imgName);

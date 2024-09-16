@@ -10,14 +10,14 @@ import SEO from '../../components/atoms/Seo';
 import Hero from '../../pageComponents/home/Hero';
 import Features from '../../pageComponents/home/Features';
 
-import { ImageLoadedContext } from '../../contexts/ImageLoadedContext';
+import { HeroImageLoadedContext } from '../../contexts/HeroImageLoadedContext';
 import { selectAppLoaded, setAppLoaded } from '../../store/appSlice';
 import { RootDispatch } from '../../store/createStore';
 import { useSiteMetadata } from '../../hooks/useSiteMetadata';
 
 interface Props {
   data: {
-    loadingImgs: {
+    loadingHeroImgs: {
       nodes: FileSystemNode[];
     };
     ogImg: {
@@ -50,10 +50,10 @@ export default function Home({ data }: Props) {
   const dispatch = useDispatch<RootDispatch>();
   const appLoaded = useSelector(selectAppLoaded);
 
-  const imgsToBeLoaded = data.loadingImgs.nodes;
+  const imgsToBeLoaded = data.loadingHeroImgs.nodes;
   const loadedImgDictionary = useRef({});
 
-  const imageLoaded = (name: string) => {
+  const heroImageLoaded = (name: string) => {
     loadedImgDictionary.current = {
       ...loadedImgDictionary.current,
       [name]: true,
@@ -67,12 +67,12 @@ export default function Home({ data }: Props) {
   };
 
   return (
-    <ImageLoadedContext.Provider value={imageLoaded}>
+    <HeroImageLoadedContext.Provider value={heroImageLoaded}>
       <Page>
         <Hero />
         <Features />
       </Page>
-    </ImageLoadedContext.Provider>
+    </HeroImageLoadedContext.Provider>
   );
 }
 
@@ -141,7 +141,7 @@ export const query = graphql`
         }
       }
     }
-    loadingImgs: allFile(filter: { sourceInstanceName: { eq: "loadingHeroImages" } }) {
+    loadingHeroImgs: allFile(filter: { sourceInstanceName: { eq: "loadingHeroImages" } }) {
       nodes {
         name
       }
