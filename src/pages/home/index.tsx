@@ -50,6 +50,7 @@ export default function Home({ data }: Props) {
   const dispatch = useDispatch<RootDispatch>();
   const appLoaded = useSelector(selectAppLoaded);
 
+  const imgsToBeLoaded = data.loadingImgs.nodes;
   const loadedImgDictionary = useRef({});
 
   const imageLoaded = (name: string) => {
@@ -59,7 +60,6 @@ export default function Home({ data }: Props) {
     };
 
     const loadedImgs = Object.keys(loadedImgDictionary.current);
-    const imgsToBeLoaded = data.loadingImgs.nodes;
 
     if (loadedImgs.length >= imgsToBeLoaded.length && appLoaded === false) {
       dispatch(setAppLoaded(true));

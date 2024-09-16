@@ -207,6 +207,13 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `logoShineImages`,
+        path: `${__dirname}/src/pageComponents/home/Hero/images/logoShine`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `locale`,
         path: `${__dirname}/locales`,
       },
