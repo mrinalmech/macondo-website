@@ -25,6 +25,9 @@ const mockUseStaticQuery = {
       { name: 'screenshot4' },
     ],
   },
+  logoShineImgs: {
+    nodes: [],
+  },
 };
 
 jest.mock('react-redux', () => ({
