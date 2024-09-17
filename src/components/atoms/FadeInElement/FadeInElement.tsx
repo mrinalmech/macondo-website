@@ -3,11 +3,13 @@ import React, { forwardRef, memo } from 'react';
 
 import { fadeAnim, fadeAnimDelay, fadeAnimDoubleDelay } from './FadeInElement.module.scss';
 
+export type FadeInType = 'none' | 'normal' | 'delay' | 'doubleDelay';
+
 interface Props {
   fadeIn: boolean;
   className?: string;
   children?: React.ReactNode;
-  animType?: 'normal' | 'delay' | 'doubleDelay';
+  animType?: FadeInType;
   testId?: string;
 }
 

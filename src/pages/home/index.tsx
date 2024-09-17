@@ -50,18 +50,18 @@ export default function Home({ data }: Props) {
   const dispatch = useDispatch<RootDispatch>();
   const appLoaded = useSelector(selectAppLoaded);
 
-  const imgsToBeLoaded = data.loadingHeroImgs.nodes;
-  const loadedImgDictionary = useRef({});
+  const heroImgsToBeLoaded = data.loadingHeroImgs.nodes;
+  const loadedHeroImgDictionary = useRef({});
 
   const heroImageLoaded = (name: string) => {
-    loadedImgDictionary.current = {
-      ...loadedImgDictionary.current,
+    loadedHeroImgDictionary.current = {
+      ...loadedHeroImgDictionary.current,
       [name]: true,
     };
 
-    const loadedImgs = Object.keys(loadedImgDictionary.current);
+    const loadedHeroImgs = Object.keys(loadedHeroImgDictionary.current);
 
-    if (loadedImgs.length >= imgsToBeLoaded.length && appLoaded === false) {
+    if (loadedHeroImgs.length >= heroImgsToBeLoaded.length && appLoaded === false) {
       dispatch(setAppLoaded(true));
     }
   };

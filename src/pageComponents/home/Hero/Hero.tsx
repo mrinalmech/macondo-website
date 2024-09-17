@@ -21,6 +21,7 @@ import {
   extension,
   wallShade,
   logo,
+  logoShine,
   baseL1,
   baseL2,
   left,
@@ -112,6 +113,65 @@ function BackgroundImages({ getImgData }: ComponentProps) {
         fadeIn={appLoaded}
       />
     </>
+  );
+}
+
+const LogoShineLoadedImg = forwardRef<HTMLDivElement, LoadedImgPropsBase>(function HeroLoadedImg(
+  props,
+  ref,
+) {
+  const imageLoaded = (n: string) => {
+    console.log(n);
+  };
+
+  return <LoadedImg ref={ref} imageLoaded={imageLoaded} {...props} />;
+});
+
+const LOGO_SHINE_NUMBER_OF_FRAMES = 48;
+const LOGO_SHINE_FRAME_DURATION = 1 / 24;
+
+function LogoShineImages({ getImgData }: ComponentProps) {
+  const appLoaded = useSelector(selectAppLoaded);
+  const [active, setActive] = useState(0);
+
+  const totalFrames = 2 * LOGO_SHINE_NUMBER_OF_FRAMES;
+
+  const updateActive = () => {
+    const newActive = (active + 1) % totalFrames;
+    setActive(newActive);
+  };
+
+  useInterval(() => {
+    updateActive();
+  }, LOGO_SHINE_FRAME_DURATION * 1000);
+
+  const logoShineFrames = [];
+
+  for (let i = 0; i < LOGO_SHINE_NUMBER_OF_FRAMES; i++) {
+    const imgName = `logoShine_${i}`;
+    const shouldDisplay = active === i && appLoaded;
+
+    logoShineFrames.push(
+      <LogoShineLoadedImg
+        key={i}
+        animType="none"
+        imgName={imgName}
+        imgData={getImgData(imgName)}
+        alt=""
+        className="absolute"
+        fadeIn={shouldDisplay}
+      />,
+    );
+  }
+
+  return (
+    <FadeInElement
+      className={clsx('absolute', logo, logoShine)}
+      fadeIn={appLoaded}
+      animType="doubleDelay"
+    >
+      {logoShineFrames}
+    </FadeInElement>
   );
 }
 
@@ -283,9 +343,12 @@ function TextContent() {
 }
 
 export default function Hero() {
-  const { otherHeroImgs, logoImg, monitorImg } = useStaticQuery(query);
+  const { otherHeroImgs, logoImg, monitorImg, logoShineImgs } = useStaticQuery(query);
 
-  const allImgs = otherHeroImgs.nodes.concat(monitorImg.nodes).concat(logoImg.nodes);
+  const allImgs = otherHeroImgs.nodes
+    .concat(monitorImg.nodes)
+    .concat(logoImg.nodes)
+    .concat(logoShineImgs.nodes);
 
   const getImgData = useCallback(
     (imgName: string) => getImgDataFromFiles(imgName, allImgs),
@@ -306,6 +369,7 @@ export default function Hero() {
         )}
       >
         <BackgroundImages getImgData={getImgData} />
+        <LogoShineImages getImgData={getImgData} />
         <Monitor getImgData={getImgData} />
         <TextContent />
       </div>
@@ -328,6 +392,19 @@ const query = graphql`
     logoImg: allFile(
       filter: { sourceInstanceName: { eq: "loadingHeroImages" }, name: { eq: "logo" } }
     ) {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(
+            placeholder: NONE
+            width: 420
+            sizes: "(max-width: 320px) 230px, (max-width: 360px) 280px, (max-width: 480px) 320px, (max-width: 700px) 360px, (max-width: 992px) 380px, 420px"
+            breakpoints: [230, 280, 320, 360, 380, 420]
+          )
+        }
+      }
+    }
+    logoShineImgs: allFile(filter: { sourceInstanceName: { eq: "logoShineImages" } }) {
       nodes {
         name
         childImageSharp {
