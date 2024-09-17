@@ -11,7 +11,14 @@ import Hero from '../../pageComponents/home/Hero';
 import Features from '../../pageComponents/home/Features';
 
 import { HeroImageLoadedContext } from '../../contexts/HeroImageLoadedContext';
-import { selectAppLoaded, setAppLoaded } from '../../store/appSlice';
+import { LogoShineImageLoadedContext } from '../../contexts/LogoShineImageLoadedContext';
+
+import {
+  selectHeroImgsLoaded,
+  selectLogoShineImgsLoaded,
+  setHeroImgsLoaded,
+  setLogoShineImgsLoaded,
+} from '../../store/appSlice';
 import { RootDispatch } from '../../store/createStore';
 import { useSiteMetadata } from '../../hooks/useSiteMetadata';
 
@@ -34,6 +41,9 @@ interface Props {
         };
       }[];
     };
+    logoShineImgs: {
+      nodes: FileSystemNode[];
+    };
     locales: {
       edges: {
         node: {
@@ -48,10 +58,15 @@ interface Props {
 
 export default function Home({ data }: Props) {
   const dispatch = useDispatch<RootDispatch>();
-  const appLoaded = useSelector(selectAppLoaded);
+
+  const heroImgsLoaded = useSelector(selectHeroImgsLoaded);
+  const logoShineImgsLoaded = useSelector(selectLogoShineImgsLoaded);
 
   const heroImgsToBeLoaded = data.loadingHeroImgs.nodes;
+  const logoShineImgsToBeLoaded = data.logoShineImgs.nodes;
+
   const loadedHeroImgDictionary = useRef({});
+  const loadedLogoShineImgDictionary = useRef({});
 
   const heroImageLoaded = (name: string) => {
     loadedHeroImgDictionary.current = {
@@ -61,18 +76,36 @@ export default function Home({ data }: Props) {
 
     const loadedHeroImgs = Object.keys(loadedHeroImgDictionary.current);
 
-    if (loadedHeroImgs.length >= heroImgsToBeLoaded.length && appLoaded === false) {
-      dispatch(setAppLoaded(true));
+    if (loadedHeroImgs.length >= heroImgsToBeLoaded.length && heroImgsLoaded === false) {
+      dispatch(setHeroImgsLoaded(true));
+    }
+  };
+
+  const logoShineImageLoaded = (name: string) => {
+    loadedLogoShineImgDictionary.current = {
+      ...loadedLogoShineImgDictionary.current,
+      [name]: true,
+    };
+
+    const loadedLogoShineImgs = Object.keys(loadedLogoShineImgDictionary.current);
+
+    if (
+      loadedLogoShineImgs.length >= logoShineImgsToBeLoaded.length &&
+      logoShineImgsLoaded === false
+    ) {
+      dispatch(setLogoShineImgsLoaded(true));
     }
   };
 
   return (
-    <HeroImageLoadedContext.Provider value={heroImageLoaded}>
-      <Page>
-        <Hero />
-        <Features />
-      </Page>
-    </HeroImageLoadedContext.Provider>
+    <LogoShineImageLoadedContext.Provider value={logoShineImageLoaded}>
+      <HeroImageLoadedContext.Provider value={heroImageLoaded}>
+        <Page>
+          <Hero />
+          <Features />
+        </Page>
+      </HeroImageLoadedContext.Provider>
+    </LogoShineImageLoadedContext.Provider>
   );
 }
 
@@ -160,6 +193,11 @@ export const query = graphql`
         childImageSharp {
           gatsbyImageData(placeholder: NONE)
         }
+      }
+    }
+    logoShineImgs: allFile(filter: { sourceInstanceName: { eq: "logoShineImages" } }) {
+      nodes {
+        name
       }
     }
   }

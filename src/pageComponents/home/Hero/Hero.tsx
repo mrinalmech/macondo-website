@@ -7,12 +7,13 @@ import { IGatsbyImageData, getImage } from 'gatsby-plugin-image';
 import clsx from 'clsx';
 import { useInterval } from 'usehooks-ts';
 
-import { selectAppLoaded } from '../../../store/appSlice';
+import { selectHeroImgsLoaded, selectLogoShineImgsLoaded } from '../../../store/appSlice';
 
 import FadeInElement from '../../../components/atoms/FadeInElement';
 import LoadedImg, { LoadedImgPropsBase } from '../../../components/atoms/LoadedImg';
 
 import { HeroImageLoadedContext } from '../../../contexts/HeroImageLoadedContext';
+import { LogoShineImageLoadedContext } from '../../../contexts/LogoShineImageLoadedContext';
 
 import {
   root,
@@ -65,7 +66,7 @@ const HeroLoadedImg = forwardRef<HTMLDivElement, LoadedImgPropsBase>(function He
 
 function BackgroundImages({ getImgData }: ComponentProps) {
   const { t } = useTranslation();
-  const appLoaded = useSelector(selectAppLoaded);
+  const heroImgsLoaded = useSelector(selectHeroImgsLoaded);
 
   return (
     <>
@@ -75,42 +76,42 @@ function BackgroundImages({ getImgData }: ComponentProps) {
         imgData={getImgData('logo')}
         alt={t('game_logo_alt') || 'Game Logo'}
         className={clsx('absolute', logo)}
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
       <HeroLoadedImg
         imgName="wallShade"
         imgData={getImgData('wallShade')}
         testId="wall-shade"
         className={clsx('absolute', wallShade)}
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
       <HeroLoadedImg
         imgName="websiteBaseL1"
         imgData={getImgData('websiteBaseL1')}
         testId="websiteBaseL1-left"
         className={clsx('absolute', baseL1, left)}
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
       <HeroLoadedImg
         imgName="websiteBaseL2"
         imgData={getImgData('websiteBaseL2')}
         testId="websiteBaseL2-left"
         className={clsx('absolute', baseL2, left)}
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
       <HeroLoadedImg
         imgName="websiteBaseL1"
         imgData={getImgData('websiteBaseL1')}
         testId="websiteBaseL1-right"
         className={clsx('absolute', baseL1, right)}
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
       <HeroLoadedImg
         imgName="websiteBaseL2"
         imgData={getImgData('websiteBaseL2')}
         testId="websiteBaseL2-right"
         className={clsx('absolute', baseL2, right)}
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
     </>
   );
@@ -120,9 +121,7 @@ const LogoShineLoadedImg = forwardRef<HTMLDivElement, LoadedImgPropsBase>(functi
   props,
   ref,
 ) {
-  const imageLoaded = (n: string) => {
-    console.log(n);
-  };
+  const imageLoaded = useContext(LogoShineImageLoadedContext);
 
   return <LoadedImg ref={ref} imageLoaded={imageLoaded} {...props} />;
 });
@@ -131,7 +130,9 @@ const LOGO_SHINE_NUMBER_OF_FRAMES = 48;
 const LOGO_SHINE_FRAME_DURATION = 1 / 24;
 
 function LogoShineImages({ getImgData }: ComponentProps) {
-  const appLoaded = useSelector(selectAppLoaded);
+  const heroImgsLoaded = useSelector(selectHeroImgsLoaded);
+  const logoShineImagesLoaded = useSelector(selectLogoShineImgsLoaded);
+
   const [active, setActive] = useState(0);
 
   const totalFrames = 2 * LOGO_SHINE_NUMBER_OF_FRAMES;
@@ -149,7 +150,7 @@ function LogoShineImages({ getImgData }: ComponentProps) {
 
   for (let i = 0; i < LOGO_SHINE_NUMBER_OF_FRAMES; i++) {
     const imgName = `logoShine_${i}`;
-    const shouldDisplay = active === i && appLoaded;
+    const shouldDisplay = active === i && logoShineImagesLoaded;
 
     logoShineFrames.push(
       <LogoShineLoadedImg
@@ -167,7 +168,7 @@ function LogoShineImages({ getImgData }: ComponentProps) {
   return (
     <FadeInElement
       className={clsx('absolute', logo, logoShine)}
-      fadeIn={appLoaded}
+      fadeIn={heroImgsLoaded}
       animType="doubleDelay"
     >
       {logoShineFrames}
@@ -177,7 +178,7 @@ function LogoShineImages({ getImgData }: ComponentProps) {
 
 function Slideshow({ style, getImgData }: SlideshowProps) {
   const { t } = useTranslation();
-  const appLoaded = useSelector(selectAppLoaded);
+  const heroImgsLoaded = useSelector(selectHeroImgsLoaded);
 
   const imgsData = [
     {
@@ -234,7 +235,7 @@ function Slideshow({ style, getImgData }: SlideshowProps) {
               animType="doubleDelay"
               alt={img.alt}
               className="h-full w-full"
-              fadeIn={appLoaded}
+              fadeIn={heroImgsLoaded}
             />
           </div>
         );
@@ -244,7 +245,7 @@ function Slideshow({ style, getImgData }: SlideshowProps) {
 }
 
 function Monitor({ getImgData }: ComponentProps) {
-  const appLoaded = useSelector(selectAppLoaded);
+  const heroImgsLoaded = useSelector(selectHeroImgsLoaded);
 
   const monitorEl = useRef<HTMLDivElement | null>(null);
 
@@ -268,10 +269,10 @@ function Monitor({ getImgData }: ComponentProps) {
   };
 
   useEffect(() => {
-    if (appLoaded && !dimensions.height) {
+    if (heroImgsLoaded && !dimensions.height) {
       calculateDimensions();
     }
-  }, [appLoaded, dimensions.height]);
+  }, [heroImgsLoaded, dimensions.height]);
 
   useEffect(() => {
     window.addEventListener('resize', calculateDimensions);
@@ -290,7 +291,7 @@ function Monitor({ getImgData }: ComponentProps) {
         testId="monitor"
         className={clsx('absolute', monitor)}
         animType="delay"
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
       <Slideshow
         style={{
@@ -300,20 +301,20 @@ function Monitor({ getImgData }: ComponentProps) {
         }}
         getImgData={getImgData}
       />
-      <FadeInElement className={clsx('absolute', extension, left)} fadeIn={appLoaded} />
-      <FadeInElement className={clsx('absolute', extension, right)} fadeIn={appLoaded} />
+      <FadeInElement className={clsx('absolute', extension, left)} fadeIn={heroImgsLoaded} />
+      <FadeInElement className={clsx('absolute', extension, right)} fadeIn={heroImgsLoaded} />
     </>
   );
 }
 
 function TextContent() {
-  const appLoaded = useSelector(selectAppLoaded);
+  const heroImgsLoaded = useSelector(selectHeroImgsLoaded);
 
   return (
     <FadeInElement
       className={clsx('flex flex-col lg:flex-row items-center px-3', textContent)}
       animType="doubleDelay"
-      fadeIn={appLoaded}
+      fadeIn={heroImgsLoaded}
     >
       <div
         className={clsx(

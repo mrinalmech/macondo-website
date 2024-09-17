@@ -3,7 +3,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from './createStore';
 
 interface AppState {
-  appLoaded: boolean;
+  heroImgsLoaded: boolean;
+  logoShineImgsLoaded: boolean;
   steamLoaded: boolean;
   features: {
     allImgsLoaded: boolean;
@@ -12,7 +13,8 @@ interface AppState {
 }
 
 const initialState: AppState = {
-  appLoaded: false,
+  heroImgsLoaded: false,
+  logoShineImgsLoaded: false,
   steamLoaded: false,
   features: {
     allImgsLoaded: false,
@@ -24,8 +26,11 @@ export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setAppLoaded(state, action: PayloadAction<boolean>) {
-      state.appLoaded = action.payload;
+    setHeroImgsLoaded(state, action: PayloadAction<boolean>) {
+      state.heroImgsLoaded = action.payload;
+    },
+    setLogoShineImgsLoaded(state, action: PayloadAction<boolean>) {
+      state.logoShineImgsLoaded = action.payload;
     },
     setSteamLoaded(state, action: PayloadAction<boolean>) {
       state.steamLoaded = action.payload;
@@ -44,8 +49,10 @@ export const appSlice = createSlice({
   },
 });
 
-export const { setAppLoaded, setImageLoaded, setSteamLoaded } = appSlice.actions;
+export const { setHeroImgsLoaded, setLogoShineImgsLoaded, setImageLoaded, setSteamLoaded } =
+  appSlice.actions;
 
-export const selectAppLoaded = (state: RootState) => state.app.appLoaded;
+export const selectHeroImgsLoaded = (state: RootState) => state.app.heroImgsLoaded;
+export const selectLogoShineImgsLoaded = (state: RootState) => state.app.logoShineImgsLoaded;
 export const selectSteamLoaded = (state: RootState) => state.app.steamLoaded;
 export const selectFeaturesImagesLoaded = (state: RootState) => state.app.features.allImgsLoaded;
