@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, forwardRef, memo, useImperativeHandle } from 'react';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 
-import FadeInElement from '../FadeInElement';
+import FadeInElement, { FadeInType } from '../FadeInElement';
 
 export interface PropsBase {
   imgName: string;
@@ -9,7 +9,7 @@ export interface PropsBase {
   fadeIn: boolean;
   alt?: string;
   className?: string;
-  animType?: 'normal' | 'delay' | 'doubleDelay';
+  animType?: FadeInType;
   testId?: string;
 }
 

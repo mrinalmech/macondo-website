@@ -7,12 +7,13 @@ import { IGatsbyImageData, getImage } from 'gatsby-plugin-image';
 import clsx from 'clsx';
 import { useInterval } from 'usehooks-ts';
 
-import { selectAppLoaded } from '../../../store/appSlice';
+import { selectHeroImgsLoaded, selectLogoShineImgsLoaded } from '../../../store/appSlice';
 
 import FadeInElement from '../../../components/atoms/FadeInElement';
 import LoadedImg, { LoadedImgPropsBase } from '../../../components/atoms/LoadedImg';
 
 import { HeroImageLoadedContext } from '../../../contexts/HeroImageLoadedContext';
+import { LogoShineImageLoadedContext } from '../../../contexts/LogoShineImageLoadedContext';
 
 import {
   root,
@@ -21,6 +22,7 @@ import {
   extension,
   wallShade,
   logo,
+  logoShine,
   baseL1,
   baseL2,
   left,
@@ -64,7 +66,7 @@ const HeroLoadedImg = forwardRef<HTMLDivElement, LoadedImgPropsBase>(function He
 
 function BackgroundImages({ getImgData }: ComponentProps) {
   const { t } = useTranslation();
-  const appLoaded = useSelector(selectAppLoaded);
+  const heroImgsLoaded = useSelector(selectHeroImgsLoaded);
 
   return (
     <>
@@ -74,50 +76,109 @@ function BackgroundImages({ getImgData }: ComponentProps) {
         imgData={getImgData('logo')}
         alt={t('game_logo_alt') || 'Game Logo'}
         className={clsx('absolute', logo)}
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
       <HeroLoadedImg
         imgName="wallShade"
         imgData={getImgData('wallShade')}
         testId="wall-shade"
         className={clsx('absolute', wallShade)}
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
       <HeroLoadedImg
         imgName="websiteBaseL1"
         imgData={getImgData('websiteBaseL1')}
         testId="websiteBaseL1-left"
         className={clsx('absolute', baseL1, left)}
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
       <HeroLoadedImg
         imgName="websiteBaseL2"
         imgData={getImgData('websiteBaseL2')}
         testId="websiteBaseL2-left"
         className={clsx('absolute', baseL2, left)}
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
       <HeroLoadedImg
         imgName="websiteBaseL1"
         imgData={getImgData('websiteBaseL1')}
         testId="websiteBaseL1-right"
         className={clsx('absolute', baseL1, right)}
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
       <HeroLoadedImg
         imgName="websiteBaseL2"
         imgData={getImgData('websiteBaseL2')}
         testId="websiteBaseL2-right"
         className={clsx('absolute', baseL2, right)}
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
     </>
   );
 }
 
+const LogoShineLoadedImg = forwardRef<HTMLDivElement, LoadedImgPropsBase>(function HeroLoadedImg(
+  props,
+  ref,
+) {
+  const imageLoaded = useContext(LogoShineImageLoadedContext);
+
+  return <LoadedImg ref={ref} imageLoaded={imageLoaded} {...props} />;
+});
+
+const LOGO_SHINE_NUMBER_OF_FRAMES = 48;
+const LOGO_SHINE_FRAME_DURATION = 1 / 24;
+
+function LogoShineImages({ getImgData }: ComponentProps) {
+  const heroImgsLoaded = useSelector(selectHeroImgsLoaded);
+  const logoShineImagesLoaded = useSelector(selectLogoShineImgsLoaded);
+
+  const [active, setActive] = useState(0);
+
+  const totalFrames = 2 * LOGO_SHINE_NUMBER_OF_FRAMES;
+
+  const updateActive = () => {
+    const newActive = (active + 1) % totalFrames;
+    setActive(newActive);
+  };
+
+  useInterval(() => {
+    updateActive();
+  }, LOGO_SHINE_FRAME_DURATION * 1000);
+
+  const logoShineFrames = [];
+
+  for (let i = 0; i < LOGO_SHINE_NUMBER_OF_FRAMES; i++) {
+    const imgName = `logoShine_${i}`;
+    const shouldDisplay = active === i && logoShineImagesLoaded;
+
+    logoShineFrames.push(
+      <LogoShineLoadedImg
+        key={i}
+        animType="none"
+        imgName={imgName}
+        imgData={getImgData(imgName)}
+        alt=""
+        className="absolute w-full"
+        fadeIn={shouldDisplay}
+      />,
+    );
+  }
+
+  return (
+    <FadeInElement
+      className={clsx('absolute', logo, logoShine)}
+      fadeIn={heroImgsLoaded}
+      animType="doubleDelay"
+    >
+      {logoShineFrames}
+    </FadeInElement>
+  );
+}
+
 function Slideshow({ style, getImgData }: SlideshowProps) {
   const { t } = useTranslation();
-  const appLoaded = useSelector(selectAppLoaded);
+  const heroImgsLoaded = useSelector(selectHeroImgsLoaded);
 
   const imgsData = [
     {
@@ -174,7 +235,7 @@ function Slideshow({ style, getImgData }: SlideshowProps) {
               animType="doubleDelay"
               alt={img.alt}
               className="h-full w-full"
-              fadeIn={appLoaded}
+              fadeIn={heroImgsLoaded}
             />
           </div>
         );
@@ -184,7 +245,7 @@ function Slideshow({ style, getImgData }: SlideshowProps) {
 }
 
 function Monitor({ getImgData }: ComponentProps) {
-  const appLoaded = useSelector(selectAppLoaded);
+  const heroImgsLoaded = useSelector(selectHeroImgsLoaded);
 
   const monitorEl = useRef<HTMLDivElement | null>(null);
 
@@ -208,10 +269,10 @@ function Monitor({ getImgData }: ComponentProps) {
   };
 
   useEffect(() => {
-    if (appLoaded && !dimensions.height) {
+    if (heroImgsLoaded && !dimensions.height) {
       calculateDimensions();
     }
-  }, [appLoaded, dimensions.height]);
+  }, [heroImgsLoaded, dimensions.height]);
 
   useEffect(() => {
     window.addEventListener('resize', calculateDimensions);
@@ -230,7 +291,7 @@ function Monitor({ getImgData }: ComponentProps) {
         testId="monitor"
         className={clsx('absolute', monitor)}
         animType="delay"
-        fadeIn={appLoaded}
+        fadeIn={heroImgsLoaded}
       />
       <Slideshow
         style={{
@@ -240,20 +301,20 @@ function Monitor({ getImgData }: ComponentProps) {
         }}
         getImgData={getImgData}
       />
-      <FadeInElement className={clsx('absolute', extension, left)} fadeIn={appLoaded} />
-      <FadeInElement className={clsx('absolute', extension, right)} fadeIn={appLoaded} />
+      <FadeInElement className={clsx('absolute', extension, left)} fadeIn={heroImgsLoaded} />
+      <FadeInElement className={clsx('absolute', extension, right)} fadeIn={heroImgsLoaded} />
     </>
   );
 }
 
 function TextContent() {
-  const appLoaded = useSelector(selectAppLoaded);
+  const heroImgsLoaded = useSelector(selectHeroImgsLoaded);
 
   return (
     <FadeInElement
       className={clsx('flex flex-col lg:flex-row items-center px-3', textContent)}
       animType="doubleDelay"
-      fadeIn={appLoaded}
+      fadeIn={heroImgsLoaded}
     >
       <div
         className={clsx(
@@ -283,9 +344,12 @@ function TextContent() {
 }
 
 export default function Hero() {
-  const { otherHeroImgs, logoImg, monitorImg } = useStaticQuery(query);
+  const { otherHeroImgs, logoImg, monitorImg, logoShineImgs } = useStaticQuery(query);
 
-  const allImgs = otherHeroImgs.nodes.concat(monitorImg.nodes).concat(logoImg.nodes);
+  const allImgs = otherHeroImgs.nodes
+    .concat(monitorImg.nodes)
+    .concat(logoImg.nodes)
+    .concat(logoShineImgs.nodes);
 
   const getImgData = useCallback(
     (imgName: string) => getImgDataFromFiles(imgName, allImgs),
@@ -306,6 +370,7 @@ export default function Hero() {
         )}
       >
         <BackgroundImages getImgData={getImgData} />
+        <LogoShineImages getImgData={getImgData} />
         <Monitor getImgData={getImgData} />
         <TextContent />
       </div>
@@ -333,9 +398,22 @@ const query = graphql`
         childImageSharp {
           gatsbyImageData(
             placeholder: NONE
-            width: 420
-            sizes: "(max-width: 320px) 230px, (max-width: 360px) 280px, (max-width: 480px) 320px, (max-width: 700px) 360px, (max-width: 992px) 380px, 420px"
-            breakpoints: [230, 280, 320, 360, 380, 420]
+            width: 525
+            sizes: "(max-width: 320px) 288px, (max-width: 360px) 350px, (max-width: 480px) 400px, (max-width: 700px) 450px, (max-width: 992px) 475px, 525px"
+            breakpoints: [288, 350, 400, 450, 475, 525]
+          )
+        }
+      }
+    }
+    logoShineImgs: allFile(filter: { sourceInstanceName: { eq: "logoShineImages" } }) {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(
+            placeholder: NONE
+            width: 525
+            sizes: "(max-width: 320px) 288px, (max-width: 360px) 350px, (max-width: 480px) 400px, (max-width: 700px) 450px, (max-width: 992px) 475px, 525px"
+            breakpoints: [288, 350, 400, 450, 475, 525]
           )
         }
       }

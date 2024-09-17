@@ -1,1 +1,1 @@
-export { default } from './FadeInElement';
+export { default, FadeInType } from './FadeInElement';
