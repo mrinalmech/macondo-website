@@ -21,6 +21,7 @@ import {
 } from '../../store/appSlice';
 import { RootDispatch } from '../../store/createStore';
 import { useSiteMetadata } from '../../hooks/useSiteMetadata';
+import { JsonLDData } from 'react-safe-json-ld';
 
 interface Props {
   data: {
@@ -112,7 +113,7 @@ export default function Home({ data }: Props) {
 export const Head = ({ data }: Props) => {
   const { siteUrl } = useSiteMetadata();
 
-  const schemaJSON = {
+  const schema: JsonLDData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Macondo Games',
@@ -120,13 +121,13 @@ export const Head = ({ data }: Props) => {
     description:
       'Macondo Games is a studio located in Goa, India working on their first title, a 2d run and gun shooter Global Steel.',
     email: 'info@macondogames.com',
-  } as { [prop: string]: string };
+  };
 
   const logoImg = data.logoImg.nodes[0].childImageSharp.gatsbyImageData;
   const logoImgUrl = logoImg?.images?.fallback?.src;
 
   if (logoImgUrl) {
-    schemaJSON.logo = `${siteUrl}${logoImgUrl}`;
+    schema.logo = `${siteUrl}${logoImgUrl}`;
   }
 
   const ogImg = data.ogImg.nodes[0].childImageSharp.gatsbyImageData;
@@ -138,9 +139,7 @@ export const Head = ({ data }: Props) => {
     const lang = dataLanguageNode.language;
     const data = JSON.parse(dataLanguageNode.data);
 
-    schemaJSON.description = data['site_meta_desc'];
-
-    const schema = JSON.stringify(schemaJSON);
+    schema.description = data['site_meta_desc'];
 
     return (
       <SEO
@@ -152,8 +151,6 @@ export const Head = ({ data }: Props) => {
       />
     );
   }
-
-  const schema = JSON.stringify(schemaJSON);
 
   return <SEO schema={schema} ogImg={ogImg} ogImgAlt={ogImgAlt} />;
 };
