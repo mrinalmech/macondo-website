@@ -1,6 +1,6 @@
 import React from 'react';
-import { Script } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
+import { JsonLD, type JsonLDData } from 'react-safe-json-ld';
 
 import { useSiteMetadata } from '../../../hooks/useSiteMetadata';
 
@@ -12,7 +12,7 @@ interface Props {
   lang?: string;
   ogImg?: IGatsbyImageData;
   ogImgAlt?: string;
-  schema?: string;
+  schema?: JsonLDData;
   isTest?: boolean;
 }
 
@@ -49,11 +49,7 @@ export default function SEO({
     <>
       {!isTest ? <html lang={lang} /> : <meta name="lang" content={lang} />}
       <title>{seo.title}</title>
-      {schema && (
-        <Script type="application/ld+json" strategy="off-main-thread">
-          {schema}
-        </Script>
-      )}
+      {schema && <JsonLD data={schema} />}
       <meta name="description" content={seo.description} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={seo.title} />
