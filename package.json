@@ -55,7 +55,6 @@
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-webpack-plugin": "^4.0.1",
     "gatsby": "^5.13.3",
-    "gatsby-plugin-csp": "^1.1.4",
     "gatsby-plugin-eslint": "^4.0.4",
     "gatsby-plugin-image": "^3.13.1",
     "gatsby-plugin-manifest": "^5.13.1",
