@@ -1,7 +1,11 @@
-const isIframeLoaded = $iframe => {
+const isIframeLoaded = ($iframe: HTMLIFrameElement) => {
   const contentWindow = $iframe.contentWindow;
 
-  const src = $iframe.attributes.src;
+  if (!contentWindow) {
+    return null;
+  }
+
+  const src = $iframe.src;
   const href = contentWindow.location.href;
   if (contentWindow.document.readyState === 'complete') {
     return href !== 'about:blank' || src === 'about:blank' || src === '';
@@ -17,14 +21,14 @@ Cypress.Commands.add(
     new Cypress.Promise(resolve => {
       const loaded: Promise<unknown>[] = [];
 
-      $iframes.each((_, $iframe) => {
+      ($iframes as Cypress.JQueryWithSelector<HTMLIFrameElement>).each((_, $iframe) => {
         loaded.push(
           new Promise(subResolve => {
-            if (isIframeLoaded($iframe)) {
+            if (isIframeLoaded($iframe) && $iframe.contentDocument) {
               subResolve($iframe.contentDocument.body);
             } else {
               Cypress.$($iframe).on('load.appearHere', () => {
-                if (isIframeLoaded($iframe)) {
+                if (isIframeLoaded($iframe) && $iframe.contentDocument) {
                   subResolve($iframe.contentDocument.body);
                   Cypress.$($iframe).off('load.appearHere');
                 }
@@ -37,3 +41,12 @@ Cypress.Commands.add(
       return Promise.all(loaded).then(resolve);
     }),
 );
+
+export {};
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      iframe(): Chainable<Cypress.JQueryWithSelector>;
+    }
+  }
+}
