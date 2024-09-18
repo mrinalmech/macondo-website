@@ -51,7 +51,7 @@ describe('SEO', () => {
     expect(getMeta('og:description')).toEqual('TestDefaultDescription');
     expect(getMeta('og:url')).toEqual('test-default-url');
     expect(getMeta('og:site_name')).toEqual('TestDefaultTitle');
-    expect(getMeta('twitter:card')).toEqual('summary_large_image');
+    expect(getMeta('twitter:card')).toEqual('summary');
     expect(getMeta('twitter:title')).toEqual('TestDefaultTitle');
     expect(getMeta('twitter:url')).toEqual('test-default-url');
     expect(getMeta('twitter:description')).toEqual('TestDefaultDescription');
