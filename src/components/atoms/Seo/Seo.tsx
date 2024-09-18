@@ -68,7 +68,7 @@ export default function SEO({
           {ogImgAlt && <meta property="og:image:alt" content={ogImgAlt} />}
         </>
       )}
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:url" content={seo.url} />
       <meta name="twitter:description" content={seo.description} />
