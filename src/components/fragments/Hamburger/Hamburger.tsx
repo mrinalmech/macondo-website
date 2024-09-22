@@ -8,9 +8,10 @@ interface Props {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
   showHamburger: boolean;
+  className?: string;
 }
 
-export default function Hamburger({ isOpen, setIsOpen, showHamburger }: Props) {
+export default function Hamburger({ isOpen, setIsOpen, showHamburger, className }: Props) {
   const { t } = useTranslation();
 
   const handleClick = () => {
@@ -22,10 +23,15 @@ export default function Hamburger({ isOpen, setIsOpen, showHamburger }: Props) {
   return (
     <button
       onClick={handleClick}
-      className={clsx('flex flex-col lg:hidden justify-center items-center -mt-2', root, {
-        'opacity-0': !showHamburger,
-        'pointer-events-none': !showHamburger,
-      })}
+      className={clsx(
+        'flex flex-col lg:hidden justify-center items-center -mt-2',
+        root,
+        {
+          'opacity-0': !showHamburger,
+          'pointer-events-none': !showHamburger,
+        },
+        className,
+      )}
       aria-label={
         isOpen ? t('hamburger_close') || 'Close the menu' : t('hamburger_open') || 'Open the menu'
       }

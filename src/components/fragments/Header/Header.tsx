@@ -14,11 +14,19 @@ import { StaticImage } from 'gatsby-plugin-image';
 
 import { useBreakpointRegion } from '../../../hooks/useBreakpointRegion';
 
-import { navLink, langLink, imgHolder, navHolder, imgLink } from './Header.module.scss';
+import {
+  navLink,
+  langLink,
+  imgHolder,
+  navHolder,
+  imgLink,
+  sideHamburger,
+} from './Header.module.scss';
 
 import Link from '../../../components/atoms/Link';
 import SocialLink from '../../../components/atoms/SocialLink';
 import Hamburger from '../Hamburger';
+import { drawerTransition } from '../Drawer';
 
 const Drawer = lazy(() => import('../Drawer'));
 
@@ -43,6 +51,7 @@ export default function Header() {
 
   const [barBlack, setBarBlack] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [showSideHamburger, setShowHideHamburger] = useState(false);
   const [domLoaded, setDomLoaded] = useState(false);
 
   const breakpointRegion = useBreakpointRegion();
@@ -58,6 +67,24 @@ export default function Header() {
       setIsOpen(false);
     }
   }, [onTablet, isOpen]);
+
+  useEffect(() => {
+    if (!isOpen || showSideHamburger) {
+      return;
+    }
+
+    const timeoutId = setTimeout(() => {
+      setShowHideHamburger(true);
+    }, drawerTransition);
+
+    return () => clearTimeout(timeoutId);
+  }, [isOpen, showSideHamburger]);
+
+  useEffect(() => {
+    if (!isOpen && showSideHamburger) {
+      setShowHideHamburger(false);
+    }
+  }, [isOpen, showSideHamburger]);
 
   const handleScroll = useCallback(() => {
     const position = window.scrollY;
@@ -158,9 +185,11 @@ export default function Header() {
     </div>
   );
 
+  const showBlackBar = barBlack && !isOpen;
+
   return (
     <>
-      <header className="fixed w-full z-50">
+      <header className={clsx('fixed w-full z-50', { 'pointer-events-none': showSideHamburger })}>
         <Link
           to="/"
           className={clsx(
@@ -171,7 +200,7 @@ export default function Header() {
         >
           <div
             className={clsx('p-2.5 pr-2 transition-colors duration-300', imgHolder, {
-              'bg-black': barBlack,
+              'bg-black': showBlackBar,
             })}
           >
             <StaticImage
@@ -187,12 +216,20 @@ export default function Header() {
             'px-6 pt-4 pb-8 w-full flex justify-end transition-colors duration-300 z-0',
             navHolder,
             {
-              'bg-black': barBlack,
+              'bg-black': showBlackBar,
             },
           )}
           data-testid="nav-holder"
         >
-          <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} showHamburger={domLoaded} />
+          <Hamburger
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            showHamburger={domLoaded}
+            className={clsx(
+              'transition-opacity !duration-0',
+              showSideHamburger ? 'opacity-0' : 'opacity-1',
+            )}
+          />
           <nav
             className={clsx('hidden lg:flex', {
               'font-retro': i18n.resolvedLanguage === 'en',
@@ -210,6 +247,16 @@ export default function Header() {
           {links}
           {socialLinks}
           {languageChanger}
+          <Hamburger
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            showHamburger={domLoaded}
+            className={clsx(
+              'absolute right-6 transition-opacity !duration-0',
+              showSideHamburger ? 'opacity-1' : 'opacity-0',
+              sideHamburger,
+            )}
+          />
         </Drawer>
       )}
     </>
