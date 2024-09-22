@@ -12,6 +12,8 @@ interface Props {
   children?: React.ReactNode;
 }
 
+export const drawerTransition = 300;
+
 export default function HeaderDrawer({ isOpen, setIsOpen, children }: Props) {
   const { i18n } = useI18next();
 
@@ -32,6 +34,7 @@ export default function HeaderDrawer({ isOpen, setIsOpen, children }: Props) {
       id="drawer"
       data-testid="drawer"
       aria-labelledby="hamburger"
+      transitionDuration={drawerTransition}
     >
       {children}
     </Drawer>
