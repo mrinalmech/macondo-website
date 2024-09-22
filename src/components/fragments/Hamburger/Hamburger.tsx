@@ -9,9 +9,16 @@ interface Props {
   setIsOpen: (open: boolean) => void;
   showHamburger: boolean;
   className?: string;
+  disableAriaLabel?: boolean;
 }
 
-export default function Hamburger({ isOpen, setIsOpen, showHamburger, className }: Props) {
+export default function Hamburger({
+  isOpen,
+  setIsOpen,
+  showHamburger,
+  className,
+  disableAriaLabel = false,
+}: Props) {
   const { t } = useTranslation();
 
   const handleClick = () => {
@@ -33,7 +40,11 @@ export default function Hamburger({ isOpen, setIsOpen, showHamburger, className 
         className,
       )}
       aria-label={
-        isOpen ? t('hamburger_close') || 'Close the menu' : t('hamburger_open') || 'Open the menu'
+        disableAriaLabel
+          ? ''
+          : isOpen
+          ? t('hamburger_close') || 'Close the menu'
+          : t('hamburger_open') || 'Open the menu'
       }
       aria-expanded={isOpen}
       aria-controls="drawer"

@@ -229,6 +229,7 @@ export default function Header() {
               'transition-opacity !duration-0',
               showSideHamburger ? 'opacity-0' : 'opacity-1',
             )}
+            disableAriaLabel={showSideHamburger}
           />
           <nav
             className={clsx('hidden lg:flex', {
@@ -256,6 +257,7 @@ export default function Header() {
               showSideHamburger ? 'opacity-1' : 'opacity-0',
               sideHamburger,
             )}
+            disableAriaLabel={!showSideHamburger}
           />
         </Drawer>
       )}
