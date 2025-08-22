@@ -128,7 +128,7 @@ export default function Header() {
         icon={faSteam}
       />
       <SocialLink
-        to="https://twitter.com/macondostudios"
+        to="https://x.com/macondogames_in"
         ariaLabel="Twitter"
         type="small"
         icon={faTwitter}
@@ -140,7 +140,7 @@ export default function Header() {
         icon={faFacebookF}
       />
       <SocialLink
-        to="https://www.instagram.com/globalsteelgame"
+        to="https://www.instagram.com/macondogames_in"
         ariaLabel="Instagram"
         type="small"
         icon={faInstagram}

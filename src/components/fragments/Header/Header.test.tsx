@@ -51,7 +51,7 @@ describe('Header', () => {
     );
     expect(screen.getByRole('link', { name: /Twitter/ })).toHaveAttribute(
       'href',
-      'https://twitter.com/macondostudios',
+      'https://x.com/macondogames_in',
     );
     expect(screen.getByRole('link', { name: /Facebook/ })).toHaveAttribute(
       'href',
@@ -59,7 +59,7 @@ describe('Header', () => {
     );
     expect(screen.getByRole('link', { name: /Instagram/ })).toHaveAttribute(
       'href',
-      'https://www.instagram.com/globalsteelgame',
+      'https://www.instagram.com/macondogames_in',
     );
     expect(screen.getByRole('link', { name: /Youtube/ })).toHaveAttribute(
       'href',

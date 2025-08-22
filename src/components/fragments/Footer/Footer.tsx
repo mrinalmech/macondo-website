@@ -28,7 +28,7 @@ export default function Footer() {
       </h2>
       <div className="mt-4 mb-5 flex">
         <SocialLink
-          to="https://twitter.com/macondostudios"
+          to="https://x.com/macondogames_in"
           ariaLabel="Twitter"
           icon={faTwitter}
           type="big"
@@ -40,7 +40,7 @@ export default function Footer() {
           type="big"
         />
         <SocialLink
-          to="https://www.instagram.com/globalsteelgame"
+          to="https://www.instagram.com/macondogames_in"
           ariaLabel="Instagram"
           icon={faInstagram}
           type="big"
