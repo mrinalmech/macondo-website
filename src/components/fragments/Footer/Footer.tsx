@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
 import clsx from 'clsx';
 import {
   faFacebookF,
-  faTwitter,
+  faXTwitter,
   faInstagram,
   faYoutube,
   faDiscord,
@@ -30,7 +30,7 @@ export default function Footer() {
         <SocialLink
           to="https://x.com/macondogames_in"
           ariaLabel="Twitter"
-          icon={faTwitter}
+          icon={faXTwitter}
           type="big"
         />
         <SocialLink

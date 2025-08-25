@@ -3,7 +3,7 @@ import { Link as IntLink, useI18next, Trans, useTranslation } from 'gatsby-plugi
 import clsx from 'clsx';
 import {
   faFacebookF,
-  faTwitter,
+  faXTwitter,
   faInstagram,
   faYoutube,
   faDiscord,
@@ -131,7 +131,7 @@ export default function Header() {
         to="https://x.com/macondogames_in"
         ariaLabel="Twitter"
         type="small"
-        icon={faTwitter}
+        icon={faXTwitter}
       />
       <SocialLink
         to="https://www.facebook.com/macondostudios"
