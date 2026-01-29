@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <company>
     <title>Macondo Games</title>
-    <based-in>Mumbai, India</based-in>
-    <founding-date>August 18, 2015</founding-date>
+    <based-in>Panjim, Goa, India</based-in>
+    <!-- founding-date>August 18, 2015</founding-date! -->
     <website>https://www.macondogames.com</website>
     <press-contact>        
         press@macondogames.com
@@ -74,11 +74,11 @@
         </social>
     </socials>
     <description>        
-        We are a small indie studio located in Mumbai, India working on our first title Global Steel, a run-and-gun shooter inspired by Saturday morning cartoons from the 80s.
+        We are a small indie studio located in Panjim, Goa, India working on our first title Global Steel, a run-and-gun shooter inspired by Saturday morning cartoons from the 80s.
     </description>
     <!-- Choose between a single block: -->
     <history>        
-        Macondo Games was founded by Mrinal Mech in 2015 in Mumbai, India. He always enjoyed playing video games as a child growing up so the next logical step was making them, and here we are.
+        Macondo Games was founded by Mrinal Mech. He always enjoyed playing video games as a child growing up so the next logical step was making them, and here we are.
     </history>
     <!-- Or multiple blocks: -->
     <!-- <histories> <history> <header></header> <text></text> </history> </histories> -->
